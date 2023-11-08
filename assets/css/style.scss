@@ -1,5 +1,214 @@
-
-
-body{
-    background-color: skyblue;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
+
+$main-bg: #fafafa;
+$text-color: #5a7184;
+$primary: #dcba95;
+$primary-light: #f9f4ee;
+$secondary-black: #2d3a4a;
+$body-text: #5a7184;
+$body-text2: #959ead;
+$icons: #919eab;
+$border-color: #ebeaed;
+$red-color: #b1628c;
+$red-bg: #f5ecf1;
+$rating-bg: #ecb43c;
+
+body,html{
+    overflow-x: clip;
+}
+body {
+  background-color: $main-bg;
+}
+
+.navbar {
+  background-color: #fff;
+  box-shadow: 0px 8px 24px 0px rgba(113, 128, 150, 0.04);
+  .items-container {
+    margin: 10px 0px;
+    .supp {
+      color: $text-color;
+      cursor: pointer;
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+  .search {
+    background-color: $main-bg;
+    width: 350px;
+    height: 48px;
+    border-radius: 10px;
+    .inp {
+      margin-left: 10px;
+      border-left: 1px solid #000;
+    }
+    input {
+      border: none;
+      outline: none;
+    }
+    .search-icon {
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #fff;
+      background: #dcba95;
+    }
+  }
+  .icons-with-profile {
+    .profile {
+      img {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 4px solid #fff;
+      }
+    }
+   
+  }
+}
+
+#list-profile{
+     border-radius: 16px !important;
+          background: #fff !important;
+          box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08) !important; 
+}
+
+
+.hero-section{
+ width:100%;
+ .box{
+   width: 100%;
+   height: 550px;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   border-radius: 24px;
+   padding:20px 50px;
+  opacity: 0.88;
+//   background: linear-gradient(180deg, rgba(69, 86, 102, 0.00) 0%, rgba(55, 69, 83, 0.39) 19.12%, #212B36 77.72%) , url('~/assets/images/banner.jpg');
+  background-image: url('~/assets/images/banner.jpg');
+   position: relative;
+   .overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.88;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(69, 86, 102, 0.00) 0%, rgba(55, 69, 83, 0.39) 19.12%, #212B36 77.72%);
+   }
+  .text-container{
+    display: flex;
+    height: 100%;
+    // padding: 20px;
+    gap: 20px;
+    z-index: 11;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    color: #fff;
+    .text{
+      width: 60%;
+    }
+    button{
+        display: flex;
+        padding: 8px 16px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        gap: 8px;
+        background-color: $secondary-black;
+        border-radius: 12px;
+
+    }
+  }
+ }
+
+ .swiper-pagination{
+    display: flex;
+    align-items: center;
+    padding: 20px 50px;
+    .swiper-pagination-bullet{
+        width: 8px;
+        height: 8px;
+        border-radius: 5px;
+       opacity: 0.38;
+      background: #FFF;
+        &.swiper-pagination-bullet-active{
+            height: 26px;
+            opacity: 1;
+        } 
+    } 
+ }
+}
+
+
+
+.sections{
+
+    margin-bottom: 50px;
+
+    .box{
+        width: 296px;
+        height: 374px;
+        border-radius: 20px;
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        margin: 10px 0px;
+        &.f1{
+            background-image: url('~/assets/images/rec4.png');
+        }
+        &.f2{
+            background-image: url('~/assets/images/rec3.jpg');
+        }
+        &.f3{
+            background-image: url('~/assets/images/rec2.jpg');
+        }
+        &.f4{
+            background-image: url('~/assets/images/rec1.jpg');
+        }
+        img{
+            width: 160px;
+        }
+         button{
+            border-radius: 8px;
+            padding: 8px 16px;
+          border: 1px solid #FFF;
+         }
+        .type{
+            font-weight: bold;
+            font-size: 32px;
+        }
+    }
+}
+
+@media(max-width: 767px){
+.sections{
+    .box{
+        width: 100%;
+    }
+}
+}
+
+// .swiper {
+//     width: 100%;
+//     height: 100%;
+//   }
+  
+//   .swiper-slide {
+//     background-position: center;
+//     background-size: cover;
+//   }
+  
+//   .swiper-slide img {
+//     display: block;
+//     width: 100%;
+//   }

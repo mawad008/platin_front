@@ -1,102 +1,81 @@
 <template>
     <div style="min-height: 100vh;">
-        <h1 style="color:#fff">platin project</h1>
-        <div id="carouselExample" class="carousel slide w-50">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://placehold.co/600x400" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="https://placehold.co/400" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="https://placehold.co/600x400" class="d-block w-100" alt="...">
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Accordion Item #1
+      <div class="container" style="margin-top:70px;">
+        <swiper
+    :spaceBetween="30"
+    :effect="'fade'"
+    :pagination="{
+      clickable: true,
+    }"
+    :modules="[SwiperEffectFade, SwiperPagination]"
+    class="hero-section"
+  >
+    <swiper-slide v-for="i,index in 3" class="box">
+       <div class="h-100">
+         <!-- <img src="~/assets/images/banner.jpg" alt=""> -->
+         <div class="text-container">
+         {{ index + 1 }}
+          <h2>  استمتع بلمسة من الأناقة والفخامة مع بلاتين  </h2>
+          <span class="text">
+            منصتنا الإلكترونية هي المكان الذي يجمع بين تجار الذهب والمجوهرات في المملكة. نفتخر بتقديم تجربة شراء آمنة وسلسة، مع تشكيلة واسعة وأنيقة تلبي احتياجاتك.
+
+          </span>
+          <button>
+            <span> تسوق الان </span>
+            <i class="fa-solid fa-arrow-left-long"></i>
           </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+         </div>
+       </div>
+       <div class="overlay"></div>
+    </swiper-slide>
+  </swiper>
+      </div>
+
+      <div class="sections container" style="margin-top: 70px;">
+        <div class="text w-100 d-flex align-items-center justify-content-center text-center flex-column mb-5">
+         <h3> الاقسام </h3>
+         <span>  استكشف مجموعة متنوعة من أقسامنا المميزة، حيث ستجد تشكيلات متنوعة من المنتجات تلبي احتياجاتك وتعبر عن ذوقك الشخصي </span>
+        </div>
+        <div class="row justify-content-center justify-content-xl-start justify-content-lg-start ">
+         <div class="col-12 col-xl-3 col-lg-3 col-md-6">
+          <div class="box d-flex flex-column justify-content-center align-items-center gap-1 f1">
+            <img src="~/assets/images/section3.png" alt="">
+            <span class="type"> الساعات </span>
+            <span class="count"> 200 منتج </span>
+            <button class="mt-1"> عرض المنتجات </button>
           </div>
+         </div>
+         <div class="col-12 col-xl-3 col-lg-3 col-md-6">
+          <div class="box d-flex flex-column justify-content-center align-items-center gap-1 f2">
+            <img src="~/assets/images/section2.png" alt="">
+            <span class="type"> الساعات </span>
+            <span class="count"> 200 منتج </span>
+            <button class="mt-1"> عرض المنتجات </button>
+          </div>
+         </div>
+         <div class="col-12 col-xl-3 col-lg-3 col-md-6">
+          <div class="box d-flex flex-column justify-content-center align-items-center gap-1 f3">
+            <img src="~/assets/images/section1.png" alt="">
+            <span class="type"> الساعات </span>
+            <span class="count"> 200 منتج </span>
+            <button class="mt-1"> عرض المنتجات </button>
+          </div>
+         </div>
+         <div class="col-12 col-xl-3 col-lg-3 col-md-6">
+          <div class="box d-flex flex-column justify-content-center align-items-center gap-1 f4">
+            <img src="~/assets/images/watch.png" alt="">
+            <span class="type"> الساعات </span>
+            <span class="count"> 200 منتج </span>
+            <button class="mt-1"> عرض المنتجات </button>
+          </div>
+         </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Accordion Item #2
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Accordion Item #3
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
-    </div>
-     <v-row>
-        <v-col class="pa-12">
-          <v-range-slider
-            :ticks="seasons"
-            :model-value="[0, 1]"
-            min="0"
-            max="3"
-            :step="1"
-            show-ticks="always"
-            thumb-label="always"
-            tick-size="4"
-          >
-            <template v-slot:thumb-label="{ modelValue }">
-              <v-icon theme="dark" :icon="season(modelValue)"></v-icon>
-            </template>
-          </v-range-slider>
-        </v-col>
-      </v-row>
     </div>
 </template>
 
 <script setup>
-let seasons = {
-    0: 'Winter',
-    1: 'Spring',
-    2: 'Summer',
-    3: 'Fall',
-};
-let icons = [
-    'mdi-snowflake',
-    'mdi-leaf',
-    'mdi-fire',
-    'mdi-water',
-];
-const season = (val) => {
-    return icons[val];
-}
+
 </script>
 
 <style lang="scss" scoped>
