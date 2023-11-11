@@ -1,8 +1,10 @@
-import { Head, Body } from './.nuxt/components.d';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // devtools: { enabled: true },
   modules: ["nuxt-swiper", "@nuxtjs/i18n"],
+   plugins: [
+    // { src: "~/plugins/utils" },
+  ],
   i18n: {
     lazy: true,
     langDir: "locales",
@@ -46,6 +48,10 @@ export default defineNuxtConfig({
           src: "/js/bootstrap.bundle.min.js",
           body: true,
         },
+        // {
+        //   src: "/chart.utils.js",
+        //   body: true
+        // },
       ],
     },
   },

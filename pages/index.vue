@@ -149,9 +149,6 @@
      <p>اكتشف تجربة التسوق الفريدة حسب التصنيفات، حيث يمكنك استعراض واختيار المنتجات بسهولة وفقًا لاهتماماتك وتفضيلاتك.</p>
     </div>
           <swiper
-      :pagination="{
-        clickable: true,
-      }"
       :navigation="true"
       :breakpoints="{
         '640': {
@@ -167,7 +164,7 @@
           spaceBetween: 30,
         },
       }"
-      :modules="[ SwiperPagination , SwiperNavigation]"
+      :modules="[SwiperNavigation]"
       class=""
     >
 
@@ -250,34 +247,232 @@
     </div>
 
       <div class="container our-products my-5">
-
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled>Disabled</button>
-    </li>
-  </ul>
-  <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">...</div>
-  </div>      
+      <div class="header mb-5 d-flex flex-column align-items-center justify-content-center  w-100">
+       <h3 class="mb-5"> منتجاتنا </h3>
+ 
+             <v-tabs
+          v-model="tab"
+          align-tabs="center"
+        >
+          <v-tab :value="0" class="head"> 
+          <span class="choose"> الامهات </span>
+           <border/>
+          </v-tab>
+          <v-tab :value="1" class="head"> 
+          <span class="choose"> الاطفال </span>
+           <border/>
+          </v-tab>
+          <v-tab :value="2" class="head"> 
+          <span class="choose"> البنات </span>
+           <border/>
+          </v-tab >
+          <v-tab :value="3" class="head"> 
+          <span class="choose"> الاكثر مبيعا </span>
+           <border/>
+          </v-tab>
+        </v-tabs>
       </div>
+
+         <v-window v-model="tab">
+          <v-window-item >
+           <div class="row">
+            <div v-for="i in 4" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
+             <product-card/>
+            </div>
+           </div>
+      
+          </v-window-item>
+          <v-window-item >
+           <div class="row">
+            <div v-for="i in 3" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
+                <product-card/>
+
+            </div>
+           </div>
+      
+          </v-window-item>
+          <v-window-item >
+           <div class="row">
+            <div v-for="i in 2" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
+                <product-card/>
+
+            </div>
+           </div>
+      
+          </v-window-item>
+          <v-window-item >
+           <div class="row">
+            <div v-for="i in 6" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
+              <product-card/>
+            </div>
+           </div>
+      
+          </v-window-item>
+        </v-window>
+          <span class="more mt-5"> المزيد... </span>
+      </div>
+
     
-    </div>
+      <div class="container d-flex align-items-center justify-content-center banner-container">
+      <!-- :slidesPerView="1"
+      :spaceBetween="10" -->
+        <swiper
+      :navigation="true"
+      :breakpoints="{
+        '640': {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        '768': {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        '1024': {
+          slidesPerView: 3.5,
+          spaceBetween: 50,
+        },
+      }"
+     :modules="[SwiperNavigation]"
+      class="mySwiper "
+    >
+      <swiper-slide v-for="i in 4">
+       <product-card style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08);"/>
+      </swiper-slide>
+    </swiper>
+        <div class="overlay-background">
+           <div class="text">
+             <h4> مضاف حديثا </h4>
+             <button class="btn1">
+               <span> شاهد المزيد </span>
+              <i class="fa-solid fa-arrow-left-long"></i>
+             </button>
+           </div>
+           <img class="img-fluid " src="~/assets/images/banner-img1.png" alt="">
+        </div>
+      </div>
+      <div class="container d-flex align-items-center  justify-content-center banner-container">
+      <!-- :slidesPerView="1"
+      :spaceBetween="10" -->
+        <swiper
+      :navigation="true"
+      :breakpoints="{
+        '640': {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        '768': {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        '1024': {
+          slidesPerView: 3.5,
+          spaceBetween: 50,
+        },
+      }"
+     :modules="[SwiperNavigation]"
+      class="mySwiper "
+    >
+      <swiper-slide v-for="i in 4">
+       <product-card style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08);"/>
+      </swiper-slide>
+    </swiper>
+        <div class="overlay-background f2">
+           <div class="text">
+             <h4> الاكثر مبيعا </h4>
+             <button class="btn1">
+               <span> شاهد المزيد </span>
+              <i class="fa-solid fa-arrow-left-long"></i>
+             </button>
+           </div>
+           <img class="img-fluid " src="~/assets/images/banner-img2.png" alt="">
+        </div>
+      </div>
+      <div class="container d-flex align-items-center  justify-content-center banner-container">
+      <!-- :slidesPerView="1"
+      :spaceBetween="10" -->
+        <swiper
+      :navigation="true"
+      :breakpoints="{
+        '640': {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        '768': {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        '1024': {
+          slidesPerView: 3.5,
+          spaceBetween: 50,
+        },
+      }"
+     :modules="[SwiperNavigation]"
+      class="mySwiper "
+    >
+      <swiper-slide v-for="i in 4">
+       <product-card style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08);"/>
+      </swiper-slide>
+    </swiper>
+        <div class="overlay-background f3">
+           <div class="text">
+             <h4> خصومات الشهر </h4>
+             <button class="btn1">
+               <span> شاهد المزيد </span>
+              <i class="fa-solid fa-arrow-left-long"></i>
+             </button>
+           </div>
+           <img class="img-fluid " src="~/assets/images/banner-img3.png" alt="">
+        </div>
+      </div>
+        
+        <div class="brands-container">
+         <div class="text d-flex align-items-center justify-content-center flex-column gap-2 mb-5">  
+           <h3> الماركات </h3>
+           <span> استكشف مجموعة مذهلة من الماركات العالمية الرائدة في عالم المجوهرات والتصميم على موقع بلاتين  </span>
+         </div>
+                   <swiper :centeredSlides="true" :looped-slides="true"
+        :breakpoints="{
+          '640': {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          '768': {
+            slidesPerView: 5,
+            spaceBetween: 40,
+          },
+          '1024': {
+            slidesPerView: 9,
+            spaceBetween: 40,
+          },
+        }"
+       :modules="[]"
+        class="mySwiper "
+      >
+        <swiper-slide v-for="i,index in 11">
+          <img src="~/assets/images/brand-logo1.png" alt="">
+        </swiper-slide>
+      </swiper>
+ 
+
+       <p class="mb-5"> لازوردي إحدى كبريات المجموعات المعنية بتصنيع المجوهرات بأنواعها "الذهب والألماس والأحجار الكريمة" وتوزيعها عبر شبكة أفرعها المنتشرة بالسعودية </p>
+        <div class="btn-back d-flex align-items-center w-100 justify-content-center"> 
+          <button class="btn1">
+           <span> عرض المنتجات </span>
+            <i class="fa-solid fa-arrow-left-long"></i>  
+          </button>
+         </div>
+       <div class="overlay-bg"></div>
+        </div>
+        <div class="container chart-div">
+          <chart  />
+        </div>
+      </div>
 </template>
 
 <script setup>
-let tab = ref(1);
+let tab = ref(null);
+
+
 </script>
 
 <style lang="scss" scoped>

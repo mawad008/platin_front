@@ -18,6 +18,132 @@
   padding: 8px 16px;
 }
 
+.octagon {
+  width: 37px; /* Adjust the size as needed */
+  height: 37px; /* Adjust the size as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+.octagon svg {
+  stroke-width: 2px;
+  fill: #ebeaed;
+  width: 40px;
+  height: 40px;
+  transition: 0.3s;
+}
+.octagon i {
+  transition: 0.3s;
+  color: #919eab;
+  z-index: 1;
+  font-size: 17px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.octagon:hover i {
+  color: #fff;
+}
+.octagon:hover svg {
+  fill: #fff;
+}
+.octagon.active svg {
+  fill: #dcba95;
+}
+.octagon.active i {
+  color: #dcba95;
+}
+
+.product-card {
+  border-radius: 16px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: #5a7184;
+  gap: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s all;
+}
+.product-card .overlay {
+  transition: 0.5s;
+  border-radius: 16px;
+  background: rgba(45, 58, 74, 0.8);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: -1;
+}
+.product-card .overlay .head-icons {
+  padding: 20px;
+  position: absolute;
+  top: 0px;
+}
+.product-card .overlay .center-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: column;
+}
+.product-card:hover .overlay {
+  opacity: 1;
+  z-index: 1;
+}
+.product-card span {
+  color: 14px;
+}
+.product-card .head {
+  margin-bottom: 8px;
+}
+.product-card .head span {
+  color: #dcba95;
+  padding: 4px 12px;
+  background-color: #f9f4ee;
+  text-align: center;
+  border-radius: 8px;
+}
+.product-card .image {
+  background-image: url("~/assets/images/product.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 190px;
+  border-bottom: 1px solid #ebeaed;
+}
+.product-card .rate .star {
+  font-size: 16px;
+  color: #ecb43c;
+}
+.product-card h3 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  color: #2d3a4a;
+}
+.product-card .price .price-text {
+  color: #dcba95;
+  font-weight: bold;
+  font-size: 16px;
+}
+
 h3 {
   color: #2d3a4a;
   font-size: 40px;
@@ -201,9 +327,6 @@ body {
 .offers .box.main {
   background: linear-gradient(248deg, #212339 -60.76%, #09132c -32.78%, #1c222f 6.24%, #313b51 49.31%, #272e3d 122.2%, #626a7e 139.04%);
 }
-.offers .box.main .main-img {
-  background-image: url("~/assets/images/offer-pic.png");
-}
 .offers .box.main .overlay {
   position: absolute;
   width: 100%;
@@ -292,11 +415,13 @@ body {
   padding-bottom: 50px;
   overflow-y: visible !important;
 }
-.categories .swiper-button-prev, .categories .swiper-button-next {
+.categories .swiper-button-prev,
+.categories .swiper-button-next {
   top: -19%;
   text-align: center;
 }
-.categories .swiper-button-prev::after, .categories .swiper-button-next::after {
+.categories .swiper-button-prev::after,
+.categories .swiper-button-next::after {
   font-size: 20px;
   color: #2d3a4a;
   background-color: #fff;
@@ -316,7 +441,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #FFF;
+  background: #fff;
   gap: 10px;
   color: #5a7184;
 }
@@ -331,4 +456,162 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.our-products .header .types .choose {
+  color: #5a7184;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+}
+.our-products .more {
+  text-decoration: underline;
+  color: #2d3a4a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 35px 0px;
+}
+.our-products .v-btn {
+  color: #5a7184;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+.our-products .v-btn .v-btn__content {
+  position: relative;
+}
+.our-products .v-btn .v-btn__content svg {
+  position: absolute;
+  height: 7px;
+  width: 44px;
+  right: 0;
+  bottom: -9px;
+  display: none;
+}
+.our-products .v-btn.v-slide-group-item--active {
+  color: #dcba95 !important;
+  font-weight: bold;
+}
+.our-products .v-btn.v-slide-group-item--active .v-tab__slider {
+  display: none;
+}
+.our-products .v-btn.v-slide-group-item--active .v-btn__content svg {
+  display: block;
+}
+.our-products .v-btn .v-btn__overlay {
+  display: none;
+}
+.our-products .v-btn :hover {
+  background-color: transparent;
+}
+
+.banner-container {
+  border-radius: 24px;
+  background: #FFF;
+  position: relative;
+  padding: 20px;
+  margin-bottom: 50px;
+  min-height: 595px;
+}
+.banner-container .overlay-background {
+  position: absolute;
+  width: 364px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  border-radius: 20px 0px 0px 20px;
+  background: linear-gradient(180deg, #8952FF 0%, #AA8EE5 100%);
+}
+.banner-container .overlay-background .text {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 70px;
+}
+.banner-container .overlay-background .text h4 {
+  font-size: 32px;
+}
+.banner-container .overlay-background img {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.banner-container .overlay-background.f2 {
+  background: linear-gradient(180deg, #8952FF 0%, #AA8EE5 100%);
+}
+.banner-container .swiper {
+  overflow-y: visible !important;
+}
+.banner-container .swiper-button-prev,
+.banner-container .swiper-button-next {
+  top: -13%;
+  text-align: center;
+}
+.banner-container .swiper-button-prev::after,
+.banner-container .swiper-button-next::after {
+  font-size: 20px;
+  color: #2d3a4a;
+  color: #919eab;
+  background-color: #fafafa;
+  border-radius: 50%;
+  padding: 10px 15px;
+  text-align: center;
+}
+.banner-container .swiper-button-prev {
+  right: 20px !important;
+}
+.banner-container .swiper-button-next {
+  right: 100px !important;
+}
+
+.brands-container {
+  background: linear-gradient(248deg, #212339 -60.76%, #09132C -32.78%, #1C222F 6.24%, #313B51 49.31%, #272E3D 122.2%, #626A7E 139.04%);
+  color: #fff;
+  padding: 65px 25px;
+  margin-bottom: 80px;
+  gap: 15px;
+  position: relative;
+}
+.brands-container .overlay-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  background-image: url("~/assets/images/offer-bc.png");
+  background-size: cover;
+}
+.brands-container span, .brands-container h3, .brands-container p, .brands-container button {
+  z-index: 4;
+}
+.brands-container span, .brands-container p {
+  text-align: center;
+}
+.brands-container .text h3 {
+  color: #fff;
+}
+.brands-container .swiper {
+  z-index: 2;
+  margin: 100px 0px;
+  overflow: visible;
+}
+.brands-container .swiper .swiper-slide {
+  z-index: 2;
+}
+.brands-container .swiper .swiper-slide img {
+  opacity: 0.6;
+}
+.brands-container .swiper .swiper-slide.swiper-slide-active {
+  transform: scale(1.4);
+}
+.brands-container .swiper .swiper-slide.swiper-slide-active img {
+  opacity: 1;
 }/*# sourceMappingURL=style.css.map */
