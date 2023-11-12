@@ -32,18 +32,18 @@ onMounted(() => {
         datasets: [
             {
             yAxisID: 'y',
-            label: 'Dataset 1',
+            label: 'سعر الشراء',
             data: [10, 20, 30, 40, 50],
-            backgroundColor:'rgba(255, 99, 132, 0.5)',
-            borderColor:  'rgba(54, 162, 235, 1)',
+            backgroundColor:'#dcba95',
+            borderColor:  '#dcba95',
             borderWidth: 1
             },
             {
             yAxisID: 'y1',
-            label: 'Dataset 2',
+            label: 'سعر البيع',
             data: [56, 50, 89, 20, 60],
-            backgroundColor:  'rgba(75, 192, 192, 0.5)',
-            borderColor:  'rgba(153, 102, 255, 1)',
+            backgroundColor:  '#2d3a4a',
+            borderColor:  '#2d3a4a',
             borderWidth: 1
             },
            
@@ -62,7 +62,7 @@ onMounted(() => {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Chart.js Line Chart - Multi Axis'
+                    text: 'بورصة الذهب'
                 }
             },
             scales: {
@@ -91,17 +91,7 @@ onMounted(() => {
             datasets: data.datasets,
         },
         options: config.options,
-        actions: [
-            {
-                name: 'Randomize',
-                handler(chart) {
-                    chart.data.datasets.forEach(dataset => {
-                        dataset.data = { count: chart.data.labels.length, min: -100, max: 100 };
-                    });
-                    chart.update();
-                }
-            },
-        ]
+      
     });
 });
 

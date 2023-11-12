@@ -17,6 +17,9 @@
   border-radius: 12px;
   padding: 8px 16px;
 }
+.btn1 span {
+  color: #fff;
+}
 
 .octagon {
   width: 37px; /* Adjust the size as needed */
@@ -88,6 +91,9 @@
   justify-content: center;
   opacity: 0;
   z-index: -1;
+}
+.product-card .overlay span {
+  color: #fff;
 }
 .product-card .overlay .head-icons {
   padding: 20px;
@@ -266,6 +272,9 @@ body {
 .sections {
   margin-bottom: 50px;
 }
+.sections span {
+  color: #fff;
+}
 .sections .box {
   width: 265px;
   height: 374px;
@@ -312,6 +321,9 @@ body {
   overflow: visible !important;
   padding: 65px 0px;
 }
+.offers span {
+  color: #fff;
+}
 .offers .box {
   height: 418px;
   border-radius: 24px;
@@ -323,6 +335,7 @@ body {
   background-size: cover;
   width: 550px;
   background-repeat: no-repeat;
+  background-image: url("~/assets/images/offer-pic.png");
 }
 .offers .box.main {
   background: linear-gradient(248deg, #212339 -60.76%, #09132c -32.78%, #1c222f 6.24%, #313b51 49.31%, #272e3d 122.2%, #626a7e 139.04%);
@@ -368,8 +381,8 @@ body {
   width: 321px;
   height: 321px;
   transform: rotate(-30deg);
-  left: 20px;
-  top: 10px;
+  left: 50px;
+  top: 0px;
 }
 .offers .box .text-container .circle img {
   width: 100%;
@@ -614,4 +627,55 @@ body {
 }
 .brands-container .swiper .swiper-slide.swiper-slide-active img {
   opacity: 1;
+}
+
+.chart-div {
+  margin-bottom: 50px;
+}
+.chart-div .chart-container {
+  border-radius: 24px;
+  background: #FFF;
+  padding: 15px;
+}
+
+.gift-container {
+  margin-bottom: 60px;
+  background-image: url("~/assets/images/background1.png");
+  background-position: center;
+  background-attachment: scroll;
+  background-size: cover;
+  position: relative;
+  padding: 45px;
+}
+.gift-container .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.96;
+  background: linear-gradient(169deg, rgba(69, 86, 102, 0) -39.42%, rgba(55, 69, 83, 0.39) -39.42%, #212B36 173.07%);
+}
+.gift-container .text h3, .gift-container .text p {
+  color: #fff;
+  z-index: 111;
+}
+.gift-container .box-container {
+  z-index: 11;
+  width: 465px;
+  min-height: 173px;
+  margin: 20px 0px;
+}
+.gift-container .box-container .box {
+  z-index: 111;
+  padding: 20px;
+  height: 100%;
+  border-radius: 16px;
+  border: 1px solid #FFF;
+  color: #fff;
+  position: relative;
+}
+.gift-container .box-container .box.active {
+  right: 55px;
 }/*# sourceMappingURL=style.css.map */
