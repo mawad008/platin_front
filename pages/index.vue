@@ -705,13 +705,14 @@
 
     <div class="info-container container">
       <div class="row">
-        <div class="col-12 col-xl-6 col-lg-6  my-2" style="">
+        <div class="col-12 col-xl-6 col-lg-6 cover-box my-2 " >
         <div class="img-box">    
         <div class="image bg-dang">
            <img src="~/assets/images/info-bg.png" alt="">
           <div class="overlay"></div>
         </div>
         </div>
+        <img class="cover" src="~/assets/images/info-bg-overlay.png" alt="">
         </div>
         <div class="col-12 col-xl-6 col-lg-6  my-2">
           <div class="all-boxes d-flex flex-column  h-100 justify-content-between ">

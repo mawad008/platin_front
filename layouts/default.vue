@@ -1,11 +1,43 @@
 <template>
     <div>
-       <nav class="navbar">
+       <nav class="navbar" :class="{'active':activeNav}">
        <div class="container">
-       <div class="items-container w-100 d-flex align-items-center justify-content-between">
-        <div class="items d-flex align-items-center gap-3">
+       <div class="items-container w-100 d-flex align-items-center justify-content-between" :class="{'active':activeNav}">
+        <div class="items d-flex align-items-center gap-4">
           <span>الرئيسية</span>
+
+          <v-menu>
+            <template v-slot:activator="{ props }">
+        <button  v-bind="props" class="d-flex align-items-center gap-2">
           <span> الاقسام</span>
+          <i class="fa-solid fa-sort-down"></i>
+             </button>
+      </template>
+      <div>
+        <div id="mega-menu-id" class="mega-menu" :class="{'d-none':activeNav}">
+          <div class="row">
+           <div v-for="i , index in 4" class="col-3" >
+             <div class="box">
+              <div class="image" :class="`f${index + 1}`">
+                <img src="~/assets/images/section3.png" alt="">
+              </div>
+                <div class="text d-flex flex-column gap-3">
+                 <h6 class="mt-3"> الذهب </h6>
+                  <div class="links d-flex align-items-center gap-3 flex-column">
+                   <span> الاساور </span>
+                   <span> القلادات </span>
+                   <span> الاطقم </span>
+                   <span> الخواتم </span>
+                  </div>
+                  <span class="all"> الكل </span>
+                </div>
+             </div>
+           </div>
+          </div>
+        </div>
+      </div>
+          </v-menu>
+       
           <span>السبائك</span>
           <span>التجار</span>
         </div>
@@ -14,7 +46,7 @@
          <span>الدعم الفني</span>
          </div>
        </div>
-       <v-divider :thickness="1"></v-divider>
+       <v-divider :class="{'d-none':activeNav}" :thickness="1"></v-divider>
        <div class="d-flex align-items-center bg-dange w-100 justify-content-between"> 
        <div class="d-flex align-items-center gap-5">  
         <div class="logo">
@@ -165,7 +197,14 @@
            </div>
          </div>
          <v-divider :thickness="1"></v-divider>
-
+            <div class="foot w-100 d-flex flex-column flex-xl-row flex-lg-row align-items-center justify-content-between">
+             <span>  سياسة الخصوصية والشروط والاحكام </span>
+             <div>
+              <span> تم تطويره بواسطة </span>
+              <img src="~/assets/images/webstdy.png" alt="">
+             </div>
+              <span> جميع الحقوق محفوظة © 2023 . </span>
+            </div>
         </div>
 
         </div>
@@ -174,7 +213,20 @@
 </template>
 
 <script setup>
-
+let activeNav = ref(false);
+let activeItemsContainer = ref(false);
+onMounted(() => {
+  window.addEventListener('scroll', function(){
+    if(this.window.scrollY >= 300){
+      activeNav.value = true;
+      activeItemsContainer.value = true;
+      
+    } else if (window.scrollY == 0) {
+     activeNav.value = false;
+     activeItemsContainer.value = false;
+    }
+  });
+})
 
 </script>
 
