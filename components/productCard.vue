@@ -37,12 +37,15 @@
                      </div>
 
                      <div class="center-icons w-100">
-                     <div class="d-flex w-100 align-items-center justify-content-between"> 
+                     <div class="d-flex w-100 align-items-center justify-content-between">
+                        <nuxt-link to="/product">
+                        
                         <div class="octagon d-flex flex-column gap-3">
                          <octagon/>
                       <i class="fa-solid fa-eye"></i> 
                 
                         </div>
+                        </nuxt-link> 
                         <div class="octagon d-flex flex-column gap-3">
                          <octagon/>
                       <i class="fa-solid fa-cart-shopping"></i>
