@@ -2,7 +2,7 @@
     <div>
          <div class="product-card">
                    <div class="head w-100 d-flex align-items-center justify-content-between">
-                     <div class="octagon">
+                     <div class="octagon" :class="{'active':favIcon}">
                      <octagon/>
                      <i class="fa-solid fa-heart"></i>
                      </div>
@@ -70,8 +70,18 @@
     </div>
 </template>
 
-<script setup>
+<script>
+export default {
+  props: ['favIcon'],
+  setup(props) {
+    
 
+
+    return {
+      
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
