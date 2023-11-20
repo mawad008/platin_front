@@ -14,7 +14,7 @@
       </div>
       <div class="main-cart">
         <div class="row">
-          <div class="col-7">
+          <div class="col-12 col-xl-7 col-lg-7">
             <div class="main">
               <div class="head">
                 <h5>سلة تسوقك <span> (3) </span></h5>
@@ -70,7 +70,7 @@
                     <div class="boxes d-flex flex-column gap-4">
                       <div
                         v-for="i in 3"
-                        class="box d-flex align-items-center justify-content-between"
+                        class="box d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between"
                       >
                         <div class="image-box d-flex align-items-center gap-2">
                           <div class="image">
@@ -99,7 +99,7 @@
               </div>
             </div>
           </div>
-          <div class="col-5">
+          <div class="col-12 col-xl-5 col-lg-5">
             <div class="card-details">
               <div class="total-price">
                 <div class="total">

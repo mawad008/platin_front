@@ -52,7 +52,9 @@
             <img src="~/assets/images/section3.png" alt="" />
             <span class="type"> الساعات </span>
             <span class="count"> 200 منتج </span>
+            <nuxt-link to="category">
             <button class="mt-1">عرض المنتجات</button>
+            </nuxt-link>
           </div>
         </div>
         <div class="col-12 col-xl-3 col-lg-3 col-md-6">
@@ -62,7 +64,9 @@
             <img src="~/assets/images/section2.png" alt="" />
             <span class="type"> الساعات </span>
             <span class="count"> 200 منتج </span>
+            <nuxt-link to="category">
             <button class="mt-1">عرض المنتجات</button>
+            </nuxt-link>
           </div>
         </div>
         <div class="col-12 col-xl-3 col-lg-3 col-md-6">
@@ -72,7 +76,9 @@
             <img src="~/assets/images/section1.png" alt="" />
             <span class="type"> الساعات </span>
             <span class="count"> 200 منتج </span>
+            <nuxt-link to="category">
             <button class="mt-1">عرض المنتجات</button>
+            </nuxt-link>
           </div>
         </div>
         <div class="col-12 col-xl-3 col-lg-3 col-md-6">
@@ -82,7 +88,9 @@
             <img src="~/assets/images/watch.png" alt="" />
             <span class="type"> الساعات </span>
             <span class="count"> 200 منتج </span>
+                <nuxt-link to="category">
             <button class="mt-1">عرض المنتجات</button>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -90,11 +98,24 @@
 
     <div class="offers containe" style="margin-top: 70px">
       <swiper
-        :slidesPerView="1.4"
-        :spaceBetween="20"
+       
         :effect="'fade'"
         :pagination="{
           clickable: true,
+        }"
+        :breakpoints="{
+          '640': {
+            slidesPerView: 1,
+            spaceBetween: 40,
+          },
+          '768': {
+            slidesPerView: 1,
+            spaceBetween: 40,
+          },
+          '1024': {
+            slidesPerView: 1.4,
+            spaceBetween: 20,
+          },
         }"
         :modules="[SwiperPagination]"
         class=""
@@ -168,6 +189,7 @@
     </div>
 
     <div class="container categories">
+    <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between">
       <div class="text">
         <h3>تسوق حسب التصنيفات</h3>
         <p>
@@ -175,8 +197,23 @@
           بسهولة وفقًا لاهتماماتك وتفضيلاتك.
         </p>
       </div>
+      <div class="d-flex align-items-center gap-4">
+      
+      <div class="slider-cate-next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+          <div class="slider-cate-prev">
+            <i class="fa-solid fa-chevron-left"></i>
+          </div>
+      
+      </div>
+    </div>
+
       <swiper
-        :navigation="true"
+      :navigation="{
+          nextEl: '.slider-cate-next',
+          prevEl: '.slider-cate-prev'
+        }"
         :breakpoints="{
           '640': {
             slidesPerView: 2,
@@ -325,7 +362,9 @@
           </div>
         </v-window-item>
       </v-window>
+      <nuxt-link to="products">
       <span class="more mt-5"> المزيد... </span>
+      </nuxt-link>
     </div>
 
     <div
@@ -333,8 +372,21 @@
     >
       <!-- :slidesPerView="1"
       :spaceBetween="10" -->
+      <div class="arrows d-flex align-items-center gap-4">
+      
+      <div @click="banner = true" class="slider-cate-next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+          <div @click="banner = false" class="slider-cate-prev">
+            <i class="fa-solid fa-chevron-left"></i>
+          </div>
+      
+      </div>
       <swiper
-        :navigation="true"
+      :navigation="{
+          nextEl: '.slider-cate-next',
+          prevEl: '.slider-cate-prev'
+        }"
         :breakpoints="{
           '640': {
             slidesPerView: 1,
@@ -356,7 +408,7 @@
           <product-card style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)" />
         </swiper-slide>
       </swiper>
-      <div class="overlay-background">
+      <div class="overlay-background " :class="{'active':banner}">
         <div class="text">
           <h4>مضاف حديثا</h4>
           <button class="btn1">
@@ -768,6 +820,7 @@
 
 <script setup>
 let tab = ref(null);
+let banner = ref(false);
 </script>
 
 <style lang="scss" scoped></style>
