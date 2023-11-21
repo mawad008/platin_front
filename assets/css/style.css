@@ -937,16 +937,26 @@ body {
 .brands-container .swiper .swiper-slide {
   z-index: 2;
 }
+.brands-container .swiper .swiper-slide p {
+  width: 70%;
+}
 .brands-container .swiper .swiper-slide img {
   opacity: 0.6;
+  width: 100px;
 }
 .brands-container .swiper .swiper-slide.swiper-slide-active {
   transform: scale(1.4);
 }
 .brands-container .swiper .swiper-slide.swiper-slide-active img {
   opacity: 1;
+  width: 140px;
 }
 
+@media (max-width: 700px) {
+  .brands-container .swiper .swiper-slide p {
+    width: 100%;
+  }
+}
 .chart-div {
   margin-bottom: 50px;
 }

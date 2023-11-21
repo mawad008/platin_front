@@ -17,9 +17,9 @@
               {{ index + 1 }}
               <h2>استمتع بلمسة من الأناقة والفخامة مع بلاتين</h2>
               <span class="text">
-                منصتنا الإلكترونية هي المكان الذي يجمع بين تجار الذهب والمجوهرات في
-                المملكة. نفتخر بتقديم تجربة شراء آمنة وسلسة، مع تشكيلة واسعة وأنيقة تلبي
-                احتياجاتك.
+                منصتنا الإلكترونية هي المكان الذي يجمع بين تجار الذهب والمجوهرات
+                في المملكة. نفتخر بتقديم تجربة شراء آمنة وسلسة، مع تشكيلة واسعة
+                وأنيقة تلبي احتياجاتك.
               </span>
               <button class="btn1">
                 <span> تسوق الان </span>
@@ -38,8 +38,8 @@
       >
         <h3>الاقسام</h3>
         <span>
-          استكشف مجموعة متنوعة من أقسامنا المميزة، حيث ستجد تشكيلات متنوعة من المنتجات
-          تلبي احتياجاتك وتعبر عن ذوقك الشخصي
+          استكشف مجموعة متنوعة من أقسامنا المميزة، حيث ستجد تشكيلات متنوعة من
+          المنتجات تلبي احتياجاتك وتعبر عن ذوقك الشخصي
         </span>
       </div>
       <div
@@ -53,7 +53,7 @@
             <span class="type"> الساعات </span>
             <span class="count"> 200 منتج </span>
             <nuxt-link to="category">
-            <button class="mt-1">عرض المنتجات</button>
+              <button class="mt-1">عرض المنتجات</button>
             </nuxt-link>
           </div>
         </div>
@@ -65,7 +65,7 @@
             <span class="type"> الساعات </span>
             <span class="count"> 200 منتج </span>
             <nuxt-link to="category">
-            <button class="mt-1">عرض المنتجات</button>
+              <button class="mt-1">عرض المنتجات</button>
             </nuxt-link>
           </div>
         </div>
@@ -77,7 +77,7 @@
             <span class="type"> الساعات </span>
             <span class="count"> 200 منتج </span>
             <nuxt-link to="category">
-            <button class="mt-1">عرض المنتجات</button>
+              <button class="mt-1">عرض المنتجات</button>
             </nuxt-link>
           </div>
         </div>
@@ -88,8 +88,8 @@
             <img src="~/assets/images/watch.png" alt="" />
             <span class="type"> الساعات </span>
             <span class="count"> 200 منتج </span>
-                <nuxt-link to="category">
-            <button class="mt-1">عرض المنتجات</button>
+            <nuxt-link to="category">
+              <button class="mt-1">عرض المنتجات</button>
             </nuxt-link>
           </div>
         </div>
@@ -98,7 +98,6 @@
 
     <div class="offers containe" style="margin-top: 70px">
       <swiper
-       
         :effect="'fade'"
         :pagination="{
           clickable: true,
@@ -127,9 +126,9 @@
             <div class="text-container">
               <h2>خصم 50 % علي منتجات زهرة الياقوت</h2>
               <span class="text">
-                هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص
-                من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص
-                الأخرى
+                هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
+                هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
+                العديد من النصوص الأخرى
               </span>
               <button class="btn1">
                 <span> شاهد العروض </span>
@@ -152,8 +151,9 @@
             <div class="text-container">
               <h2>الاهتمام مبيطلبش.. معانا تقدري تطلبيه</h2>
               <span class="text">
-                مع ميزة 'أمنياتي' الخاصة بنا، يمكنك الآن جمع منتجاتك المفضلة وحلمك في مكان
-                واحد. قم بإضافة أي منتج تشتهر به إلى 'أمنياتي' وشاركه مع من تحب
+                مع ميزة 'أمنياتي' الخاصة بنا، يمكنك الآن جمع منتجاتك المفضلة
+                وحلمك في مكان واحد. قم بإضافة أي منتج تشتهر به إلى 'أمنياتي'
+                وشاركه مع من تحب
               </span>
               <button class="btn1">
                 <span> شاهد العروض </span>
@@ -172,8 +172,9 @@
             <div class="text-container">
               <h2>الاهتمام مبيطلبش.. معانا تقدري تطلبيه</h2>
               <span class="text">
-                مع ميزة 'أمنياتي' الخاصة بنا، يمكنك الآن جمع منتجاتك المفضلة وحلمك في مكان
-                واحد. قم بإضافة أي منتج تشتهر به إلى 'أمنياتي' وشاركه مع من تحب
+                مع ميزة 'أمنياتي' الخاصة بنا، يمكنك الآن جمع منتجاتك المفضلة
+                وحلمك في مكان واحد. قم بإضافة أي منتج تشتهر به إلى 'أمنياتي'
+                وشاركه مع من تحب
               </span>
               <button class="btn1">
                 <span> شاهد العروض </span>
@@ -189,30 +190,30 @@
     </div>
 
     <div class="container categories">
-    <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between">
-      <div class="text">
-        <h3>تسوق حسب التصنيفات</h3>
-        <p>
-          اكتشف تجربة التسوق الفريدة حسب التصنيفات، حيث يمكنك استعراض واختيار المنتجات
-          بسهولة وفقًا لاهتماماتك وتفضيلاتك.
-        </p>
-      </div>
-      <div class="d-flex align-items-center gap-4">
-      
-      <div class="slider-cate-next">
+      <div
+        class="d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between"
+      >
+        <div class="text">
+          <h3>تسوق حسب التصنيفات</h3>
+          <p>
+            اكتشف تجربة التسوق الفريدة حسب التصنيفات، حيث يمكنك استعراض واختيار
+            المنتجات بسهولة وفقًا لاهتماماتك وتفضيلاتك.
+          </p>
+        </div>
+        <div class="d-flex align-items-center gap-4">
+          <div class="slider-cate-next">
             <i class="fa-solid fa-chevron-right"></i>
           </div>
           <div class="slider-cate-prev">
             <i class="fa-solid fa-chevron-left"></i>
           </div>
-      
+        </div>
       </div>
-    </div>
 
       <swiper
-      :navigation="{
+        :navigation="{
           nextEl: '.slider-cate-next',
-          prevEl: '.slider-cate-prev'
+          prevEl: '.slider-cate-prev',
         }"
         :breakpoints="{
           '640': {
@@ -363,7 +364,7 @@
         </v-window-item>
       </v-window>
       <nuxt-link to="products">
-      <span class="more mt-5"> المزيد... </span>
+        <span class="more mt-5"> المزيد... </span>
       </nuxt-link>
     </div>
 
@@ -373,19 +374,17 @@
       <!-- :slidesPerView="1"
       :spaceBetween="10" -->
       <div class="arrows d-flex align-items-center gap-4">
-      
-      <div @click="banner = true" class="slider-cate-next">
-            <i class="fa-solid fa-chevron-right"></i>
-          </div>
-          <div @click="banner = false" class="slider-cate-prev">
-            <i class="fa-solid fa-chevron-left"></i>
-          </div>
-      
+        <div @click="banner = true" class="slider-cate-next">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+        <div @click="banner = false" class="slider-cate-prev">
+          <i class="fa-solid fa-chevron-left"></i>
+        </div>
       </div>
       <swiper
-      :navigation="{
+        :navigation="{
           nextEl: '.slider-cate-next',
-          prevEl: '.slider-cate-prev'
+          prevEl: '.slider-cate-prev',
         }"
         :breakpoints="{
           '640': {
@@ -405,10 +404,12 @@
         class="mySwiper"
       >
         <swiper-slide v-for="i in 4">
-          <product-card style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)" />
+          <product-card
+            style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
+          />
         </swiper-slide>
       </swiper>
-      <div class="overlay-background " :class="{'active':banner}">
+      <div class="overlay-background" :class="{ active: banner }">
         <div class="text">
           <h4>مضاف حديثا</h4>
           <button class="btn1">
@@ -445,7 +446,9 @@
         class="mySwiper"
       >
         <swiper-slide v-for="i in 4">
-          <product-card style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)" />
+          <product-card
+            style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
+          />
         </swiper-slide>
       </swiper>
       <div class="overlay-background f2">
@@ -485,7 +488,9 @@
         class="mySwiper"
       >
         <swiper-slide v-for="i in 4">
-          <product-card style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)" />
+          <product-card
+            style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
+          />
         </swiper-slide>
       </swiper>
       <div class="overlay-background f3">
@@ -506,19 +511,22 @@
       >
         <h3>الماركات</h3>
         <span>
-          استكشف مجموعة مذهلة من الماركات العالمية الرائدة في عالم المجوهرات والتصميم على
-          موقع بلاتين
+          استكشف مجموعة مذهلة من الماركات العالمية الرائدة في عالم المجوهرات
+          والتصميم على موقع بلاتين
         </span>
       </div>
       <swiper
         :centeredSlides="true"
         :looped-slides="true"
+        :grabCursor="true"
+        :thumbs="{ swiper: thumbsSwiper }"
+        :modules="[SwiperFreeMode, SwiperThumbs]"
         :breakpoints="{
-          '640': {
+          '300': {
             slidesPerView: 2,
-            spaceBetween: 10,
+            spaceBetween: 80,
           },
-          '768': {
+          '700': {
             slidesPerView: 5,
             spaceBetween: 40,
           },
@@ -527,24 +535,37 @@
             spaceBetween: 40,
           },
         }"
-        :modules="[]"
         class="mySwiper"
       >
-        <swiper-slide v-for="(i, index) in 11">
-          <img src="~/assets/images/vector.svg" class="img-fluid" alt="" />
+        <swiper-slide v-for="(item, index) in brandsArr" class="px">
+          <img src="~/assets/images/vector.svg" class="w-100" alt="" />
         </swiper-slide>
       </swiper>
 
-      <p class="mb-5">
-        لازوردي إحدى كبريات المجموعات المعنية بتصنيع المجوهرات بأنواعها "الذهب والألماس
-        والأحجار الكريمة" وتوزيعها عبر شبكة أفرعها المنتشرة بالسعودية
-      </p>
-      <div class="btn-back d-flex align-items-center w-100 justify-content-center">
-        <button class="btn1">
-          <span> عرض المنتجات </span>
-          <i class="fa-solid fa-arrow-left-long"></i>
-        </button>
-      </div>
+      <swiper
+        @swiper="setThumbsSwiper"
+        :freeMode="true"
+        :watchSlidesProgress="true"
+        :spaceBetween="60"
+        :slidesPerView="1"
+      >
+        <swiper-slide v-for="(item, index) in brandsArr" class="" style="padding: 0px 50px;">
+          <div class=" d-flex flex-column align-items-center justify-content-center">            
+          <p class="mb-5 text-center " style="">
+            {{ item.description }}
+          </p>
+          <div
+            class="btn-back d-flex align-items-center w-100 justify-content-center"
+          >
+            <button class="btn1">
+              <span> عرض المنتجات </span>
+              <i class="fa-solid fa-arrow-left-long"></i>
+            </button>
+          </div>
+          </div>
+        </swiper-slide>
+      </swiper>
+
       <div class="overlay-bg"></div>
     </div>
 
@@ -554,7 +575,8 @@
       >
         <h3>عن السوق</h3>
         <span>
-          نحن هنا لنوفر لك أحدث الأسعار على الفور، لنضمن أنك دائمًا في علم بتقلبات <br />
+          نحن هنا لنوفر لك أحدث الأسعار على الفور، لنضمن أنك دائمًا في علم
+          بتقلبات <br />
           سوق الذهب وفرص الشراء والبيع في الوقت المناسب.
         </span>
       </div>
@@ -569,8 +591,8 @@
       >
         <h3>تهادوا تحابوا</h3>
         <p>
-          نقدم لك ميزة استثنائية تتيح لك إرسال هدية خاصة إلى من تحب. تمتع مع بلاتين بتجربة
-          فريدة من نوعها مع توصيل مشاعرك بأسلوب خاص ومميز.
+          نقدم لك ميزة استثنائية تتيح لك إرسال هدية خاصة إلى من تحب. تمتع مع
+          بلاتين بتجربة فريدة من نوعها مع توصيل مشاعرك بأسلوب خاص ومميز.
         </p>
       </div>
       <div class="row justify-content-evenly">
@@ -611,7 +633,10 @@
        7.19605 14.4223 5.77064L15.534 5.19914L14.4207 5.76897C13.484 3.93081 12.7357 2.61903 11.6507 2.59397L11.6107 2.59062Z"
                   fill="white"
                 />
-                <path d="M14.916 19.3062H19.0827V36.0167H14.916V19.3062Z" fill="white" />
+                <path
+                  d="M14.916 19.3062H19.0827V36.0167H14.916V19.3062Z"
+                  fill="white"
+                />
                 <path
                   d="M12.416 19.3063V36.0168H6.99935C6.39734 36.0172 5.80114 35.8987 5.24487 35.6679C4.68859 35.4371
      4.18316 35.0986 3.75747 34.6718C3.33178 34.245 2.99419 33.7382 2.76401 33.1805C2.53383 32.6228 2.41558 
@@ -629,9 +654,9 @@
             </div>
 
             <p class="mt-2">
-              استعرض مجموعة متنوعة من الهدايا المتاحة وحدد الهدية المثالية للشخص الذي ترغب
-              في إرسالها. بمجرد اختيار الهدية، انتقل إلى المرحلة التالية لإدخال معلومات
-              المستلم.
+              استعرض مجموعة متنوعة من الهدايا المتاحة وحدد الهدية المثالية للشخص
+              الذي ترغب في إرسالها. بمجرد اختيار الهدية، انتقل إلى المرحلة
+              التالية لإدخال معلومات المستلم.
             </p>
           </div>
         </div>
@@ -665,8 +690,8 @@
             </div>
 
             <p class="mt-2">
-              أدخل معلومات المستلم، بما في ذلك اسمه وعنوانه ورقم هاتفه. ثم قم بكتابة رسالة
-              شخصية ترافق الهدية.
+              أدخل معلومات المستلم، بما في ذلك اسمه وعنوانه ورقم هاتفه. ثم قم
+              بكتابة رسالة شخصية ترافق الهدية.
             </p>
           </div>
         </div>
@@ -716,8 +741,9 @@
             </div>
 
             <p class="mt-2">
-              في هذه المرحلة، سيكون لديك السيطرة على إرسال رسالة نصية للمستلم لإعلامه بقرب
-              وصول الهدية. يمكنك تحديد ما إذا كنت ترغب في إرسال الرسالة النصية أم لا.
+              في هذه المرحلة، سيكون لديك السيطرة على إرسال رسالة نصية للمستلم
+              لإعلامه بقرب وصول الهدية. يمكنك تحديد ما إذا كنت ترغب في إرسال
+              الرسالة النصية أم لا.
             </p>
           </div>
         </div>
@@ -745,9 +771,9 @@
             </div>
 
             <p class="mt-2">
-              تأكد من توصيل الهدية بأمان وسلامة إلى المستلم. نهدف دائمًا إلى تقديم تجربة
-              فريدة ومميزة، حيث نضع اهتمامًا خاصًا بكل تفاصيل الهدية وعملية التوصيل لجعلها
-              لحظة لا تُنسى.
+              تأكد من توصيل الهدية بأمان وسلامة إلى المستلم. نهدف دائمًا إلى
+              تقديم تجربة فريدة ومميزة، حيث نضع اهتمامًا خاصًا بكل تفاصيل الهدية
+              وعملية التوصيل لجعلها لحظة لا تُنسى.
             </p>
           </div>
         </div>
@@ -757,17 +783,19 @@
 
     <div class="info-container container">
       <div class="row">
-        <div class="col-12 col-xl-6 col-lg-6 cover-box my-2 " >
-        <div class="img-box">    
-        <div class="image bg-dang">
-           <img src="~/assets/images/info-bg.png" alt="">
-          <div class="overlay"></div>
+        <div class="col-12 col-xl-6 col-lg-6 cover-box my-2">
+          <div class="img-box">
+            <div class="image bg-dang">
+              <img src="~/assets/images/info-bg.png" alt="" />
+              <div class="overlay"></div>
+            </div>
+          </div>
+          <img class="cover" src="~/assets/images/info-bg-overlay.png" alt="" />
         </div>
-        </div>
-        <img class="cover" src="~/assets/images/info-bg-overlay.png" alt="">
-        </div>
-        <div class="col-12 col-xl-6 col-lg-6  my-2">
-          <div class="all-boxes d-flex flex-column  h-100 justify-content-between ">
+        <div class="col-12 col-xl-6 col-lg-6 my-2">
+          <div
+            class="all-boxes d-flex flex-column h-100 justify-content-between"
+          >
             <div v-for="i in 4" class="box">
               <div class="head d-flex align-items-center gap-3">
                 <svg
@@ -806,21 +834,42 @@
                   </defs>
                 </svg>
 
-                <span> الشحن السريع  </span>
+                <span> الشحن السريع </span>
               </div>
-              <p> توصيل سريع وموثوق لمنتجاتك مع شركات شحن معروفة. نهدف لضمان استلامك للطلبات في أقرب وقت ممكن.  </p>
+              <p>
+                توصيل سريع وموثوق لمنتجاتك مع شركات شحن معروفة. نهدف لضمان
+                استلامك للطلبات في أقرب وقت ممكن.
+              </p>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import axios from "axios";
+
+const thumbsSwiper = ref(null);
+const setThumbsSwiper = (swiper) => {
+  thumbsSwiper.value = swiper;
+};
+
 let tab = ref(null);
 let banner = ref(false);
+
+let brandsArr = ref([]);
+
+const getBrands = async () => {
+ let result = await axios.get(`${getUrl()}/brands`);
+ console.log(result.data.data);
+ brandsArr.value = result.data.data
+};
+
+onMounted(() => {
+  getBrands();
+})
 </script>
 
 <style lang="scss" scoped></style>
