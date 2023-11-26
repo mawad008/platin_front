@@ -68,7 +68,7 @@
             <div class="count-type d-flex align-items-center gap-3">
               <div class="count d-flex flex-column gap-2">
                 <span> الكمية </span>
-                <input type="num" value="1" min="1" />
+                <input type="number" value="1" min="1" />
               </div>
               <div class="type d-flex flex-column gap-2">
                 <span class="word"> لون البشرة </span>

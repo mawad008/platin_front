@@ -25,8 +25,8 @@
                   :class="{ 'd-none': activeNav }"
                 >
                   <div class="row">
-                    <div v-for="(i, index) in 4" class="col-3">
-                      <div class="box">
+                    <div v-for="(i, index) in 4" class="col-12 col-xl-3 col-lg-3 col-md-6">
+                      <div class="box d-flex flex-column align-item-center">
                         <div class="image" :class="`f${index + 1}`">
                           <img src="~/assets/images/section3.png" alt="" />
                         </div>
@@ -85,11 +85,11 @@
                 <div
                   id="mega-menu-id"
                   class="mega-menu"
-                  :class="{ 'd-none': activeNav }"
+                  
                 >
                   <div class="row">
-                    <div v-for="(i, index) in 4" class="col-3">
-                      <div class="box">
+                    <div v-for="(i, index) in 4" class="col-12 col-xl-3 col-lg-3 col-md-6">
+                      <div class="box d-flex flex-column align-items-center">
                         <div class="image" :class="`f${index + 1}`">
                           <img src="~/assets/images/section3.png" alt="" />
                         </div>
@@ -154,8 +154,8 @@
 
           <div class="icons-with-profile d-flex gap-3">
             <div class="icons d-flex align-items-center gap-3">
-              <div class="icon lang d-flex align-items-center gap-1">
-                <span>en</span>
+              <div @click="changeLang()" class="icon lang d-flex align-items-center gap-1">
+                <span>{{ $t('ar') }}</span>
                 <i class="fa-solid fa-earth-americas"></i>
               </div>
               <nuxt-link to="wishlist">
@@ -321,6 +321,35 @@
 <script setup>
 let activeNav = ref(false);
 let activeItemsContainer = ref(false);
+
+const localePath = useLocalePath();
+ const { locale , setLocale } = useI18n();
+const changeLang = async()=>{
+  locale.value = locale.value === "en" ? "ar" : "en";
+  if (locale.value == "ar") {
+    setLocale("ar");
+            useHead({
+        htmlAttrs:{
+            lang: 'ar',
+            dir: 'rtl',
+          }
+       });
+  } else {
+    useHead({
+        htmlAttrs:{
+            lang: 'en',
+            dir: 'ltr',
+          }
+       });
+    setLocale("en");
+  }
+  const query = useRoute().query;
+  await navigateTo(
+    localePath({ path: useRoute().path, query: query }, undefined, {
+      preserveQuery: true,
+    })
+  );
+}
 onMounted(() => {
   window.addEventListener("scroll", function () {
     if (this.window.scrollY >= 300) {

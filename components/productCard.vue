@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="product-card">
+    <div  class="product-card">
       <div class="head w-100 d-flex align-items-center justify-content-between">
         <div class="octagon" :class="{ active: favIcon }">
           <octagon />
@@ -18,7 +18,7 @@
           <span>3.4</span>
         </div>
       </div>
-      <h3>خاتم ذهب 2.5 جرام صافي عيار 24 قيراط</h3>
+      <!-- <h3>{{product.description}}</h3> -->
       <div
         class="price w-100 d-flex align-items-center justify-content-between"
       >
@@ -74,6 +74,7 @@
             <span> مقارنة </span>
           </div>
         </div>
+       
       </div>
     </div>
   </div>
@@ -81,9 +82,12 @@
 
 <script>
 export default {
-  props: ["favIcon"],
+  props: ["favIcon" , "product"],
   setup(props) {
     let checkShare = ref(false);
+    onMounted(()=>{
+console.log(props.product);
+    });
     return {
       checkShare,
     };

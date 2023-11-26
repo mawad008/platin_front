@@ -45,49 +45,13 @@
       <div
         class="row justify-content-center justify-content-xl-start justify-content-lg-start"
       >
-        <div class="col-12 col-xl-3 col-lg-3 col-md-6">
+        <div v-for="item , index in categoriesArr" class="col-12 col-xl-3 col-lg-3 col-md-6">
           <div
-            class="box d-flex flex-column justify-content-center align-items-center gap-1 f1"
+            class="box d-flex flex-column justify-content-center align-items-center gap-1 f1" :class="`f${index + 1}`"
           >
-            <img src="~/assets/images/section3.png" alt="" />
-            <span class="type"> الساعات </span>
-            <span class="count"> 200 منتج </span>
-            <nuxt-link to="category">
-              <button class="mt-1">عرض المنتجات</button>
-            </nuxt-link>
-          </div>
-        </div>
-        <div class="col-12 col-xl-3 col-lg-3 col-md-6">
-          <div
-            class="box d-flex flex-column justify-content-center align-items-center gap-1 f2"
-          >
-            <img src="~/assets/images/section2.png" alt="" />
-            <span class="type"> الساعات </span>
-            <span class="count"> 200 منتج </span>
-            <nuxt-link to="category">
-              <button class="mt-1">عرض المنتجات</button>
-            </nuxt-link>
-          </div>
-        </div>
-        <div class="col-12 col-xl-3 col-lg-3 col-md-6">
-          <div
-            class="box d-flex flex-column justify-content-center align-items-center gap-1 f3"
-          >
-            <img src="~/assets/images/section1.png" alt="" />
-            <span class="type"> الساعات </span>
-            <span class="count"> 200 منتج </span>
-            <nuxt-link to="category">
-              <button class="mt-1">عرض المنتجات</button>
-            </nuxt-link>
-          </div>
-        </div>
-        <div class="col-12 col-xl-3 col-lg-3 col-md-6">
-          <div
-            class="box d-flex flex-column justify-content-center align-items-center gap-1 f4"
-          >
-            <img src="~/assets/images/watch.png" alt="" />
-            <span class="type"> الساعات </span>
-            <span class="count"> 200 منتج </span>
+            <img :src="item.image" alt="" />
+            <span class="type"> {{ item.name }} </span>
+            <span class="count"> {{ item.products_count }} منتج </span>
             <nuxt-link to="category">
               <button class="mt-1">عرض المنتجات</button>
             </nuxt-link>
@@ -99,6 +63,7 @@
     <div class="offers containe" style="margin-top: 70px">
       <swiper
         :effect="'fade'"
+        :centeredSlides="true"
         :pagination="{
           clickable: true,
         }"
@@ -112,13 +77,35 @@
             spaceBetween: 40,
           },
           '1024': {
-            slidesPerView: 1.4,
+            slidesPerView: 1.5,
             spaceBetween: 20,
           },
         }"
         :modules="[SwiperPagination]"
         class=""
       >
+       
+        <swiper-slide class="box f1">
+          <div
+            class="h-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row"
+          >
+            <div class="text-container">
+              <h2>الاهتمام مبيطلبش.. معانا تقدري تطلبيه</h2>
+              <span class="text">
+                مع ميزة 'أمنياتي' الخاصة بنا، يمكنك الآن جمع منتجاتك المفضلة
+                وحلمك في مكان واحد. قم بإضافة أي منتج تشتهر به إلى 'أمنياتي'
+                وشاركه مع من تحب
+              </span>
+              <button class="btn1">
+                <span> شاهد العروض </span>
+                <i class="fa-solid fa-arrow-left-long"></i>
+              </button>
+            </div>
+            <div class="main-img h-100">
+              <img src="~/assets/images/gift.png" alt="">
+            </div>
+          </div>
+        </swiper-slide>
         <swiper-slide class="box main">
           <div
             class="h-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row"
@@ -139,31 +126,10 @@
               </div>
             </div>
             <div class="main-img h-100">
-              <!-- <img src="~/assets/images/offer-pic.png" alt=""> -->
+              <img src="~/assets/images/offer-pic.png" alt="">
             </div>
           </div>
           <div class="overlay"></div>
-        </swiper-slide>
-        <swiper-slide class="box f1">
-          <div
-            class="h-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row"
-          >
-            <div class="text-container">
-              <h2>الاهتمام مبيطلبش.. معانا تقدري تطلبيه</h2>
-              <span class="text">
-                مع ميزة 'أمنياتي' الخاصة بنا، يمكنك الآن جمع منتجاتك المفضلة
-                وحلمك في مكان واحد. قم بإضافة أي منتج تشتهر به إلى 'أمنياتي'
-                وشاركه مع من تحب
-              </span>
-              <button class="btn1">
-                <span> شاهد العروض </span>
-                <i class="fa-solid fa-arrow-left-long"></i>
-              </button>
-            </div>
-            <div class="main-img h-100">
-              <!-- <img src="~/assets/images/offer-pic.png" alt=""> -->
-            </div>
-          </div>
         </swiper-slide>
         <swiper-slide class="box f2">
           <div
@@ -182,7 +148,7 @@
               </button>
             </div>
             <div class="main-img h-100">
-              <!-- <img src="~/assets/images/offer-pic.png" alt=""> -->
+              <img src="~/assets/images/gift.png" alt="">
             </div>
           </div>
         </swiper-slide>
@@ -211,15 +177,14 @@
       </div>
 
       <swiper
+      :slidesPerView="2"
+      :spaceBetween="10"
         :navigation="{
           nextEl: '.slider-cate-next',
           prevEl: '.slider-cate-prev',
         }"
         :breakpoints="{
-          '640': {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
+       
           '768': {
             slidesPerView: 4,
             spaceBetween: 40,
@@ -232,78 +197,17 @@
         :modules="[SwiperNavigation]"
         class=""
       >
-        <swiper-slide class="box">
+      
+        <swiper-slide v-for="item in subcategoriesArr" >
+        <div class="box">
           <div class="image">
-            <img src="~/assets/images/cate1.png" alt="" />
+            <img :src="item.image" alt="" />
           </div>
-          <span> خواتم </span>
+          <span> {{ item.name }} </span>
+        </div>
         </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate2.png" alt="" />
-          </div>
-          <span> غوايش </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate3.png" alt="" />
-          </div>
-          <span> هدايا </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate4.png" alt="" />
-          </div>
-          <span> اطقم </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate5.png" alt="" />
-          </div>
-          <span> عقد </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate6.png" alt="" />
-          </div>
-          <span> حلق </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate1.png" alt="" />
-          </div>
-          <span> خواتم </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate2.png" alt="" />
-          </div>
-          <span> غوايش </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate3.png" alt="" />
-          </div>
-          <span> هدايا </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate4.png" alt="" />
-          </div>
-          <span> اطقم </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate5.png" alt="" />
-          </div>
-          <span> عقد </span>
-        </swiper-slide>
-        <swiper-slide class="box">
-          <div class="image">
-            <img src="~/assets/images/cate6.png" alt="" />
-          </div>
-          <span> حلق </span>
-        </swiper-slide>
+        
+ 
       </swiper>
     </div>
 
@@ -314,51 +218,18 @@
         <h3 class="mb-5">منتجاتنا</h3>
 
         <v-tabs v-model="tab" align-tabs="center">
-          <v-tab :value="0" class="head">
-            <span class="choose"> الامهات </span>
-            <border />
-          </v-tab>
-          <v-tab :value="1" class="head">
-            <span class="choose"> الاطفال </span>
-            <border />
-          </v-tab>
-          <v-tab :value="2" class="head">
-            <span class="choose"> البنات </span>
-            <border />
-          </v-tab>
-          <v-tab :value="3" class="head">
-            <span class="choose"> الاكثر مبيعا </span>
+          <v-tab v-for="item,index in tags " @click="getProducts()" :value="item.id" class="head">
+            <span class="choose"> {{ item.name }} </span>
             <border />
           </v-tab>
         </v-tabs>
       </div>
 
       <v-window v-model="tab">
-        <v-window-item>
+        <v-window-item v-for="item,index in tags ">
           <div class="row">
-            <div v-for="i in 4" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
-              <product-card />
-            </div>
-          </div>
-        </v-window-item>
-        <v-window-item>
-          <div class="row">
-            <div v-for="i in 3" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
-              <product-card />
-            </div>
-          </div>
-        </v-window-item>
-        <v-window-item>
-          <div class="row">
-            <div v-for="i in 2" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
-              <product-card />
-            </div>
-          </div>
-        </v-window-item>
-        <v-window-item>
-          <div class="row">
-            <div v-for="i in 6" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
-              <product-card />
+            <div v-for="item in productsTags"  class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
+              <product-card :product="item" />
             </div>
           </div>
         </v-window-item>
@@ -374,10 +245,10 @@
       <!-- :slidesPerView="1"
       :spaceBetween="10" -->
       <div class="arrows d-flex align-items-center gap-4">
-        <div @click="banner = true" class="slider-cate-next">
+        <div @click="banner1 = true" class="slider-cate-next arrow">
           <i class="fa-solid fa-chevron-right"></i>
         </div>
-        <div @click="banner = false" class="slider-cate-prev">
+        <div @click="banner1 = false" class="slider-cate-prev arrow">
           <i class="fa-solid fa-chevron-left"></i>
         </div>
       </div>
@@ -403,13 +274,13 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="i in 4">
+        <swiper-slide v-for="i in 8">
           <product-card
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
         </swiper-slide>
       </swiper>
-      <div class="overlay-background" :class="{ active: banner }">
+      <div class="overlay-background f1" :class="{ active: banner1 }">
         <div class="text">
           <h4>مضاف حديثا</h4>
           <button class="btn1">
@@ -424,10 +295,21 @@
     <div
       class="container d-flex align-items-center justify-content-center banner-container"
     >
-      <!-- :slidesPerView="1"
-      :spaceBetween="10" -->
+ 
+      
+      <div class="arrows d-flex align-items-center gap-4">
+        <div @click="banner2 = true" class="arrow second-cate-next">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+        <div @click="banner2 = false" class="arrow second-cate-prev">
+          <i class="fa-solid fa-chevron-left"></i>
+        </div>
+      </div>
       <swiper
-        :navigation="true"
+         :navigation="{
+          nextEl: '.second-cate-next',
+          prevEl: '.second-cate-prev',
+        }"
         :breakpoints="{
           '640': {
             slidesPerView: 1,
@@ -445,13 +327,13 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="i in 4">
+        <swiper-slide v-for="i in 8">
           <product-card
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
         </swiper-slide>
       </swiper>
-      <div class="overlay-background f2">
+      <div class="overlay-background f2" :class="{ active: banner2 }">
         <div class="text">
           <h4>الاكثر مبيعا</h4>
           <button class="btn1">
@@ -459,17 +341,26 @@
             <i class="fa-solid fa-arrow-left-long"></i>
           </button>
         </div>
-        <img class="img-fluid" src="~/assets/images/banner-img2.png" alt="" />
+        <img class="img-fluid " src="~/assets/images/banner-img2.png" alt="" />
       </div>
     </div>
 
     <div
       class="container d-flex align-items-center justify-content-center banner-container"
     >
-      <!-- :slidesPerView="1"
-      :spaceBetween="10" -->
+    <div class="arrows d-flex align-items-center gap-4">
+        <div @click="banner3 = true" class="third-cate-next arrow">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+        <div @click="banner3 = false" class="third-cate-prev arrow">
+          <i class="fa-solid fa-chevron-left"></i>
+        </div>
+      </div>
       <swiper
-        :navigation="true"
+      :navigation="{
+          nextEl: '.third-cate-next',
+          prevEl: '.third-cate-prev',
+        }"
         :breakpoints="{
           '640': {
             slidesPerView: 1,
@@ -487,13 +378,13 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="i in 4">
+        <swiper-slide v-for="i in 8">
           <product-card
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
         </swiper-slide>
       </swiper>
-      <div class="overlay-background f3">
+      <div class="overlay-background f3" :class="{ active: banner3 }">
         <div class="text">
           <h4>خصومات الشهر</h4>
           <button class="btn1">
@@ -532,7 +423,7 @@
           },
           '1024': {
             slidesPerView: 9,
-            spaceBetween: 40,
+            spaceBetween: 60,
           },
         }"
         class="mySwiper"
@@ -596,9 +487,9 @@
         </p>
       </div>
       <div class="row justify-content-evenly">
-        <div class="col-12 col-xl-6 col-lg-6 box-container">
+        <div class="col-12 col-xl-5 col-lg-5 box-container">
           <div class="box">
-            <div class="head d-flex align-items-center gap-2">
+            <div class="head d-flex align-items-center gap-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="34"
@@ -653,16 +544,16 @@
               <span class="fw-bold">1.اختر الهدية التي تليق بذوقك</span>
             </div>
 
-            <p class="mt-2">
+            <p class="mt-2 px-5">
               استعرض مجموعة متنوعة من الهدايا المتاحة وحدد الهدية المثالية للشخص
               الذي ترغب في إرسالها. بمجرد اختيار الهدية، انتقل إلى المرحلة
               التالية لإدخال معلومات المستلم.
             </p>
           </div>
         </div>
-        <div class="col-12 col-xl-6 col-lg-6 box-container">
+        <div class="col-12 col-xl-5 col-lg-5 box-container">
           <div class="box">
-            <div class="head d-flex align-items-center gap-2">
+            <div class="head d-flex align-items-center gap-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"
@@ -689,15 +580,15 @@
               <span class="fw-bold">3.معلومات المستلم</span>
             </div>
 
-            <p class="mt-2">
+            <p class="mt-2 px-5">
               أدخل معلومات المستلم، بما في ذلك اسمه وعنوانه ورقم هاتفه. ثم قم
               بكتابة رسالة شخصية ترافق الهدية.
             </p>
           </div>
         </div>
-        <div class="col-12 col-xl-6 col-lg-6 box-container">
+        <div class="col-12 col-xl-5 col-lg-5 box-container">
           <div class="box active">
-            <div class="head d-flex align-items-center gap-2">
+            <div class="head d-flex align-items-center gap-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"
@@ -740,16 +631,16 @@
               <span class="fw-bold">2.التشويق</span>
             </div>
 
-            <p class="mt-2">
+            <p class="mt-2 px-5">
               في هذه المرحلة، سيكون لديك السيطرة على إرسال رسالة نصية للمستلم
               لإعلامه بقرب وصول الهدية. يمكنك تحديد ما إذا كنت ترغب في إرسال
               الرسالة النصية أم لا.
             </p>
           </div>
         </div>
-        <div class="col-12 col-xl-6 col-lg-6 box-container">
+        <div class="col-12 col-xl-5 col-lg-5 box-container">
           <div class="box active">
-            <div class="head d-flex align-items-center gap-2">
+            <div class="head d-flex align-items-center gap-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"
@@ -770,7 +661,7 @@
               <span class="fw-bold"> 4.التوصيل </span>
             </div>
 
-            <p class="mt-2">
+            <p class="mt-2 px-5">
               تأكد من توصيل الهدية بأمان وسلامة إلى المستلم. نهدف دائمًا إلى
               تقديم تجربة فريدة ومميزة، حيث نضع اهتمامًا خاصًا بكل تفاصيل الهدية
               وعملية التوصيل لجعلها لحظة لا تُنسى.
@@ -782,7 +673,7 @@
     </div>
 
     <div class="info-container container">
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-12 col-xl-6 col-lg-6 cover-box my-2">
           <div class="img-box">
             <div class="image bg-dang">
@@ -796,7 +687,7 @@
           <div
             class="all-boxes d-flex flex-column h-100 justify-content-between"
           >
-            <div v-for="i in 4" class="box">
+            <div v-for="i in 4" class="box my-3">
               <div class="head d-flex align-items-center gap-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -851,24 +742,89 @@
 <script setup>
 import axios from "axios";
 
+ const localePath = useLocalePath();
+ const { locale } = useI18n();
+
 const thumbsSwiper = ref(null);
 const setThumbsSwiper = (swiper) => {
   thumbsSwiper.value = swiper;
 };
 
 let tab = ref(null);
-let banner = ref(false);
-
+let banner1 = ref(false);
+let banner2 = ref(false);
+let banner3 = ref(false);
 let brandsArr = ref([]);
+let categoriesArr = ref([]);
+let subcategoriesArr = ref([]);
+let tags = ref([]);
+let productsTags = ref([]);
 
+
+
+const getCategories = async()=>{
+  let result = await axios.get(`${getUrl()}/categories`,{
+    headers:{
+      "Content-Language": `${locale.value}`
+    }
+  });
+  categoriesArr.value = result.data.data;
+
+}
 const getBrands = async () => {
- let result = await axios.get(`${getUrl()}/brands`);
- console.log(result.data.data);
- brandsArr.value = result.data.data
+  let result = await axios.get(`${getUrl()}/brands`, {
+    headers: {
+      "Content-Language": `${locale.value}`
+    },
+  });
+  brandsArr.value = result.data.data;
 };
 
-onMounted(() => {
+const getSubcategories = async() =>{
+  let result = await axios.get(`${getUrl()}/subcategories`,{
+    headers:{
+      "Content-Language": `${locale.value}`
+    }
+  });
+  subcategoriesArr.value = result.data.data;
+
+}
+
+
+const getTags = async() =>{
+  let result = await axios.get(`${getUrl()}/tags`,{
+    headers:{
+      "Content-Language": `${locale.value}`
+    }
+  });
+  tags.value = result.data.data;
+
+    tab.value = tags.value[0].id;
+  if(tab.value){
+    getProducts();
+  }
+  console.log(tab.value)
+}
+
+const getProducts = async()=>{
+  let result = await axios.get(`${getUrl()}/products`,{
+    params:{
+      id:tab.value
+    },
+    headers:{
+      "Content-Language": `${locale.value}`
+    }
+  });
+
+  productsTags.value = result.data.data;
+}
+
+onMounted(async() => {
   getBrands();
+  getCategories();
+  getSubcategories();
+  getTags();
+  //getProducts();
 })
 </script>
 
