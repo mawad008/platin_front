@@ -26,10 +26,12 @@
                 >
                   <div class="row">
                     <div v-for="(i, index) in 4" class="col-12 col-xl-3 col-lg-3 col-md-6">
-                      <div class="box d-flex flex-column align-item-center">
+                      <div class="box d-flex flex-column align-item-center ">
+                      <div class="d-flex align-items-center justify-content-center w-100 ">
                         <div class="image" :class="`f${index + 1}`">
                           <img src="~/assets/images/section3.png" alt="" />
                         </div>
+                      </div>
                         <div class="text d-flex flex-column gap-3">
                           <h6 class="mt-3">الذهب</h6>
                           <div
@@ -90,9 +92,11 @@
                   <div class="row">
                     <div v-for="(i, index) in 4" class="col-12 col-xl-3 col-lg-3 col-md-6">
                       <div class="box d-flex flex-column align-items-center">
+                        <div class="d-flex align-items-center justify-content-center w-100 ">
                         <div class="image" :class="`f${index + 1}`">
                           <img src="~/assets/images/section3.png" alt="" />
                         </div>
+                      </div>
                         <div class="text d-flex flex-column gap-3">
                           <h6 class="mt-3">الذهب</h6>
                           <div
@@ -193,8 +197,8 @@
                   <span> طلباتي </span>
                   <span> الامان </span>
                   <div class="d-flex align-items-center gap-2">
-                    <span> تسجيل الخروج </span>
                     <i class="fa-solid fa-right-from-bracket"></i>
+                    <span> تسجيل الخروج </span>
                   </div>
                 </div>
               </v-menu>

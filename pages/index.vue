@@ -15,7 +15,7 @@
             <!-- <img src="~/assets/images/banner.jpg" alt=""> -->
             <div class="text-container">
               {{ index + 1 }}
-              <h2>استمتع بلمسة من الأناقة والفخامة مع بلاتين</h2>
+              <h2>  استمتع بلمسة من الأناقة والفخامة مع بلاتين</h2>
               <span class="text">
                 منصتنا الإلكترونية هي المكان الذي يجمع بين تجار الذهب والمجوهرات
                 في المملكة. نفتخر بتقديم تجربة شراء آمنة وسلسة، مع تشكيلة واسعة
@@ -408,7 +408,6 @@
       </div>
       <swiper
         :centeredSlides="true"
-        :looped-slides="true"
         :grabCursor="true"
         :thumbs="{ swiper: thumbsSwiper }"
         :modules="[SwiperFreeMode, SwiperThumbs]"

@@ -39,14 +39,18 @@ a {
 }
 
 @media (max-width: 900px) {
-  h3 {
-    font-size: 27px;
+  h3, h4 {
+    font-size: 24px;
   }
   .btn1 {
     width: 110px;
-    height: 41px;
+    height: 40px;
     font-size: 11px;
     padding: 8px 10px;
+  }
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 .octagon {
@@ -301,7 +305,17 @@ body {
 #list-profile {
   border-radius: 16px !important;
   background: #fff !important;
+  width: 204px;
+  height: 242px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08) !important;
+  color: #919EAB;
+}
+#list-profile span {
+  cursor: pointer;
 }
 
 #mega-menu-id {
@@ -342,6 +356,7 @@ body {
 #mega-menu-id .box .text h6 {
   font-size: 18px;
   color: #2d3a4a;
+  font-weight: bolder;
 }
 #mega-menu-id .box .text .all {
   text-decoration: underline;
@@ -353,6 +368,11 @@ body {
   font-size: 14px;
 }
 
+@media (max-width: 900px) {
+  #mega-menu-id .box {
+    margin: 20px 0px;
+  }
+}
 .navbar {
   transition: all 0.4s;
   background-color: #fff;
@@ -540,8 +560,15 @@ body {
   justify-content: center;
   color: #fff;
 }
+.hero-section .box .text-container h2 {
+  font-size: 40px;
+  width: 423px;
+}
 .hero-section .box .text-container .text {
-  width: 60%;
+  width: 512px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
 }
 .hero-section .swiper-pagination {
   display: flex;
@@ -572,6 +599,7 @@ body {
     font-size: 14px;
   }
   .hero-section .box .text-container h2 {
+    width: 100%;
     font-size: 20px;
     line-height: 30px;
   }

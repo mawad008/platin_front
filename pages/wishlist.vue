@@ -81,6 +81,8 @@ let items = ref([
         href: 'wishlist',
     },
 ]);
+
+
 </script>
 
 <style lang="scss" scoped>

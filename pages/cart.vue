@@ -40,7 +40,7 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <div v-for="i in 2" class="main-box">
+                  <div v-for="item , index in arrData" class="main-box">
                     <div class="head-icon mb-3">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -64,23 +64,23 @@
                       </svg>
                       <div class="text">
                         <span class="by"> بواسطة </span>
-                        <span> متجر زهرة الياقوت </span>
+                        <span>{{ item.nameV }}</span>
                       </div>
                     </div>
                     <div class="boxes d-flex flex-column gap-4">
                       <div
-                        v-for="i in 3"
+                        v-for="theItem , vindex in item.vendor"
                         class="box d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between"
                       >
                         <div class="image-box d-flex align-items-center gap-2">
                           <div class="image">
                             <img src="~/assets/images/product.png" alt="" />
                           </div>
-                          <span> خاتم ذهب 2.5 جرام صافي عيار 24 قيراط </span>
+                          <span>{{ theItem.type }}</span>
                         </div>
                         <input type="number" min="1" value="1" />
-                        <span class="price"> 120 ريال سعودي </span>
-                        <button>
+                        <span class="price"> {{ theItem.price }} ريال سعودي </span>
+                        <button @click="deleteItem(index , vindex)">
                           <img src="~/assets/images/trash.svg" alt="" />
                         </button>
                       </div>
@@ -104,7 +104,7 @@
               <div class="total-price">
                 <div class="total">
                   <span class="word all"> الاجمالي </span>
-                  <span class="fw-bold price"> 520 ر.س </span>
+                  <span class="fw-bold price"> {{ total }} ر.س </span>
                 </div>
                 <div class="total">
                   <span class="word"> السعر </span>
@@ -280,19 +280,68 @@
   </div>
 </template>
 
-<script setup>
-let items = ref([
-  {
-    title: "الرئيسية",
-    disabled: true,
-    href: "/",
-  },
-  {
-    title: "السلة",
-    disabled: false,
-    href: "cart",
-  },
-]);
+<script>
+import { useStore } from '~/store';
+export default {
+
+  setup(){
+const store = useStore;
+    console.log(store.state.arrData);
+    let items = ref([
+      {
+        title: "الرئيسية",
+        disabled: true,
+        href: "/",
+      },
+      {
+        title: "السلة",
+        disabled: false,
+        href: "cart",
+      },
+    ]);
+    
+    
+    let arrData = ref(store.state.arrData);
+    const deleteItem = (index,item)=>{
+      arrData.value[index].vendor.splice(item, 1);
+      console.log(arrData.value[index].vendor.length);
+      if(arrData.value[index].vendor.length == 0){
+        arrData.value.splice(index, 1);
+        console.log('done');
+      }
+      getTotal();
+    }
+    let total = ref(0);
+    const getTotal = () => {
+      for(let i = 0; i <arrData.value.length; i++){
+        for(let j = 0; j < arrData.value[i].vendor.length; j++){
+          total.value += arrData.value[i].vendor[j].price;
+        }
+      }
+      console.log(total.value);
+    
+    }
+    onMounted(() => {
+      getTotal()
+    })
+
+
+
+    return{
+      arrData,
+      items,
+      deleteItem,
+      total
+    }
+  }
+}
+// let basket = ref([
+//   {
+//     id: 1,
+//     item:1,
+//   }
+// ])
+
 </script>
 
 <style lang="scss" scoped></style>

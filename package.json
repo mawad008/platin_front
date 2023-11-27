@@ -25,6 +25,7 @@
     "swiper": "^11.0.4",
     "vue-chartjs": "^5.2.0",
     "vue-easy-lightbox": "^1.16.0",
-    "vuetify": "^3.4.0-beta.1"
+    "vuetify": "^3.4.0-beta.1",
+    "vuex": "^4.1.0"
   }
 }
