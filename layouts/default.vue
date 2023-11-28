@@ -327,7 +327,9 @@ import { useStore } from "~/store";
 const store = useStore;
 let activeNav = ref(false);
 let activeItemsContainer = ref(false);
-let theNum = ref(store.state.basket.length);
+let theNum = computed(() => {
+  return store.state.basketNum;
+});
 const localePath = useLocalePath();
  const { locale , setLocale } = useI18n();
 const changeLang = async()=>{

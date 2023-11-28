@@ -76,11 +76,12 @@
                           <div class="image">
                             <img src="~/assets/images/product.png" alt="" />
                           </div>
-                          <span>{{ theItem.description }}</span>
+                          <span @click="addItem(theItem.id)">{{ theItem.description }}</span>
                         </div>
-                        <input type="number" min="1" v-model="count" />
+                        <input type="number" min="1" v-model="theItem.item"  @input="addItem(theItem.id)" />
+                    
                         <span class="price">
-                          {{ theItem.price }} ريال سعودي
+                          {{ theItem.price * theItem.item }} ريال سعودي
                         </span>
                         <button @click="deleteItem(index, vindex)">
                           <img src="~/assets/images/trash.svg" alt="" />
@@ -106,7 +107,7 @@
               <div class="total-price">
                 <div class="total">
                   <span class="word all"> الاجمالي </span>
-                  <span class="fw-bold price"> 500 ر.س </span>
+                  <span class="fw-bold price"> {{ total }} ر.س</span>
                 </div>
                 <div class="total">
                   <span class="word"> السعر </span>
@@ -133,7 +134,7 @@
 
               <v-progress-linear
                 color="#DCBA95"
-                model-value="50"
+                model-value="100"
                 :height="6"
                 reverse
               ></v-progress-linear>
@@ -288,6 +289,7 @@ export default {
   setup() {
     const store = useStore;
     let count = ref(1);
+    let progress = ref(0);
     let items = ref([
       {
         title: "الرئيسية",
@@ -301,16 +303,15 @@ export default {
       },
     ]);
 
-    let arrData = ref([]);
+    let arrData = ref(store.state.basket);
     const deleteItem = (index, item) => {
-      arrData.value[index].products.splice(item, 1);
-      console.log(arrData.value[index].products.length);
-      if (arrData.value[index].products.length == 0) {
-        arrData.value.splice(index, 1);
-        console.log("done");
-      }
-      // getTotal();
+      store.commit('deleteItem', index, item);
+
     };
+
+    const addItem = (id) => {
+      store.commit('addItem', { id: id });
+    }
 
     const getAllItems = () => {
       // Create an object to store unique items based on vendorId
@@ -330,21 +331,36 @@ export default {
 
       // Convert the object values back to an array
       arrData.value = Object.values(uniqueItems);
-      let num = arrData.value.map((e)=>e.item).reduce((x,y)=>x+y,0)
+      console.log(arrData.value);
     };
-    // let total = ref(0);
-    // const getTotal = () => {
-    //   for(let i = 0; i <arrData.value.length; i++){
-    //     for(let j = 0; j < arrData.value[i].vendor.length; j++){
-    //       total.value += arrData.value[i].vendor[j].price;
-    //     }
-    //   }
-    //   console.log(total.value);
 
-    // }
+    // let getTotal = computed(() => {
+    //   let totall = 0;
+    //   arrData.value.forEach((ele) => {
+    //     ele.products.forEach((e) => {
+    //       totall += e.price;
+    //     });
+    //   });
+
+    //   return totall
+    // });
+    let total = ref(0);
+
+
     onMounted(() => {
-      // getTotal()
-      getAllItems();
+      // getTotal();
+      //getAllItems();
+      //totalFunc();
+      // console.log(getTotal.value);
+      if (total.value <= 300) {
+        progress.value = 50;
+      } else if (total.value <= 450) {
+        progress.value = 70;
+      } else if (total.value >= 600) {
+        progress.value = 100;
+      } else {
+        progress.value = 10;
+   }
     });
 
     return {
@@ -352,6 +368,9 @@ export default {
       items,
       deleteItem,
       count,
+      total,
+      progress,
+      addItem
     };
   },
 };

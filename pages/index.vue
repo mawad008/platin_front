@@ -845,8 +845,8 @@ let basket = ref([
 
 ]);
 
-const addToBasket = (itemm)=>{
-  store.commit('add', itemm);
+const addToBasket = (itemm , index)=>{
+  store.commit('add', itemm , index);
 
   }
 
