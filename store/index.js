@@ -50,7 +50,33 @@ import axios from 'axios';
           }
         ]
       }
-    ]
+    ],
+    basket:[]
+   },
+   mutations:{
+    add(state , payload){
+      const existingItem = state.basket.find(item => item.vendorId === payload.vendorId && item.id === payload.id);
+      if(existingItem){
+        console.log(existingItem);
+      } else{
+        state.basket.push({
+          vendorId: payload.vendorId,
+          id:payload.id,
+          products:[
+            {
+              id:payload.id,
+              item:1,
+              description: payload.description,
+              price: payload.price
+                
+            }
+          ],
+          vendorName: payload.vendorName
+        });
+        console.log(state.basket);
+        }
+
+    }
    }
  
   });

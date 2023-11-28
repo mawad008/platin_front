@@ -18,7 +18,7 @@
           <span>3.4</span>
         </div>
       </div>
-      <!-- <h3>{{product.description}}</h3> -->
+      <h3>{{product ? product.description : ''}}</h3>
       <div
         class="price w-100 d-flex align-items-center justify-content-between"
       >
@@ -86,7 +86,6 @@ export default {
   setup(props) {
     let checkShare = ref(false);
     onMounted(()=>{
-console.log(props.product);
     });
     return {
       checkShare,

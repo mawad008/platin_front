@@ -168,7 +168,7 @@
               </div>
               </nuxt-link>
               <nuxt-link to="cart">
-                <v-badge :content="4" color="#B1628C">
+                <v-badge :content="theNum" color="#B1628C">
               <div class="icon border">
                   <i class="fa-solid fa-cart-shopping"></i>
               </div>
@@ -323,9 +323,11 @@
 </template>
 
 <script setup>
+import { useStore } from "~/store";
+const store = useStore;
 let activeNav = ref(false);
 let activeItemsContainer = ref(false);
-
+let theNum = ref(store.state.basket.length);
 const localePath = useLocalePath();
  const { locale , setLocale } = useI18n();
 const changeLang = async()=>{

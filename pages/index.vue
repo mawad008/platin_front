@@ -85,37 +85,15 @@
         class=""
       >
        
-        <swiper-slide class="box f1">
+       
+        <swiper-slide v-for="item , index in adsArr" class="box f1">
           <div
             class="h-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row"
           >
             <div class="text-container">
-              <h2>الاهتمام مبيطلبش.. معانا تقدري تطلبيه</h2>
+              <h2 v-html="item.title"></h2>
               <span class="text">
-                مع ميزة 'أمنياتي' الخاصة بنا، يمكنك الآن جمع منتجاتك المفضلة
-                وحلمك في مكان واحد. قم بإضافة أي منتج تشتهر به إلى 'أمنياتي'
-                وشاركه مع من تحب
-              </span>
-              <button class="btn1">
-                <span> شاهد العروض </span>
-                <i class="fa-solid fa-arrow-left-long"></i>
-              </button>
-            </div>
-            <div class="main-img h-100">
-              <img src="~/assets/images/gift.png" alt="">
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide class="box main">
-          <div
-            class="h-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row"
-          >
-            <div class="text-container">
-              <h2>خصم 50 % علي منتجات زهرة الياقوت</h2>
-              <span class="text">
-                هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-                هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
-                العديد من النصوص الأخرى
+               {{ item.description }}
               </span>
               <button class="btn1">
                 <span> شاهد العروض </span>
@@ -126,31 +104,10 @@
               </div>
             </div>
             <div class="main-img h-100">
-              <img src="~/assets/images/offer-pic.png" alt="">
+              <img :src="item.image" alt="">
             </div>
           </div>
           <div class="overlay"></div>
-        </swiper-slide>
-        <swiper-slide class="box f2">
-          <div
-            class="h-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row"
-          >
-            <div class="text-container">
-              <h2>الاهتمام مبيطلبش.. معانا تقدري تطلبيه</h2>
-              <span class="text">
-                مع ميزة 'أمنياتي' الخاصة بنا، يمكنك الآن جمع منتجاتك المفضلة
-                وحلمك في مكان واحد. قم بإضافة أي منتج تشتهر به إلى 'أمنياتي'
-                وشاركه مع من تحب
-              </span>
-              <button class="btn1">
-                <span> شاهد العروض </span>
-                <i class="fa-solid fa-arrow-left-long"></i>
-              </button>
-            </div>
-            <div class="main-img h-100">
-              <img src="~/assets/images/gift.png" alt="">
-            </div>
-          </div>
         </swiper-slide>
       </swiper>
     </div>
@@ -217,28 +174,115 @@
       >
         <h3 class="mb-5">منتجاتنا</h3>
 
-        <v-tabs v-model="tab" align-tabs="center">
-          <v-tab v-for="item,index in tags " @click="getProducts()" :value="item.id" class="head">
-            <span class="choose"> {{ item.name }} </span>
+        <v-tabs v-model="tabNav" align-tabs="center">
+          <v-tab v-for="item,index in tags "  :value="index" class="head">
+            <span @click="tab = item.id , getProducts()" class="choose"> {{ item.name }} </span>
             <border />
           </v-tab>
         </v-tabs>
       </div>
 
-      <v-window v-model="tab">
+      <v-window v-model="tabNav">
         <v-window-item v-for="item,index in tags ">
           <div class="row">
             <div v-for="item in productsTags"  class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
               <product-card :product="item" />
             </div>
           </div>
+          <v-progress-circular v-if="spinnerProducts"
+      indeterminate
+      color="primary"
+    ></v-progress-circular>
         </v-window-item>
       </v-window>
       <nuxt-link to="products">
         <span class="more mt-5"> المزيد... </span>
       </nuxt-link>
     </div>
+     
+     <div class="container">
+      <div class="row">
+       <div class="col" v-for="item in products">
+        <div  class="product-card">
+      <div class="head w-100 d-flex align-items-center justify-content-between">
+        <div class="octagon" >
+          <octagon />
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <span> الاكثر مبيعا </span>
+      </div>
+      <div class="image">
+        <!-- <img src="~/assets/images/product.png" alt=""> -->
+      </div>
+      <div class="rate w-100 d-flex align-items-center justify-content-between">
+        <span class="type"> الذهب </span>
+        <div class="star d-flex align-items-center gap-2">
+          <i class="fa-solid fa-star"></i>
+          <span>3.4</span>
+        </div>
+      </div>
+      <h3>{{ item.description}}</h3>
+      <div
+        class="price w-100 d-flex align-items-center justify-content-between"
+      >
+        <span class="price-text">2500 ر.س</span>
+        <span> ق24 / 2.5ج </span>
+      </div>
 
+      <div class="overlay">
+        <div class="head-icons w-100">
+          <div class="w-100 d-flex align-items-center justify-content-between">
+            <div class="octagon active">
+              <octagon />
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <div  class="octagon">
+              <octagon />
+              <i class="fa-solid fa-share-nodes"></i>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <div class="share-box d-none">
+              <img src="~/assets/images/social1.svg" alt="" />
+              <img src="~/assets/images/social2.svg" alt="" />
+              <img src="~/assets/images/social3.svg" alt="" />
+              <img src="~/assets/images/social4.svg" alt="" />
+              <img src="~/assets/images/social5.svg" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="center-icons w-100">
+          <div class="d-flex w-100 align-items-center justify-content-between">
+            <nuxt-link to="/product">
+              <div class="octagon d-flex flex-column gap-3">
+                <octagon />
+                <i class="fa-solid fa-eye"></i>
+              </div>
+            </nuxt-link>
+            <div class="octagon d-flex flex-column gap-3">
+              <octagon />
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div @click="addToBasket(item)" class="octagon d-flex flex-column gap-3">
+              <octagon />
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+          </div>
+          <div
+            class="text d-flex text-center w-100 align-items-center justify-content-between"
+          >
+            <span> شاهد </span>
+            <span> اضف الي السلة </span>
+            <span> مقارنة </span>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+       </div>
+      </div>
+     </div>
     <div
       class="container d-flex align-items-center justify-content-center banner-container"
     >
@@ -274,7 +318,7 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="i in 8">
+        <swiper-slide v-for="i in productsSectionsArr.latestProducts">
           <product-card
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
@@ -291,7 +335,7 @@
         <img class="img-fluid" src="~/assets/images/banner-img1.png" alt="" />
       </div>
     </div>
-
+    
     <div
       class="container d-flex align-items-center justify-content-center banner-container"
     >
@@ -327,7 +371,7 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="i in 8">
+        <swiper-slide v-for="i in productsSectionsArr.latestProducts">
           <product-card
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
@@ -378,7 +422,7 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="i in 8">
+        <swiper-slide v-for="i in productsSectionsArr.discountedProducts">
           <product-card
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
@@ -724,7 +768,7 @@
                   </defs>
                 </svg>
 
-                <span> الشحن السريع </span>
+                <span class="border-line"> الشحن السريع </span>
               </div>
               <p>
                 توصيل سريع وموثوق لمنتجاتك مع شركات شحن معروفة. نهدف لضمان
@@ -740,6 +784,9 @@
 
 <script setup>
 import axios from "axios";
+import { useStore } from '~/store';
+const store = useStore;
+
 
  const localePath = useLocalePath();
  const { locale } = useI18n();
@@ -750,16 +797,58 @@ const setThumbsSwiper = (swiper) => {
 };
 
 let tab = ref(null);
+let tabNav = ref(0);
 let banner1 = ref(false);
 let banner2 = ref(false);
 let banner3 = ref(false);
+let spinnerProducts = ref(false);
 let brandsArr = ref([]);
 let categoriesArr = ref([]);
 let subcategoriesArr = ref([]);
 let tags = ref([]);
 let productsTags = ref([]);
+let adsArr = ref([]);
+let productsSectionsArr = ref([]);
 
+let products = ref([
+  {
+    vendorId:1,
+    vendorName: 'زهرة الياقوت',
+    id:1,
+    description: 'خاتم 23',
+    price:120
+  },
+  {
+    vendorId:1,
+    vendorName: 'زهرة الياقوت',
+    id:2,
+    description: 'خاتم 25',
+    price:121
+  },
+  {
+    vendorId:2,
+    vendorName: 'زهرة البستان',
+    id:3,
+    description: 'خاتم 22',
+    price:124
+  },
+  {
+    vendorId:3,
+    vendorName: 'زهرة',
+    id:4,
+    description: 'خاتم 21',
+    price:123
+  },
+]);
 
+let basket = ref([
+
+]);
+
+const addToBasket = (itemm)=>{
+  store.commit('add', itemm);
+
+  }
 
 const getCategories = async()=>{
   let result = await axios.get(`${getUrl()}/categories`,{
@@ -788,6 +877,24 @@ const getSubcategories = async() =>{
   subcategoriesArr.value = result.data.data;
 
 }
+const getAds = async() =>{
+  let result = await axios.get(`${getUrl()}/ads`,{
+    headers:{
+      "Content-Language": `${locale.value}`
+    }
+  });
+  adsArr.value = result.data.data;
+
+}
+const getProductsSections = async() =>{
+  let result = await axios.get(`${getUrl()}/product-sections`,{
+    headers:{
+      "Content-Language": `${locale.value}`
+    }
+  });
+  productsSectionsArr.value = result.data.data;
+
+}
 
 
 const getTags = async() =>{
@@ -806,6 +913,8 @@ const getTags = async() =>{
 }
 
 const getProducts = async()=>{
+  spinnerProducts.value = true;
+  productsTags.value = [];
   let result = await axios.get(`${getUrl()}/products`,{
     params:{
       id:tab.value
@@ -815,7 +924,11 @@ const getProducts = async()=>{
     }
   });
 
+  if(result.status == 200){
+    spinnerProducts.value = false;
+  }
   productsTags.value = result.data.data;
+
 }
 
 onMounted(async() => {
@@ -823,7 +936,56 @@ onMounted(async() => {
   getCategories();
   getSubcategories();
   getTags();
+  getAds();
+  getProductsSections();
   //getProducts();
+
+  const originalArray = [
+  {
+    id: 1,
+    products: [{ id: 1, description: 'خاتم 23', price: 120 }],
+    vendorId: 1,
+    vendorName: 'زهرة الياقوت'
+  },
+  {
+    id: 2,
+    products: [{ id: 2, description: 'خاتم 25', price: 121 }],
+    vendorId: 1,
+    vendorName: 'زهرة الياقوت'
+  },
+  {
+    id: 3,
+    products: [{ id: 3, description: 'خاتم 22', price: 124 }],
+    vendorId: 2,
+    vendorName: 'زهرة البستان'
+  },
+  {
+    id: 4,
+    products: [{ id: 4, description: 'خاتم 21', price: 123 }],
+    vendorId: 3,
+    vendorName: 'زهرة'
+  }
+];
+
+// Create an object to store unique items based on vendorId
+const uniqueItems = originalArray.reduce((acc, currentItem) => {
+  const { id, products, vendorId, vendorName } = currentItem;
+
+  // If the vendorId is not in the object, add it
+  if (!acc[vendorId]) {
+    acc[vendorId] = { id, products, vendorId, vendorName };
+  } else {
+    // If the vendorId is already in the object, push the products array
+    acc[vendorId].products.push(...products);
+  }
+
+  return acc;
+}, {});
+
+// Convert the object values back to an array
+const newArray = Object.values(uniqueItems);
+
+console.log(newArray);
 })
 </script>
 
