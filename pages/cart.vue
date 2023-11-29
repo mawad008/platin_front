@@ -1,6 +1,6 @@
 <template>
   <div style="min-height: 100vh; margin-top: 80px">
-    <div class="container cart-page">
+    <div v-if="arrData.length > 0" class="container cart-page">
       <div class="header">
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
@@ -8,7 +8,7 @@
           </template>
         </v-breadcrumbs>
 
-        <button class="clear">
+        <button @click="deleteAll()" class="clear">
           <span>مسح الكل</span>
         </button>
       </div>
@@ -17,7 +17,7 @@
           <div class="col-12 col-xl-7 col-lg-7">
             <div class="main">
               <div class="head">
-                <h5>سلة تسوقك <span> (3) </span></h5>
+                <h5>سلة تسوقك <span> {{`(${theNum})`}} </span></h5>
 
                 <div>
                   <svg
@@ -76,16 +76,49 @@
                           <div class="image">
                             <img src="~/assets/images/product.png" alt="" />
                           </div>
-                          <span @click="addItem(theItem.id)">{{ theItem.description }}</span>
+                          <span @click="addItem(theItem.id)">{{
+                            theItem.description
+                          }}</span>
                         </div>
-                        <input type="number" min="1" v-model="theItem.item"  @input="addItem(theItem.id)" />
-                    
+                        <input
+                          type="number"
+                          min="1"
+                          v-model="theItem.item"
+                          @input="addItem(theItem.id)"
+                        />
+
                         <span class="price">
                           {{ theItem.price * theItem.item }} ريال سعودي
                         </span>
-                        <button @click="deleteItem(index, vindex)">
+                        <v-dialog
+                          transition="dialog-bottom-transition"
+                          width="auto"
+                        >
+                          <template v-slot:activator="{ props }">
+                            <button v-bind="props" >
                           <img src="~/assets/images/trash.svg" alt="" />
                         </button>
+                          </template>
+                          <template v-slot:default="{ isActive }">
+                            <v-card>
+                              <v-toolbar
+                                color="#DCBA95"
+                                title="delete item"
+                              ></v-toolbar>
+                              <v-card-text>
+                                <div class="text-h2 pa-12">are you sure to delete this item</div>
+                              </v-card-text>
+                              <v-card-actions class="justify-end">
+                                <v-btn
+                                  variant="text"
+                                  @click="isActive.value = false ,deleteItem(index, vindex)"
+                                  >delete</v-btn
+                                >
+                              </v-card-actions>
+                            </v-card>
+                          </template>
+                        </v-dialog>
+                      
                       </div>
                       <v-divider :thickness="1"></v-divider>
                       <div class="shipping">
@@ -107,11 +140,11 @@
               <div class="total-price">
                 <div class="total">
                   <span class="word all"> الاجمالي </span>
-                  <span class="fw-bold price"> {{ total }} ر.س</span>
+                  <span class="fw-bold price"> {{ total + (40 + 80) }} ر.س</span>
                 </div>
                 <div class="total">
                   <span class="word"> السعر </span>
-                  <span class="price"> 420 ر.س </span>
+                  <span class="price"> {{ total }} ر.س </span>
                 </div>
                 <div class="total">
                   <span class="word"> الخصومات </span>
@@ -134,7 +167,7 @@
 
               <v-progress-linear
                 color="#DCBA95"
-                model-value="100"
+                :model-value="progress"
                 :height="6"
                 reverse
               ></v-progress-linear>
@@ -280,6 +313,18 @@
         </div>
       </div>
     </div>
+
+    <div v-else class="d-flex align-items-center text-center justify-content-center " style="min-height: 100vh;">
+    <div>
+    <h1>this cart is empty</h1>
+    <h4>cart is empty please go back to check your items </h4>
+    <nuxt-link :to="localePath('/')">
+      <button class=""> back to home </button>
+    
+    </nuxt-link>
+    
+    </div>
+    </div>
   </div>
 </template>
 
@@ -287,9 +332,10 @@
 import { useStore } from "~/store";
 export default {
   setup() {
+const localePath = useLocalePath();
     const store = useStore;
     let count = ref(1);
-    let progress = ref(0);
+    let progressv = ref(0);
     let items = ref([
       {
         title: "الرئيسية",
@@ -305,34 +351,16 @@ export default {
 
     let arrData = ref(store.state.basket);
     const deleteItem = (index, item) => {
-      store.commit('deleteItem', index, item);
-
+      store.commit("deleteItem", index, item);
     };
 
     const addItem = (id) => {
-      store.commit('addItem', { id: id });
-    }
-
-    const getAllItems = () => {
-      // Create an object to store unique items based on vendorId
-      const uniqueItems = store.state.basket.reduce((acc, currentItem) => {
-        const { id, products, vendorId, vendorName } = currentItem;
-
-        // If the vendorId is not in the object, add it
-        if (!acc[vendorId]) {
-          acc[vendorId] = { id, products, vendorId, vendorName };
-        } else {
-          // If the vendorId is already in the object, push the products array
-          acc[vendorId].products.push(...products);
-        }
-
-        return acc;
-      }, {});
-
-      // Convert the object values back to an array
-      arrData.value = Object.values(uniqueItems);
-      console.log(arrData.value);
+      store.commit("addItem", { id: id });
     };
+
+    let theNum = computed(() => {
+  return store.state.basketNum;
+});
 
     // let getTotal = computed(() => {
     //   let totall = 0;
@@ -344,23 +372,35 @@ export default {
 
     //   return totall
     // });
-    let total = ref(0);
+    let total = computed(() => {
+      return store.state.totalNum;
+    });
 
+    let progress = computed(()=>{
+      if (total.value <= 300) {
+        return 50;
+      } else if (total.value <= 450) {
+        return 70;
+      } else if (total.value >= 600) {
+        return  100;
+      } else {
+        return  10;
+      }
+    });
+
+
+    const deleteAll = ()=>{
+      store.commit('deleteAll');
+      console.log('delete');
+      arrData.value = [];
+    }
 
     onMounted(() => {
       // getTotal();
       //getAllItems();
       //totalFunc();
       // console.log(getTotal.value);
-      if (total.value <= 300) {
-        progress.value = 50;
-      } else if (total.value <= 450) {
-        progress.value = 70;
-      } else if (total.value >= 600) {
-        progress.value = 100;
-      } else {
-        progress.value = 10;
-   }
+    
     });
 
     return {
@@ -370,7 +410,10 @@ export default {
       count,
       total,
       progress,
-      addItem
+      addItem,
+      deleteAll,
+      theNum,
+      localePath
     };
   },
 };

@@ -17,14 +17,17 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@lottiefiles/vue-lottie-player": "^1.1.0",
     "@mdi/font": "^7.3.67",
     "axios": "^1.6.2",
     "chart.js": "^4.4.0",
+    "lottie-web": "^5.12.2",
     "nuxt-swiper": "^1.2.2",
     "sass": "^1.69.5",
     "swiper": "^11.0.4",
     "vue-chartjs": "^5.2.0",
     "vue-easy-lightbox": "^1.16.0",
+    "vue3-lottie": "^3.2.0",
     "vuetify": "^3.4.0-beta.1",
     "vuex": "^4.1.0"
   }

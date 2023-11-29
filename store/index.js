@@ -3,56 +3,12 @@ import axios from "axios";
 
 export const useStore = createStore({
   state: {
-    arrData: [
-      {
-        id: 1,
-        nameV: "زهرة الياقوت",
-        vendor: [
-          {
-            id: 1,
-            type: "خاتم ذهب 2.5 جرام صافي sas 24 قيراط",
-            price: 120,
-          },
-          {
-            id: 2,
-            type: "خاتم ذهب 2.5 جرام صافي عيار34 قيراط",
-            price: 130,
-          },
-          {
-            id: 3,
-            type: "خاتم ذهب 2.5 جرام صافي عيار 35 قيراط",
-            price: 140,
-          },
-        ],
-      },
-      {
-        id: 2,
-        nameV: "زهرة البستان",
-        vendor: [
-          {
-            id: 4,
-            type: "خاتم ذهب 2.5 جرام صافي sas 24 قيراط",
-            price: 100,
-          },
-          {
-            id: 5,
-            type: "خاتم ذهب 2.5 جرام صافي عيار34 قيراط",
-            price: 115,
-          },
-          {
-            id: 6,
-            type: "خاتم ذهب 2.5 جرام صافي عيار 35 قيراط",
-            price: 122,
-          },
-        ],
-      },
-    ],
     basket: [],
     basketNum: 0,
+    totalNum: 0,
   },
   mutations: {
-    add(state, payload, index) {
-      let arr = [];
+    add(state, payload) {
       const existingItem = state.basket.find((item) => {
         let existingData = [item];
         const vendor = existingData.find(
@@ -100,17 +56,14 @@ export const useStore = createStore({
         console.log(state.basket);
       }
 
-      // Calculate the number of products for each vendor
-      const productsPerVendor = state.basket.map((vendor) => {
-        const numProducts = vendor.products.length;
-        return { vendorName: vendor.vendorName, numProducts: numProducts };
-      });
-      let num = productsPerVendor
-        .map((e) => e.numProducts)
-        .reduce((x, y) => x + y, 0);
+      // calculate the total price 
+      getTotalPrice(state);
+    
+       console.log(state.totalNum);
 
-      state.basketNum = num;
-      console.log(state.basketNum);
+      // Calculate the number of products for each vendor
+      getTotalBasketNum(state);
+      //console.log(state.basketNum);
     },
     addItem(state, id) {
       state.basket.forEach((vendor) => {
@@ -121,6 +74,9 @@ export const useStore = createStore({
         }
       });
       console.log(state.basket);
+      getTotalPrice(state);
+      getTotalBasketNum(state);
+
     },
     deleteItem(state, index, item) {
       state.basket[index].products.splice(item, 1);
@@ -128,7 +84,44 @@ export const useStore = createStore({
       if (state.basket[index].products.length == 0) {
         state.basket.splice(index, 1);
         console.log("done");
+        console.log(state.basket);
       }
+      getTotalBasketNum(state);
+      getTotalPrice(state);
     },
+    deleteAll(state){
+      state.basket = [];
+      state.totalNum = 0;
+      state.basketNum = 0; 
+    }
   },
 });
+
+
+function getTotalBasketNum(state){
+  // const productsPerVendor = state.basket.map((vendor) => {
+  //   const numProducts = vendor.products.length;
+  //   return { vendorName: vendor.vendorName, numProducts: numProducts };
+  // });
+  // let num = productsPerVendor
+  //   .map((e) => e.numProducts)
+  //   .reduce((x, y) => x + y, 0);
+  let totall = 0;
+  state.basket.forEach((ele) => {
+    ele.products.forEach((e) => {
+      totall += e.item;
+    });
+  });
+
+ return state.basketNum = totall;
+}
+
+function getTotalPrice(state){
+  let totall = 0;
+  state.basket.forEach((ele) => {
+    ele.products.forEach((e) => {
+      totall += (e.price * e.item);
+    });
+  });
+  state.totalNum = totall
+}

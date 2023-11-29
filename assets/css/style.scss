@@ -29,12 +29,11 @@ $rating-bg: #ecb43c;
 
 // end color and layouts
 
-
 // start mixins
 
-@mixin border-line($w , $h , $t){
-  &::before{
-    content: '';
+@mixin border-line($w, $h, $t) {
+  &::before {
+    content: "";
     position: absolute;
     width: $w;
     height: $h;
@@ -43,9 +42,9 @@ $rating-bg: #ecb43c;
     background-repeat: no-repeat no-repeat;
     background-position: center center;
     background-size: cover;
-    }
+  }
 }
-// end mixins 
+// end mixins
 
 // start common classes and components
 
@@ -54,7 +53,6 @@ h3 {
   font-size: 40px;
   font-weight: bolder;
 }
-
 
 a {
   color: inherit;
@@ -77,21 +75,22 @@ a {
     color: #fff;
   }
 }
-@media(max-width:900px){
-  h3,h4{
+@media (max-width: 900px) {
+  h3,
+  h4 {
     font-size: 24px;
   }
-  .btn1{
+  .btn1 {
     width: 110px;
     height: 40px;
     font-size: 11px;
     padding: 8px 10px;
   }
-  .container{
+  .container {
     padding-left: 16px;
     padding-right: 16px;
   }
-  }
+}
 // span{
 //   font-size: 14px;
 //   color: $text-color;
@@ -391,16 +390,16 @@ body {
   align-items: center;
   justify-content: center;
   box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08) !important;
-  color: #919EAB;
-  span{
+  color: #919eab;
+  span {
     cursor: pointer;
   }
 }
 
 #mega-menu-id {
   // width: 95vw !important;
-height: 435px;
-overflow: auto;
+  height: 435px;
+  overflow: auto;
   padding: 30px !important;
   border-radius: 24px;
   background: #fff;
@@ -453,10 +452,10 @@ overflow: auto;
   }
 }
 
-@media(max-width:900px){
-  #mega-menu-id{
+@media (max-width: 900px) {
+  #mega-menu-id {
     // margin-top: 50px;
-    .box{
+    .box {
       margin: 20px 0px;
     }
   }
@@ -673,10 +672,9 @@ overflow: auto;
       align-items: flex-start;
       justify-content: center;
       color: #fff;
-      h2{
+      h2 {
         font-size: 40px;
         width: 423px;
-
       }
       .text {
         width: 512px;
@@ -836,15 +834,15 @@ overflow: auto;
       background-repeat: no-repeat;
       // background-image: url("~/assets/images/offer-pic.png");
       position: relative;
-        img{
-          position: absolute;
-          // width: 100%;
-          // height: 100%;
-          width: 357px;
-          height: 354px;
-          bottom: 0;
-          left: 0;
-        }
+      img {
+        position: absolute;
+        // width: 100%;
+        // height: 100%;
+        width: 357px;
+        height: 354px;
+        bottom: 0;
+        left: 0;
+      }
     }
     &.f1 {
       background: linear-gradient(
@@ -856,13 +854,13 @@ overflow: auto;
         #272e3d 122.2%,
         #626a7e 139.04%
       );
-     
-      .circle{
+
+      .circle {
         display: block;
       }
-       .overlay{
+      .overlay {
         display: block;
-       }
+      }
     }
     &.f2 {
       background-image: url("~/assets/images/offer1.png");
@@ -879,7 +877,7 @@ overflow: auto;
       }
     }
     .text-container {
-    padding: 24px;
+      padding: 24px;
       display: flex;
       align-items: flex-start;
       justify-content: center;
@@ -888,17 +886,17 @@ overflow: auto;
       flex-direction: column;
       height: 100%;
       position: relative;
-      h2{
+      h2 {
         width: 397px;
         font-size: 40px;
         line-height: 60px;
         // font-weight: bolder;
-        span{
-           position: relative;
-           @include border-line(100%,15px , 75%);
+        span {
+          position: relative;
+          @include border-line(100%, 15px, 75%);
         }
       }
-     
+
       .text {
         width: 70%;
       }
@@ -927,18 +925,18 @@ overflow: auto;
 }
 
 @media (max-width: 920px) {
-  .offers{
+  .offers {
     .box {
       .main-img {
         display: none;
       }
-      .text-container{
+      .text-container {
         gap: 20px;
-        h2{
+        h2 {
           width: 100%;
           font-size: 27px;
         }
-        .text{
+        .text {
           width: 100%;
           line-height: 30px;
         }
@@ -1112,17 +1110,17 @@ overflow: auto;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    &.f1{
-      background:url('~/assets/images/rec-cate-1.jpg');
-      img{
+    &.f1 {
+      background: url("~/assets/images/rec-cate-1.jpg");
+      img {
         width: 306px;
       }
     }
-    &.f2{
-      background:url('~/assets/images/rec-cate-2.jpg');
+    &.f2 {
+      background: url("~/assets/images/rec-cate-2.jpg");
     }
-    &.f3{
-      background:url('~/assets/images/rec-cate-3.jpg');
+    &.f3 {
+      background: url("~/assets/images/rec-cate-3.jpg");
     }
     .text {
       color: #fff;
@@ -1141,7 +1139,6 @@ overflow: auto;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-    
     }
     &.active {
       width: 200px;
@@ -1333,7 +1330,7 @@ overflow: auto;
       border: 1px solid #fff;
       color: #fff;
       position: relative;
-      p{
+      p {
         margin-top: 15px;
         // width: 70%;
       }
@@ -1350,7 +1347,7 @@ overflow: auto;
     .box-container {
       .box {
         width: 100%;
-        p{
+        p {
           padding: 0px !important;
         }
         &.active {
@@ -1415,14 +1412,14 @@ overflow: auto;
       border-radius: 24px;
     }
   }
-  .all-boxes{
-    .box{
-      span{
-        color: #161D25;
+  .all-boxes {
+    .box {
+      span {
+        color: #161d25;
         font-size: 20px;
         font-weight: bold;
       }
-      p{
+      p {
         font-size: 14px;
         padding: 0px 50px;
         color: $body-text;
@@ -1436,12 +1433,12 @@ overflow: auto;
     .img-box {
       width: 100%;
     }
-    .box{
+    .box {
       text-align: center;
-      .head{
+      .head {
         justify-content: center;
       }
-      p{
+      p {
         padding: 0px 20px !important;
       }
     }
@@ -1775,7 +1772,6 @@ overflow: auto;
 }
 
 // start similar products section
-
 
 .similar-products {
   margin-top: 60px;
@@ -3012,3 +3008,68 @@ overflow: auto;
 }
 
 // end cart page
+
+// start settings page
+
+.settings-container {
+  .v-slide-group__content{
+    flex-direction: column !important;
+    gap: 30px;
+    .v-tab__slider{
+      display: none;
+    }
+  }
+  .settings-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    .link {
+      position: relative;
+      padding-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      .icon {
+        width: 40px;
+        height: 40px;
+        background-color: #F9F4EE;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      span {
+        font-size: 18px;
+        color: #5a7184;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        height: 2px;
+        background-color: #ebeaed;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        width: 40%;
+        height: 2px;
+        right: 0;
+        background-color: #e5cbaf;
+      }
+
+      &.active{
+        span{
+          color: $secondary-black;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  
+}
+
+// end settings page
