@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   },
   modules: ["nuxt-swiper", "@nuxtjs/i18n"],
    plugins: [
-    { src: "~/plugins/lottie.js" , mode: 'client'},
+    // { src: "~/plugins/lottie.js" , mode: 'client'},
   ],
   i18n: {
     lazy: true,
