@@ -8,98 +8,511 @@
       </v-breadcrumbs>
       <div class="row">
         <div class="col-4">
-            <v-tabs
-        v-model="tab"
-        direction="vertical"
-        color=""
-        class="settings-links"
-      >
-        <v-tab value="option-1">
-            <div class="link">
-            <div class="icon">
-              <img src="~/assets/images/person.svg" alt="">
-            </div>
+          <div class="settings-links">
+            <div
+              class="link"
+              @click="navActive = 1"
+              :class="{ active: navActive == 1 }"
+            >
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z"
+                    fill="#919EAB"
+                  />
+                  <path
+                    d="M17.08 14.1499C14.29 12.2899 9.73996 12.2899 6.92996 14.1499C5.65996 14.9999 4.95996 16.1499 4.95996 17.3799C4.95996 18.6099 5.65996 19.7499 6.91996 20.5899C8.31996 21.5299 10.16 21.9999 12 21.9999C13.84 21.9999 15.68 21.5299 17.08 20.5899C18.34 19.7399 19.04 18.5999 19.04 17.3599C19.03 16.1299 18.34 14.9899 17.08 14.1499Z"
+                    fill="#919EAB"
+                  />
+                </svg>
+              </div>
               <span> الملف الشخصي </span>
             </div>
-        </v-tab>
-        <v-tab value="option-2">
-            <div class="link">
-            <div class="icon">
-              <img src="~/assets/images/notification-bing.svg" alt="">
-            </div>
+
+            <div
+              class="link"
+              @click="navActive = 2"
+              :class="{ active: navActive == 2 }"
+            >
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M20.19 14.0598L19.06 12.1798C18.81 11.7698 18.59 10.9798 18.59 10.4998V8.6298C18.59 4.9998 15.64 2.0498 12.02 2.0498C8.38996 2.0598 5.43996 4.9998 5.43996 8.6298V10.4898C5.43996 10.9698 5.21996 11.7598 4.97996 12.1698L3.84996 14.0498C3.41996 14.7798 3.31996 15.6098 3.58996 16.3298C3.85996 17.0598 4.46996 17.6398 5.26996 17.8998C6.34996 18.2598 7.43996 18.5198 8.54996 18.7098C8.65996 18.7298 8.76996 18.7398 8.87996 18.7598C9.01996 18.7798 9.16996 18.7998 9.31996 18.8198C9.57996 18.8598 9.83996 18.8898 10.11 18.9098C10.74 18.9698 11.38 18.9998 12.02 18.9998C12.65 18.9998 13.28 18.9698 13.9 18.9098C14.13 18.8898 14.36 18.8698 14.58 18.8398C14.76 18.8198 14.94 18.7998 15.12 18.7698C15.23 18.7598 15.34 18.7398 15.45 18.7198C16.57 18.5398 17.68 18.2598 18.76 17.8998C19.53 17.6398 20.12 17.0598 20.4 16.3198C20.68 15.5698 20.6 14.7498 20.19 14.0598ZM12.75 9.9998C12.75 10.4198 12.41 10.7598 11.99 10.7598C11.57 10.7598 11.23 10.4198 11.23 9.9998V6.89981C11.23 6.4798 11.57 6.1398 11.99 6.1398C12.41 6.1398 12.75 6.4798 12.75 6.89981V9.9998Z"
+                    fill="#919EAB"
+                  />
+                  <path
+                    d="M14.8299 20.01C14.4099 21.17 13.2999 22 11.9999 22C11.2099 22 10.4299 21.68 9.87993 21.11C9.55993 20.81 9.31993 20.41 9.17993 20C9.30993 20.02 9.43993 20.03 9.57993 20.05C9.80993 20.08 10.0499 20.11 10.2899 20.13C10.8599 20.18 11.4399 20.21 12.0199 20.21C12.5899 20.21 13.1599 20.18 13.7199 20.13C13.9299 20.11 14.1399 20.1 14.3399 20.07C14.4999 20.05 14.6599 20.03 14.8299 20.01Z"
+                    fill="#919EAB"
+                  />
+                </svg>
+              </div>
               <span> الاشعارات </span>
             </div>
-        </v-tab>
-        <v-tab value="option-3">
-            <div class="link">
-            <div class="icon">
-              <img src="~/assets/images/location.svg" alt="">
-            </div>
+
+            <div
+              class="link"
+              @click="navActive = 3"
+              :class="{ active: navActive == 3 }"
+            >
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M20.6201 8.45C19.5701 3.83 15.5401 1.75 12.0001 1.75C12.0001 1.75 12.0001 1.75 11.9901 1.75C8.4601 1.75 4.4201 3.82 3.3701 8.44C2.2001 13.6 5.3601 17.97 8.2201 20.72C9.2801 21.74 10.6401 22.25 12.0001 22.25C13.3601 22.25 14.7201 21.74 15.7701 20.72C18.6301 17.97 21.7901 13.61 20.6201 8.45ZM12.0001 13.46C10.2601 13.46 8.8501 12.05 8.8501 10.31C8.8501 8.57 10.2601 7.16 12.0001 7.16C13.7401 7.16 15.1501 8.57 15.1501 10.31C15.1501 12.05 13.7401 13.46 12.0001 13.46Z"
+                    fill="#919EAB"
+                  />
+                </svg>
+              </div>
               <span> العناوين المسجلة </span>
             </div>
-        </v-tab>
-        <v-tab value="option-4">
-            <div class="link">
-            <div class="icon">
-              <img src="~/assets/images/box.svg" alt="">
-            </div>
+
+            <div
+              class="link"
+              @click="navActive = 4"
+              :class="{ active: navActive == 4 }"
+            >
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="21"
+                  height="20"
+                  viewBox="0 0 21 20"
+                  fill="none"
+                >
+                  <path
+                    d="M0.0870261 5.4502C3.14163 6.80127 6.1375 8.13277 9.1921 9.46426C9.1921 12.9105 9.1921 16.435 9.1921 19.9987C8.9963 19.9204 8.82007 19.8617 8.62426 19.7833C6.43121 18.8043 4.23816 17.8448 2.04511 16.8462C0.713612 16.2392 0.00870258 15.1819 0.00870258 13.7133C-0.0108782 11.2657 0.00870258 8.81809 0.00870258 6.37049C0.00870258 6.07678 0.0478645 5.78307 0.0870261 5.4502Z"
+                    fill="#919EAB"
+                  />
+                  <path
+                    d="M10.8762 19.9998C10.8762 16.4361 10.8762 12.9115 10.8762 9.44571C12.0511 8.93661 13.1868 8.44708 14.3616 7.93798C14.3616 8.29044 14.3616 8.62331 14.3616 8.9366C14.3616 9.2499 14.3616 9.56319 14.3616 9.87648C14.3616 10.366 14.7141 10.738 15.184 10.7576C15.6539 10.7772 16.026 10.3856 16.0456 9.89606C16.0456 9.09325 16.0651 8.29044 16.0456 7.48763C16.0456 7.27224 16.1043 7.15475 16.3197 7.05685C17.475 6.56733 18.6106 6.03865 19.7659 5.52954C19.8247 5.50996 19.903 5.4708 20.0009 5.43164C20.04 5.72535 20.0988 5.99948 20.0988 6.27361C20.0988 8.77996 20.1184 11.2863 20.0988 13.7731C20.0792 15.1046 19.4526 16.1619 18.2386 16.7298C15.9281 17.8067 13.5784 18.8249 11.2483 19.8431C11.1308 19.941 11.0133 19.9606 10.8762 19.9998Z"
+                    fill="#919EAB"
+                  />
+                  <path
+                    d="M6.1377 1.43739C6.80344 1.14368 7.44961 0.830384 8.09578 0.575834C8.56572 0.380026 9.03566 0.184222 9.52518 0.0667373C10.1322 -0.0703283 10.7196 0.00799492 11.2874 0.262545C13.598 1.28075 15.9085 2.29895 18.1995 3.33673C18.5324 3.47379 18.8065 3.72835 19.1394 3.94374C19.0023 4.02206 18.9435 4.04164 18.8848 4.0808C17.7295 4.5899 16.5547 5.11859 15.3994 5.62769C15.3015 5.66685 15.1645 5.68643 15.0665 5.64727C12.149 4.27661 9.23146 2.90596 6.3335 1.5353C6.27476 1.51572 6.2356 1.49614 6.1377 1.43739Z"
+                    fill="#919EAB"
+                  />
+                  <path
+                    d="M13.1665 6.62694C12.3832 6.9794 11.6588 7.31226 10.8951 7.62556C10.2685 7.88011 9.62235 7.84095 9.01534 7.56682C6.37193 6.39197 3.72852 5.21712 1.10469 4.04227C1.06553 4.02269 1.02637 4.00311 0.928467 3.92479C1.32008 3.68982 1.63338 3.43527 2.00541 3.25904C2.632 2.94575 3.27817 2.6912 3.90475 2.41707C4.00266 2.3779 4.13972 2.3779 4.23762 2.41707C7.15517 3.78772 10.0727 5.15838 13.0098 6.52904C13.049 6.5682 13.0882 6.58778 13.1665 6.62694Z"
+                    fill="#919EAB"
+                  />
+                </svg>
+              </div>
               <span> طلباتي </span>
             </div>
-        </v-tab>
-      </v-tabs>
+          </div>
         </div>
         <div class="col-8">
-            <v-window v-model="tab">
-        <v-window-item value="option-1">
-          <div>
-            <p>
-                Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam feugiat lorem non metus. Sed a libero.
-              </p>
+          <div v-if="navActive == 1" class="main">
+            <div v-if="personalActive == 1">
+              <div class="personal">
+                <div class="details">
+                  <div class="image">
+                    <div class="img">
+                      <img src="~/assets/images/AVATAR.svg" alt="" />
+                    </div>
+                  </div>
+                  <div class="edit d-flex justify-content-end">
+                    <div
+                      @click="personalActive = 2"
+                      class="d-flex align-items-center gap-2"
+                    >
+                      <span>تعديل البيانات</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M14 14.667H2C1.72667 14.667 1.5 14.4403 1.5 14.167C1.5 13.8937 1.72667 13.667 2 13.667H14C14.2733 13.667 14.5 13.8937 14.5 14.167C14.5 14.4403 14.2733 14.667 14 14.667Z"
+                          fill="#DCBA95"
+                        />
+                        <path
+                          d="M12.6799 2.32043C11.3866 1.0271 10.1199 0.993764 8.79322 2.32043L7.98655 3.1271C7.91989 3.19376 7.89322 3.30043 7.91989 3.39376C8.42655 5.16043 9.83989 6.57376 11.6066 7.08043C11.6332 7.0871 11.6599 7.09376 11.6866 7.09376C11.7599 7.09376 11.8266 7.0671 11.8799 7.01376L12.6799 6.2071C13.3399 5.55376 13.6599 4.92043 13.6599 4.28043C13.6666 3.62043 13.3466 2.98043 12.6799 2.32043Z"
+                          fill="#DCBA95"
+                        />
+                        <path
+                          d="M10.4066 7.68654C10.2132 7.5932 10.0266 7.49987 9.84655 7.3932C9.69989 7.30654 9.55989 7.2132 9.41989 7.1132C9.30655 7.03987 9.17322 6.9332 9.04655 6.82654C9.03322 6.81987 8.98655 6.77987 8.93322 6.72654C8.71322 6.53987 8.46655 6.29987 8.24655 6.0332C8.22655 6.01987 8.19322 5.9732 8.14655 5.9132C8.07989 5.8332 7.96655 5.69987 7.86655 5.54654C7.78655 5.44654 7.69322 5.29987 7.60655 5.1532C7.49989 4.9732 7.40655 4.7932 7.31322 4.60654C7.19085 4.34431 6.84668 4.26641 6.64206 4.47103L2.89322 8.21987C2.80655 8.30654 2.72655 8.4732 2.70655 8.58654L2.34655 11.1399C2.27989 11.5932 2.40655 12.0199 2.68655 12.3065C2.92655 12.5399 3.25989 12.6665 3.61989 12.6665C3.69989 12.6665 3.77989 12.6599 3.85989 12.6465L6.41989 12.2865C6.53989 12.2665 6.70655 12.1865 6.78655 12.0999L10.5416 8.34484C10.7421 8.14432 10.6668 7.79929 10.4066 7.68654Z"
+                          fill="#DCBA95"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="form">
+                    <div class="inputs">
+                      <div class="input">
+                        <label for="">الاسم الاول</label>
+                        <input type="text" placeholder="محمد" />
+                      </div>
+                      <div class="input">
+                        <label for="">الاسم الاخير</label>
+                        <input type="text" placeholder="محمد" />
+                      </div>
+                    </div>
+                    <div class="inputs">
+                      <div class="input">
+                        <label for="">رقم الهاتف</label>
+                        <input type="text" placeholder="+201066333725" />
+                      </div>
+                      <div class="input">
+                        <label for="">البريد الالكتروني</label>
+                        <input type="email" placeholder="m.info@icloud.com" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pass">
+                <div
+                  @click="passActive = !passActive"
+                  :class="{ active: passActive }"
+                  class="head d-flex align-items-center justify-content-between"
+                >
+                  <div class="d-flex align-items-center gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M20.9101 11.1203V6.73031C20.9101 5.91031 20.2901 4.98031 19.5201 4.67031L13.9501 2.39031C12.7001 1.88031 11.2901 1.88031 10.0401 2.39031L4.47009 4.67031C3.71009 4.98031 3.09009 5.91031 3.09009 6.73031V11.1203C3.09009 16.0103 6.64009 20.5903 11.4901 21.9303C11.8201 22.0203 12.1801 22.0203 12.5101 21.9303C17.3601 20.5903 20.9101 16.0103 20.9101 11.1203ZM12.7501 12.8703V15.5003C12.7501 15.9103 12.4101 16.2503 12.0001 16.2503C11.5901 16.2503 11.2501 15.9103 11.2501 15.5003V12.8703C10.2401 12.5503 9.50009 11.6103 9.50009 10.5003C9.50009 9.12031 10.6201 8.00031 12.0001 8.00031C13.3801 8.00031 14.5001 9.12031 14.5001 10.5003C14.5001 11.6203 13.7601 12.5503 12.7501 12.8703Z"
+                        fill="#DCBA95"
+                      />
+                    </svg>
+                    <span>تعديل كلمة المرور</span>
+                  </div>
+                  <svg
+                    class="icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="6"
+                    height="11"
+                    viewBox="0 0 6 11"
+                    fill="none"
+                  >
+                    <path
+                      d="M5.21436 9.49337L5.21436 5.34004L5.21436 1.60004C5.21436 0.960041 4.44102 0.640041 3.98769 1.09337L0.534355 4.54671C-0.0189778 5.10004 -0.0189779 6.00004 0.534355 6.55337L1.84769 7.86671L3.98769 10.0067C4.44102 10.4534 5.21436 10.1334 5.21436 9.49337Z"
+                      fill="#919EAB"
+                    />
+                  </svg>
+                </div>
 
-              <p>
-                Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam lobortis. Aliquam lobortis. Suspendisse non nisl sit amet velit hendrerit rutrum.
-              </p>
+                <div v-if="passActive" style="margin-top: 37px">
+                  <div class="inputs">
+                    <div class="input">
+                      <label for=""> تعديل كلمة المرور </label>
+                      <input type="password" placeholder="************" />
+                    </div>
+                  </div>
+                  <div class="inputs">
+                    <div class="input">
+                      <label for=""> كلمة المرور الجديدة </label>
+                      <input type="password" placeholder="************" />
+                    </div>
+                    <div class="input">
+                      <label for="">تاكيد كلمة المرور </label>
+                      <input type="password" placeholder="************" />
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <button class="fill">حفظ التعديلات</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div v-if="personalActive == 2">
+              <div class="personal">
+                <div class="details">
+                  <div class="image active">
+                    <div class="img">
+                      <img
+                        v-if="!selectedFile"
+                        src="~/assets/images/AVATAR.svg"
+                        alt=""
+                      />
+                      <div v-if="selectedFile">
+                        <img :src="selectedFileUrl" alt="Selected Image" />
+                      </div>
 
-              <p class="mb-0">
-                Phasellus dolor. Fusce neque. Fusce fermentum odio nec arcu. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Phasellus blandit leo ut odio.
-              </p>
+                      <label for="img-input" class="overlay">
+                        <input
+                          id="img-input"
+                          type="file"
+                          @change="handleFileChange"
+                        />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="105"
+                          height="105"
+                          viewBox="0 0 105 105"
+                          fill="none"
+                        >
+                          <circle
+                            opacity="0.6"
+                            cx="52.5"
+                            cy="52.5"
+                            r="52.5"
+                            fill="#D9D9D9"
+                          />
+                        </svg>
+                        <div class="icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
+                            <path
+                              d="M14 14.667H2C1.72667 14.667 1.5 14.4403 1.5 14.167C1.5 13.8937 1.72667 13.667 2 13.667H14C14.2733 13.667 14.5 13.8937 14.5 14.167C14.5 14.4403 14.2733 14.667 14 14.667Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M12.6799 2.32043C11.3866 1.0271 10.1199 0.993764 8.79322 2.32043L7.98655 3.1271C7.91989 3.19376 7.89322 3.30043 7.91989 3.39376C8.42655 5.16043 9.83989 6.57376 11.6066 7.08043C11.6332 7.0871 11.6599 7.09376 11.6866 7.09376C11.7599 7.09376 11.8266 7.0671 11.8799 7.01376L12.6799 6.2071C13.3399 5.55376 13.6599 4.92043 13.6599 4.28043C13.6666 3.62043 13.3466 2.98043 12.6799 2.32043Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M10.4066 7.68654C10.2132 7.5932 10.0266 7.49987 9.84655 7.3932C9.69989 7.30654 9.55989 7.2132 9.41989 7.1132C9.30655 7.03987 9.17322 6.9332 9.04655 6.82654C9.03322 6.81987 8.98655 6.77987 8.93322 6.72654C8.71322 6.53987 8.46655 6.29987 8.24655 6.0332C8.22655 6.01987 8.19322 5.9732 8.14655 5.9132C8.07989 5.8332 7.96655 5.69987 7.86655 5.54654C7.78655 5.44654 7.69322 5.29987 7.60655 5.1532C7.49989 4.9732 7.40655 4.7932 7.31322 4.60654C7.19085 4.34431 6.84668 4.26641 6.64206 4.47103L2.89322 8.21987C2.80655 8.30654 2.72655 8.4732 2.70655 8.58654L2.34655 11.1399C2.27989 11.5932 2.40655 12.0199 2.68655 12.3065C2.92655 12.5399 3.25989 12.6665 3.61989 12.6665C3.69989 12.6665 3.77989 12.6599 3.85989 12.6465L6.41989 12.2865C6.53989 12.2665 6.70655 12.1865 6.78655 12.0999L10.5416 8.34484C10.7421 8.14432 10.6668 7.79929 10.4066 7.68654Z"
+                              fill="white"
+                            />
+                          </svg>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form">
+                    <div class="inputs">
+                      <div class="input">
+                        <label for="">الاسم الاول</label>
+                        <input type="text" placeholder="محمد" />
+                      </div>
+                      <div class="input">
+                        <label for="">الاسم الاخير</label>
+                        <input type="text" placeholder="محمد" />
+                      </div>
+                    </div>
+                    <div class="inputs">
+                      <div class="input">
+                        <label for="">رقم الهاتف</label>
+                        <input type="text" placeholder="+201066333725" />
+                      </div>
+                      <div class="input">
+                        <label for="">البريد الالكتروني</label>
+                        <input type="email" placeholder="m.info@icloud.com" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="btns d-flex align-items-center justify-content-center gap-3"
+                  >
+                    <button class="fill">حفظ التعديلات</button>
+                    <button @click="personalActive = 1" class="stroke">
+                      الرجوع
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </v-window-item>
-        <v-window-item value="option-2">
-         <div>
-            <p>
-                Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.
-              </p>
 
-              <p>
-                Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.
-              </p>
+          <div v-if="navActive == 2" class="notifications">
+            <div class="items">
+              <div v-for="i in 6" class="item">
+                <div class="icon d-flex align-items-center gap-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M20.19 14.0598L19.06 12.1798C18.81 11.7698 18.59 10.9798 18.59 10.4998V8.6298C18.59 4.9998 15.64 2.0498 12.02 2.0498C8.38996 2.0598 5.43996 4.9998 5.43996 8.6298V10.4898C5.43996 10.9698 5.21996 11.7598 4.97996 12.1698L3.84996 14.0498C3.41996 14.7798 3.31996 15.6098 3.58996 16.3298C3.85996 17.0598 4.46996 17.6398 5.26996 17.8998C6.34996 18.2598 7.43996 18.5198 8.54996 18.7098C8.65996 18.7298 8.76996 18.7398 8.87996 18.7598C9.01996 18.7798 9.16996 18.7998 9.31996 18.8198C9.57996 18.8598 9.83996 18.8898 10.11 18.9098C10.74 18.9698 11.38 18.9998 12.02 18.9998C12.65 18.9998 13.28 18.9698 13.9 18.9098C14.13 18.8898 14.36 18.8698 14.58 18.8398C14.76 18.8198 14.94 18.7998 15.12 18.7698C15.23 18.7598 15.34 18.7398 15.45 18.7198C16.57 18.5398 17.68 18.2598 18.76 17.8998C19.53 17.6398 20.12 17.0598 20.4 16.3198C20.68 15.5698 20.6 14.7498 20.19 14.0598ZM12.75 9.9998C12.75 10.4198 12.41 10.7598 11.99 10.7598C11.57 10.7598 11.23 10.4198 11.23 9.9998V6.89981C11.23 6.4798 11.57 6.1398 11.99 6.1398C12.41 6.1398 12.75 6.4798 12.75 6.89981V9.9998Z"
+                      fill="#DCBA95"
+                    />
+                    <path
+                      d="M14.8299 20.01C14.4099 21.17 13.2999 22 11.9999 22C11.2099 22 10.4299 21.68 9.87993 21.11C9.55993 20.81 9.31993 20.41 9.17993 20C9.30993 20.02 9.43993 20.03 9.57993 20.05C9.80993 20.08 10.0499 20.11 10.2899 20.13C10.8599 20.18 11.4399 20.21 12.0199 20.21C12.5899 20.21 13.1599 20.18 13.7199 20.13C13.9299 20.11 14.1399 20.1 14.3399 20.07C14.4999 20.05 14.6599 20.03 14.8299 20.01Z"
+                      fill="#DCBA95"
+                    />
+                  </svg>
+                  <h4>تم استلام طلبك بنجاح</h4>
+                </div>
+                <p>
+                  هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
+                  توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا
+                  النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف
+                  التى يولدها التطبيق
+                </p>
+              </div>
+            </div>
+          </div>
 
-              <p>
-                Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.
-              </p>
+          <div v-if="navActive == 3" class="address-container">
+            <div class="items">
+              <div v-for="item in addresses" class="item">
+                <div class="d-flex align-items-center gap-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M20.6201 8.45C19.5701 3.83 15.5401 1.75 12.0001 1.75C12.0001 1.75 12.0001 1.75 11.9901 1.75C8.4601 1.75 4.4201 3.82 3.3701 8.44C2.2001 13.6 5.3601 17.97 8.2201 20.72C9.2801 21.74 10.6401 22.25 12.0001 22.25C13.3601 22.25 14.7201 21.74 15.7701 20.72C18.6301 17.97 21.7901 13.61 20.6201 8.45ZM12.0001 13.46C10.2601 13.46 8.8501 12.05 8.8501 10.31C8.8501 8.57 10.2601 7.16 12.0001 7.16C13.7401 7.16 15.1501 8.57 15.1501 10.31C15.1501 12.05 13.7401 13.46 12.0001 13.46Z"
+                      fill="#DCBA95"
+                    />
+                  </svg>
+                  <h4>عنوان المنزل</h4>
+                </div>
+                <span
+                  >{{ item.add1 }} ، {{ item.add3 }} ، {{ item.add2 }} ،
+                  {{ item.add4 }}</span
+                >
+              </div>
+            </div>
 
-              <p>
-                Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.
-              </p>
+            <div v-if="addressNav == 1" @click="addressNav = 2" class="add">
+              <div class="d-flex align-items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="21"
+                  viewBox="0 0 18 21"
+                  fill="none"
+                >
+                  <path
+                    d="M17.6202 6.7C16.5802 2.07 12.5402 0 9.00024 0C9.00024 0 9.00024 0 8.99024 0C5.46024 0 1.43024 2.07 0.380239 6.69C-0.799761 11.85 2.36024 16.22 5.22024 18.98C6.28024 20 7.64024 20.51 9.00024 20.51C10.3602 20.51 11.7202 20 12.7702 18.98C15.6302 16.22 18.7902 11.86 17.6202 6.7ZM11.7502 9.75H9.75024V11.75C9.75024 12.16 9.41024 12.5 9.00024 12.5C8.59024 12.5 8.25024 12.16 8.25024 11.75V9.75H6.25024C5.84024 9.75 5.50024 9.41 5.50024 9C5.50024 8.59 5.84024 8.25 6.25024 8.25H8.25024V6.25C8.25024 5.84 8.59024 5.5 9.00024 5.5C9.41024 5.5 9.75024 5.84 9.75024 6.25V8.25H11.7502C12.1602 8.25 12.5002 8.59 12.5002 9C12.5002 9.41 12.1602 9.75 11.7502 9.75Z"
+                    fill="#DCBA95"
+                  />
+                </svg>
+                <span>اضف عنوان جديد</span>
+              </div>
+            </div>
 
-              <p class="mb-0">
-                Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.
-              </p>
-         </div>
-        </v-window-item>
-        <v-window-item value="option-3">
-        <div>
-            <p>
-                Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
-              </p>
+            <div v-if="addressNav == 2" class="form">
+              <h5>اضافة عنوان جديد</h5>
+              <div class="row">
+                <div class="col-8">
+                  <div>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="input">
+                        <label for=""> المدينة </label>
+                        <Dropdown
+                          v-model="formInputs.add1"
+                          :options="countries"
+                          filter
+                          optionLabel="name"
+                          placeholder="مثال : مصرف الجارحي"
+                          class=""
+                        >
+                          <template #option="slotProps">
+                            <div class="flex align-items-center">
+                              <div>{{ slotProps.option.name }}</div>
+                            </div>
+                          </template>
+                        </Dropdown>
+                      </div>
+                      <div class="input">
+                        <label for=""> اسم الشارع <span>*</span></label>
+                        <input
+                          type="text"
+                          v-model="formInputs.add2"
+                          placeholder="مثال : شارع المملكة"
+                        />
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="input">
+                        <label for=""> الحي <span>*</span></label>
+                        <input
+                          type="text"
+                          v-model="formInputs.add3"
+                          placeholder="45 ب"
+                        />
+                      </div>
+                      <div class="input">
+                        <label for=""> رقم المبني</label>
+                        <input
+                          type="text"
+                          v-model="formInputs.add4"
+                          placeholder="مثال : الحي الخامس"
+                        />
+                      </div>
+                    </div>
+                    <div class="input">
+                      <label for=""> الاسم المميز للعنوان </label>
+                      <input
+                        type="text"
+                        placeholder="مثال : المنزل , المكتب , الشركة ..الخ"
+                      />
+                    </div>
+                    <div class="btns d-flex align-items-center gap-3">
+                      <button
+                        @click="addAddress(), (addressNav = 1)"
+                        class="fill"
+                      >
+                        حفظ التعديلات
+                      </button>
+                      <button @click="addressNav = 1" class="stroke">
+                        الرجوع
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="map-image">
+                    <img class="image" src="~/assets/images/map.png" alt="" />
+                    <div class="overlay">
+                      <div class="text d-flex flex-column gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="23"
+                          height="24"
+                          viewBox="0 0 23 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M19.5422 8.45C18.5583 3.83 14.7821 1.75 11.4651 1.75C11.4651 1.75 11.4651 1.75 11.4558 1.75C8.14813 1.75 4.36262 3.82 3.37876 8.44C2.28246 13.6 5.24341 17.97 7.92325 20.72C8.91648 21.74 10.1908 22.25 11.4651 22.25C12.7395 22.25 14.0138 21.74 14.9977 20.72C17.6775 17.97 20.6384 13.61 19.5422 8.45ZM11.4651 13.46C9.83475 13.46 8.51357 12.05 8.51357 10.31C8.51357 8.57 9.83475 7.16 11.4651 7.16C13.0955 7.16 14.4167 8.57 14.4167 10.31C14.4167 12.05 13.0955 13.46 11.4651 13.46Z"
+                            fill="white"
+                          />
+                        </svg>
+                        <span> العنوان </span>
+                        <span> حدد علي الخريطة </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-              <p class="mb-0">
-                Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.
-              </p>
-        </div>
-        </v-window-item>
-      </v-window>
+          <div class="orders">
+             <div class="row">
+               <div class="col-4"></div>
+             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -107,7 +520,69 @@
 </template>
 
 <script setup>
-let tab = ref('option-1');
+let navActive = ref(1);
+let personalActive = ref(1);
+let passActive = ref(false);
+let selectedFile = ref(null);
+let selectedFileUrl = ref(null);
+const handleFileChange = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    selectedFile.value = file;
+    selectedFileUrl.value = URL.createObjectURL(file);
+  }
+};
+
+let addressNav = ref(1);
+const selectedCountry = ref("");
+const countries = ref([
+  { name: "Australia", code: "AU" },
+  { name: "Brazil", code: "BR" },
+  { name: "China", code: "CN" },
+  { name: "Egypt", code: "EG" },
+  { name: "France", code: "FR" },
+  { name: "Germany", code: "DE" },
+  { name: "India", code: "IN" },
+  { name: "Japan", code: "JP" },
+  { name: "Spain", code: "ES" },
+  { name: "United States", code: "US" },
+]);
+
+let formInputs = ref({
+  add1: "",
+  add2: "",
+  add3: "",
+  add4: "",
+});
+let addresses = ref([
+  {
+    add1: "الرياض",
+    add2: "شارع المملكة",
+    add3: "الحي الخامس",
+    add4: "45 ب",
+  },
+  {
+    add1: "الرياض",
+    add2: "شارع المملكة",
+    add3: "الحي الخامس",
+    add4: "45 ب",
+  },
+]);
+
+let addAddress = () => {
+  addresses.value.push({
+    add1: formInputs.value.add1.name,
+    add2: formInputs.value.add2,
+    add3: formInputs.value.add3,
+    add4: formInputs.value.add4,
+  });
+  formInputs.value = {
+    add1: "",
+    add2: "",
+    add3: "",
+    add4: "",
+  };
+};
 let items = ref([
   {
     title: "الاعدادات",

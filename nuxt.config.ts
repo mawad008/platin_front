@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     host: '0.0.0.0',
     port: 3000 // You can set a specific port if neede
   },
-  modules: ["nuxt-swiper", "@nuxtjs/i18n"],
+  modules: ["nuxt-swiper", "@nuxtjs/i18n" , "nuxt-primevue"],
    plugins: [
     { src: "~/plugins/lottie.js" , mode: 'client'},
   ],
