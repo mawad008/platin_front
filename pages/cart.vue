@@ -1,6 +1,8 @@
 <template>
   <div style="min-height: 100vh; margin-top: 80px">
-    <div v-if="arrData.length > 0" class="container cart-page">
+    <div  class="container cart-page">
+
+    <div v-if="arrData.length > 0">
       <div class="header">
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
@@ -312,19 +314,22 @@
           </div>
         </div>
       </div>
+    
+    </div>
+     <div v-else class="empty-container">
+        <div class="empty">
+      <h4>سلة تسوقك فارغة ! </h4>
+      <p>سلة التسوق خاصتك فارغة الآن. تفضل بتصفح منتجاتنا الراقية واستكمل تجربتك الشخصية بإضافة قطعة فريدة من نوعها إلى مجموعتك</p>
+
+       <nuxt-link :to="localePath('/')">
+      <button>تسوق الان</button>
+    
+        </nuxt-link>
+    
+        </div>
+        </div>
     </div>
 
-    <div v-else class="d-flex align-items-center text-center justify-content-center " style="min-height: 100vh;">
-    <div>
-    <h1>this cart is empty</h1>
-    <h4>cart is empty please go back to check your items </h4>
-    <nuxt-link :to="localePath('/')">
-      <button class=""> back to home </button>
-    
-    </nuxt-link>
-    
-    </div>
-    </div>
   </div>
 </template>
 
