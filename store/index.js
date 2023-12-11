@@ -4,6 +4,7 @@ import axios from "axios";
 export const useStore = createStore({
   state: {
     basket: [],
+    basketCheck:[],
     basketNum: 0,
     totalNum: 0,
   },
@@ -60,9 +61,10 @@ export const useStore = createStore({
       getTotalPrice(state);
     
        console.log(state.totalNum);
-
+        
       // Calculate the number of products for each vendor
       getTotalBasketNum(state);
+      addCheck(state);
       //console.log(state.basketNum);
     },
     addItem(state, id) {
@@ -76,6 +78,8 @@ export const useStore = createStore({
       console.log(state.basket);
       getTotalPrice(state);
       getTotalBasketNum(state);
+      addCheck(state);
+
 
     },
     deleteItem(state, index, item) {
@@ -88,12 +92,19 @@ export const useStore = createStore({
       }
       getTotalBasketNum(state);
       getTotalPrice(state);
+      addCheck(state);
+
     },
     deleteAll(state){
       state.basket = [];
       state.totalNum = 0;
       state.basketNum = 0; 
+      state.basketCheck = [];
+    },
+    deleteCheckOut(state , index){
+      state.basketCheck.splice(index, 1);
     }
+   
   },
 });
 
@@ -124,4 +135,15 @@ function getTotalPrice(state){
     });
   });
   state.totalNum = totall
+}
+
+function addCheck(state){
+  state.basketCheck = state.basket.flatMap(vendor => {
+    let vendorId = vendor.vendorId;
+    return vendor.products.map(product => ({
+      ...product,
+      vendorId: vendorId
+    }));
+  });
+  
 }

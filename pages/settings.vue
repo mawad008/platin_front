@@ -522,11 +522,21 @@
 </template>
 
 <script setup>
-let navActive = ref(1);
 let personalActive = ref(1);
 let passActive = ref(false);
 let selectedFile = ref(null);
 let selectedFileUrl = ref(null);
+const MainRoute = ref(useRoute());
+let navActive = ref(0);
+if(MainRoute.value.query.name == 'profile'){
+  navActive.value = 1;
+}
+if(MainRoute.value.query.name == 'notifications'){
+  navActive.value = 2;
+}
+if(MainRoute.value.query.name == 'orders'){
+  navActive.value = 4;
+}
 const handleFileChange = (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -615,7 +625,8 @@ const displayedOrders = computed(() => {
 
 onMounted(() => {
   console.log(showAllItems.value);
-})
+  console.log(MainRoute.value.query.name);
+});
 
 const showAll = (index) => {
   showAllItems.value[index] = !showAllItems.value[index];

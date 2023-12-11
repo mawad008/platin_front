@@ -178,7 +178,11 @@
                 <span class="gold">600 ر.س</span>
               </div>
               <h6>تابع التسوق</h6>
+
+              <nuxt-link to="/checkout">
               <button class="pay">ابدأ عملية الشراء</button>
+              
+              </nuxt-link>
 
               <div class="pay-methods mt-4">
                 <span class=""> خيارات دفع امنة بواسطة </span>
@@ -354,6 +358,61 @@ const localePath = useLocalePath();
       },
     ]);
 
+//     let aarr = [
+//       {
+//         vendorId:1,
+//         vendorName:'a',
+//         products:[
+//           {
+//             id:3,
+//             item:2,
+//             name:'n1',
+//             price: 120
+//           },
+//           {
+//             id:4,
+//             item:2,
+//             name:'n1',
+//             price: 120
+//           },
+//           {
+//             id:5,
+//             item:2,
+//             name:'n1',
+//             price: 120
+//           },
+
+//         ]
+//       },
+//       {
+//         vendorId:2,
+//         vendorName:'a',
+//         products:[
+//           {
+//             id:6,
+//             item:2,
+//             name:'n1',
+//             price: 120
+//           },
+//           {
+//             id:7,
+//             item:2,
+//             name:'n1',
+//             price: 120
+//           },
+//         ]
+//       }
+//     ]
+
+//     let newArray = aarr.flatMap(vendor => {
+//   let vendorId = vendor.vendorId;
+//   return vendor.products.map(product => ({
+//     ...product,
+//     vendorId: vendorId
+//   }));
+// });
+
+
     let arrData = ref(store.state.basket);
     const deleteItem = (index, item) => {
       store.commit("deleteItem", index, item);
@@ -405,6 +464,7 @@ const localePath = useLocalePath();
       //getAllItems();
       //totalFunc();
       // console.log(getTotal.value);
+// console.log(newArray);
     
     });
 

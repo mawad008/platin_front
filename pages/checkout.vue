@@ -241,9 +241,9 @@
             </div>
 
             <div class="col-4">
-              <div class="product-checkout">
-                <div class="head">
-                  <v-badge color="#B1628C" :content="5">
+              <div v-if="arrData.length > 0" class="product-checkout">
+                <div v-for="item , index in arrData" class="head my-4">
+                  <v-badge color="#B1628C" :content="item.item">
                     <div class="image">
                       <img src="~/assets/images/watch.png" alt="" />
                       <!-- <span class="count">3</span> -->
@@ -251,12 +251,12 @@
                   </v-badge>
 
                   <div class="text w-100 d-flex flex-column gap-2">
-                    <span class="name"> ساعة إليت كلاسيك </span>
+                    <span class="name"> {{ item.description }} </span>
                     <div
                       class="w-100 d-flex align-items-center justify-content-between"
                     >
-                      <span class="price"> 180 ريال سعودي </span>
-                      <div class="trash">
+                      <span class="price"> {{ item.price }}  رس</span>
+                      <div @click="deleteItem(index)" class="trash">
                         <img src="~/assets/images/trash.svg" alt="" />
                       </div>
                     </div>
@@ -1381,6 +1381,14 @@
 </template>
 
 <script setup>
+import { useStore } from "~/store";
+const store = useStore;
+let arrData = ref(store.state.basketCheck);
+
+const deleteItem = (index) =>{
+  store.commit("deleteCheckOut", index);
+
+}
 let step = ref(1);
 let items = ref([
   "معلومات المستلم",
@@ -1389,6 +1397,10 @@ let items = ref([
   "مراجعة الطلب",
 ]);
 
+
+onMounted(() => {
+  console.log(arrData.value);
+})
 const required = (v) => {
   return !!v || "Field is required";
 };
