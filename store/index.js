@@ -13,7 +13,7 @@ export const useStore = createStore({
       const existingItem = state.basket.find((item) => {
         let existingData = [item];
         const vendor = existingData.find(
-          (vendor) => vendor.vendorId === payload.vendorId
+          (vendor) => vendor.vendor_id === payload.vendor_id
         );
         if (vendor) {
           const product = vendor.products.find(
@@ -26,27 +26,28 @@ export const useStore = createStore({
         console.log(existingItem);
       } else {
         state.basket.push({
-          vendorId: payload.vendorId,
+          vendor_id: payload.vendor_id,
           id: payload.id,
           products: [
             {
               id: payload.id,
-              item: 1,
+              quantity: 1,
               description: payload.description,
               price: payload.price,
+              // images:images
             },
           ],
           vendorName: payload.vendorName,
         });
         const uniqueItems = state.basket.reduce((acc, currentItem) => {
-          const { id, products, vendorId, vendorName } = currentItem;
+          const { id, products, vendor_id, vendorName } = currentItem;
 
           // If the vendorId is not in the object, add it
-          if (!acc[vendorId]) {
-            acc[vendorId] = { id, products, vendorId, vendorName };
+          if (!acc[vendor_id]) {
+            acc[vendor_id] = { id, products, vendor_id, vendorName };
           } else {
             // If the vendorId is already in the object, push the products array
-            acc[vendorId].products.push(...products);
+            acc[vendor_id].products.push(...products);
           }
 
           return acc;
@@ -72,24 +73,51 @@ export const useStore = createStore({
         const product = vendor.products.find((p) => p.id === id);
         if (product) {
           // Increment the item property
-          product.item += 1;
+          product.quantity += 1;
         }
       });
       console.log(state.basket);
       getTotalPrice(state);
       getTotalBasketNum(state);
-      addCheck(state);
+      // addCheck(state);
 
 
     },
-    deleteItem(state, index, item) {
-      state.basket[index].products.splice(item, 1);
-      console.log(state.basket[index].products.length);
-      if (state.basket[index].products.length == 0) {
-        state.basket.splice(index, 1);
-        console.log("done");
-        console.log(state.basket);
+    deleteItem(state, payload) {
+      const { vendor_id, itemid , indexx } = payload;
+
+      console.log(payload);
+
+      const vendor = state.basket.find((v) => v.vendor_id === vendor_id);
+
+      if (vendor) {
+        // Find the index of the product with the given itemId
+        const index = vendor.products.findIndex((p) => p.id === itemid);
+
+        // Check if the product with the given itemId exists
+        if (index !== -1) {
+          // Remove the product from the products array
+          vendor.products.splice(index, 1);
+          state.basket[indexx].product = vendor;
+          if(state.basket[indexx].products.length == 0){
+            state.basket.splice(indexx, 1);
+          }
+          console.log(`Item with id ${itemid} deleted successfully.`);
+        } else {
+          console.log(`Item with id ${itemid} not found.`);
+        }
+      } else {
+        console.log(`Vendor with id ${vendor_id} not found.`);
       }
+
+      // state.basket[index].products.splice(item, 1);
+      // console.log(state.basket[index].products.length);
+      // if (state.basket[index].products.length == 0) {
+      //   state.basket.splice(index, 1);
+      //   console.log("done");
+      //   console.log(state.basket);
+      // }
+
       getTotalBasketNum(state);
       getTotalPrice(state);
       addCheck(state);
@@ -120,7 +148,7 @@ function getTotalBasketNum(state){
   let totall = 0;
   state.basket.forEach((ele) => {
     ele.products.forEach((e) => {
-      totall += e.item;
+      totall += e.quantity;
     });
   });
 
@@ -131,7 +159,7 @@ function getTotalPrice(state){
   let totall = 0;
   state.basket.forEach((ele) => {
     ele.products.forEach((e) => {
-      totall += (e.price * e.item);
+      totall += (e.price * e.quantity);
     });
   });
   state.totalNum = totall
@@ -139,10 +167,10 @@ function getTotalPrice(state){
 
 function addCheck(state){
   state.basketCheck = state.basket.flatMap(vendor => {
-    let vendorId = vendor.vendorId;
+    let vendor_id = vendor.vendor_id;
     return vendor.products.map(product => ({
       ...product,
-      vendorId: vendorId
+      vendor_id: vendor_id
     }));
   });
   

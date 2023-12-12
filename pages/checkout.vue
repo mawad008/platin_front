@@ -10,12 +10,18 @@
       >
         <template v-slot:item.1>
           <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-xl-8 col-lg-8">
               <form class="form-box">
                 <div class="first-info d-flex flex-column gap-3">
                   <div class="radio-inputs d-flex align-items-center gap-3">
                     <label>
-                      <input type="radio" name="card_id" checked value="1" />
+                      <input
+                        type="radio"
+                        v-model="personalorGift"
+                        name="card_id"
+                        checked
+                        value="1"
+                      />
                       <div class="radio-input">
                         <div
                           class="head d-flex align-items-center justify-content-between"
@@ -107,7 +113,12 @@
                       </div>
                     </label>
                     <label>
-                      <input type="radio" name="card_id" value="2" />
+                      <input
+                        type="radio"
+                        v-model="personalorGift"
+                        name="card_id"
+                        value="2"
+                      />
                       <div class="radio-input">
                         <div
                           class="head d-flex align-items-center justify-content-between"
@@ -199,108 +210,100 @@
                     </label>
                   </div>
 
-                  <div class="d-flex align-items-center gap-2">
-                    <div class="input d-flex w-50 flex-column">
-                      <label for=""> الاسم الاول <span>*</span> </label>
-                      <v-text-field
-                        :rules="[required]"
-                        clearable
-                        placeholder="مثال : محمد"
-                      ></v-text-field>
+                  <div v-if="personalorGift == 1" class="inputs">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="main-input">
+                        <label for="">
+                          الاسم الاول
+                          <span>*</span>
+                        </label>
+                        <input type="text" placeholder="مثال : محمد" />
+                      </div>
+                      <div class="main-input">
+                        <label for=""> الاسم الاخير <span>*</span> </label>
+                        <input type="text" placeholder="مثال : محمد" />
+                      </div>
                     </div>
-                    <div class="input d-flex w-50 flex-column">
-                      <label for=""> الاسم الاخير<span>*</span> </label>
-                      <v-text-field
-                        :rules="[required]"
-                        clearable
-                        placeholder="مثال : مصطفي"
-                      ></v-text-field>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="main-input">
+                        <label for=""> رقم الهاتف </label>
+                        <input type="text" placeholder="+201066333725" />
+                      </div>
+                      <div class="main-input">
+                        <label for=""> البريد الالكتروني <span>*</span> </label>
+                        <input
+                          type="text"
+                          placeholder="مثال : m.info@icloud.com"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div class="d-flex align-items-center gap-2">
-                    <div class="input d-flex w-50 flex-column">
-                      <label for=""> رقم الهاتف </label>
-                      <v-text-field
-                        clearable
-                        type="tel"
-                        placeholder="+201066333725"
-                      ></v-text-field>
+                  <div v-if="personalorGift == 2" class="inputs">
+                    <h4>بيانات المهدي</h4>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="main-input">
+                        <label for="">
+                          الاسم الاول
+                          <span>*</span>
+                        </label>
+                        <input type="text" placeholder="مثال : محمد" />
+                      </div>
+                      <div class="main-input">
+                        <label for=""> الاسم الاخير <span>*</span> </label>
+                        <input type="text" placeholder="مثال : محمد" />
+                      </div>
                     </div>
-                    <div class="input d-flex w-50 flex-column">
-                      <label for=""> البريد الالكتروني <span>*</span> </label>
-                      <v-text-field
-                        :rules="[required]"
-                        clearable
-                        type="email"
-                        placeholder=" مثال : m.info@icloud.com "
-                      ></v-text-field>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="main-input">
+                        <label for=""> رقم الهاتف </label>
+                        <input type="text" placeholder="+201066333725" />
+                      </div>
+                      <div class="main-input">
+                        <label for=""> البريد الالكتروني <span>*</span> </label>
+                        <input
+                          type="text"
+                          placeholder="مثال : m.info@icloud.com"
+                        />
+                      </div>
+                    </div>
+                    <h4>بيانات المهدي اليه</h4>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="main-input">
+                        <label for="">
+                          الاسم الاول
+                          <span>*</span>
+                        </label>
+                        <input type="text" placeholder="مثال : محمد" />
+                      </div>
+                      <div class="main-input">
+                        <label for=""> رقم الهاتف </label>
+                        <input type="text" placeholder="+201066333725" />
+                      </div>
+                    </div>
+                    <h4>نص الهدية</h4>
+                    <div class="main-input">
+                      <textarea
+                        name=""
+                        placeholder="أكتب رسالتك الخاصة هنا ليصل مع هديتك"
+                        id=""
+                        cols="30"
+                        rows="10"
+                      ></textarea>
                     </div>
                   </div>
                 </div>
               </form>
             </div>
 
-            <div class="col-4">
-              <div v-if="arrData.length > 0" class="product-checkout">
-                <div v-for="item , index in arrData" class="head my-4">
-                  <v-badge color="#B1628C" :content="item.item">
-                    <div class="image">
-                      <img src="~/assets/images/watch.png" alt="" />
-                      <!-- <span class="count">3</span> -->
-                    </div>
-                  </v-badge>
-
-                  <div class="text w-100 d-flex flex-column gap-2">
-                    <span class="name"> {{ item.description }} </span>
-                    <div
-                      class="w-100 d-flex align-items-center justify-content-between"
-                    >
-                      <span class="price"> {{ item.price }}  رس</span>
-                      <div @click="deleteItem(index)" class="trash">
-                        <img src="~/assets/images/trash.svg" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <v-divider :thickness="1"></v-divider>
-
-                <div class="total-price">
-                  <div class="total">
-                    <span class="word all"> الاجمالي </span>
-                    <span class="fw-bold price"> 520 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> السعر </span>
-                    <span class="price"> 420 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> الخصومات </span>
-                    <span class="price"> 0 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> مصاريف الشحن </span>
-                    <span class="price"> 40 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> ضريبة القيمة المضافة </span>
-                    <span class="price"> 80 ر.س </span>
-                  </div>
-                </div>
-
-                <div class="btns">
-                  <button @click="step += 1" class="fill">
-                    تابع عملية الشراء
-                  </button>
-                  <button @click="step -= 1" class="stroke">الرجوع</button>
-                </div>
-              </div>
+            <div class="col-12 col-xl-4 col-lg-4">
+            <checkProduct :arrData="arrData" />
             </div>
           </div>
         </template>
 
         <template v-slot:item.2>
           <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-xl-8 col-lg-8">
               <form class="form-box">
                 <div class="first-info d-flex flex-column gap-3">
                   <form
@@ -497,77 +500,67 @@
                     </label>
                   </form>
 
-                  <div class="main-inputs d-flex flex-column gap-2 w-50">
-                    <label class="fw-bold" for=""> العنوانين المحفوظة </label>
-                    <v-autocomplete
-                      :rules="[required]"
-                      style=""
-                      clearable
-                      :items="[
-                        'California',
-                        'Colorado',
-                        'Florida',
-                        'Georgia',
-                        'Texas',
-                        'Wyoming',
-                      ]"
-                      variant="outlined"
-                    ></v-autocomplete>
+                  <div class="inputs address">
+                    <h4>العنوانين المحفوظة</h4>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="main-input">
+                        <Dropdown
+                          @click="dropDownActive += 1"
+                          :class="{ active: dropDownActive == 1 }"
+                          v-model="selectedCountry"
+                          :options="countries"
+                          filter
+                          optionLabel="name"
+                          placeholder="مثال : مصرف الجارحي"
+                          class=""
+                        >
+                          <template #option="slotProps">
+                            <div class="flex align-items-center">
+                              <div>{{ slotProps.option.name }}</div>
+                            </div>
+                          </template>
+                        </Dropdown>
+                      </div>
+                    </div>
                   </div>
-
                   <div class="row main-inputs-container">
                     <div class="col-7">
-                      <div class="main-inputs d-flex align-items-center gap-2">
-                        <div class="input d-flex flex-column">
-                          <label for=""> الاسم الاول <span>*</span> </label>
-                          <v-text-field
-                            :rules="[required]"
-                            variant="outlined"
-                            clearable
-                            placeholder="مثال : محمد"
-                          ></v-text-field>
+                      <div  class="inputs">
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="main-input">
+                            <label for="">
+                              الاسم الاول
+                              <span>*</span>
+                            </label>
+                            <input type="text" placeholder="مثال : محمد" />
+                          </div>
+                          <div class="main-input">
+                            <label for=""> الاسم الاخير <span>*</span> </label>
+                            <input type="text" placeholder="مثال : محمد" />
+                          </div>
                         </div>
-                        <div class="input d-flex flex-column">
-                          <label for=""> الاسم الاخير<span>*</span> </label>
-                          <v-text-field
-                            :rules="[required]"
-                            variant="outlined"
-                            clearable
-                            placeholder="مثال : مصطفي"
-                          ></v-text-field>
-                        </div>
-                      </div>
-                      <div class="main-inputs d-flex align-items-center gap-2">
-                        <div class="input d-flex flex-column">
-                          <label for=""> رقم الهاتف </label>
-                          <v-text-field
-                            clearable
-                            type="tel"
-                            variant="outlined"
-                            placeholder="+201066333725"
-                          ></v-text-field>
-                        </div>
-                        <div class="input d-flex flex-column">
-                          <label for="">
-                            البريد الالكتروني <span>*</span>
-                          </label>
-                          <v-text-field
-                            :rules="[required]"
-                            variant="outlined"
-                            clearable
-                            type="email"
-                            placeholder=" مثال : m.info@icloud.com "
-                          ></v-text-field>
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="main-input">
+                            <label for=""> رقم الهاتف </label>
+                            <input type="text" placeholder="+201066333725" />
+                          </div>
+                          <div class="main-input">
+                            <label for="">
+                              البريد الالكتروني <span>*</span>
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="مثال : m.info@icloud.com"
+                            />
+                          </div>
                         </div>
                       </div>
-                      <div class="input w-100 d-flex flex-column">
+                      <div class="main-input mt-3">
                         <label for=""> الاسم المميز للعنوان </label>
-                        <v-text-field
-                          variant="outlined"
-                          clearable
+                        <input
                           type="text"
-                          placeholder="مثال : المنزل , المكتب , الشركة ..الخ "
-                        ></v-text-field>
+                          placeholder="مثال : المنزل , المكتب , الشركة ..الخ"
+                        />
                       </div>
 
                       <v-checkbox
@@ -601,67 +594,16 @@
               </form>
             </div>
 
-            <div class="col-4">
-              <div class="product-checkout">
-                <div class="head">
-                  <v-badge color="#B1628C" :content="5">
-                    <div class="image">
-                      <img src="~/assets/images/watch.png" alt="" />
-                      <!-- <span class="count">3</span> -->
-                    </div>
-                  </v-badge>
+            <div class="col-12 col-xl-4 col-lg-4">
+              <checkProduct :arrData="arrData" />
 
-                  <div class="text w-100 d-flex flex-column gap-2">
-                    <span class="name"> ساعة إليت كلاسيك </span>
-                    <div
-                      class="w-100 d-flex align-items-center justify-content-between"
-                    >
-                      <span class="price"> 180 ريال سعودي </span>
-                      <div class="trash">
-                        <img src="~/assets/images/trash.svg" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <v-divider :thickness="1"></v-divider>
-
-                <div class="total-price">
-                  <div class="total">
-                    <span class="word all"> الاجمالي </span>
-                    <span class="fw-bold price"> 520 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> السعر </span>
-                    <span class="price"> 420 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> الخصومات </span>
-                    <span class="price"> 0 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> مصاريف الشحن </span>
-                    <span class="price"> 40 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> ضريبة القيمة المضافة </span>
-                    <span class="price"> 80 ر.س </span>
-                  </div>
-                </div>
-
-                <div class="btns">
-                  <button @click="step += 1" class="fill">
-                    تابع عملية الشراء
-                  </button>
-                  <button @click="step -= 1" class="stroke">الرجوع</button>
-                </div>
-              </div>
             </div>
           </div>
         </template>
 
         <template v-slot:item.3>
           <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-xl-8 col-lg-8">
               <form @submit.prevent class="form-box">
                 <div class="first-info d-flex flex-column gap-3">
                   <div class="radio-inputs d-flex flex-column gap-4">
@@ -813,19 +755,17 @@
                             <div class="d-flex align-items-center gap-2">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="56"
-                                height="23"
-                                viewBox="0 0 56 23"
+                                width="48"
+                                height="24"
+                                viewBox="0 0 48 24"
                                 fill="none"
                               >
                                 <path
-                                  fill-rule="evenodd"
-                                  clip-rule="evenodd"
-                                  d="M7.4756 4.26733C8.52571 4.35487 9.57582 3.74212 10.2321 2.96525C10.8775 2.16649 11.3041 1.09419 11.1947 0C10.265 0.0437675 9.1164 0.612745 8.46008 1.4115C7.85845 2.10084 7.34433 3.21691 7.4756 4.26733ZM19.9671 18.3606V1.30218H26.3662C29.6697 1.30218 31.9778 3.57809 31.9778 6.90442C31.9778 10.2307 29.626 12.5285 26.2787 12.5285H22.6143V18.3606H19.9671ZM11.1838 4.47546C10.2587 4.4222 9.41456 4.75377 8.73273 5.02158C8.29395 5.19393 7.92239 5.33987 7.63971 5.33987C7.32248 5.33987 6.93558 5.18612 6.50117 5.0135C5.93196 4.78731 5.28119 4.5287 4.59876 4.54112C3.03453 4.563 1.57969 5.44929 0.781167 6.86079C-0.859631 9.68379 0.35456 13.8636 1.94067 16.1614C2.71731 17.2993 3.6471 18.5467 4.87222 18.5029C5.41121 18.4826 5.79892 18.318 6.20017 18.1477C6.66211 17.9516 7.14199 17.748 7.89129 17.748C8.61462 17.748 9.07351 17.9463 9.51402 18.1368C9.93288 18.3178 10.3351 18.4917 10.9322 18.4811C12.2011 18.4592 12.9996 17.3431 13.7763 16.2052C14.6144 14.9838 14.9827 13.7919 15.0386 13.611L15.0452 13.59C15.0438 13.5887 15.0335 13.584 15.0152 13.5756C14.735 13.4473 12.5936 12.4666 12.573 9.83698C12.5524 7.62976 14.2716 6.51144 14.5422 6.3354L14.5422 6.33539C14.5587 6.32468 14.5698 6.31746 14.5748 6.3137C13.4809 4.6943 11.7745 4.51923 11.1838 4.47546ZM36.8128 18.4917C38.4755 18.4917 40.0178 17.6492 40.7179 16.3143H40.7726V18.3604H43.2228V9.8695C43.2228 7.40758 41.2539 5.82101 38.2239 5.82101C35.4126 5.82101 33.3343 7.42946 33.2577 9.63972H35.6423C35.8392 8.5893 36.8128 7.89996 38.1473 7.89996C39.7662 7.89996 40.6741 8.65495 40.6741 10.0446V10.9856L37.3706 11.1825C34.2969 11.3685 32.6342 12.6268 32.6342 14.8152C32.6342 17.0255 34.3516 18.4917 36.8128 18.4917ZM37.5243 16.4674C36.1132 16.4674 35.2163 15.789 35.2163 14.7495C35.2163 13.6772 36.0804 13.0535 37.7322 12.955L40.6747 12.769V13.7319C40.6747 15.3294 39.3183 16.4674 37.5243 16.4674ZM51.3511 19.0281C50.29 22.0152 49.0758 23 46.4943 23C46.2974 23 45.6411 22.9781 45.4879 22.9343V20.8882C45.652 20.9101 46.0568 20.932 46.2646 20.932C47.435 20.932 48.0914 20.4396 48.4961 19.1594L48.7367 18.4044L44.2519 5.98539H47.0194L50.1369 16.0629H50.1916L53.3091 5.98539H56L51.3511 19.0281ZM22.6146 3.5341H25.6665C27.9636 3.5341 29.2763 4.75959 29.2763 6.91514C29.2763 9.07069 27.9636 10.3071 25.6556 10.3071H22.6146V3.5341Z"
+                                  d="M7.88553 24C10.3894 24 12.4412 23.2168 13.7888 21.9028C14.7973 20.8934 15.3972 19.5446 15.3972 17.9782C15.3972 16.5598 14.8756 15.2893 13.9018 14.3147C12.9281 13.3401 11.5457 12.6352 9.78953 12.2959L6.91179 11.7389C5.7207 11.5127 5.04256 10.921 5.04256 10.0943C5.04256 9.01523 6.08585 8.26686 7.7725 8.26686C8.81579 8.26686 9.71128 8.60623 10.3112 9.19797C10.685 9.60696 10.9458 10.1378 11.0241 10.7295L15.1712 9.7984C15.0581 8.60624 14.5017 7.5533 13.641 6.6918C12.2934 5.343 10.2068 4.49021 7.73773 4.49021C5.45988 4.49021 3.55588 5.23858 2.24307 6.43075C1.12154 7.47498 0.486869 8.9021 0.486869 10.4685C0.486869 11.8521 0.938961 13.0094 1.83445 13.9057C2.72994 14.802 4.04275 15.4721 5.75548 15.8898L8.59844 16.5598C10.0156 16.8992 10.6502 17.4213 10.6502 18.3524C10.6502 19.5098 9.60696 20.1885 7.88553 20.1885C6.65097 20.1885 5.64246 19.7795 5.00779 19.1008C4.5557 18.6483 4.29487 18.0566 4.2601 17.3778L0 18.3089C0.113023 19.5794 0.712914 20.702 1.6084 21.5983C3.03423 23.1037 5.31208 24 7.88553 24ZM39.4103 24C42.175 24 44.305 22.9906 45.7569 21.5722C46.9132 20.4496 47.6262 19.1443 48 17.7955L43.6269 16.3336C43.4443 17.0036 43.0705 17.7172 42.4706 18.2741C41.7577 18.9442 40.7926 19.4315 39.4103 19.4315C38.1409 19.4315 36.9411 18.9442 36.0804 18.0827C35.2197 17.1864 34.6981 15.8724 34.6981 14.2277C34.6981 12.5482 35.2197 11.2777 36.0804 10.3814C36.9411 9.51994 38.0974 9.07614 39.3668 9.07614C40.7144 9.07614 41.6446 9.52864 42.3141 10.1987C42.8705 10.7643 43.2096 11.4692 43.4356 12.1827L47.8783 10.686C47.5392 9.38071 46.835 8.06671 45.783 6.98767C44.2876 5.52574 42.1228 4.48151 39.2451 4.48151C36.5934 4.48151 34.2025 5.49093 32.4811 7.21392C30.7857 8.97172 29.7424 11.3996 29.7424 14.2451C29.7424 17.0906 30.8292 19.5185 32.5767 21.2763C34.2981 22.9906 36.7238 24 39.4103 24ZM24.326 24C26.2648 24 27.6472 23.3996 28.2471 22.8774V18.8397C27.795 19.1791 26.8995 19.5881 25.7432 19.5881C24.9172 19.5881 24.326 19.3967 23.8739 18.9877C23.5001 18.6135 23.3175 17.9782 23.3175 17.1167V0H18.388V5.04713H28.2471V9.83321H18.3793V18.3176C18.3793 20.0406 18.9009 21.4242 19.8399 22.3901C20.8832 23.4431 22.4133 24 24.326 24Z"
                                   fill="#919EAB"
                                 />
                               </svg>
-                              <span> الدفع عند الاستلام </span>
+                              <span> اس تي سي </span>
                             </div>
 
                             <svg
@@ -882,19 +822,19 @@
                             <div class="d-flex align-items-center gap-2">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="56"
-                                height="23"
-                                viewBox="0 0 56 23"
+                                width="32"
+                                height="32"
+                                viewBox="0 0 32 32"
                                 fill="none"
                               >
                                 <path
                                   fill-rule="evenodd"
                                   clip-rule="evenodd"
-                                  d="M7.4756 4.26733C8.52571 4.35487 9.57582 3.74212 10.2321 2.96525C10.8775 2.16649 11.3041 1.09419 11.1947 0C10.265 0.0437675 9.1164 0.612745 8.46008 1.4115C7.85845 2.10084 7.34433 3.21691 7.4756 4.26733ZM19.9671 18.3606V1.30218H26.3662C29.6697 1.30218 31.9778 3.57809 31.9778 6.90442C31.9778 10.2307 29.626 12.5285 26.2787 12.5285H22.6143V18.3606H19.9671ZM11.1838 4.47546C10.2587 4.4222 9.41456 4.75377 8.73273 5.02158C8.29395 5.19393 7.92239 5.33987 7.63971 5.33987C7.32248 5.33987 6.93558 5.18612 6.50117 5.0135C5.93196 4.78731 5.28119 4.5287 4.59876 4.54112C3.03453 4.563 1.57969 5.44929 0.781167 6.86079C-0.859631 9.68379 0.35456 13.8636 1.94067 16.1614C2.71731 17.2993 3.6471 18.5467 4.87222 18.5029C5.41121 18.4826 5.79892 18.318 6.20017 18.1477C6.66211 17.9516 7.14199 17.748 7.89129 17.748C8.61462 17.748 9.07351 17.9463 9.51402 18.1368C9.93288 18.3178 10.3351 18.4917 10.9322 18.4811C12.2011 18.4592 12.9996 17.3431 13.7763 16.2052C14.6144 14.9838 14.9827 13.7919 15.0386 13.611L15.0452 13.59C15.0438 13.5887 15.0335 13.584 15.0152 13.5756C14.735 13.4473 12.5936 12.4666 12.573 9.83698C12.5524 7.62976 14.2716 6.51144 14.5422 6.3354L14.5422 6.33539C14.5587 6.32468 14.5698 6.31746 14.5748 6.3137C13.4809 4.6943 11.7745 4.51923 11.1838 4.47546ZM36.8128 18.4917C38.4755 18.4917 40.0178 17.6492 40.7179 16.3143H40.7726V18.3604H43.2228V9.8695C43.2228 7.40758 41.2539 5.82101 38.2239 5.82101C35.4126 5.82101 33.3343 7.42946 33.2577 9.63972H35.6423C35.8392 8.5893 36.8128 7.89996 38.1473 7.89996C39.7662 7.89996 40.6741 8.65495 40.6741 10.0446V10.9856L37.3706 11.1825C34.2969 11.3685 32.6342 12.6268 32.6342 14.8152C32.6342 17.0255 34.3516 18.4917 36.8128 18.4917ZM37.5243 16.4674C36.1132 16.4674 35.2163 15.789 35.2163 14.7495C35.2163 13.6772 36.0804 13.0535 37.7322 12.955L40.6747 12.769V13.7319C40.6747 15.3294 39.3183 16.4674 37.5243 16.4674ZM51.3511 19.0281C50.29 22.0152 49.0758 23 46.4943 23C46.2974 23 45.6411 22.9781 45.4879 22.9343V20.8882C45.652 20.9101 46.0568 20.932 46.2646 20.932C47.435 20.932 48.0914 20.4396 48.4961 19.1594L48.7367 18.4044L44.2519 5.98539H47.0194L50.1369 16.0629H50.1916L53.3091 5.98539H56L51.3511 19.0281ZM22.6146 3.5341H25.6665C27.9636 3.5341 29.2763 4.75959 29.2763 6.91514C29.2763 9.07069 27.9636 10.3071 25.6556 10.3071H22.6146V3.5341Z"
+                                  d="M24.9605 6.40039H7.04055C4.56631 6.40039 2.56055 8.40615 2.56055 10.8804V11.5204H29.4405V10.8804C29.4405 8.40615 27.4348 6.40039 24.9605 6.40039ZM2.56055 22.4004V16.6404H29.4405V22.4004C29.4405 24.8746 27.4348 26.8804 24.9605 26.8804H7.04055C4.56631 26.8804 2.56055 24.8746 2.56055 22.4004ZM24.9605 23.0404H19.8405C19.4871 23.0404 19.2005 22.7539 19.2005 22.4004C19.2005 22.0469 19.4871 21.7604 19.8405 21.7604H24.9605C25.314 21.7604 25.6005 22.0469 25.6005 22.4004C25.6005 22.7539 25.314 23.0404 24.9605 23.0404ZM2.56055 15.3604V12.8004H29.4405V15.3604H2.56055Z"
                                   fill="#919EAB"
                                 />
                               </svg>
-                              <span> ابل باي </span>
+                              <span> البطاقة الائتمانية </span>
                             </div>
 
                             <svg
@@ -1062,49 +1002,31 @@
 
                   <div class="row main-inputs-container">
                     <div class="col-12">
-                      <div class="main-inputs d-flex align-items-center gap-2">
-                        <div class="input d-flex flex-column">
-                          <label for="">
+                      <div  class="inputs">
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="main-input">
+                            <label for="">
                             اسم حامل البطاقة <span>*</span>
                           </label>
-                          <v-text-field
-                            :rules="[required]"
-                            variant="outlined"
-                            clearable
-                            placeholder="مثال : محمد"
-                          ></v-text-field>
+                            <input type="text" placeholder="مثال : محمد" />
+                          </div>
+                          <div class="main-input">
+                            <label for=""> رقم البطاقة  </label>
+                            <input type="text" placeholder="مثال : محمد" />
+                          </div>
                         </div>
-                        <div class="input d-flex flex-column">
-                          <label for=""> رقم البطاقة <span>*</span> </label>
-                          <v-text-field
-                            :rules="[required]"
-                            variant="outlined"
-                            type="tel"
-                            clearable
-                            placeholder="مثال : مصطفي"
-                          ></v-text-field>
-                        </div>
-                      </div>
-
-                      <div class="main-inputs d-flex align-items-center gap-2">
-                        <div class="input d-flex flex-column">
-                          <label for=""> تاريخ الانتهاء<span>*</span> </label>
-                          <v-text-field
-                            :rules="[required]"
-                            variant="outlined"
-                            clearable
-                            type="text"
-                            placeholder="MM / YY"
-                          ></v-text-field>
-                        </div>
-                        <div class="input d-flex flex-column">
-                          <label for=""> CVV</label>
-                          <v-text-field
-                            clearable
-                            type="text"
-                            variant="outlined"
-                            placeholder="***"
-                          ></v-text-field>
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="main-input">
+                            <label for=""> تاريخ الانتهاء<span>*</span> </label>
+                            <input type="text" placeholder="+201066333725" />
+                          </div>
+                          <div class="main-input">
+                            <label for=""> CVV</label>
+                            <input
+                              type="text"
+                              placeholder="مثال : m.info@icloud.com"
+                            />
+                          </div>
                         </div>
                       </div>
 
@@ -1118,66 +1040,15 @@
               </form>
             </div>
 
-            <div class="col-4">
-              <div class="product-checkout">
-                <div class="head">
-                  <v-badge color="#B1628C" :content="5">
-                    <div class="image">
-                      <img src="~/assets/images/watch.png" alt="" />
-                      <!-- <span class="count">3</span> -->
-                    </div>
-                  </v-badge>
+            <div class="col-12 col-xl-4 col-lg-4">
+              <checkProduct :arrData="arrData" />
 
-                  <div class="text w-100 d-flex flex-column gap-2">
-                    <span class="name"> ساعة إليت كلاسيك </span>
-                    <div
-                      class="w-100 d-flex align-items-center justify-content-between"
-                    >
-                      <span class="price"> 180 ريال سعودي </span>
-                      <div class="trash">
-                        <img src="~/assets/images/trash.svg" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <v-divider :thickness="1"></v-divider>
-
-                <div class="total-price">
-                  <div class="total">
-                    <span class="word all"> الاجمالي </span>
-                    <span class="fw-bold price"> 520 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> السعر </span>
-                    <span class="price"> 420 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> الخصومات </span>
-                    <span class="price"> 0 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> مصاريف الشحن </span>
-                    <span class="price"> 40 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> ضريبة القيمة المضافة </span>
-                    <span class="price"> 80 ر.س </span>
-                  </div>
-                </div>
-
-                <div class="btns">
-                  <button @click="step += 1" class="fill">
-                    تابع عملية الشراء
-                  </button>
-                  <button @click="step -= 1" class="stroke">الرجوع</button>
-                </div>
-              </div>
             </div>
           </div>
         </template>
         <template v-slot:item.4>
           <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-xl-8 col-lg-8">
               <div class="row">
                 <div class="col-12">
                   <div class="show-card">
@@ -1318,60 +1189,9 @@
               </div>
             </div>
 
-            <div class="col-4">
-              <div class="product-checkout">
-                <div class="head">
-                  <v-badge color="#B1628C" :content="5">
-                    <div class="image">
-                      <img src="~/assets/images/watch.png" alt="" />
-                      <!-- <span class="count">3</span> -->
-                    </div>
-                  </v-badge>
+            <div class="col-12 col-xl-4 col-lg-4">
+              <checkProduct :arrData="arrData" />
 
-                  <div class="text w-100 d-flex flex-column gap-2">
-                    <span class="name"> ساعة إليت كلاسيك </span>
-                    <div
-                      class="w-100 d-flex align-items-center justify-content-between"
-                    >
-                      <span class="price"> 180 ريال سعودي </span>
-                      <div class="trash">
-                        <img src="~/assets/images/trash.svg" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <v-divider :thickness="1"></v-divider>
-
-                <div class="total-price">
-                  <div class="total">
-                    <span class="word all"> الاجمالي </span>
-                    <span class="fw-bold price"> 520 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> السعر </span>
-                    <span class="price"> 420 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> الخصومات </span>
-                    <span class="price"> 0 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> مصاريف الشحن </span>
-                    <span class="price"> 40 ر.س </span>
-                  </div>
-                  <div class="total">
-                    <span class="word"> ضريبة القيمة المضافة </span>
-                    <span class="price"> 80 ر.س </span>
-                  </div>
-                </div>
-
-                <div class="btns">
-                  <button @click="step += 1" class="fill">
-                    تابع عملية الشراء
-                  </button>
-                  <button @click="step -= 1" class="stroke">الرجوع</button>
-                </div>
-              </div>
             </div>
           </div>
         </template>
@@ -1383,12 +1203,34 @@
 <script setup>
 import { useStore } from "~/store";
 const store = useStore;
-let arrData = ref(store.state.basketCheck);
+let arrData = ref(store.state.basket.flatMap(vendor => {
+    let vendor_id = vendor.vendor_id;
+    return vendor.products.map(product => ({
+      ...product,
+      vendor_id: vendor_id
+    }));
+  }));
 
-const deleteItem = (index) =>{
-  store.commit("deleteCheckOut", index);
 
-}
+
+let dropDownActive = ref(0);
+
+const selectedCountry = ref("");
+const countries = ref([
+  { name: "Australia", code: "AU" },
+  { name: "Brazil", code: "BR" },
+  { name: "China", code: "CN" },
+  { name: "Egypt", code: "EG" },
+  { name: "France", code: "FR" },
+  { name: "Germany", code: "DE" },
+  { name: "India", code: "IN" },
+  { name: "Japan", code: "JP" },
+  { name: "Spain", code: "ES" },
+  { name: "United States", code: "US" },
+]);
+
+let personalorGift = ref(1);
+
 let step = ref(1);
 let items = ref([
   "معلومات المستلم",
@@ -1397,10 +1239,9 @@ let items = ref([
   "مراجعة الطلب",
 ]);
 
-
 onMounted(() => {
   console.log(arrData.value);
-})
+});
 const required = (v) => {
   return !!v || "Field is required";
 };

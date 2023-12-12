@@ -304,19 +304,19 @@
 
               <div class="inputs">
                 <div class="d-flex align-items-center gap-3">
-                  <div class="input">
+                  <div class="main-input">
                     <label for="">
                       الاسم الاول
                       <span>*</span>
                     </label>
                     <input type="text" placeholder="مثال : محمد" />
                   </div>
-                  <div class="input">
+                  <div class="main-input">
                     <label for=""> الاسم الاخير <span>*</span> </label>
                     <input type="text" placeholder="مثال : محمد" />
                   </div>
                 </div>
-                <div class="input">
+                <div class="main-input">
                   <label for=""> البريد الاكتروني <span>*</span> </label>
                   <input
                     type="text"
@@ -324,15 +324,15 @@
                   />
                 </div>
 
-                <div class="input">
+                <div class="main-input">
                   <label for=""> رقم الهاتف <span>*</span> </label>
                   <input type="text" placeholder="مثال : +0215984494" />
                 </div>
-                <div class="input">
+                <div class="main-input">
                   <label for=""> كلمة المرور <span>*</span> </label>
                   <input type="password" placeholder=" ********** " />
                 </div>
-                <div class="input">
+                <div class="main-input">
                   <label for=""> تأكيد كلمة المرور <span>*</span> </label>
                   <input type="password" placeholder=" ********** " />
                 </div>
@@ -417,11 +417,11 @@
               <div class="inputs mb-3">
             
 
-                <div class="input">
+                <div class="main-input">
                   <label for=""> رقم الهاتف <span>*</span> </label>
                   <input type="text" placeholder="مثال : +0215984494" />
                 </div>
-                <div class="input">
+                <div class="main-input">
                   <label for=""> كلمة المرور <span>*</span> </label>
                   <input type="password" placeholder=" ********** " />
                 </div>
@@ -458,7 +458,7 @@
                 <p class="text text-center"> قم بإدخال رقم هاتفك لتلقي كود التفعيل لاعادة تعيين كلمة المرور</p>
               <div class="inputs mb-3">
 
-                <div class="input">
+                <div class="main-input">
                   <label for=""> رقم الهاتف <span>*</span> </label>
                   <input type="text" placeholder="مثال : +0215984494" />
                 </div>

@@ -76,7 +76,8 @@
                       >
                         <div class="image-box d-flex align-items-center gap-2">
                           <div class="image">
-                            <img src="~/assets/images/product.png" alt="" />
+                            <!-- <img src="~/assets/images/product.png" alt="" /> -->
+                            <img :src="theItem.images[0]" alt="" />
                           </div>
                           <span @click="addItem(theItem.id)">{{
                             theItem.description
@@ -85,21 +86,21 @@
                         <input
                           type="number"
                           min="1"
-                          v-model="theItem.item"
+                          v-model="theItem.quantity"
                           @input="addItem(theItem.id)"
                         />
 
                         <span class="price">
-                          {{ theItem.price * theItem.item }} ريال سعودي
+                          {{ theItem.price * theItem.quantity }} ريال سعودي
                         </span>
-                        <v-dialog
+                            <button @click="deleteItem(item.vendor_id, theItem.id , index)" >
+                          <img src="~/assets/images/trash.svg" alt="" />
+                        </button>
+                        <!-- <v-dialog
                           transition="dialog-bottom-transition"
                           width="auto"
                         >
                           <template v-slot:activator="{ props }">
-                            <button v-bind="props" >
-                          <img src="~/assets/images/trash.svg" alt="" />
-                        </button>
                           </template>
                           <template v-slot:default="{ isActive }">
                             <v-card>
@@ -113,13 +114,13 @@
                               <v-card-actions class="justify-end">
                                 <v-btn
                                   variant="text"
-                                  @click="isActive.value = false ,deleteItem(index, vindex)"
+                                  @click="isActive.value = false ,"
                                   >delete</v-btn
                                 >
                               </v-card-actions>
                             </v-card>
                           </template>
-                        </v-dialog>
+                        </v-dialog> -->
                       
                       </div>
                       <v-divider :thickness="1"></v-divider>
@@ -414,8 +415,8 @@ const localePath = useLocalePath();
 
 
     let arrData = ref(store.state.basket);
-    const deleteItem = (index, item) => {
-      store.commit("deleteItem", index, item);
+    const deleteItem = (vendor_id, itemid , index) => {
+      store.commit("deleteItem", { vendor_id: vendor_id , itemid: itemid , indexx:index});
     };
 
     const addItem = (id) => {

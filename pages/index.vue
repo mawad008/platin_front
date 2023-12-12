@@ -211,9 +211,26 @@
         </div>
         <span> الاكثر مبيعا </span>
       </div>
-      <div class="image">
-        <!-- <img src="~/assets/images/product.png" alt=""> -->
-      </div>
+      <Swiper 
+      
+      :spaceBetween="30"
+    :centeredSlides="true"
+    :autoplay="{
+      delay: 2500,
+      disableOnInteraction: false,
+    }"
+    :modules="[SwiperAutoplay]"
+      
+      class="image">
+      
+
+      
+      <swiper-slide v-for="img in item.images">
+        <img :src="img" alt="">
+      </swiper-slide>
+
+   
+      </Swiper>
       <div class="rate w-100 d-flex align-items-center justify-content-between">
         <span class="type"> الذهب </span>
         <div class="star d-flex align-items-center gap-2">
@@ -812,32 +829,52 @@ let productsSectionsArr = ref([]);
 
 let products = ref([
   {
-    vendorId:1,
+    vendor_id:1,
     vendorName: 'زهرة الياقوت',
     id:1,
     description: 'خاتم 23',
-    price:120
+    price:120,
+    images:[
+      "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    ]
   },
   {
-    vendorId:1,
+    vendor_id:1,
     vendorName: 'زهرة الياقوت',
     id:2,
     description: 'خاتم 25',
-    price:121
+    price:121,
+    images:[
+      "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    ]
   },
   {
-    vendorId:2,
+    vendor_id:2,
     vendorName: 'زهرة البستان',
     id:3,
     description: 'خاتم 22',
-    price:124
+    price:124,
+    images:[
+      "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    ]
   },
   {
-    vendorId:3,
+    vendor_id:3,
     vendorName: 'زهرة',
     id:4,
     description: 'خاتم 21',
-    price:123
+    price:123,
+    images:[
+      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ]
   },
 ]);
 
