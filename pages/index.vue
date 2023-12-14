@@ -215,11 +215,13 @@
       
       :spaceBetween="30"
     :centeredSlides="true"
+    :effect="'fade'"
+
     :autoplay="{
       delay: 2500,
       disableOnInteraction: false,
     }"
-    :modules="[SwiperAutoplay]"
+    :modules="[SwiperAutoplay , SwiperEffectFade]"
       
       class="image">
       

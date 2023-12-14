@@ -359,51 +359,51 @@ const localePath = useLocalePath();
       },
     ]);
 
-//     let aarr = [
-//       {
-//         vendorId:1,
-//         vendorName:'a',
-//         products:[
-//           {
-//             id:3,
-//             item:2,
-//             name:'n1',
-//             price: 120
-//           },
-//           {
-//             id:4,
-//             item:2,
-//             name:'n1',
-//             price: 120
-//           },
-//           {
-//             id:5,
-//             item:2,
-//             name:'n1',
-//             price: 120
-//           },
+    // let aarr = [
+    //   {
+    //     vendorId:1,
+    //     vendorName:'a',
+    //     products:[
+    //       {
+    //         id:3,
+    //         item:2,
+    //         name:'n1',
+    //         price: 120
+    //       },
+    //       {
+    //         id:4,
+    //         item:2,
+    //         name:'n1',
+    //         price: 120
+    //       },
+    //       {
+    //         id:5,
+    //         item:2,
+    //         name:'n1',
+    //         price: 120
+    //       },
 
-//         ]
-//       },
-//       {
-//         vendorId:2,
-//         vendorName:'a',
-//         products:[
-//           {
-//             id:6,
-//             item:2,
-//             name:'n1',
-//             price: 120
-//           },
-//           {
-//             id:7,
-//             item:2,
-//             name:'n1',
-//             price: 120
-//           },
-//         ]
-//       }
-//     ]
+    //     ]
+    //   },
+    //   {
+    //     vendorId:2,
+    //     vendorName:'a',
+    //     products:[
+    //       {
+    //         id:6,
+    //         item:2,
+    //         name:'n1',
+    //         price: 120
+    //       },
+    //       {
+    //         id:7,
+    //         item:2,
+    //         name:'n1',
+    //         price: 120
+    //       },
+    //     ]
+    //   }
+    // ]
 
 //     let newArray = aarr.flatMap(vendor => {
 //   let vendorId = vendor.vendorId;

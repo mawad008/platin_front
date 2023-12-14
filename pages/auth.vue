@@ -309,39 +309,40 @@
                       الاسم الاول
                       <span>*</span>
                     </label>
-                    <input type="text" placeholder="مثال : محمد" />
+                    <input type="text" v-model="form.first_name" placeholder="مثال : محمد" />
                   </div>
                   <div class="main-input">
                     <label for=""> الاسم الاخير <span>*</span> </label>
-                    <input type="text" placeholder="مثال : محمد" />
+                    <input type="text" v-model="form.last_name" placeholder="مثال : محمد" />
                   </div>
                 </div>
                 <div class="main-input">
                   <label for=""> البريد الاكتروني <span>*</span> </label>
                   <input
                     type="text"
+                    v-model="form.email"
                     placeholder="مثال : Mostafademo@icloud.com"
                   />
                 </div>
 
                 <div class="main-input">
                   <label for=""> رقم الهاتف <span>*</span> </label>
-                  <input type="text" placeholder="مثال : +0215984494" />
+                  <input type="text" v-model="form.phone" placeholder="مثال : +0215984494" />
                 </div>
                 <div class="main-input">
                   <label for=""> كلمة المرور <span>*</span> </label>
-                  <input type="password" placeholder=" ********** " />
+                  <input type="password" v-model="form.password" placeholder=" ********** " />
                 </div>
                 <div class="main-input">
                   <label for=""> تأكيد كلمة المرور <span>*</span> </label>
-                  <input type="password" placeholder=" ********** " />
+                  <input type="password" v-model="form.password_confirmation" placeholder=" ********** " />
                 </div>
               </div>
               <p>
                 من خلال إنشاء حساب، فإنك توافق على
                 <span>والشروط والاحكام.</span> <span>سياسة الخصوصية</span>
               </p>
-              <button @click="signNav = 2">انشاء حساب</button>
+              <button @click="registerFunc()">انشاء حساب</button>
               <div class="type">
                 <span class="ex">لديك حساب بالفعل ؟</span>
                 <span @click="authNav = 2" class="log"> تسجيل دخول</span>
@@ -506,6 +507,7 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 let otp = ref('');
 definePageMeta({
   layout: "custom",
@@ -524,6 +526,30 @@ const randomimages = () => {
     }
   }, 3000);
 };
+
+let form = ref({
+  first_name:'',
+  last_name:'',
+  phone:'',
+  email:'',
+  password:'',
+  password_confirmation:'',
+})
+let url = 'http://127.0.0.1:8000/api'
+const registerFunc = async () =>{
+  let formBody = new FormData();
+  formBody.append("first_name",form.value.first_name);
+  formBody.append("last_name", form.value.last_name);
+  formBody.append("phone", form.value.phone);
+  formBody.append("email", form.value.email);
+  formBody.append("password", form.value.password);
+  formBody.append("password_confirmation",form.value.password_confirmation);
+ let result = await axios.post(`${url}/register` , formBody,{
+  headers:{
+
+  }
+ });
+}
 onMounted(() => {
   randomimages();
 });

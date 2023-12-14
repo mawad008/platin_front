@@ -1203,13 +1203,17 @@
 <script setup>
 import { useStore } from "~/store";
 const store = useStore;
-let arrData = ref(store.state.basket.flatMap(vendor => {
+
+let arrData = computed(()=>{
+  return store.state.basket.flatMap(vendor => {
     let vendor_id = vendor.vendor_id;
     return vendor.products.map(product => ({
       ...product,
       vendor_id: vendor_id
     }));
-  }));
+  })
+})
+// let arrData = ref();
 
 
 

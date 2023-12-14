@@ -34,7 +34,7 @@ export const useStore = createStore({
               quantity: 1,
               description: payload.description,
               price: payload.price,
-              // images:images
+              images:payload.images
             },
           ],
           vendorName: payload.vendorName,
@@ -129,8 +129,23 @@ export const useStore = createStore({
       state.basketNum = 0; 
       state.basketCheck = [];
     },
-    deleteCheckOut(state , index){
-      state.basketCheck.splice(index, 1);
+    deleteCheckOut(state , payload){
+      const { vendor_id, itemid , arr } = payload;
+      const vendorIndex = state.basket.findIndex(vendor => vendor.vendor_id === vendor_id);
+      const productIndex = state.basket[vendorIndex].products.findIndex(product => product.id === itemid);
+       
+      if (productIndex !== -1) {
+        // Delete the item from the products array
+        state.basket[vendorIndex].products.splice(productIndex, 1);
+        if(state.basket[vendorIndex].products.length == 0){
+          state.basket.splice(vendorIndex, 1);
+        }
+        console.log(`Item with vendorId ${vendor_id} and id ${itemid} deleted successfully.`);
+      }
+      console.log(arr);
+      getTotalBasketNum(state);
+      getTotalPrice(state);
+      addCheck(state);
     }
    
   },

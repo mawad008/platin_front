@@ -4,7 +4,8 @@
       <div v-for="(item, index) in arrData" class="head my-4">
         <v-badge color="#B1628C" :content="item.quantity">
           <div class="image">
-            <img src="~/assets/images/watch.png" alt="" />
+            <!-- <img src="~/assets/images/watch.png" alt="" /> -->
+            <img :src="item.images[0]" alt="" />
             <!-- <span class="count">3</span> -->
           </div>
         </v-badge>
@@ -13,7 +14,7 @@
           <span class="name"> {{ item.description }} </span>
           <div class="w-100 d-flex align-items-center justify-content-between">
             <span class="price"> {{ item.price }} رس</span>
-            <div @click="deleteItem(index)" class="trash">
+            <div @click="deleteItem(item.id , item.vendor_id)" class="trash">
               <img src="~/assets/images/trash.svg" alt="" />
             </div>
           </div>
@@ -59,8 +60,9 @@ const store = useStore;
 // Define the props you expect
 const props = defineProps(["arrData"]);
 
-const deleteItem = (index) => {
-  store.commit("deleteCheckOut", index);
+let mainArr = ref(store.state.basket);
+const deleteItem = (item , vendor_id) => {
+  store.commit("deleteCheckOut", {vendor_id:vendor_id , itemid:item , arr:mainArr.value});
 };
 
 let total = computed(() => {

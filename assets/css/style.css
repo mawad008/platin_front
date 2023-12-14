@@ -98,12 +98,13 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 24px;
   color: #5a7184;
   gap: 5px;
   position: relative;
   overflow: hidden;
   transition: 0.2s all;
+  width: 296px;
 }
 .product-card .overlay {
   transition: 0.5s;
@@ -173,12 +174,9 @@ a {
   border-radius: 8px;
 }
 .product-card .image {
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 200px;
-  height: 200px;
-  border-bottom: 1px solid #ebeaed;
+  width: 142px;
+  height: 142px;
+  margin-top: 24px;
 }
 .product-card .image .swiper-slide {
   width: 100%;
@@ -187,8 +185,14 @@ a {
 .product-card .image .swiper-slide img {
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+}
+.product-card .rate {
+  padding-top: 10px;
+  margin-top: 24px;
+  border-top: 1px solid #ebeaed;
 }
 .product-card .rate .star {
   font-size: 16px;
@@ -200,6 +204,9 @@ a {
   font-weight: 700;
   line-height: 150%;
   color: #2d3a4a;
+}
+.product-card .price {
+  margin-top: 12px;
 }
 .product-card .price .price-text {
   color: #dcba95;
@@ -318,7 +325,9 @@ a {
 .main-input label span {
   color: #b1628c;
 }
-.main-input input, .main-input textarea, .main-input .p-dropdown {
+.main-input input,
+.main-input textarea,
+.main-input .p-dropdown {
   outline: none;
   padding: 16px;
   border-radius: 8px;
@@ -328,8 +337,10 @@ a {
   font-weight: 400;
   border: 1px solid transparent;
 }
-.main-input input:focus, .main-input textarea:focus, .main-input .p-dropdown:focus {
-  border-color: #DCBA95;
+.main-input input:focus,
+.main-input textarea:focus,
+.main-input .p-dropdown:focus {
+  border-color: #dcba95;
   background-color: #fff;
 }
 .main-input textarea {
@@ -339,7 +350,7 @@ a {
   transition: 0.3s;
 }
 .main-input .p-dropdown.active {
-  border-color: #DCBA95;
+  border-color: #dcba95;
 }
 .main-input .p-dropdown.active svg {
   transform: rotate(179deg);
@@ -2247,7 +2258,7 @@ html[dir=rtl] body {
 }
 .checkout-page .first-info .radio-inputs label input:checked + .radio-input span {
   font-weight: 700;
-  color: #DCBA95;
+  color: #dcba95;
 }
 .checkout-page .first-info .radio-inputs label input:checked + .radio-input svg path {
   fill: #dcba95 !important;
