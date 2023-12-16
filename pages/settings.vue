@@ -7,7 +7,7 @@
         </template>
       </v-breadcrumbs>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-xl-4 col-lg-4">
           <div class="settings-links">
             <div class="link" @click="navActive = 1" :class="{ active: navActive == 1 }">
               <div class="icon">
@@ -69,7 +69,7 @@
             </div>
           </div>
         </div>
-        <div class="col-8">
+        <div class="col-12 col-xl-8 col-lg-8 main-container">
           <div v-if="navActive == 1" class="main">
             <div v-if="personalActive == 1">
               <div class="personal">
@@ -282,9 +282,9 @@
             <div v-if="addressNav == 2" class="form">
               <h5>اضافة عنوان جديد</h5>
               <div class="row">
-                <div class="col-8">
+                <div class="col-12 col-xl-8 col-lg-8">
                   <div>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input">
                         <label for=""> المدينة </label>
                         <Dropdown v-model="formInputs.add1" :options="countries" filter optionLabel="name"
@@ -301,7 +301,7 @@
                         <input type="text" v-model="formInputs.add2" placeholder="مثال : شارع المملكة" />
                       </div>
                     </div>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input">
                         <label for=""> الحي <span>*</span></label>
                         <input type="text" v-model="formInputs.add3" placeholder="45 ب" />
@@ -315,7 +315,7 @@
                       <label for=""> الاسم المميز للعنوان </label>
                       <input type="text" placeholder="مثال : المنزل , المكتب , الشركة ..الخ" />
                     </div>
-                    <div class="btns d-flex align-items-center gap-3">
+                    <div class="btns d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3">
                       <button @click="addAddress(), (addressNav = 1)" class="fill">
                         حفظ التعديلات
                       </button>
@@ -325,7 +325,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-xl-4 col-lg-4">
                   <div class="map-image">
                     <img class="image" src="~/assets/images/map.png" alt="" />
                     <div class="overlay">
@@ -347,7 +347,7 @@
 
           <div v-if="navActive == 4" v-for="item , index in displayedOrders" class="orders">
             <div class="row">
-              <div class="col-5">
+              <div class="col-12 col-xl-5 col-lg-5">
                 <div class="det">
                   <div class="head">
                     <h5>تم التوصيل</h5>
@@ -483,7 +483,7 @@
 
               </div>
 
-              <div class="col-7">
+              <div class="col-12 col-xl-7 col-lg-7">
                 <div class="items-container">
                   <div v-for="i in item.allOrders" class="item d-flex align-items-center gap-3">
                     <v-badge color="#B1628C" :content="5">
@@ -522,11 +522,16 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: 'auth'
+});
 let personalActive = ref(1);
 let passActive = ref(false);
 let selectedFile = ref(null);
 let selectedFileUrl = ref(null);
 const MainRoute = ref(useRoute());
+const route = useRoute();
+const router = useRouter();
 let navActive = ref(0);
 if(MainRoute.value.query.name == 'profile'){
   navActive.value = 1;
@@ -626,6 +631,7 @@ const displayedOrders = computed(() => {
 onMounted(() => {
   console.log(showAllItems.value);
   console.log(MainRoute.value.query.name);
+  
 });
 
 const showAll = (index) => {

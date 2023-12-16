@@ -3,21 +3,34 @@ import axios from "axios";
 
 export const useStore = createStore({
   state: {
-    basket: [],
-    basketCheck:[],
+    basket: process.client ? JSON.parse(sessionStorage.getItem("basket")) : [],
+    basketCheck: [],
     basketNum: 0,
     totalNum: 0,
+    checkForm: 1,
+    authenticated: false,
+    user: {},
   },
   mutations: {
+    changeFormCheck(state, value) {
+      state.checkForm = value;
+    },
+    setBasket(state, basket) {
+      state.basket = basket;
+    },
+    setAuthenticated(state, value) {
+      state.authenticated = value;
+    },
     add(state, payload) {
+      let { mainItem, qw } = payload;
       const existingItem = state.basket.find((item) => {
         let existingData = [item];
         const vendor = existingData.find(
-          (vendor) => vendor.vendor_id === payload.vendor_id
+          (vendor) => vendor.vendor_id === mainItem.vendor_id
         );
         if (vendor) {
           const product = vendor.products.find(
-            (product) => product.id === payload.id
+            (product) => product.id === mainItem.id
           );
           return !!product;
         }
@@ -26,18 +39,19 @@ export const useStore = createStore({
         console.log(existingItem);
       } else {
         state.basket.push({
-          vendor_id: payload.vendor_id,
-          id: payload.id,
+          vendor_id: mainItem.vendor_id,
+          id: mainItem.id,
+
           products: [
             {
-              id: payload.id,
-              quantity: 1,
-              description: payload.description,
-              price: payload.price,
-              images:payload.images
+              id: mainItem.id,
+              quantity: qw ? qw : 1,
+              description: mainItem.description,
+              price: mainItem.price,
+              images: mainItem.images,
             },
           ],
-          vendorName: payload.vendorName,
+          vendorName: mainItem.vendorName,
         });
         const uniqueItems = state.basket.reduce((acc, currentItem) => {
           const { id, products, vendor_id, vendorName } = currentItem;
@@ -55,17 +69,19 @@ export const useStore = createStore({
 
         // Convert the object values back to an array
         state.basket = Object.values(uniqueItems);
+
+        localStorage.setItem("basket", JSON.stringify(state.basket));
         console.log(state.basket);
+        getTotalBasketNum(state);
       }
 
-      // calculate the total price 
+      // calculate the total price
       getTotalPrice(state);
-    
-       console.log(state.totalNum);
-        
+
+      console.log(state.totalNum);
+
       // Calculate the number of products for each vendor
-      getTotalBasketNum(state);
-      addCheck(state);
+      // addCheck(state);
       //console.log(state.basketNum);
     },
     addItem(state, id) {
@@ -76,15 +92,14 @@ export const useStore = createStore({
           product.quantity += 1;
         }
       });
+      localStorage.setItem("basket", JSON.stringify(state.basket));
       console.log(state.basket);
       getTotalPrice(state);
       getTotalBasketNum(state);
       // addCheck(state);
-
-
     },
     deleteItem(state, payload) {
-      const { vendor_id, itemid , indexx } = payload;
+      const { vendor_id, itemid, indexx } = payload;
 
       console.log(payload);
 
@@ -99,9 +114,11 @@ export const useStore = createStore({
           // Remove the product from the products array
           vendor.products.splice(index, 1);
           state.basket[indexx].product = vendor;
-          if(state.basket[indexx].products.length == 0){
+          if (state.basket[indexx].products.length == 0) {
             state.basket.splice(indexx, 1);
           }
+          localStorage.setItem("basket", JSON.stringify(state.basket));
+
           console.log(`Item with id ${itemid} deleted successfully.`);
         } else {
           console.log(`Item with id ${itemid} not found.`);
@@ -120,39 +137,72 @@ export const useStore = createStore({
 
       getTotalBasketNum(state);
       getTotalPrice(state);
-      addCheck(state);
-
+      // addCheck(state);
     },
-    deleteAll(state){
+    deleteAll(state) {
       state.basket = [];
       state.totalNum = 0;
-      state.basketNum = 0; 
+      state.basketNum = 0;
       state.basketCheck = [];
+      localStorage.clear("basket");
+      localStorage.clear("num");
     },
-    deleteCheckOut(state , payload){
-      const { vendor_id, itemid , arr } = payload;
-      const vendorIndex = state.basket.findIndex(vendor => vendor.vendor_id === vendor_id);
-      const productIndex = state.basket[vendorIndex].products.findIndex(product => product.id === itemid);
-       
+    deleteCheckOut(state, payload) {
+      const { vendor_id, itemid, arr } = payload;
+      const vendorIndex = state.basket.findIndex(
+        (vendor) => vendor.vendor_id === vendor_id
+      );
+      const productIndex = state.basket[vendorIndex].products.findIndex(
+        (product) => product.id === itemid
+      );
+
       if (productIndex !== -1) {
         // Delete the item from the products array
         state.basket[vendorIndex].products.splice(productIndex, 1);
-        if(state.basket[vendorIndex].products.length == 0){
+        if (state.basket[vendorIndex].products.length == 0) {
           state.basket.splice(vendorIndex, 1);
         }
-        console.log(`Item with vendorId ${vendor_id} and id ${itemid} deleted successfully.`);
+          localStorage.setItem("basket", JSON.stringify(state.basket));
+        console.log(
+          `Item with vendorId ${vendor_id} and id ${itemid} deleted successfully.`
+        );
       }
-      console.log(arr);
       getTotalBasketNum(state);
       getTotalPrice(state);
-      addCheck(state);
-    }
-   
+      
+    },
+  },
+  actions: {
+    loadBasketFromLocalStorage({ commit, state }) {
+      if (process.client) {
+        const storedBasket = JSON.parse(localStorage.getItem("basket")) || [];
+        if (storedBasket.length < 1) {
+          localStorage.clear("basket");
+          localStorage.clear("total");
+          localStorage.clear("num");
+        }
+        commit("setBasket", storedBasket);
+        getTotalBasketNum(state);
+        getTotalPrice(state);
+      }
+    },
+    async authenticateUser({ commit }, form) {
+      const response = await axios.post(`${getUrl()}/register`, form, {
+        headers: {},
+      });
+      document.cookie = `token=${response.data.data.token}; path=/;`; // Set token in cookie
+      if (process.client) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify(response.data.data.customer)
+        );
+      }
+      commit("setAuthenticated", true);
+    },
   },
 });
 
-
-function getTotalBasketNum(state){
+function getTotalBasketNum(state) {
   // const productsPerVendor = state.basket.map((vendor) => {
   //   const numProducts = vendor.products.length;
   //   return { vendorName: vendor.vendorName, numProducts: numProducts };
@@ -160,33 +210,36 @@ function getTotalBasketNum(state){
   // let num = productsPerVendor
   //   .map((e) => e.numProducts)
   //   .reduce((x, y) => x + y, 0);
+  if (process.client) {
   let totall = 0;
+
   state.basket.forEach((ele) => {
     ele.products.forEach((e) => {
       totall += e.quantity;
     });
   });
 
- return state.basketNum = totall;
+  state.basketNum = totall;
+
+  if (totall > 0) {
+    localStorage.setItem("num", totall);
+    totall = JSON.parse(localStorage.getItem("num"));
+  }
+  }
 }
 
-function getTotalPrice(state){
+function getTotalPrice(state) {
   let totall = 0;
   state.basket.forEach((ele) => {
     ele.products.forEach((e) => {
-      totall += (e.price * e.quantity);
+      totall += e.price * e.quantity;
     });
   });
-  state.totalNum = totall
+  state.totalNum = totall;
+    if (totall > 0) {
+      localStorage.setItem("total", totall);
+      totall = JSON.parse(localStorage.getItem("total"));
+    }
 }
 
-function addCheck(state){
-  state.basketCheck = state.basket.flatMap(vendor => {
-    let vendor_id = vendor.vendor_id;
-    return vendor.products.map(product => ({
-      ...product,
-      vendor_id: vendor_id
-    }));
-  });
-  
-}
+

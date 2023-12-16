@@ -13,7 +13,7 @@
             <div class="col-12 col-xl-8 col-lg-8">
               <form class="form-box">
                 <div class="first-info d-flex flex-column gap-3">
-                  <div class="radio-inputs d-flex align-items-center gap-3">
+                  <div class="radio-inputs flex-column flex-xl-row flex-lg-row d-flex align-items-center gap-3">
                     <label>
                       <input
                         type="radio"
@@ -211,7 +211,7 @@
                   </div>
 
                   <div v-if="personalorGift == 1" class="inputs">
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex flex-column flex-xl-row flex-lg-row  align-items-center gap-3">
                       <div class="main-input">
                         <label for="">
                           الاسم الاول
@@ -224,7 +224,7 @@
                         <input type="text" placeholder="مثال : محمد" />
                       </div>
                     </div>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex flex-column flex-xl-row flex-lg-row  align-items-center gap-3">
                       <div class="main-input">
                         <label for=""> رقم الهاتف </label>
                         <input type="text" placeholder="+201066333725" />
@@ -240,7 +240,7 @@
                   </div>
                   <div v-if="personalorGift == 2" class="inputs">
                     <h4>بيانات المهدي</h4>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                       <div class="main-input">
                         <label for="">
                           الاسم الاول
@@ -253,7 +253,7 @@
                         <input type="text" placeholder="مثال : محمد" />
                       </div>
                     </div>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                       <div class="main-input">
                         <label for=""> رقم الهاتف </label>
                         <input type="text" placeholder="+201066333725" />
@@ -267,7 +267,7 @@
                       </div>
                     </div>
                     <h4>بيانات المهدي اليه</h4>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                       <div class="main-input">
                         <label for="">
                           الاسم الاول
@@ -286,8 +286,8 @@
                         name=""
                         placeholder="أكتب رسالتك الخاصة هنا ليصل مع هديتك"
                         id=""
-                        cols="30"
-                        rows="10"
+                        cols="20"
+                        rows="5"
                       ></textarea>
                     </div>
                   </div>
@@ -308,7 +308,7 @@
                 <div class="first-info d-flex flex-column gap-3">
                   <form
                     @submit.prevent
-                    class="radio-inputs d-flex align-items-center gap-3"
+                    class="radio-inputs d-flex flex-column flex-xl-row flex-lg-row align-items-center gap-3"
                   >
                     <label for="first-input2">
                       <input
@@ -502,7 +502,7 @@
 
                   <div class="inputs address">
                     <h4>العنوانين المحفوظة</h4>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="main-input">
                         <Dropdown
                           @click="dropDownActive += 1"
@@ -524,9 +524,9 @@
                     </div>
                   </div>
                   <div class="row main-inputs-container">
-                    <div class="col-7">
+                    <div class="col-12 col-xl-7 col-lg-7">
                       <div  class="inputs">
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3">
                           <div class="main-input">
                             <label for="">
                               الاسم الاول
@@ -539,7 +539,7 @@
                             <input type="text" placeholder="مثال : محمد" />
                           </div>
                         </div>
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row  gap-3">
                           <div class="main-input">
                             <label for=""> رقم الهاتف </label>
                             <input type="text" placeholder="+201066333725" />
@@ -568,7 +568,7 @@
                         color="#DCBA95"
                       ></v-checkbox>
                     </div>
-                    <div class="map-image col-5">
+                    <div class="map-image col-12 col-xl-5 col-lg-5">
                       <img class="image" src="~/assets/images/map.png" alt="" />
                       <div class="overlay">
                         <div class="text d-flex flex-column gap-2">
@@ -889,7 +889,7 @@
 
                   <div class="cards-inputs mt-3">
                     <span> اختر البطاقة </span>
-                    <div class="d-flex align-items-center gap-3 my-3">
+                    <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3 my-3">
                       <label class="img-btn">
                         <input type="radio" name="card-input" value="1" />
                         <svg
@@ -1003,7 +1003,7 @@
                   <div class="row main-inputs-container">
                     <div class="col-12">
                       <div  class="inputs">
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                           <div class="main-input">
                             <label for="">
                             اسم حامل البطاقة <span>*</span>
@@ -1015,7 +1015,7 @@
                             <input type="text" placeholder="مثال : محمد" />
                           </div>
                         </div>
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row  gap-3">
                           <div class="main-input">
                             <label for=""> تاريخ الانتهاء<span>*</span> </label>
                             <input type="text" placeholder="+201066333725" />
@@ -1071,7 +1071,7 @@
                           </span>
                         </div>
                         <div
-                          class="d-flex w-100 align-items-center justify-content-between"
+                          class="d-flex w-100   align-items-center mt-2 flex-column flex-xl-row flex-lg-row gap-3 justify-content-between"
                         >
                           <div class="d-flex align-items-center gap-2">
                             <i class="fa-solid fa-phone"></i>
@@ -1094,9 +1094,9 @@
                     <span class="word px-3"> طريقة الدفع</span>
                     <div class="card-container">
                       <div
-                        class="head d-flex align-items-center justify-content-between"
+                        class="head d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3 justify-content-between"
                       >
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3 gap-3">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="104"
@@ -1141,7 +1141,7 @@
                     <span class="word px-3"> الشحن </span>
                     <div class="card-container">
                       <div
-                        class="head d-flex align-items-center justify-content-between"
+                        class="head d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3 justify-content-between"
                       >
                         <div class="d-flex align-items-center gap-3">
                           <svg

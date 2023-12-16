@@ -10,7 +10,7 @@
             </div>
 
             <div class="products">
-                <div class="d-flex justify-content-end  gap-3 w-100">
+                <div class="d-flex justify-content-end flex-column flex-xl-row flex-lg-row  gap-3 w-100">
                     <div>
                         <div class="select-box">
                             <span> الاقسام الفرعية  </span>

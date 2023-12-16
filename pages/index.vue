@@ -802,6 +802,7 @@
 </template>
 
 <script setup>
+
 import axios from "axios";
 import { useStore } from '~/store';
 const store = useStore;
@@ -884,8 +885,8 @@ let basket = ref([
 
 ]);
 
-const addToBasket = (itemm , index)=>{
-  store.commit('add', itemm , index);
+const addToBasket = (itemm)=>{
+  store.commit('add',{mainItem: itemm }  );
 
   }
 
@@ -942,9 +943,9 @@ const getTags = async() =>{
       "Content-Language": `${locale.value}`
     }
   });
-  tags.value = result.data.data;
-
-    tab.value = tags.value[0].id;
+  tags.value = result.data;
+  console.log(tags.value);
+    // tab.value = tags.value[0].id;
   if(tab.value){
     getProducts();
   }
@@ -979,52 +980,6 @@ onMounted(async() => {
   getProductsSections();
   //getProducts();
 
-  const originalArray = [
-  {
-    id: 1,
-    products: [{ id: 1, description: 'خاتم 23', price: 120 }],
-    vendorId: 1,
-    vendorName: 'زهرة الياقوت'
-  },
-  {
-    id: 2,
-    products: [{ id: 2, description: 'خاتم 25', price: 121 }],
-    vendorId: 1,
-    vendorName: 'زهرة الياقوت'
-  },
-  {
-    id: 3,
-    products: [{ id: 3, description: 'خاتم 22', price: 124 }],
-    vendorId: 2,
-    vendorName: 'زهرة البستان'
-  },
-  {
-    id: 4,
-    products: [{ id: 4, description: 'خاتم 21', price: 123 }],
-    vendorId: 3,
-    vendorName: 'زهرة'
-  }
-];
-
-// Create an object to store unique items based on vendorId
-const uniqueItems = originalArray.reduce((acc, currentItem) => {
-  const { id, products, vendorId, vendorName } = currentItem;
-
-  // If the vendorId is not in the object, add it
-  if (!acc[vendorId]) {
-    acc[vendorId] = { id, products, vendorId, vendorName };
-  } else {
-    // If the vendorId is already in the object, push the products array
-    acc[vendorId].products.push(...products);
-  }
-
-  return acc;
-}, {});
-
-// Convert the object values back to an array
-const newArray = Object.values(uniqueItems);
-
-console.log(newArray);
 })
 </script>
 
