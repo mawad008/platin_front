@@ -7,6 +7,7 @@
         editable
         :items="items"
         show-actions
+        v-if="finalStep == 1"
       >
         <template v-slot:item.1>
           <div class="row">
@@ -296,7 +297,7 @@
             </div>
 
             <div class="col-12 col-xl-4 col-lg-4">
-            <checkProduct :arrData="arrData" />
+            <checkProduct :arrData="arrData"  />
             </div>
           </div>
         </template>
@@ -595,7 +596,7 @@
             </div>
 
             <div class="col-12 col-xl-4 col-lg-4">
-              <checkProduct :arrData="arrData" />
+              <checkProduct :arrData="arrData"  />
 
             </div>
           </div>
@@ -1041,7 +1042,7 @@
             </div>
 
             <div class="col-12 col-xl-4 col-lg-4">
-              <checkProduct :arrData="arrData" />
+              <checkProduct :arrData="arrData"  />
 
             </div>
           </div>
@@ -1078,7 +1079,7 @@
                             <span class="text-word"> +055 3219 4323 1294 </span>
                           </div>
                           <button
-                            @click="step = 1"
+                            @click="store.state.step = 1"
                             class="d-flex align-items-center gap-2"
                           >
                             <span class="edit"> تعديل </span>
@@ -1126,7 +1127,7 @@
                         </div>
 
                         <button
-                          @click="step = 3"
+                          @click="store.state.step = 3"
                           class="d-flex align-items-center gap-2"
                         >
                           <span class="edit"> تعديل </span>
@@ -1176,7 +1177,7 @@
                         </div>
 
                         <button
-                          @click="step = 2"
+                          @click="store.state.step = 2"
                           class="d-flex align-items-center gap-2"
                         >
                           <span class="edit"> تعديل </span>
@@ -1190,12 +1191,12 @@
             </div>
 
             <div class="col-12 col-xl-4 col-lg-4">
-              <checkProduct :arrData="arrData" />
-
+              <checkProduct :arrData="arrData" :step="step"  />
             </div>
           </div>
         </template>
       </v-stepper>
+      <final-order v-if="finalStep == 2" :arrData="arrData" />
     </div>
   </div>
 </template>
@@ -1203,6 +1204,10 @@
 <script setup>
 import { useStore } from "~/store";
 const store = useStore;
+
+let finalStep = computed(() => {
+  return store.state.finalStep;
+});
 
 let arrData = computed(()=>{
   return store.state.basket.flatMap(vendor => {
@@ -1235,7 +1240,9 @@ const countries = ref([
 
 let personalorGift = ref(1);
 
-let step = ref(1);
+let step = computed(() => {
+  return store.state.step;
+});
 let items = ref([
   "معلومات المستلم",
   "الشحن والعنوان",

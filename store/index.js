@@ -1,14 +1,17 @@
 import { createStore } from "vuex";
 import axios from "axios";
-
+// process.client ? JSON.parse(sessionStorage.getItem("basket")) :
 export const useStore = createStore({
   state: {
-    basket: process.client ? JSON.parse(sessionStorage.getItem("basket")) : [],
+    basket:  [],
     basketCheck: [],
     basketNum: 0,
     totalNum: 0,
     checkForm: 1,
+    finalStep:1,
     authenticated: false,
+    final: false,
+    step: 1 ,
     user: {},
   },
   mutations: {

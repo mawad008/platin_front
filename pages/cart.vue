@@ -298,6 +298,9 @@
       </div>
       <div v-if="arrData.length < 1" class="empty-container">
         <div class="empty">
+        <client-only>
+            <Vue3Lottie :animation-data="cart" :height="200" :width="200" />
+        </client-only>
           <h4>سلة تسوقك فارغة ! </h4>
           <p>سلة التسوق خاصتك فارغة الآن. تفضل بتصفح منتجاتنا الراقية واستكمل تجربتك الشخصية بإضافة قطعة فريدة من نوعها
             إلى مجموعتك</p>
@@ -314,10 +317,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useStore } from "~/store";
-export default {
-  setup() {
+import { Vue3Lottie } from "vue3-lottie";
+
+import cart from "~/assets/animations/empty-cart.json";
+
     const localePath = useLocalePath();
     const store = useStore;
     let count = ref(1);
@@ -446,27 +451,6 @@ export default {
 
     });
 
-    return {
-      arrData,
-      items,
-      deleteItem,
-      count,
-      total,
-      progress,
-      addItem,
-      deleteAll,
-      theNum,
-      dialog,
-      localePath
-    };
-  },
-};
-// let basket = ref([
-//   {
-//     id: 1,
-//     item:1,
-//   }
-// ])
 </script>
 
 <style lang="scss" scoped></style>

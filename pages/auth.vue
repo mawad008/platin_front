@@ -184,7 +184,7 @@
         third: theimage == 3,
       }"
     >
-      <div @click="router.go(-1)" class="close">
+      <div @click="goBack()" class="close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"
@@ -289,6 +289,11 @@ definePageMeta({
 });
 
 let router = ref(useRouter());
+
+const goBack = () =>{
+  // router.value.go(-1);
+  router.value.push('/');
+}
 let theimage = ref(1);
 let authNav = ref(1);
 const randomimages = () => {

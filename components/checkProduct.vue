@@ -46,8 +46,9 @@
       </div>
 
       <div class="btns">
-        <button @click="step += 1" class="fill">تابع عملية الشراء</button>
-        <button @click="step -= 1" class="stroke">الرجوع</button>
+      {{ store.state.step }}
+        <button @click="checkFunc()" class="fill">تابع عملية الشراء</button>
+        <button @click="checkFunc2()" class="stroke">الرجوع</button>
       </div>
     </div>
   </div>
@@ -58,8 +59,35 @@ import { defineProps } from "vue";
 import { useStore } from "~/store";
 const store = useStore;
 // Define the props you expect
+let step = ref(store.state.step);
 const props = defineProps(["arrData"]);
 
+
+const checkFunc = () => {
+  if (store.state.step == 4) {
+    store.state.finalStep = 2;
+    return
+  } else {
+    store.state.step += 1
+  }
+ 
+  // step.value += 1;
+  // store.state.step = step.value;
+  // console.log(step.value);
+  // console.log(store.state.step);
+}
+const checkFunc2 = () => {
+  if (store.state.step == 1) {
+    return
+  } else {
+    store.state.step -= 1
+  }
+ 
+  // step.value += 1;
+  // store.state.step = step.value;
+  // console.log(step.value);
+  // console.log(store.state.step);
+}
 let mainArr = ref(store.state.basket);
 const deleteItem = (item , vendor_id) => {
   store.commit("deleteCheckOut", {vendor_id:vendor_id , itemid:item , arr:mainArr.value});

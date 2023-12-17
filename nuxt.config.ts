@@ -43,7 +43,7 @@ export default defineNuxtConfig({
   //   },
   // },
   plugins: [
-    // { src: "~/plugins/lottie.js" , mode: 'client'},
+    { src: "~/plugins/lottie.js" , mode: 'client'},
   ],
   i18n: {
     lazy: true,

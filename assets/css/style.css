@@ -645,6 +645,82 @@ html[dir=rtl] body {
     margin: 20px 0px;
   }
 }
+.final-order {
+  border-radius: 16px;
+  background-color: #fff;
+  padding: 48px;
+}
+.final-order .main .cont {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  color: #959ead;
+}
+.final-order .main h3 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 52px;
+  color: #2d3a4a;
+  margin-top: 13px;
+  margin-bottom: 44px;
+}
+.final-order .main .image {
+  border-radius: 8px;
+  border: 1px solid #dbdde0;
+  display: flex;
+  width: 96px;
+  height: 96px;
+  justify-content: center;
+  align-items: center;
+}
+.final-order .main .image img {
+  width: 64px;
+  height: 64px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.final-order .main .details {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 52px;
+  margin-bottom: 50px;
+}
+.final-order .main .details .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.final-order .main .details .item span {
+  font-size: 14px;
+  color: #5a7184;
+  font-weight: 400;
+}
+.final-order .main .details .item h6 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d3a4a;
+}
+.final-order .main .copy {
+  border-radius: 8px;
+  background: #fafafa;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.final-order .main .copy h6 {
+  color: #2d3a4a;
+  font-size: 14px;
+  font-weight: 700;
+}
+.final-order .main .copy span {
+  color: #5a7184;
+  font-size: 14px;
+  font-weight: 400;
+}
+
 .auth-container-form {
   width: 100%;
   min-height: 100vh;

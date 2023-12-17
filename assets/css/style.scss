@@ -138,8 +138,8 @@ a {
   &.active {
     svg {
       fill: #dcba95 !important;
-      path{
-         fill: #dcba95 !important;
+      path {
+        fill: #dcba95 !important;
       }
     }
     i {
@@ -754,6 +754,85 @@ html[dir="rtl"] body {
     }
   }
 }
+
+.final-order {
+  border-radius: 16px;
+  background-color: #fff;
+  padding: 48px;
+  .main {
+    .cont {
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      color: $body-text2;
+    }
+    h3 {
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 52px;
+      color: $secondary-black;
+      margin-top: 13px;
+      margin-bottom: 44px;
+    }
+    .image {
+      border-radius: 8px;
+      border: 1px solid #dbdde0;
+      display: flex;
+      width: 96px;
+      height: 96px;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+      }
+    }
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 52px;
+      margin-bottom: 50px;
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        span {
+          font-size: 14px;
+          color: $body-text;
+          font-weight: 400;
+        }
+        h6 {
+          font-size: 14px;
+          font-weight: 700;
+          color: $secondary-black;
+        }
+      }
+    }
+
+    .copy {
+      border-radius: 8px;
+      background: #fafafa;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h6 {
+        color: #2d3a4a;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      span {
+        color: #5a7184;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
 // end dropdowns
 
 // start login form
@@ -1037,7 +1116,7 @@ html[dir="rtl"] body {
     right: 0;
     left: 0;
     z-index: 5555;
-    padding:15px;
+    padding: 15px;
   }
   .router-link-exact-active {
     color: $secondary-black;
@@ -1239,28 +1318,28 @@ html[dir="rtl"] body {
       margin: 20px 0px;
     }
   }
-  .navbar{
+  .navbar {
     // padding: 20px;
-    .items-container{
+    .items-container {
       display: none !important;
     }
-    .line{
+    .line {
       display: none !important;
     }
-    .items{
+    .items {
       display: none !important;
     }
-    .search{
+    .search {
       display: none !important;
     }
-    .profile{
+    .profile {
       display: none !important;
     }
-    .icon-auth{
+    .icon-auth {
       display: none !important;
     }
-    .icon{
-      &.lang{
+    .icon {
+      &.lang {
         display: none !important;
       }
     }

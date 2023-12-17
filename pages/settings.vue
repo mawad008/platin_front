@@ -344,8 +344,10 @@
               </div>
             </div>
           </div>
-
-          <div v-if="navActive == 4" v-for="item , index in displayedOrders" class="orders">
+          
+          <div v-if="navActive == 4">
+          <div v-if="orders.length >= 1">
+          <div   v-for="item , index in displayedOrders" class="orders">
             <div class="row">
               <div class="col-12 col-xl-5 col-lg-5">
                 <div class="det">
@@ -515,6 +517,25 @@
               </div>
             </div>
           </div>
+            
+          </div>
+           <div v-else class="empty-container">
+          <div class="empty">
+          <client-only>
+              <Vue3Lottie :animation-data="cart" :height="200" :width="200" />
+          </client-only>
+            <h4> لا يوجد لديك طلبات حاليا </h4>
+            <p>ابدأ رحلتك الان في اكتشاف أفخر قطع المجوهرات، وقدم لذاتك لمسة من الرفاهية مع أحدث منتجاتنا.</p>
+
+            <nuxt-link :to="localePath('/')">
+              <button>تسوق الان</button>
+
+            </nuxt-link>
+
+          </div>
+        </div>
+          
+          </div>
         </div>
       </div>
     </div>
@@ -522,9 +543,12 @@
 </template>
 
 <script setup>
-definePageMeta({
-  middleware: 'auth'
-});
+// definePageMeta({
+//   middleware: 'auth'
+// });
+import { Vue3Lottie } from "vue3-lottie";
+
+import cart from "~/assets/animations/empty.json";
 let personalActive = ref(1);
 let passActive = ref(false);
 let selectedFile = ref(null);
@@ -602,15 +626,15 @@ let addAddress = () => {
 };
 
 let orders = ref([
-  {
-    allOrders: [{ item: 1 }, { item: 2 }, { item: 3 }, { item: 4 }]
-  },
-  {
-    allOrders: [{ item: 1 }, { item: 2 } , {item:4} ,{item:5} , {item:3}]
-  },
-  {
-    allOrders: [{ item: 1 }, { item: 2 } , {item:4} ,{item:5} , {item:3}]
-  }
+  // {
+  //   allOrders: [{ item: 1 }, { item: 2 }, { item: 3 }, { item: 4 }]
+  // },
+  // {
+  //   allOrders: [{ item: 1 }, { item: 2 } , {item:4} ,{item:5} , {item:3}]
+  // },
+  // {
+  //   allOrders: [{ item: 1 }, { item: 2 } , {item:4} ,{item:5} , {item:3}]
+  // }
 ]);
 
 const showAllItems = ref(Array(orders.value.length).fill(false));
