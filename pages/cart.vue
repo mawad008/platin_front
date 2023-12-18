@@ -50,7 +50,7 @@
                         </svg>
                         <div class="text">
                           <span class="by"> بواسطة </span>
-                          <span>{{ item.vendorName }}</span>
+                          <span>{{ item.vendor_name }}</span>
                         </div>
                       </div>
                       <div class="boxes d-flex flex-column gap-4">
@@ -59,10 +59,10 @@
                           <div class="image-box d-flex align-items-center gap-2">
                             <div class="image">
                               <!-- <img src="~/assets/images/product.png" alt="" /> -->
-                              <img :src="theItem.images[0]" alt="" />
+                              <img :src="theItem.images[0].full_image_path" alt="" />
                             </div>
                             <span @click="addItem(theItem.id)">{{
-                              theItem.description
+                              theItem.name
                             }}</span>
                           </div>
                           <input type="number" min="1" v-model="theItem.quantity" @input="addItem(theItem.id)" />
@@ -106,7 +106,7 @@
                           <div class="d-flex align-items-center gap-1">
                             <span> متوفر </span>
                             <span class="main"> الشحن السريع </span>
-                            <span> في الرياض</span>
+                            <span v-for="i in item.fast_shipping_cities"> في  {{ i.name }}</span>
                           </div>
                         </div>
                       </div>

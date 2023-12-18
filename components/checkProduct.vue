@@ -5,13 +5,13 @@
         <v-badge color="#B1628C" :content="item.quantity">
           <div class="image">
             <!-- <img src="~/assets/images/watch.png" alt="" /> -->
-            <img :src="item.images[0]" alt="" />
+            <img :src="item.images[0].full_image_path" alt="" />
             <!-- <span class="count">3</span> -->
           </div>
         </v-badge>
 
         <div class="text w-100 d-flex flex-column gap-2">
-          <span class="name"> {{ item.description }} </span>
+          <span class="name"> {{ item.name }} </span>
           <div class="w-100 d-flex align-items-center justify-content-between">
             <span class="price"> {{ item.price }} رس</span>
             <div @click="deleteItem(item.id , item.vendor_id)" class="trash">

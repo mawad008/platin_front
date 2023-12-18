@@ -23,22 +23,19 @@
               <div>
                 <div id="mega-menu-id" class="mega-menu" :class="{ 'd-none': activeNav }">
                   <div class="row">
-                    <div v-for="(i, index) in 4" class="col-12 col-xl-3 col-lg-3 col-md-6">
+                    <div v-for="(item, index) in categoriesArr" class="col-12 col-xl-3 col-lg-3 col-md-6">
                       <div class="box d-flex flex-column align-item-center">
                         <div class="d-flex align-items-center justify-content-center w-100">
                           <div class="image" :class="`f${index + 1}`">
-                            <img src="~/assets/images/section3.png" alt="" />
+                            <img :src="item.image" alt="" />
                           </div>
                         </div>
                         <div class="text d-flex flex-column gap-3">
-                          <h6 class="mt-3">الذهب</h6>
+                          <h6 class="mt-3">{{ item.name }}</h6>
                           <div class="links d-flex align-items-center gap-3 flex-column">
-                            <span> الاساور </span>
-                            <span> القلادات </span>
-                            <span> الاطقم </span>
-                            <span> الخواتم </span>
-                          </div>
-                          <span class="all"> الكل </span>
+                            <span v-for="i in item.subcategories" @click="goTocategorysub(item.id , item.name , i.id)"> {{ i.name }} </span>
+                            </div>
+                            <span class="all" @click="goTocategory(item.id , item.name)"> الكل </span>
                         </div>
                       </div>
                     </div>
@@ -66,7 +63,7 @@
             </div>
 
             <div v-if="activeNav" class="items d-flex align-items-center gap-4">
-              <nuxt-link to="/">
+              <nuxt-link :to="localePath('/')" >
                 <span>الرئيسية</span>
               </nuxt-link>
 
@@ -83,23 +80,20 @@
                 </template>
                 <div>
                   <div id="mega-menu-id" class="mega-menu">
-                    <div class="row">
-                      <div v-for="(i, index) in 4" class="col-12 col-xl-3 col-lg-3 col-md-6">
+                    <div class="row justify-content-end">
+                      <div v-for="(item, index) in categoriesArr" class="col-12 col-xl-3 col-lg-3 col-md-6">
                         <div class="box d-flex flex-column align-items-center">
                           <div class="d-flex align-items-center justify-content-center w-100">
                             <div class="image" :class="`f${index + 1}`">
-                              <img src="~/assets/images/section3.png" alt="" />
+                              <img :src="item.image" alt="" />
                             </div>
                           </div>
                           <div class="text d-flex flex-column gap-3">
                             <h6 class="mt-3">الذهب</h6>
                             <div class="links d-flex align-items-center gap-3 flex-column">
-                              <span> الاساور </span>
-                              <span> القلادات </span>
-                              <span> الاطقم </span>
-                              <span> الخواتم </span>
+                            <span v-for="i in item.subcategories" @click="goTocategorysub(item.id , iten.name , i.id)"> {{ i.name }} </span>
                             </div>
-                            <span class="all"> الكل </span>
+                            <span class="all" @click="goTocategory(item.id , item.name)"> الكل </span>
                           </div>
                         </div>
                       </div>
@@ -107,10 +101,10 @@
                   </div>
                 </div>
               </v-menu>
-              <nuxt-link to="gold">
+              <nuxt-link :to="localePath('gold')" >
                 <span>السبائك</span>
               </nuxt-link>
-              <nuxt-link to="vendors">
+              <nuxt-link :to="localePath('/vendors')" >
                 <span>التجار</span>
               </nuxt-link>
               <span>الدعم الفني</span>
@@ -356,9 +350,11 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { useStore } from "~/store";
-const router = useRouter();
 const store = useStore;
+const router = useRouter();
+let categoriesArr = ref([]);
 let activeNav = ref(false);
 let activeItemsContainer = ref(false);
 let theNum = computed(() => {
@@ -370,6 +366,7 @@ const changeLang = async () => {
   locale.value = locale.value === "en" ? "ar" : "en";
   if (locale.value == "ar") {
     setLocale("ar");
+    store.state.lang = 'ar';
     useHead({
       htmlAttrs: {
         lang: "ar",
@@ -384,6 +381,8 @@ const changeLang = async () => {
       },
     });
     setLocale("en");
+    store.state.lang = 'en';
+
   }
   const query = useRoute().query;
   await navigateTo(
@@ -393,6 +392,27 @@ const changeLang = async () => {
   );
 };
 
+const goTocategory = (id, name) => {
+      const queryParams = {
+        id: id,
+        name: name,
+      };
+      const url = locale.value + "/category";
+
+      router.push({ path: url, query: queryParams });
+    };
+const goTocategorysub = (id, name , subid) => {
+      const queryParams = {
+        id: id,
+        name: name,
+        subid: subid
+      };
+      const url = locale.value + "/category";
+
+      router.push({ path: url, query: queryParams });
+    };
+
+
 const goSettings = (name) => {
   const queryParams = {
     name: name,
@@ -400,6 +420,15 @@ const goSettings = (name) => {
   // const url = locale.value + "/settings";
 
   router.push({ path: "settings", query: queryParams });
+};
+const getCategories = async () => {
+  let result = await axios.get(`${getUrl()}/categories`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  categoriesArr.value = result.data.data;
+  console.log(categoriesArr.value);
 };
 onMounted(() => {
   window.addEventListener("scroll", function () {
@@ -411,6 +440,7 @@ onMounted(() => {
       activeItemsContainer.value = false;
     }
   });
+  getCategories();
 });
 onBeforeMount(() => {
   store.dispatch('loadBasketFromLocalStorage');

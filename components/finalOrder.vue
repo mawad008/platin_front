@@ -11,7 +11,7 @@
                             <div v-for="item in arrData" class="col-3">
                                 <v-badge color="#B1628C" :content="item.quantity">
                                     <div class="image">
-                                        <img :src="item.images[0]" alt="" />
+                                        <img :src="item.images[0].full_image_path" alt="" />
                                     </div>
                                 </v-badge>
                             </div>

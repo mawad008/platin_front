@@ -15,7 +15,7 @@
             <!-- <img src="~/assets/images/banner.jpg" alt=""> -->
             <div class="text-container">
               {{ index + 1 }}
-              <h2>  استمتع بلمسة من الأناقة والفخامة مع بلاتين</h2>
+              <h2>استمتع بلمسة من الأناقة والفخامة مع بلاتين</h2>
               <span class="text">
                 منصتنا الإلكترونية هي المكان الذي يجمع بين تجار الذهب والمجوهرات
                 في المملكة. نفتخر بتقديم تجربة شراء آمنة وسلسة، مع تشكيلة واسعة
@@ -45,16 +45,19 @@
       <div
         class="row justify-content-center justify-content-xl-start justify-content-lg-start"
       >
-        <div v-for="item , index in categoriesArr" class="col-12 col-xl-3 col-lg-3 col-md-6">
+        <div
+          v-for="(item, index) in categoriesArr"
+          class="col-12 col-xl-3 col-lg-3 col-md-6"
+        >
           <div
-            class="box d-flex flex-column justify-content-center align-items-center gap-1 f1" :class="`f${index + 1}`"
+            class="box d-flex flex-column justify-content-center align-items-center gap-1 f1"
+            :class="`f${index + 1}`"
           >
             <img :src="item.image" alt="" />
             <span class="type"> {{ item.name }} </span>
             <span class="count"> {{ item.products_count }} منتج </span>
-            <nuxt-link to="category">
-              <button class="mt-1">عرض المنتجات</button>
-            </nuxt-link>
+            
+              <button class="mt-1" @click="goTocategory(item.id , item.name)">عرض المنتجات</button>
           </div>
         </div>
       </div>
@@ -84,16 +87,14 @@
         :modules="[SwiperPagination]"
         class=""
       >
-       
-       
-        <swiper-slide v-for="item , index in adsArr" class="box f1">
+        <swiper-slide v-for="(item, index) in adsArr" class="box f1">
           <div
             class="h-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row"
           >
             <div class="text-container">
               <h2 v-html="item.title"></h2>
               <span class="text">
-               {{ item.description }}
+                {{ item.description }}
               </span>
               <button class="btn1">
                 <span> شاهد العروض </span>
@@ -104,7 +105,7 @@
               </div>
             </div>
             <div class="main-img h-100">
-              <img :src="item.image" alt="">
+              <img :src="item.image" alt="" />
             </div>
           </div>
           <div class="overlay"></div>
@@ -134,14 +135,13 @@
       </div>
 
       <swiper
-      :slidesPerView="2"
-      :spaceBetween="10"
+        :slidesPerView="2"
+        :spaceBetween="10"
         :navigation="{
           nextEl: '.slider-cate-next',
           prevEl: '.slider-cate-prev',
         }"
         :breakpoints="{
-       
           '768': {
             slidesPerView: 4,
             spaceBetween: 40,
@@ -154,17 +154,14 @@
         :modules="[SwiperNavigation]"
         class=""
       >
-      
-        <swiper-slide v-for="item in subcategoriesArr" >
-        <div class="box">
-          <div class="image">
-            <img :src="item.image" alt="" />
+        <swiper-slide v-for="item in subcategoriesArr">
+          <div class="box">
+            <div class="image">
+              <img :src="item.image" alt="" />
+            </div>
+            <span> {{ item.name }} </span>
           </div>
-          <span> {{ item.name }} </span>
-        </div>
         </swiper-slide>
-        
- 
       </swiper>
     </div>
 
@@ -175,133 +172,142 @@
         <h3 class="mb-5">منتجاتنا</h3>
 
         <v-tabs v-model="tabNav" align-tabs="center">
-          <v-tab v-for="item,index in tags "  :value="index" class="head">
-            <span @click="tab = item.id , getProducts()" class="choose"> {{ item.name }} </span>
+          <v-tab v-for="(item, index) in tags" :value="index" class="head">
+            <span @click="(tab = item.id), getProducts()" class="choose">
+              {{ item.name }}
+            </span>
             <border />
           </v-tab>
         </v-tabs>
       </div>
 
       <v-window v-model="tabNav">
-        <v-window-item v-for="item,index in tags ">
+        <v-window-item v-for="(item, index) in tags">
           <div class="row">
-            <div v-for="item in productsTags"  class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
+            <div
+              v-for="item in productsTags"
+              class="col-12 col-xl-3 col-lg-3 col-md-6 my-2"
+            >
               <product-card :product="item" />
             </div>
           </div>
-          <v-progress-circular v-if="spinnerProducts"
-      indeterminate
-      color="primary"
-    ></v-progress-circular>
+          <v-progress-circular
+            v-if="spinnerProducts"
+            indeterminate
+            color="primary"
+          ></v-progress-circular>
         </v-window-item>
       </v-window>
       <nuxt-link to="products">
         <span class="more mt-5"> المزيد... </span>
       </nuxt-link>
     </div>
-     
-     <div class="container">
+
+    <div class="container">
       <div class="row">
-       <div class="col" v-for="item in products">
-        <div  class="product-card">
-      <div class="head w-100 d-flex align-items-center justify-content-between">
-        <div class="octagon" >
-          <octagon />
-          <i class="fa-solid fa-heart"></i>
-        </div>
-        <span> الاكثر مبيعا </span>
-      </div>
-      <Swiper 
-      
-      :spaceBetween="30"
-    :centeredSlides="true"
-    :effect="'fade'"
-
-    :autoplay="{
-      delay: 2500,
-      disableOnInteraction: false,
-    }"
-    :modules="[SwiperAutoplay , SwiperEffectFade]"
-      
-      class="image">
-      
-
-      
-      <swiper-slide v-for="img in item.images">
-        <img :src="img" alt="">
-      </swiper-slide>
-
-   
-      </Swiper>
-      <div class="rate w-100 d-flex align-items-center justify-content-between">
-        <span class="type"> الذهب </span>
-        <div class="star d-flex align-items-center gap-2">
-          <i class="fa-solid fa-star"></i>
-          <span>3.4</span>
-        </div>
-      </div>
-      <h3>{{ item.description}}</h3>
-      <div
-        class="price w-100 d-flex align-items-center justify-content-between"
-      >
-        <span class="price-text">2500 ر.س</span>
-        <span> ق24 / 2.5ج </span>
-      </div>
-
-      <div class="overlay">
-        <div class="head-icons w-100">
-          <div class="w-100 d-flex align-items-center justify-content-between">
-            <div class="octagon active">
-              <octagon />
-              <i class="fa-solid fa-heart"></i>
-            </div>
-            <div  class="octagon">
-              <octagon />
-              <i class="fa-solid fa-share-nodes"></i>
-            </div>
-          </div>
-          <div class="d-flex justify-content-end">
-            <div class="share-box d-none">
-              <img src="~/assets/images/social1.svg" alt="" />
-              <img src="~/assets/images/social2.svg" alt="" />
-              <img src="~/assets/images/social3.svg" alt="" />
-              <img src="~/assets/images/social4.svg" alt="" />
-              <img src="~/assets/images/social5.svg" alt="" />
-            </div>
-          </div>
-        </div>
-
-        <div class="center-icons w-100">
-          <div class="d-flex w-100 align-items-center justify-content-between">
-            <nuxt-link to="/product">
-              <div class="octagon d-flex flex-column gap-3">
+        <div class="col" v-for="item in products">
+          <div class="product-card">
+            <div
+              class="head w-100 d-flex align-items-center justify-content-between"
+            >
+              <div class="octagon">
                 <octagon />
-                <i class="fa-solid fa-eye"></i>
+                <i class="fa-solid fa-heart"></i>
               </div>
-            </nuxt-link>
-            <div class="octagon d-flex flex-column gap-3">
-              <octagon />
-              <i class="fa-solid fa-cart-shopping"></i>
+              <span> الاكثر مبيعا </span>
             </div>
-            <div @click="addToBasket(item)" class="octagon d-flex flex-column gap-3">
-              <octagon />
-              <i class="fa-solid fa-cart-shopping"></i>
+            <Swiper
+              :spaceBetween="30"
+              :centeredSlides="true"
+              :effect="'fade'"
+              :autoplay="{
+                delay: 2500,
+                disableOnInteraction: false,
+              }"
+              :modules="[SwiperAutoplay, SwiperEffectFade]"
+              class="image"
+            >
+              <swiper-slide v-for="img in item.images">
+                <img :src="img" alt="" />
+              </swiper-slide>
+            </Swiper>
+            <div
+              class="rate w-100 d-flex align-items-center justify-content-between"
+            >
+              <span class="type"> الذهب </span>
+              <div class="star d-flex align-items-center gap-2">
+                <i class="fa-solid fa-star"></i>
+                <span>3.4</span>
+              </div>
             </div>
-          </div>
-          <div
-            class="text d-flex text-center w-100 align-items-center justify-content-between"
-          >
-            <span> شاهد </span>
-            <span> اضف الي السلة </span>
-            <span> مقارنة </span>
+            <h3>{{ item.description }}</h3>
+            <div
+              class="price w-100 d-flex align-items-center justify-content-between"
+            >
+              <span class="price-text">2500 ر.س</span>
+              <span> ق24 / 2.5ج </span>
+            </div>
+
+            <div class="overlay">
+              <div class="head-icons w-100">
+                <div
+                  class="w-100 d-flex align-items-center justify-content-between"
+                >
+                  <div class="octagon active">
+                    <octagon />
+                    <i class="fa-solid fa-heart"></i>
+                  </div>
+                  <div class="octagon">
+                    <octagon />
+                    <i class="fa-solid fa-share-nodes"></i>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <div class="share-box d-none">
+                    <img src="~/assets/images/social1.svg" alt="" />
+                    <img src="~/assets/images/social2.svg" alt="" />
+                    <img src="~/assets/images/social3.svg" alt="" />
+                    <img src="~/assets/images/social4.svg" alt="" />
+                    <img src="~/assets/images/social5.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="center-icons w-100">
+                <div
+                  class="d-flex w-100 align-items-center justify-content-between"
+                >
+                  <nuxt-link to="/product">
+                    <div class="octagon d-flex flex-column gap-3">
+                      <octagon />
+                      <i class="fa-solid fa-eye"></i>
+                    </div>
+                  </nuxt-link>
+                  <div class="octagon d-flex flex-column gap-3">
+                    <octagon />
+                    <i class="fa-solid fa-cart-shopping"></i>
+                  </div>
+                  <div
+                    @click="addToBasket(item)"
+                    class="octagon d-flex flex-column gap-3"
+                  >
+                    <octagon />
+                    <i class="fa-solid fa-cart-shopping"></i>
+                  </div>
+                </div>
+                <div
+                  class="text d-flex text-center w-100 align-items-center justify-content-between"
+                >
+                  <span> شاهد </span>
+                  <span> اضف الي السلة </span>
+                  <span> مقارنة </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-       
       </div>
     </div>
-       </div>
-      </div>
-     </div>
     <div
       class="container d-flex align-items-center justify-content-center banner-container"
     >
@@ -337,8 +343,9 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="i in productsSectionsArr.latestProducts">
+        <swiper-slide v-for="item in productsSectionsArr.latestProducts">
           <product-card
+            :product="item"
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
         </swiper-slide>
@@ -354,12 +361,10 @@
         <img class="img-fluid" src="~/assets/images/banner-img1.png" alt="" />
       </div>
     </div>
-    
+
     <div
       class="container d-flex align-items-center justify-content-center banner-container"
     >
- 
-      
       <div class="arrows d-flex align-items-center gap-4">
         <div @click="banner2 = true" class="arrow second-cate-next">
           <i class="fa-solid fa-chevron-right"></i>
@@ -369,7 +374,7 @@
         </div>
       </div>
       <swiper
-         :navigation="{
+        :navigation="{
           nextEl: '.second-cate-next',
           prevEl: '.second-cate-prev',
         }"
@@ -390,8 +395,9 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="i in productsSectionsArr.latestProducts">
+        <swiper-slide v-for="item in productsSectionsArr.latestProducts">
           <product-card
+            :product="item"
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
         </swiper-slide>
@@ -404,14 +410,14 @@
             <i class="fa-solid fa-arrow-left-long"></i>
           </button>
         </div>
-        <img class="img-fluid " src="~/assets/images/banner-img2.png" alt="" />
+        <img class="img-fluid" src="~/assets/images/banner-img2.png" alt="" />
       </div>
     </div>
 
     <div
       class="container d-flex align-items-center justify-content-center banner-container"
     >
-    <div class="arrows d-flex align-items-center gap-4">
+      <div class="arrows d-flex align-items-center gap-4">
         <div @click="banner3 = true" class="third-cate-next arrow">
           <i class="fa-solid fa-chevron-right"></i>
         </div>
@@ -420,7 +426,7 @@
         </div>
       </div>
       <swiper
-      :navigation="{
+        :navigation="{
           nextEl: '.third-cate-next',
           prevEl: '.third-cate-prev',
         }"
@@ -441,8 +447,9 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="i in productsSectionsArr.discountedProducts">
+        <swiper-slide v-for="item in productsSectionsArr.discountedProducts">
           <product-card
+            :product="item"
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
         </swiper-slide>
@@ -502,19 +509,25 @@
         :spaceBetween="60"
         :slidesPerView="1"
       >
-        <swiper-slide v-for="(item, index) in brandsArr" class="" style="padding: 0px 50px;">
-          <div class=" d-flex flex-column align-items-center justify-content-center">            
-          <p class="mb-5 text-center " style="">
-            {{ item.description }}
-          </p>
+        <swiper-slide
+          v-for="(item, index) in brandsArr"
+          class=""
+          style="padding: 0px 50px"
+        >
           <div
-            class="btn-back d-flex align-items-center w-100 justify-content-center"
+            class="d-flex flex-column align-items-center justify-content-center"
           >
-            <button class="btn1">
-              <span> عرض المنتجات </span>
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </button>
-          </div>
+            <p class="mb-5 text-center" style="">
+              {{ item.description }}
+            </p>
+            <div
+              class="btn-back d-flex align-items-center w-100 justify-content-center"
+            >
+              <button class="btn1">
+                <span> عرض المنتجات </span>
+                <i class="fa-solid fa-arrow-left-long"></i>
+              </button>
+            </div>
           </div>
         </swiper-slide>
       </swiper>
@@ -802,14 +815,13 @@
 </template>
 
 <script setup>
-
 import axios from "axios";
-import { useStore } from '~/store';
+import { useStore } from "~/store";
 const store = useStore;
 
-
- const localePath = useLocalePath();
- const { locale } = useI18n();
+const router = useRouter();
+const localePath = useLocalePath();
+const { locale } = useI18n();
 
 const thumbsSwiper = ref(null);
 const setThumbsSwiper = (swiper) => {
@@ -830,148 +842,157 @@ let productsTags = ref([]);
 let adsArr = ref([]);
 let productsSectionsArr = ref([]);
 
+
+const goTocategory = (id, name) => {
+      const queryParams = {
+        id: id,
+        name: name,
+      };
+      const url = locale.value + "/category";
+
+      router.push({ path: url, query: queryParams });
+    };
+
+
 let products = ref([
   {
-    vendor_id:1,
-    vendorName: 'زهرة الياقوت',
-    id:1,
-    description: 'خاتم 23',
-    price:120,
-    images:[
+    vendor_id: 1,
+    vendorName: "زهرة الياقوت",
+    id: 1,
+    description: "خاتم 23",
+    price: 120,
+    images: [
       "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
+      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
   },
   {
-    vendor_id:1,
-    vendorName: 'زهرة الياقوت',
-    id:2,
-    description: 'خاتم 25',
-    price:121,
-    images:[
+    vendor_id: 1,
+    vendorName: "زهرة الياقوت",
+    id: 2,
+    description: "خاتم 25",
+    price: 121,
+    images: [
       "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
+      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
   },
   {
-    vendor_id:2,
-    vendorName: 'زهرة البستان',
-    id:3,
-    description: 'خاتم 22',
-    price:124,
-    images:[
+    vendor_id: 2,
+    vendorName: "زهرة البستان",
+    id: 3,
+    description: "خاتم 22",
+    price: 124,
+    images: [
       "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
+      "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
   },
   {
-    vendor_id:3,
-    vendorName: 'زهرة',
-    id:4,
-    description: 'خاتم 21',
-    price:123,
-    images:[
+    vendor_id: 3,
+    vendorName: "زهرة",
+    id: 4,
+    description: "خاتم 21",
+    price: 123,
+    images: [
       "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ]
+    ],
   },
 ]);
 
-let basket = ref([
+let basket = ref([]);
 
-]);
+const addToBasket = (itemm) => {
+  store.commit("add", { mainItem: itemm });
+};
 
-const addToBasket = (itemm)=>{
-  store.commit('add',{mainItem: itemm }  );
-
-  }
-
-const getCategories = async()=>{
-  let result = await axios.get(`${getUrl()}/categories`,{
-    headers:{
-      "Content-Language": `${locale.value}`
-    }
+const getCategories = async () => {
+  let result = await axios.get(`${getUrl()}/categories`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
   });
   categoriesArr.value = result.data.data;
-
-}
+};
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brands`, {
     headers: {
-      "Content-Language": `${locale.value}`
+      "Content-Language": `${locale.value}`,
     },
   });
   brandsArr.value = result.data.data;
 };
 
-const getSubcategories = async() =>{
-  let result = await axios.get(`${getUrl()}/subcategories`,{
-    headers:{
-      "Content-Language": `${locale.value}`
-    }
+const getSubcategories = async () => {
+  let result = await axios.get(`${getUrl()}/subcategories`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
   });
   subcategoriesArr.value = result.data.data;
-
-}
-const getAds = async() =>{
-  let result = await axios.get(`${getUrl()}/ads`,{
-    headers:{
-      "Content-Language": `${locale.value}`
-    }
+};
+const getAds = async () => {
+  let result = await axios.get(`${getUrl()}/ads`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
   });
   adsArr.value = result.data.data;
-
-}
-const getProductsSections = async() =>{
-  let result = await axios.get(`${getUrl()}/product-sections`,{
-    headers:{
-      "Content-Language": `${locale.value}`
-    }
+};
+const getProductsSections = async () => {
+  let result = await axios.get(`${getUrl()}/product-sections`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
   });
   productsSectionsArr.value = result.data.data;
+};
 
-}
-
-
-const getTags = async() =>{
-  let result = await axios.get(`${getUrl()}/tags`,{
-    headers:{
-      "Content-Language": `${locale.value}`
-    }
+const getTags = async () => {
+  let result = await axios.get(`${getUrl()}/tags`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
   });
-  tags.value = result.data;
+  tags.value = result.data.data;
   console.log(tags.value);
-    // tab.value = tags.value[0].id;
-  if(tab.value){
+  tab.value = tags.value[0].id;
+  if (tab.value) {
     getProducts();
   }
-  console.log(tab.value)
-}
+  console.log(tab.value);
+};
 
-const getProducts = async()=>{
+const getProducts = async () => {
   spinnerProducts.value = true;
   productsTags.value = [];
-  let result = await axios.get(`${getUrl()}/products`,{
-    params:{
-      id:tab.value
+  let result = await axios.get(`${getUrl()}/products`, {
+    params: {
+      tag_id: tab.value,
     },
-    headers:{
-      "Content-Language": `${locale.value}`
-    }
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
   });
 
-  if(result.status == 200){
+  if (result.status == 200) {
     spinnerProducts.value = false;
   }
   productsTags.value = result.data.data;
+};
 
-}
 
-onMounted(async() => {
+   
+
+
+
+
+onMounted(async () => {
   getBrands();
   getCategories();
   getSubcategories();
@@ -979,8 +1000,7 @@ onMounted(async() => {
   getAds();
   getProductsSections();
   //getProducts();
-
-})
+});
 </script>
 
 <style lang="scss" scoped></style>

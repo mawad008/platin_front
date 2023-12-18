@@ -5,20 +5,8 @@
         <h3 class="mb-5">منتجاتنا</h3>
 
         <div class="tabs">
-          <div @click="tabActive = 1 , tab = 0" :class="{'active':tabActive==1}" class="tab">
-            <span class="choose"> الامهات </span>
-            <border />
-          </div>
-          <div @click="tabActive = 2 , tab = 1" :class="{ 'active': tabActive == 2 }" class="tab">
-            <span class="choose"> الاطفال </span>
-            <border />
-          </div>
-          <div @click="tabActive = 3 , tab = 2" :class="{ 'active': tabActive == 3 }" class="tab">
-            <span class="choose"> البنات </span>
-            <border />
-          </div>
-          <div @click="tabActive = 4 , tab = 3" :class="{ 'active': tabActive == 4 }" class="tab">
-            <span class="choose"> الاكثر مبيعا </span>
+          <div v-for="item , index in tags" @click="tabActive = index , tab = item.id , getProducts()" :class="{'active':tab==item.id}" class="tab">
+            <span class="choose"> {{ item.name }}</span>
             <border />
           </div>
 
@@ -37,10 +25,7 @@
           <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition">
             <div id="select-product"
               class="d-flex  flex-column align-items-center text-center gap-3 justify-content-center">
-              <span @click="selectbox1 = 1" :class="{ 'active': selectbox1 == 1 }"> الدهب</span>
-              <span @click="selectbox1 = 2" :class="{ 'active': selectbox1 == 2 }"> الماس </span>
-              <span @click="selectbox1 = 3" :class="{ 'active': selectbox1 == 3 }"> الفضة </span>
-              <span @click="selectbox1 = 4" :class="{ 'active': selectbox1 == 4 }"> الساعات</span>
+              <span v-for="item in categories" @click="selectbox1 = item.id , getProducts()" :class="{ 'active': selectbox1 == item.id }"> {{ item.name }}</span>
             </div>
           </v-overlay>
         </div>
@@ -54,16 +39,14 @@
           <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition">
             <div id="select-product"
               class="d-flex  flex-column align-items-center text-center gap-3 justify-content-center">
-              <span @click="selectbox2 = 1" :class="{ 'active': selectbox2 == 1 }"> الدهب</span>
-              <span @click="selectbox2 = 2" :class="{ 'active': selectbox2 == 2 }"> الماس </span>
-              <span @click="selectbox2 = 3" :class="{ 'active': selectbox2 == 3 }"> الفضة </span>
-              <span @click="selectbox2 = 4" :class="{ 'active': selectbox2 == 4 }"> الفضة </span>
-              <span @click="selectbox2 = 5" :class="{ 'active': selectbox2 == 5 }"> الفضة </span>
+              <span v-for="item in subcategories" @click="selectbox2 = item.id , getProducts()" :class="{ 'active': selectbox2 == item.id }"> {{ item.name }}</span>
+
             </div>
           </v-overlay>
         </div>
         <div>
 
+    
           <div class="select-box">
             <span> الماركات</span>
             <i class="fa-solid fa-chevron-down"></i>
@@ -72,40 +55,18 @@
           <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition">
             <div id="select-product"
               class="d-flex  flex-column align-items-center text-center gap-3 justify-content-center">
-              <span @click="selectbox3 = 1" :class="{ 'active': selectbox3 == 1 }"> الدهب</span>
-              <span @click="selectbox3 = 2" :class="{ 'active': selectbox3 == 2 }"> الماس </span>
-              <span @click="selectbox3 = 3" :class="{ 'active': selectbox3 == 3 }"> الفضة </span>
+              <span v-for="item in brands" @click="selectbox3 = item.id , getProducts()" :class="{ 'active': selectbox3 == item.id }"> {{ item.name }}</span>
+
             </div>
           </v-overlay>
         </div>
       </div>
 
-      <v-window v-model="tab">
-        <v-window-item>
+      <v-window v-model="tabActive">
+        <v-window-item v-for="(item, index) in tags">
           <div class="row">
-            <div v-for="i in 8" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
-              <product-card />
-            </div>
-          </div>
-        </v-window-item>
-        <v-window-item>
-          <div class="row">
-            <div v-for="i in 3" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
-              <product-card />
-            </div>
-          </div>
-        </v-window-item>
-        <v-window-item>
-          <div class="row">
-            <div v-for="i in 2" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
-              <product-card />
-            </div>
-          </div>
-        </v-window-item>
-        <v-window-item>
-          <div class="row">
-            <div v-for="i in 6" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
-              <product-card />
+            <div v-for="item in products" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
+              <product-card :product="item" />
             </div>
           </div>
         </v-window-item>
@@ -116,11 +77,82 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+const router = useRouter();
+const route = useRoute();
+const localePath = useLocalePath();
+const { locale } = useI18n();
 let tab = ref(null);
 let tabActive = ref(1);
-let selectbox1 = ref(1);
-let selectbox2 = ref(1);
-let selectbox3 = ref(1);
+let selectbox1 = ref(null);
+let selectbox2 = ref(null);
+let selectbox3 = ref(null);
+let tags = ref([]);
+let products = ref([]);
+let categories = ref([]);
+let subcategories = ref([]);
+let brands = ref([]);
+const getTags = async () => {
+  let result = await axios.get(`${getUrl()}/tags`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  tags.value = result.data.data;
+  console.log(tags.value);
+  tab.value = tags.value[0].id;
+  if (tab.value) {
+    getProducts();
+  }
+  console.log(tab.value);
+};
+const getcategories = async () => {
+  let result = await axios.get(`${getUrl()}/categories`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  categories.value = result.data.data;
+};
+const getSubcategories = async () => {
+  let result = await axios.get(`${getUrl()}/subcategories`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  subcategories.value = result.data.data;
+};
+const getBrands = async () => {
+  let result = await axios.get(`${getUrl()}/brands`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  brands.value = result.data.data;
+};
+const getProducts = async () => {
+  let result = await axios.get(`${getUrl()}/products`, {
+    params: {
+      tag_id: tab.value,
+      category_id: selectbox1.value ? selectbox1.value : null,
+      subcategory_id: selectbox2.value ? selectbox2.value : null,
+      brand_id: selectbox3.value ? selectbox3.value : null,
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  products.value = result.data.data;
+};
+
+
+onMounted(()=>{
+  getTags();
+  getcategories();
+  getSubcategories();
+  getBrands();
+})
 
 </script>
 

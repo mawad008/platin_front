@@ -5,12 +5,12 @@
                 <div class="col-12 col-xl-8 col-lg-8">
                     <div class="main-box">
                         <div class="cover">
-                            <img src="~/assets/images/c-cover.jpg" alt="">
+                            <img :src="vendor.cover" alt="">
                             <div class="overlay"></div>
                         </div>
 
                         <div class="circle-image">
-                            <img src="~/assets/images/vendor.svg" alt="">
+                            <img :src="vendor.logo" alt="">
                         </div>
 
                         <p> زهرة الياقوت هو عالم من الجمال والرقي في عالم المجوهرات. نقدم لكم تشكيلة متنوعة من المجوهرات
@@ -23,21 +23,21 @@
                                     <img src="~/assets/images/diamond.svg" alt="">
                                 </div>
                                 <h6> عدد المنتجات </h6>
-                                <span> 450 منتج </span>
+                                <span> {{ vendor.products_count }} منتج </span>
                             </div>
                             <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
                                 <div class="image">
                                     <img src="~/assets/images/vstar.svg" alt="">
                                 </div>
                                 <h6> اجمالي التقييمات </h6>
-                                <span> 4.5 ( الف تقييم ) </span>
+                                <span> {{ vendor.rate }} ( الف تقييم ) </span>
                             </div>
                             <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
                                 <div class="image">
                                     <img src="~/assets/images/vendor-c.svg" alt="">
                                 </div>
                                 <h6> السجل التجاري </h6>
-                                <span> 01858894486 </span>
+                                <span> {{ vendor.commercial_register_number }} </span>
                             </div>
                             <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
                                 <div class="image">
@@ -53,15 +53,15 @@
                     <div class="recent">
                         <h4 class="fw-bold mb-4"> الاكثر مبيعا </h4>
                         <div class="boxes d-flex flex-column h-100 bg-dange ">
-                            <div v-for="i in 4" class="box d-flex flex-column  my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center  gap-3">
+                            <div v-for="item in vendor.bestSellerProducts" class="box d-flex flex-column  my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center  gap-3">
                                 <div class="image">
-                                    <img src="~/assets/images/p1.png" alt="">
+                                    <img :src="item.images[0].full_image_path" alt="">
                                 </div>
-                                <div class="text  d-flex flex-column gap-1">
-                                    <h5> خاتم ذهب 2.5 جرام صافي عيار 24 قيراط </h5>
+                                <div class="text w-100 d-flex flex-column gap-1">
+                                    <h5> {{ item.name }}</h5>
                                     <div class="price w-100  d-flex align-items-center justify-content-between">
-                                        <span class="item"> 2.5 ج / 24 ق0 </span>
-                                        <span class="price-item"> 14800 ر.س </span>
+                                        <span class="item">{{ `${item.caliber} / ق` }} {{ `${item.weight} / ق` }}</span>
+                                        <span class="price-item"> {{ item.price }} ر.س </span>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                             </div>
                             <span>المنتجات</span>
                         </div>
-                        <div @click="activeTab = 2 , tab = 'two'" :class="{'active': activeTab == 2}" class="tab">
+                        <!-- <div @click="activeTab = 2 , tab = 'two'" :class="{'active': activeTab == 2}" class="tab">
                             <div class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                                     fill="none">
@@ -118,7 +118,7 @@
                             </div>
                             <span style=""> تقييمات العملاء </span>
 
-                        </div>
+                        </div> -->
                     </div>
                     <!-- <v-tabs v-model="tab" bg-color="" class="" style="border-bottom: 1px solid #EBEAED;">
                         <v-tab value="one">
@@ -155,14 +155,8 @@
                                             scroll-strategy="reposition">
                                             <div id="select-product"
                                                 class="d-flex  flex-column align-items-center text-center gap-3 justify-content-center">
-                                                <span @click="selectbox1 = 1" :class="{ 'active': selectbox1 == 1 }">
-                                                    الدهب</span>
-                                                <span @click="selectbox1 = 2" :class="{ 'active': selectbox1 == 2 }"> الماس
-                                                </span>
-                                                <span @click="selectbox1 = 3" :class="{ 'active': selectbox1 == 3 }"> الفضة
-                                                </span>
-                                                <span @click="selectbox1 = 4" :class="{ 'active': selectbox1 == 4 }">
-                                                    الساعات</span>
+                                                <span v-for="item in categories" @click="selectbox1 = item.id , getVendorproducts()" :class="{ 'active': selectbox1 == item.id }"> {{ item.name }} </span>
+                                             
                                             </div>
                                         </v-overlay>
                                     </div>
@@ -177,24 +171,20 @@
                                             scroll-strategy="reposition">
                                             <div id="select-product"
                                                 class="d-flex  flex-column align-items-center text-center gap-3 justify-content-center">
-                                                <span @click="selectbox2 = 1" :class="{ 'active': selectbox2 == 1 }">
-                                                    الدهب</span>
-                                                <span @click="selectbox2 = 2" :class="{ 'active': selectbox2 == 2 }"> الماس
-                                                </span>
-                                                <span @click="selectbox2 = 3" :class="{ 'active': selectbox2 == 3 }"> الفضة
-                                                </span>
+                                                <span v-for="item in brands" @click="selectbox2 = item.id , getVendorproducts()" :class="{ 'active': selectbox2 == item.id }"> {{ item.name }} </span>
+
                                             </div>
                                         </v-overlay>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div v-for="i in 6" class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <product-card />
+                                    <div v-for="item in vendors" class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <product-card :product="item" />
                                     </div>
                                 </div>
                             </v-window-item>
 
-                            <v-window-item value="two">
+                            <!-- <v-window-item value="two">
                                 <div class="rating-container">
 
                                     <div class="comments-container">
@@ -205,7 +195,6 @@
                                             </div>
                                             <div class="recommend d-flex align-items-center justify-content-center gap-2"
                                                 style="width:fit-content; padding: 25px;">
-                                                <!-- <img src="~/assets/images/medal.svg" alt=""> -->
                                                 <i style="font-size:30px; color:#ecb43c;" class="fa-solid fa-star"></i>
                                                 <div class="textt d-flex flex-column gap-1">
                                                     <span> 4.5 </span>
@@ -244,7 +233,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </v-window-item>
+                            </v-window-item> -->
 
 
                         </v-window>
@@ -257,13 +246,24 @@
 </template>
 
 <script setup>
-
-let selectbox1 = ref(1);
-let selectbox2 = ref(1);
+import { useStore } from "~/store";
+const store = useStore;
+import axios from 'axios';
+const router = useRouter();
+const route = useRoute();
+const localePath = useLocalePath();
+const { locale } = useI18n();
+let id = route.query.id;
+let selectbox1 = ref(null);
+let selectbox2 = ref(null);
 let activeTab = ref(1);
+let brands = ref([]);
+let categories = ref([]);
 const tab = ref(null);
 const maxCharacters = 100;
 let commentPerPage = 3;
+let vendor = ref({});
+let vendors = ref([]);
 let AllItems = ref([
     { fullText: "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ", showFullText: false, truncatedText: "" },
     { fullText: "لم أكن أتوقع أن يكون لدي فرصة امتلاك مثل هذه القلادة الفاخرة. إنها رائعة بكل معنى الكلمة", showFullText: false, truncatedText: "" },
@@ -296,11 +296,53 @@ const showAllComments = () => {
         updateTruncatedText(item);
     });
 }
+const getVendors = async () => {
+  let result = await axios.get(`${getUrl()}/vendors/${id}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  vendor.value = result.data.data;
+};
+
+
+const getBrands = async () => {
+  let result = await axios.get(`${getUrl()}/brands`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  brands.value = result.data.data;
+};
+const getcategories = async () => {
+  let result = await axios.get(`${getUrl()}/categories`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  categories.value = result.data.data;
+};
+const getVendorproducts = async () => {
+  let result = await axios.get(`${getUrl()}/vendors-products/${id}`, {
+    params: {
+        category_id: selectbox1.value,
+        brand_id: selectbox2.value,
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  vendors.value = result.data.data;
+};
 
 onMounted(() => {
     itemsArray.value.forEach((item) => {
         updateTruncatedText(item);
     });
+    getVendors();
+    getBrands();
+    getcategories();
+    getVendorproducts();
 });
 
 </script>

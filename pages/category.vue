@@ -3,9 +3,9 @@
         <div class="container gold-page">
             <div class="cover-image cate">
                 <div class="text d-flex flex-column align-items-center justify-content-center">
-                    <img src="~/assets/images/section1.png" alt="">
-                    <h4> قسم الماس</h4>
-                    <span>200 منتج</span>
+                    <img :src="category_image" alt="">
+                    <h4> قسم {{ category_name }}</h4>
+                    <span>{{ products_count }} منتج</span>
                 </div>
             </div>
 
@@ -20,10 +20,8 @@
                         <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition">
                             <div id="select-product"
                                 class="d-flex  flex-column align-items-center text-center gap-3 justify-content-center">
-                                <span @click="selectbox1 = 1" :class="{ 'active': selectbox1 == 1 }"> الدهب</span>
-                                <span @click="selectbox1 = 2" :class="{ 'active': selectbox1 == 2 }"> الماس </span>
-                                <span @click="selectbox1 = 3" :class="{ 'active': selectbox1 == 3 }"> الفضة </span>
-                                <span @click="selectbox1 = 4" :class="{ 'active': selectbox1 == 4 }"> الفضة </span>
+                                <span v-for="item , index in subcategoriesArr" @click="selectbox1 = item.id , getProducts()" :class="{ 'active': selectbox1 == item.id }">{{ item.name }}</span>
+                             
                             </div>  
                         </v-overlay>
                     </div>
@@ -36,17 +34,16 @@
                         <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition">
                             <div id="select-product"
                                 class="d-flex  flex-column align-items-center text-center gap-3 justify-content-center">
-                                <span @click="selectbox2 = 1" :class="{ 'active': selectbox2 == 1 }"> الدهب</span>
-                                <span @click="selectbox2 = 2" :class="{ 'active': selectbox2 == 2 }"> الماس </span>
-                                <span @click="selectbox2 = 3" :class="{ 'active': selectbox2 == 3 }"> الفضة </span>
+                                <span v-for="item , index in brandsArr" @click="selectbox2 = item.id , getProducts()" :class="{ 'active': selectbox2 == item.id }"> {{ item.name }}</span>
+                               
                             </div>
                         </v-overlay>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div v-for="i in 8" class="col-12 col-xl-3 col-lg-3 col-md-6 ">
-                        <product-card style="margin:30px 0px;" />
+                    <div v-for="item in products" class="col-12 col-xl-3 col-lg-3 col-md-6 ">
+                        <product-card :product="item" style="margin:30px 0px;" />
                     </div>
 
                 </div>
@@ -56,8 +53,58 @@
 </template>
 
 <script setup>
-let selectbox1 = ref(1);
-let selectbox2 = ref(1);
+import axios from 'axios';
+let subid = route.query.subid;
+let selectbox1 = ref(subid ? subid : null);
+let selectbox2 = ref(null);
+const router = useRouter();
+const route = useRoute();
+let id = route.query.id;
+
+const localePath = useLocalePath();
+const { locale, setLocale } = useI18n();
+let subcategoriesArr = ref([]);
+let brandsArr = ref([]);
+let products = ref([]);
+let category_name = ref(null);
+let category_image = ref(null);
+let products_count = ref(null);
+const getSubcategories = async () => {
+  let result = await axios.get(`${getUrl()}/subcategories`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  subcategoriesArr.value = result.data.data;
+};
+const getBrands = async () => {
+  let result = await axios.get(`${getUrl()}/brands`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  brandsArr.value = result.data.data;
+};
+const getProducts = async () => {
+  let result = await axios.get(`${getUrl()}/categories-products/${id}`, {
+    params: {
+        subcategory_id: selectbox1.value ? selectbox1.value : null,
+        brand_id: selectbox2.value ? selectbox2.value : null
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  category_name.value = result.data.data.category_name;
+  category_image.value = result.data.data.category_image;
+  products_count.value = result.data.data.products_count;
+  products.value = result.data.data.products;
+};
+onMounted(() => {
+    getSubcategories();
+    getBrands();
+    getProducts();
+})
 </script>
 
 <style lang="scss" scoped></style>

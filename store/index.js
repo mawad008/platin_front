@@ -9,6 +9,7 @@ export const useStore = createStore({
     totalNum: 0,
     checkForm: 1,
     finalStep:1,
+    lang: 'ar',
     authenticated: false,
     final: false,
     step: 1 ,
@@ -49,19 +50,20 @@ export const useStore = createStore({
             {
               id: mainItem.id,
               quantity: qw ? qw : 1,
-              description: mainItem.description,
+              name: mainItem.name,
               price: mainItem.price,
               images: mainItem.images,
             },
           ],
-          vendorName: mainItem.vendorName,
+          fast_shipping_cities: mainItem.fast_shipping_cities,
+          vendor_name: mainItem.vendor_name,
         });
         const uniqueItems = state.basket.reduce((acc, currentItem) => {
-          const { id, products, vendor_id, vendorName } = currentItem;
+          const { id, products, vendor_id, vendor_name , fast_shipping_cities} = currentItem;
 
           // If the vendorId is not in the object, add it
           if (!acc[vendor_id]) {
-            acc[vendor_id] = { id, products, vendor_id, vendorName };
+            acc[vendor_id] = { id, products, vendor_id, vendor_name  , fast_shipping_cities};
           } else {
             // If the vendorId is already in the object, push the products array
             acc[vendor_id].products.push(...products);
@@ -149,6 +151,7 @@ export const useStore = createStore({
       state.basketCheck = [];
       localStorage.clear("basket");
       localStorage.clear("num");
+      localStorage.clear("total");
     },
     deleteCheckOut(state, payload) {
       const { vendor_id, itemid, arr } = payload;
@@ -208,7 +211,7 @@ export const useStore = createStore({
 function getTotalBasketNum(state) {
   // const productsPerVendor = state.basket.map((vendor) => {
   //   const numProducts = vendor.products.length;
-  //   return { vendorName: vendor.vendorName, numProducts: numProducts };
+  //   return { vendor_name: vendor.vendor_name, numProducts: numProducts };
   // });
   // let num = productsPerVendor
   //   .map((e) => e.numProducts)

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="product-card">
+    <div v-if="product" class="product-card">
       <div class="head w-100 d-flex align-items-center justify-content-between">
         <div class="octagon" :class="{ active: favIcon }">
           <octagon />
@@ -12,20 +12,39 @@
         </div>
         <span> الاكثر مبيعا </span>
       </div>
-      <div class="image">
-        <!-- <img src="~/assets/images/product.png" alt=""> -->
-      </div>
+      <Swiper 
+      
+      :spaceBetween="30"
+    :centeredSlides="true"
+    :effect="'fade'"
+
+    :autoplay="{
+      delay: 2500,
+      disableOnInteraction: false,
+    }"
+    :modules="[SwiperAutoplay , SwiperEffectFade]"
+      
+      class="image">
+      
+
+      
+      <swiper-slide v-for="img in product.images">
+        <img :src="img.full_image_path" alt="">
+      </swiper-slide>
+
+   
+      </Swiper>
       <div class="rate w-100 d-flex align-items-center justify-content-between">
-        <span class="type"> الذهب </span>
+        <span class="type"> {{ product.category }} </span>
         <div class="star d-flex align-items-center gap-2">
           <i class="fa-solid fa-star"></i>
-          <span>3.4</span>
+          <span>{{ product.rate }}</span>
         </div>
       </div>
-      <h3>{{ product ? product.description : '' }}</h3>
+      <h3>{{ product.name }}</h3>
       <div class="price w-100 d-flex align-items-center justify-content-between">
-        <span class="price-text">2500 ر.س</span>
-        <span> ق24 / 2.5ج </span>
+        <span class="price-text">{{ product.price }} ر.س</span>
+        <span> ق{{ product.caliber }} / ج {{ product.weight }}</span>
       </div>
 
       <div class="overlay">
@@ -70,7 +89,7 @@
               </svg>
             </div>
 
-            <div class="octagon d-flex flex-column gap-3">
+            <div @click="addToBasket(product)" class="octagon d-flex flex-column gap-3">
               <octagon />
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -79,8 +98,8 @@
               </svg>
             </div>
 
-            <nuxt-link to="/product">
-              <div class="octagon d-flex flex-column gap-3">
+           
+              <div @click="goToProductPage(product.id , product.name)" class="octagon d-flex flex-column gap-3">
                 <octagon />
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                   <path
@@ -92,7 +111,7 @@
                 </svg>
               </div>
 
-            </nuxt-link>
+          
           </div>
           <div class="text d-flex text-center w-100 align-items-center justify-content-between">
             <span> مقارنة </span>
@@ -107,14 +126,36 @@
 </template>
 
 <script>
+import { useStore } from "~/store";
 export default {
   props: ["favIcon", "product"],
   setup(props) {
+const store = useStore;
+    const router = useRouter();
+    const localePath = useLocalePath();
+    const { locale } = useI18n();
     let checkShare = ref(false);
+    const goToProductPage = (id, name) => {
+      const queryParams = {
+        id: id,
+        name: name,
+      };
+      const url = locale.value + "/product";
+
+      router.push({ path: url, query: queryParams });
+    };
+
+    const addToBasket = (itemm) => {
+  store.commit("add", { mainItem: itemm });
+};
+
     onMounted(() => {
     });
     return {
       checkShare,
+      addToBasket,
+      goToProductPage
+
     };
   },
 };
