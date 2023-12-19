@@ -43,9 +43,9 @@ export default function () {
       "$1"
     );
   
-    if (token) {
-      store.state.authenticated = true; // Update the state to authenticated
-    }
+    // if (token) {
+    //   store.state.authenticated = true; // Update the state to authenticated
+    // }
   
     // If token exists and the route is /login, redirect to the homepage
     if (token && route.name === "auth") {

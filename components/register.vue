@@ -34,19 +34,25 @@
                         </label>
                         <input type="text" v-model="form.first_name" placeholder="مثال : محمد" />
                         <span class="error-msg" v-if="v$.first_name.$error">{{ v$.first_name.$errors[0].$message }}</span>
+                        <span class="error-msg" v-if="errors.first_name">{{ errors.first_name[0] }}</span>
+
+
 
                     </div>
                     <div class="main-input">
                         <label for=""> الاسم الاخير <span>*</span> </label>
                         <input type="text" v-model="form.last_name" placeholder="مثال : محمد" />
                         <span class="error-msg" v-if="v$.last_name.$error">{{ v$.last_name.$errors[0].$message }}</span>
+                        <span class="error-msg" v-if="errors.last_name">{{ errors.last_name[0] }}</span>
+
 
                     </div>
                 </div>
                 <div class="main-input">
                     <label for=""> البريد الاكتروني <span>*</span> </label>
-                    <input type="text" v-model="form.email" placeholder="مثال : Mostafademo@icloud.com" />
+                    <input type="email" v-model="form.email" placeholder="مثال : Mostafademo@icloud.com" />
                     <span class="error-msg" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
+                    <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>
 
                 </div>
 
@@ -54,18 +60,33 @@
                     <label for=""> رقم الهاتف <span>*</span> </label>
                     <input type="tel" v-model="form.phone" placeholder="مثال : +0215984494" />
                     <span class="error-msg" v-if="v$.phone.$error">{{ v$.phone.$errors[0].$message }}</span>
+                    <span class="error-msg" v-if="errors.phone">{{ errors.phone[0] }}</span>
+
+
+                </div>
+                <div class="main-input">
+                    <label for=""> صورة<span>*</span> </label>
+                    <input type="file" @change="handleImageChange" placeholder="مثال : +0215984494" />
+                    <span class="error-msg" v-if="v$.image.$error">{{ v$.image.$errors[0].$message }}</span>
+                    <span class="error-msg" v-if="errors.image">{{ errors.image[0] }}</span>
+
 
                 </div>
                 <div class="main-input">
                     <label for=""> كلمة المرور <span>*</span> </label>
                     <input type="password" v-model="form.password" placeholder=" ********** " />
                     <span class="error-msg" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
+                    <span class="error-msg" v-if="errors.password">{{ errors.password[0] }}</span>
+
 
                 </div>
                 <div class="main-input">
                     <label for=""> تأكيد كلمة المرور <span>*</span> </label>
                     <input type="password" v-model="form.password_confirmation" placeholder=" ********** " />
-                    <span class="error-msg" v-if="v$.password_confirmation.$error">{{ v$.password_confirmation.$errors[0].$message }}</span>
+                    <span class="error-msg" v-if="v$.password_confirmation.$error">{{
+                        v$.password_confirmation.$errors[0].$message }}</span>
+                    <span class="error-msg" v-if="errors.password_confirmation">{{ errors.password_confirmation[0] }}</span>
+
 
                 </div>
             </div>
@@ -79,7 +100,7 @@
                 <span @click="handleButtonClick(2)" class="log"> تسجيل دخول</span>
             </div>
         </div>
-
+        {{ errors }}
         <div v-if="signNav == 2" class="form">
             <div @click="signNav = 1" class="back">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -90,15 +111,15 @@
             </div>
             <h3 class="text-center">رمز التفعيل</h3>
             <p class="text text-center">
-                ارسلنا كود تحقق عبر رسالة نصية إلى 019555594451 يرجى إدخال الكود
+                ارسلنا كود تحقق عبر رسالة نصية إلى {{ phoneNum ? phoneNum : '' }} يرجى إدخال الكود
                 في الخانة المخصصة أدناه
             </p>
 
-            <v-otp-input v-model="otp" :length="5" placeholder="-"
+            <v-otp-input v-model="otp" :length="6" placeholder="-"
                 style="direction: ltr !important; margin-bottom: 14px;"></v-otp-input>
             {{ otp }}
             <span class="resend text-center"> اعد ارسال الكود </span>
-            <button class="otp">متابعة</button>
+            <button @click="otpFunc()" class="otp">متابعة</button>
         </div>
 
     </div>
@@ -109,10 +130,14 @@ import useValidate from '@vuelidate/core'
 import { required, email, sameAs, minLength, helpers } from '@vuelidate/validators';
 import { useStore } from "~/store";
 import axios from 'axios';
+const localePath = useLocalePath();
+const { locale } = useI18n();
 let store = useStore;
 const props = defineProps([""]);
 let otp = ref('');
 let signNav = ref(1);
+
+let phoneNum = ref(null);
 
 const handleButtonClick = (value) => {
     store.commit("changeFormCheck", value);
@@ -125,24 +150,35 @@ let form = ref({
     email: '',
     password: '',
     password_confirmation: '',
+    image: '',
 });
+
+const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        form.value.image = file;
+
+    }
+};
 
 const rules = computed(() => {
     return {
         first_name: { required },
         last_name: { required },
         phone: { required },
-        email:{
+        email: {
             required: helpers.withMessage('The email field is required', required),
             email: helpers.withMessage('Invalid email format', email),
-        },  
+        },
         password: { required, minLength: minLength(6) },
         password_confirmation: { required, sameAs: sameAs(form.value.password) },
+        image: { required }
     };
 });
 
+let errors = ref([]);
+let emailError = ref(null)
 const v$ = useValidate(rules, form);
-let url = 'http://127.0.0.1:8000/api'
 const registerFunc = async () => {
     let check = await v$.value.$validate();
     let formBody = new FormData();
@@ -152,17 +188,52 @@ const registerFunc = async () => {
     formBody.append("email", form.value.email);
     formBody.append("password", form.value.password);
     formBody.append("password_confirmation", form.value.password_confirmation);
+    formBody.append("image", form.value.image);
     if (check) {
         console.log('login');
-         let result = await axios.post(`${getUrl()}/register` , formBody,{
-          headers:{
-    
-          }
-         });
-        console.log(result.data.data);
+        try {
+            let result = await axios.post(`${getUrl()}/register`, formBody, {
+                headers: {
+                    "Content-Language": `${locale.value}`,
+
+                }
+            });
+            if (result.status >= 200) {
+                console.log(result.data.data);
+                phoneNum.value = result.data.data.customer.phone;
+                signNav.value = 2;
+            }
+
+        } catch (errorss) {
+            console.log(errorss);
+            if (errorss.response) {
+
+                errors.value = errorss.response.data.errors;
+            }
+
+        }
     } else {
         console.log('not login');
     }
+}
+
+const otpFunc = async () => {
+    let result = await axios.post(`${getUrl()}/login-otp/${phoneNum.value}?otp=${parseInt(otp.value)}`, {
+        //   params: {
+        //     otp: parseInt(otp.value),
+        // },
+        headers: {
+            "Content-Language": `${locale.value}`,
+        },
+
+    }
+    );
+    if (result.status >= 200) {
+        if (process.client) {
+            store.commit("changeFormCheck", 2);
+        }
+    }
+    console.log(result.data.data);
 }
 
 onMounted(() => {

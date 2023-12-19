@@ -33,9 +33,10 @@
                         <div class="text d-flex flex-column gap-3">
                           <h6 class="mt-3">{{ item.name }}</h6>
                           <div class="links d-flex align-items-center gap-3 flex-column">
-                            <span v-for="i in item.subcategories" @click="goTocategorysub(item.id , item.name , i.id)"> {{ i.name }} </span>
-                            </div>
-                            <span class="all" @click="goTocategory(item.id , item.name)"> الكل </span>
+                            <span v-for="i in item.subcategories" @click="goTocategorysub(item.id, item.name, i.id)"> {{
+                              i.name }} </span>
+                          </div>
+                          <span class="all" @click="goTocategory(item.id, item.name)"> الكل </span>
                         </div>
                       </div>
                     </div>
@@ -63,7 +64,7 @@
             </div>
 
             <div v-if="activeNav" class="items d-flex align-items-center gap-4">
-              <nuxt-link :to="localePath('/')" >
+              <nuxt-link :to="localePath('/')">
                 <span>الرئيسية</span>
               </nuxt-link>
 
@@ -91,9 +92,10 @@
                           <div class="text d-flex flex-column gap-3">
                             <h6 class="mt-3">الذهب</h6>
                             <div class="links d-flex align-items-center gap-3 flex-column">
-                            <span v-for="i in item.subcategories" @click="goTocategorysub(item.id , iten.name , i.id)"> {{ i.name }} </span>
+                              <span v-for="i in item.subcategories" @click="goTocategorysub(item.id, iten.name, i.id)">
+                                {{ i.name }} </span>
                             </div>
-                            <span class="all" @click="goTocategory(item.id , item.name)"> الكل </span>
+                            <span class="all" @click="goTocategory(item.id, item.name)"> الكل </span>
                           </div>
                         </div>
                       </div>
@@ -101,10 +103,10 @@
                   </div>
                 </div>
               </v-menu>
-              <nuxt-link :to="localePath('gold')" >
+              <nuxt-link :to="localePath('gold')">
                 <span>السبائك</span>
               </nuxt-link>
-              <nuxt-link :to="localePath('/vendors')" >
+              <nuxt-link :to="localePath('/vendors')">
                 <span>التجار</span>
               </nuxt-link>
               <span>الدعم الفني</span>
@@ -169,7 +171,7 @@
                 </v-badge>
               </nuxt-link>
 
-              <nuxt-link class="icon-auth" to="/auth">
+              <nuxt-link v-if="!store.state.authenticated" class="icon-auth" to="/auth">
                 <div class="icon border">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -180,14 +182,14 @@
 
               </nuxt-link>
             </div>
-            <div v-if="false" class="profile">
+            <div v-if="store.state.authenticated" class="profile">
               <v-menu class="menu">
                 <template v-slot:activator="{ props }">
                   <button v-bind="props" class="d-flex align-items-center gap-2">
                     <div class="iconn">
                       <i class="fa-solid fa-caret-down"></i>
                     </div>
-                    <img src="~/assets/images/kk.jpg" alt="" />
+                    <img v-if="user" :src="user.image" alt="" />
                   </button>
                 </template>
                 <div id="list-profile" class="list d-flex flex-column p-4 gap-4 text-center">
@@ -195,7 +197,7 @@
 
                   <span @click="goSettings('notifications')"> الاشعارات </span>
                   <span @click="goSettings('orders')"> طلباتي </span>
-                  <div class="d-flex align-items-center gap-2">
+                  <div @click="logOut()" class="d-flex align-items-center gap-2">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span> تسجيل الخروج </span>
                   </div>
@@ -351,6 +353,7 @@
 
 <script setup>
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useStore } from "~/store";
 const store = useStore;
 const router = useRouter();
@@ -360,6 +363,10 @@ let activeItemsContainer = ref(false);
 let theNum = computed(() => {
   return store.state.basketNum;
 });
+
+
+
+let user = ref(store.state.user);
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 const changeLang = async () => {
@@ -393,24 +400,24 @@ const changeLang = async () => {
 };
 
 const goTocategory = (id, name) => {
-      const queryParams = {
-        id: id,
-        name: name,
-      };
-      const url = locale.value + "/category";
+  const queryParams = {
+    id: id,
+    name: name,
+  };
+  const url = locale.value + "/category";
 
-      router.push({ path: url, query: queryParams });
-    };
-const goTocategorysub = (id, name , subid) => {
-      const queryParams = {
-        id: id,
-        name: name,
-        subid: subid
-      };
-      const url = locale.value + "/category";
+  router.push({ path: url, query: queryParams });
+};
+const goTocategorysub = (id, name, subid) => {
+  const queryParams = {
+    id: id,
+    name: name,
+    subid: subid
+  };
+  const url = locale.value + "/category";
 
-      router.push({ path: url, query: queryParams });
-    };
+  router.push({ path: url, query: queryParams });
+};
 
 
 const goSettings = (name) => {
@@ -421,6 +428,20 @@ const goSettings = (name) => {
 
   router.push({ path: "settings", query: queryParams });
 };
+
+
+const logOut = () => {
+  if (process.client) {
+    store.state.user = {};
+    store.state.authenticated = false;
+
+    Cookies.remove('user');
+    Cookies.remove('token');
+    Cookies.remove('auth');
+
+    router.push('/');
+  }
+}
 const getCategories = async () => {
   let result = await axios.get(`${getUrl()}/categories`, {
     headers: {
@@ -431,6 +452,7 @@ const getCategories = async () => {
   console.log(categoriesArr.value);
 };
 onMounted(() => {
+  store.dispatch('loadBasketFromLocalStorage');
   window.addEventListener("scroll", function () {
     if (this.window.scrollY >= 300) {
       activeNav.value = true;
@@ -441,6 +463,9 @@ onMounted(() => {
     }
   });
   getCategories();
+
+  user.value = store.state.user;
+  console.log(user.value);
 });
 onBeforeMount(() => {
   store.dispatch('loadBasketFromLocalStorage');

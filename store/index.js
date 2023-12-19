@@ -1,26 +1,71 @@
 import { createStore } from "vuex";
+import Cookies from "js-cookie";
 import axios from "axios";
 // process.client ? JSON.parse(sessionStorage.getItem("basket")) :
 export const useStore = createStore({
   state: {
-    basket:  [],
+    basket: [],
     basketCheck: [],
+    favArr: [],
     basketNum: 0,
     totalNum: 0,
     checkForm: 1,
-    finalStep:1,
-    lang: 'ar',
+    finalStep: 1,
+    lang: "ar",
     authenticated: false,
     final: false,
-    step: 1 ,
+    isInFav: [],
+    step: 1,
     user: {},
   },
   mutations: {
     changeFormCheck(state, value) {
       state.checkForm = value;
     },
+    addFav(state, payload) {
+      const { item, index } = payload;
+      const existingItem = state.favArr.find((itemm) => {
+        return itemm.id == item.id;
+      });
+      if (existingItem) {
+        console.log(existingItem);
+      } else {
+        state.favArr.push(item);
+        localStorage.setItem("fav", JSON.stringify(state.favArr));
+        state.isInFav.push(true);
+        //  state.isInFav[index] = true;
+        localStorage.setItem("favIcon", JSON.stringify(state.isInFav));
+      }
+    },
+    deleteFav(state, index) {
+      state.isInFav.splice(index, 1);
+      localStorage.setItem("favIcon", JSON.stringify(state.isInFav));
+      state.favArr.splice(index, 1);
+      localStorage.setItem("fav", JSON.stringify(state.favArr));
+      // state.isInFav[index] = false;
+      if (state.favArr.length < 1) {
+        localStorage.clear("fav");
+        state.isInFav = [];
+        localStorage.clear("favIcon");
+      }
+    },
+    favIcon(state, index) {
+      // state.isInFav[index] = true;
+      // localStorage.setItem("favIcon", JSON.stringify(state.isInFav));
+      console.log(index);
+    },
     setBasket(state, basket) {
       state.basket = basket;
+    },
+    setuser(state, user) {
+      state.user = user;
+    },
+
+    setfav(state, payload) {
+      state.favArr = payload;
+    },
+    setfavIcon(state, payload) {
+      state.isInFav = payload;
     },
     setAuthenticated(state, value) {
       state.authenticated = value;
@@ -59,11 +104,18 @@ export const useStore = createStore({
           vendor_name: mainItem.vendor_name,
         });
         const uniqueItems = state.basket.reduce((acc, currentItem) => {
-          const { id, products, vendor_id, vendor_name , fast_shipping_cities} = currentItem;
+          const { id, products, vendor_id, vendor_name, fast_shipping_cities } =
+            currentItem;
 
           // If the vendorId is not in the object, add it
           if (!acc[vendor_id]) {
-            acc[vendor_id] = { id, products, vendor_id, vendor_name  , fast_shipping_cities};
+            acc[vendor_id] = {
+              id,
+              products,
+              vendor_id,
+              vendor_name,
+              fast_shipping_cities,
+            };
           } else {
             // If the vendorId is already in the object, push the products array
             acc[vendor_id].products.push(...products);
@@ -168,26 +220,38 @@ export const useStore = createStore({
         if (state.basket[vendorIndex].products.length == 0) {
           state.basket.splice(vendorIndex, 1);
         }
-          localStorage.setItem("basket", JSON.stringify(state.basket));
+        localStorage.setItem("basket", JSON.stringify(state.basket));
         console.log(
           `Item with vendorId ${vendor_id} and id ${itemid} deleted successfully.`
         );
       }
       getTotalBasketNum(state);
       getTotalPrice(state);
-      
     },
   },
   actions: {
     loadBasketFromLocalStorage({ commit, state }) {
       if (process.client) {
         const storedBasket = JSON.parse(localStorage.getItem("basket")) || [];
+        const storedfav = JSON.parse(localStorage.getItem("fav")) || [];
+        const storedfavicon =
+          JSON.parse(localStorage.getItem("favIcon")) ||
+          Array(state.favArr.length).fill(false);
+        const userCookie = Cookies.get("user");
+        const authCookie = Cookies.get("auth");
+
+        const storedUser = userCookie ? JSON.parse(userCookie) : {};
+        const storedAuth = authCookie ? JSON.parse(authCookie) : false;
         if (storedBasket.length < 1) {
           localStorage.clear("basket");
           localStorage.clear("total");
           localStorage.clear("num");
         }
         commit("setBasket", storedBasket);
+        commit("setfav", storedfav);
+        commit("setfavIcon", storedfavicon);
+        commit("setuser", storedUser);
+        commit("setAuthenticated", storedAuth);
         getTotalBasketNum(state);
         getTotalPrice(state);
       }
@@ -217,20 +281,20 @@ function getTotalBasketNum(state) {
   //   .map((e) => e.numProducts)
   //   .reduce((x, y) => x + y, 0);
   if (process.client) {
-  let totall = 0;
+    let totall = 0;
 
-  state.basket.forEach((ele) => {
-    ele.products.forEach((e) => {
-      totall += e.quantity;
+    state.basket.forEach((ele) => {
+      ele.products.forEach((e) => {
+        totall += e.quantity;
+      });
     });
-  });
 
-  state.basketNum = totall;
+    state.basketNum = totall;
 
-  if (totall > 0) {
-    localStorage.setItem("num", totall);
-    totall = JSON.parse(localStorage.getItem("num"));
-  }
+    if (totall > 0) {
+      localStorage.setItem("num", totall);
+      totall = JSON.parse(localStorage.getItem("num"));
+    }
   }
 }
 
@@ -242,10 +306,12 @@ function getTotalPrice(state) {
     });
   });
   state.totalNum = totall;
-    if (totall > 0) {
-      localStorage.setItem("total", totall);
-      totall = JSON.parse(localStorage.getItem("total"));
-    }
+  if (totall > 0) {
+    localStorage.setItem("total", totall);
+    totall = JSON.parse(localStorage.getItem("total"));
+  }
 }
 
-
+const updateLocalStorage = (state) => {
+  localStorage.setItem("fav", JSON.stringify(state.favArr));
+};

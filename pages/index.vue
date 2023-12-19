@@ -205,7 +205,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col" v-for="item in products">
+        <div class="col" v-for="item , index in products" :key="item.id">
           <div class="product-card">
             <div
               class="head w-100 d-flex align-items-center justify-content-between"
@@ -253,7 +253,11 @@
                 <div
                   class="w-100 d-flex align-items-center justify-content-between"
                 >
-                  <div class="octagon active">
+                  <div v-if="!store.state.isInFav[index]" @click="addTofav(item , index) , favIconFunc(index)" class="octagon " :class="{'active': store.state.isInFav[index] == true }">
+                    <octagon />
+                    <i class="fa-solid fa-heart"></i>
+                  </div>
+                  <div v-if="store.state.isInFav[index]" @click="deleteTofav(index)" class="octagon " :class="{'active': store.state.isInFav[index] }">
                     <octagon />
                     <i class="fa-solid fa-heart"></i>
                   </div>
@@ -910,7 +914,19 @@ let basket = ref([]);
 const addToBasket = (itemm) => {
   store.commit("add", { mainItem: itemm });
 };
+const addTofav = (item , index) => {
+  store.commit("addFav", { item: item , index:index } );
+};
+const deleteTofav = ( index) => {
+  store.commit("deleteFav", index );
+};
+const favIconFunc = ( index) => {
+  store.commit("favIcon", index );
+};
 
+const isFav = computed(() => {
+  return store.state.isInFav;
+})
 const getCategories = async () => {
   let result = await axios.get(`${getUrl()}/categories`, {
     headers: {
@@ -961,9 +977,12 @@ const getTags = async () => {
   });
   tags.value = result.data.data;
   console.log(tags.value);
-  tab.value = tags.value[0].id;
-  if (tab.value) {
-    getProducts();
+  if(tags.value.length >= 1){
+    tab.value = tags.value[0].id;
+    if (tab.value) {
+      getProducts();
+    }
+
   }
   console.log(tab.value);
 };
@@ -1000,6 +1019,7 @@ onMounted(async () => {
   getAds();
   getProductsSections();
   //getProducts();
+  console.log(store.state.isInFav);
 });
 </script>
 

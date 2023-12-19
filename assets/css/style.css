@@ -561,12 +561,6 @@ html[dir=rtl] body {
   font-size: 14px;
 }
 
-.v-overlay__content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .card-popup-container {
   width: 427px;
   height: 528px;

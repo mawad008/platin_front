@@ -38,20 +38,27 @@
                   <div class="inputs mb-3">
             
 
-                    <div class="main-input">
-                      <label for=""> رقم الهاتف <span>*</span> </label>
-                      <input type="text" placeholder="مثال : +0215984494" />
-                    </div>
+                     <div class="main-input">
+                      <label for=""> البريد الاكتروني <span>*</span> </label>
+                      <input type="email" v-model="form.email" placeholder="مثال : Mostafademo@icloud.com" />
+                      <span class="error-msg" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
+                      <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>
+
+                  </div>
                     <div class="main-input">
                       <label for=""> كلمة المرور <span>*</span> </label>
-                      <input type="password" placeholder=" ********** " />
-                    </div>
+                      <input type="password" v-model="form.password" placeholder=" ********** " />
+                      <span class="error-msg" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
+                      <span class="error-msg" v-if="errors.password">{{ errors.password[0] }}</span>
+
+
+                  </div>
               
                   </div>
                   <span class="resend" @click="loginNav = 2"> هل نسيت كلمة السر؟ </span>
 
              
-                  <button class="mt-4"> تسجيل دخول </button>
+                  <button @click="loginFunc()" class="mt-4"> تسجيل دخول </button>
                   <div class="type">
                     <span class="ex"> لا يوجد لديك حساب ؟ </span>
                     <span class="log" @click="handleButtonClick(1)">  انشاء حساب </span>
@@ -123,17 +130,94 @@
 </template>
 
 <script setup>
+import Cookies from 'js-cookie';
 import { useStore } from "~/store";
 import axios from 'axios';
+import useValidate from '@vuelidate/core'
+import { required, email, sameAs, minLength, helpers } from '@vuelidate/validators';
+const localePath = useLocalePath();
+const { locale } = useI18n();
 let store = useStore;
 let loginNav = ref(1);
 let otp = ref('');
+const router = useRouter();
 
 const handleButtonClick = (value) => {
     store.commit("changeFormCheck", value);
 
 };
 
+
+let form = ref({
+  email: '',
+  password: '',
+});
+
+
+const rules = computed(() => {
+  return {
+   
+    email: {
+      required: helpers.withMessage('The email field is required', required),
+      email: helpers.withMessage('Invalid email format', email),
+    },
+    password: { required, minLength: minLength(6) },
+  };
+});
+
+let errors = ref([]);
+const v$ = useValidate(rules, form);
+
+
+const loginFunc = async () => {
+  let check = await v$.value.$validate();
+  let formBody = new FormData();
+  formBody.append("email", form.value.email);
+  formBody.append("password", form.value.password);
+  if (check) {
+    console.log('login');
+    try {
+      let result = await axios.post(`${getUrl()}/login`, formBody, {
+        headers: {
+          "Content-Language": `${locale.value}`,
+
+        }
+      });
+      if (result.status >= 200) {
+        console.log(result.data.data);
+        if (process.client) {        
+          document.cookie = `token=${result.data.data.token}; path=/;`; // Set token in cookie
+          store.state.user = result.data.data.user;
+          store.state.authenticated = true;
+
+          const userObjectString = JSON.stringify(result.data.data.user);
+          Cookies.set('user', userObjectString);
+          Cookies.set('auth', true);
+
+        //  localStorage.setItem("user", JSON.stringify(result.data.data.user));
+          // localStorage.setItem("auth", true);
+          router.push('/');
+        }
+      }
+
+    } catch (errorss) {
+      console.log(errorss);
+      if (errorss.response) {
+        errors.value = errorss.response.data.errors;
+      }
+
+
+      // Optionally, set an expiration date for the cookie
+// Example: Expires in 7 days
+// const expirationDate = new Date();
+// expirationDate.setDate(expirationDate.getDate() + 7);
+// Cookies.set('user', userObjectString, { expires: expirationDate });
+
+    }
+  } else {
+    console.log('not login');
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -75,8 +75,8 @@
               <div class="personal">
                 <div class="details">
                   <div class="image">
-                    <div class="img">
-                      <img src="~/assets/images/AVATAR.svg" alt="" />
+                    <div v-if="userData.image" class="img">
+                      <img  :src="userData.image" alt="" />
                     </div>
                   </div>
                   <div class="edit d-flex justify-content-end">
@@ -99,21 +99,21 @@
                     <div class="inputs">
                       <div class="input">
                         <label for="">الاسم الاول</label>
-                        <input type="text" placeholder="محمد" />
+                        <input type="text" v-model="userData.first_name" placeholder="محمد" />
                       </div>
                       <div class="input">
                         <label for="">الاسم الاخير</label>
-                        <input type="text" placeholder="محمد" />
+                        <input type="text" v-model="userData.last_name" placeholder="محمد" />
                       </div>
                     </div>
                     <div class="inputs">
                       <div class="input">
                         <label for="">رقم الهاتف</label>
-                        <input type="text" placeholder="+201066333725" />
+                        <input type="tel" v-model="userData.phone" placeholder="+201066333725" />
                       </div>
                       <div class="input">
                         <label for="">البريد الالكتروني</label>
-                        <input type="email" placeholder="m.info@icloud.com" />
+                        <input type="email" v-model="userData.email" placeholder="m.info@icloud.com" />
                       </div>
                     </div>
                   </div>
@@ -166,7 +166,7 @@
                 <div class="details">
                   <div class="image active">
                     <div class="img">
-                      <img v-if="!selectedFile" src="~/assets/images/AVATAR.svg" alt="" />
+                      <img v-if="!selectedFile" :src="userData.image" alt="" />
                       <div v-if="selectedFile">
                         <img :src="selectedFileUrl" alt="Selected Image" />
                       </div>
@@ -198,21 +198,21 @@
                     <div class="inputs">
                       <div class="input">
                         <label for="">الاسم الاول</label>
-                        <input type="text" placeholder="محمد" />
+                        <input type="text" v-model="userData.first_name" placeholder="محمد" />
                       </div>
                       <div class="input">
                         <label for="">الاسم الاخير</label>
-                        <input type="text" placeholder="محمد" />
+                        <input type="text" v-model="userData.last_name" placeholder="محمد" />
                       </div>
                     </div>
                     <div class="inputs">
                       <div class="input">
                         <label for="">رقم الهاتف</label>
-                        <input type="text" placeholder="+201066333725" />
+                        <input type="tel" v-model="userData.phone" placeholder="+201066333725" />
                       </div>
                       <div class="input">
                         <label for="">البريد الالكتروني</label>
-                        <input type="email" placeholder="m.info@icloud.com" />
+                        <input type="email" v-model="userData.email" placeholder="m.info@icloud.com" />
                       </div>
                     </div>
                   </div>
@@ -543,9 +543,11 @@
 </template>
 
 <script setup>
-// definePageMeta({
-//   middleware: 'auth'
-// });
+definePageMeta({
+  middleware: 'auth'
+});
+import { useStore } from "~/store";
+
 import { Vue3Lottie } from "vue3-lottie";
 
 import cart from "~/assets/animations/empty.json";
@@ -557,6 +559,20 @@ const MainRoute = ref(useRoute());
 const route = useRoute();
 const router = useRouter();
 let navActive = ref(0);
+const localePath = useLocalePath();
+const { locale } = useI18n();
+let store = useStore;
+let user = ref(store.state.user);
+let userData = ref({
+  id: user.value.id,
+  image: user.value.image,
+  first_name: user.value.first_name,
+  last_name: user.value.last_name,
+  phone: user.value.phone,
+  email: user.value.email
+
+});
+
 if(MainRoute.value.query.name == 'profile'){
   navActive.value = 1;
 }
@@ -570,6 +586,8 @@ const handleFileChange = (event) => {
   const file = event.target.files[0];
   if (file) {
     selectedFile.value = file;
+    // userData.value.image = '';
+    userData.value.image =  URL.createObjectURL(file);
     selectedFileUrl.value = URL.createObjectURL(file);
   }
 };
@@ -655,6 +673,8 @@ const displayedOrders = computed(() => {
 onMounted(() => {
   console.log(showAllItems.value);
   console.log(MainRoute.value.query.name);
+  user.value = store.state.user;
+  console.log(user.value);
   
 });
 
