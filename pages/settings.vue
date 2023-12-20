@@ -9,21 +9,33 @@
       <div class="row">
         <div class="col-12 col-xl-4 col-lg-4">
           <div class="settings-links">
-            <div class="link" @click="navActive = 1" :class="{ active: navActive == 1 }">
+            <div
+              class="link"
+              @click="navActive = 1"
+              :class="{ active: navActive == 1 }"
+            >
               <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
                   <path
                     d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z"
-                    fill="#919EAB" />
+                    fill="#919EAB"
+                  />
                   <path
                     d="M17.08 14.1499C14.29 12.2899 9.73996 12.2899 6.92996 14.1499C5.65996 14.9999 4.95996 16.1499 4.95996 17.3799C4.95996 18.6099 5.65996 19.7499 6.91996 20.5899C8.31996 21.5299 10.16 21.9999 12 21.9999C13.84 21.9999 15.68 21.5299 17.08 20.5899C18.34 19.7399 19.04 18.5999 19.04 17.3599C19.03 16.1299 18.34 14.9899 17.08 14.1499Z"
-                    fill="#919EAB" />
+                    fill="#919EAB"
+                  />
                 </svg>
               </div>
               <span> الملف الشخصي </span>
             </div>
 
-            <div class="link" @click="navActive = 2" :class="{ active: navActive == 2 }">
+            <!-- <div class="link" @click="navActive = 2" :class="{ active: navActive == 2 }">
               <div class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path
@@ -66,7 +78,7 @@
                 </svg>
               </div>
               <span> طلباتي </span>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-12 col-xl-8 col-lg-8 main-container">
@@ -76,87 +88,175 @@
                 <div class="details">
                   <div class="image">
                     <div v-if="userData.image" class="img">
-                      <img  :src="userData.image" alt="" />
+                      <img :src="userData.image" alt="" />
                     </div>
+                    <!-- <div v-else class="img">
+                      <img src="~/assets/images/kk.jpg" alt="" />
+                    </div> -->
                   </div>
                   <div class="edit d-flex justify-content-end">
-                    <div @click="personalActive = 2" class="d-flex align-items-center gap-2">
+                    <div
+                      @click="personalActive = 2"
+                      class="d-flex align-items-center gap-2"
+                    >
                       <span>تعديل البيانات</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
                         <path
                           d="M14 14.667H2C1.72667 14.667 1.5 14.4403 1.5 14.167C1.5 13.8937 1.72667 13.667 2 13.667H14C14.2733 13.667 14.5 13.8937 14.5 14.167C14.5 14.4403 14.2733 14.667 14 14.667Z"
-                          fill="#DCBA95" />
+                          fill="#DCBA95"
+                        />
                         <path
                           d="M12.6799 2.32043C11.3866 1.0271 10.1199 0.993764 8.79322 2.32043L7.98655 3.1271C7.91989 3.19376 7.89322 3.30043 7.91989 3.39376C8.42655 5.16043 9.83989 6.57376 11.6066 7.08043C11.6332 7.0871 11.6599 7.09376 11.6866 7.09376C11.7599 7.09376 11.8266 7.0671 11.8799 7.01376L12.6799 6.2071C13.3399 5.55376 13.6599 4.92043 13.6599 4.28043C13.6666 3.62043 13.3466 2.98043 12.6799 2.32043Z"
-                          fill="#DCBA95" />
+                          fill="#DCBA95"
+                        />
                         <path
                           d="M10.4066 7.68654C10.2132 7.5932 10.0266 7.49987 9.84655 7.3932C9.69989 7.30654 9.55989 7.2132 9.41989 7.1132C9.30655 7.03987 9.17322 6.9332 9.04655 6.82654C9.03322 6.81987 8.98655 6.77987 8.93322 6.72654C8.71322 6.53987 8.46655 6.29987 8.24655 6.0332C8.22655 6.01987 8.19322 5.9732 8.14655 5.9132C8.07989 5.8332 7.96655 5.69987 7.86655 5.54654C7.78655 5.44654 7.69322 5.29987 7.60655 5.1532C7.49989 4.9732 7.40655 4.7932 7.31322 4.60654C7.19085 4.34431 6.84668 4.26641 6.64206 4.47103L2.89322 8.21987C2.80655 8.30654 2.72655 8.4732 2.70655 8.58654L2.34655 11.1399C2.27989 11.5932 2.40655 12.0199 2.68655 12.3065C2.92655 12.5399 3.25989 12.6665 3.61989 12.6665C3.69989 12.6665 3.77989 12.6599 3.85989 12.6465L6.41989 12.2865C6.53989 12.2665 6.70655 12.1865 6.78655 12.0999L10.5416 8.34484C10.7421 8.14432 10.6668 7.79929 10.4066 7.68654Z"
-                          fill="#DCBA95" />
+                          fill="#DCBA95"
+                        />
                       </svg>
                     </div>
                   </div>
                   <div class="form">
-                    <div class="inputs">
-                      <div class="input">
+                    <div class="inputs w-100">
+                      <div class="main-input">
                         <label for="">الاسم الاول</label>
-                        <input type="text" v-model="userData.first_name" placeholder="محمد" />
+                        <input
+                          type="text"
+                          readonly
+                          v-model="userData.first_name"
+                          placeholder="محمد"
+                        />
                       </div>
-                      <div class="input">
+                      <div class="main-input">
                         <label for="">الاسم الاخير</label>
-                        <input type="text" v-model="userData.last_name" placeholder="محمد" />
+                        <input
+                          type="text"
+                          readonly
+                          v-model="userData.last_name"
+                          placeholder="محمد"
+                        />
                       </div>
                     </div>
                     <div class="inputs">
-                      <div class="input">
+                      <div class="main-input">
                         <label for="">رقم الهاتف</label>
-                        <input type="tel" v-model="userData.phone" placeholder="+201066333725" />
+                        <input
+                          type="tel"
+                          readonly
+                          v-model="userData.phone"
+                          placeholder="+201066333725"
+                        />
                       </div>
-                      <div class="input">
+                      <div class="main-input">
                         <label for="">البريد الالكتروني</label>
-                        <input type="email" v-model="userData.email" placeholder="m.info@icloud.com" />
+                        <input
+                          type="email"
+                          readonly
+                          v-model="userData.email"
+                          placeholder="m.info@icloud.com"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="pass">
-                <div @click="passActive = !passActive" :class="{ active: passActive }"
-                  class="head d-flex align-items-center justify-content-between">
+                <div
+                  @click="passActive = !passActive"
+                  :class="{ active: passActive }"
+                  class="head d-flex align-items-center justify-content-between"
+                >
                   <div class="d-flex align-items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
                       <path
                         d="M20.9101 11.1203V6.73031C20.9101 5.91031 20.2901 4.98031 19.5201 4.67031L13.9501 2.39031C12.7001 1.88031 11.2901 1.88031 10.0401 2.39031L4.47009 4.67031C3.71009 4.98031 3.09009 5.91031 3.09009 6.73031V11.1203C3.09009 16.0103 6.64009 20.5903 11.4901 21.9303C11.8201 22.0203 12.1801 22.0203 12.5101 21.9303C17.3601 20.5903 20.9101 16.0103 20.9101 11.1203ZM12.7501 12.8703V15.5003C12.7501 15.9103 12.4101 16.2503 12.0001 16.2503C11.5901 16.2503 11.2501 15.9103 11.2501 15.5003V12.8703C10.2401 12.5503 9.50009 11.6103 9.50009 10.5003C9.50009 9.12031 10.6201 8.00031 12.0001 8.00031C13.3801 8.00031 14.5001 9.12031 14.5001 10.5003C14.5001 11.6203 13.7601 12.5503 12.7501 12.8703Z"
-                        fill="#DCBA95" />
+                        fill="#DCBA95"
+                      />
                     </svg>
                     <span>تعديل كلمة المرور</span>
                   </div>
-                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11"
-                    fill="none">
+                  <svg
+                    class="icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="6"
+                    height="11"
+                    viewBox="0 0 6 11"
+                    fill="none"
+                  >
                     <path
                       d="M5.21436 9.49337L5.21436 5.34004L5.21436 1.60004C5.21436 0.960041 4.44102 0.640041 3.98769 1.09337L0.534355 4.54671C-0.0189778 5.10004 -0.0189779 6.00004 0.534355 6.55337L1.84769 7.86671L3.98769 10.0067C4.44102 10.4534 5.21436 10.1334 5.21436 9.49337Z"
-                      fill="#919EAB" />
+                      fill="#919EAB"
+                    />
                   </svg>
                 </div>
 
                 <div v-if="passActive" style="margin-top: 37px">
                   <div class="inputs">
-                    <div class="input">
-                      <label for=""> تعديل كلمة المرور </label>
-                      <input type="password" placeholder="************" />
+                    <div class="main-input w-50">
+                      <label for=""> كلمة المرور الحالية </label>
+                      <input
+                        type="password"
+                        v-model="passwordUpdate.old_password"
+                        placeholder="************"
+                      />
+                      <span class="error-msg" v-if="v2$.old_password.$error">{{
+                        v2$.old_password.$errors[0].$message
+                      }}</span>
+                      <span class="error-msg" v-if="errors1.old_password">{{
+                          errors1.old_password[0]
+                        }}</span>
                     </div>
                   </div>
                   <div class="inputs">
-                    <div class="input">
+                    <div class="main-input">
                       <label for=""> كلمة المرور الجديدة </label>
-                      <input type="password" placeholder="************" />
+                      <input
+                        type="password"
+                        v-model="passwordUpdate.password"
+                        placeholder="************"
+                      />
+                      <span class="error-msg" v-if="v2$.password.$error">{{
+                        v2$.password.$errors[0].$message
+                      }}</span>
+                      <span class="error-msg" v-if="errors1.password">{{
+                          errors1.password[0]
+                        }}</span>
                     </div>
-                    <div class="input">
+                    <div class="main-input">
                       <label for="">تاكيد كلمة المرور </label>
-                      <input type="password" placeholder="************" />
+                      <input
+                        type="password"
+                        v-model="passwordUpdate.password_confirmation"
+                        placeholder="************"
+                      />
+                      <span
+                        class="error-msg"
+                        v-if="v2$.password_confirmation.$error"
+                        >{{
+                          v2$.password_confirmation.$errors[0].$message
+                        }}</span
+                      >
+                      <span class="error-msg" v-if="errors1.password_confirmation">{{
+                          errors1.password_confirmation[0]
+                        }}</span>
                     </div>
                   </div>
                   <div class="d-flex align-items-center justify-content-center">
-                    <button class="fill">حفظ التعديلات</button>
+                    <button @click="updatePassword()" class="fill">
+                      حفظ التعديلات
+                    </button>
                   </div>
                 </div>
               </div>
@@ -166,59 +266,131 @@
                 <div class="details">
                   <div class="image active">
                     <div class="img">
-                      <img v-if="!selectedFile" :src="userData.image" alt="" />
+                      <img
+                        v-if="!selectedFile && userData.image"
+                        :src="userData.image"
+                        alt=""
+                      />
+                      <!-- <img v-else src="~/assets/images/kk.jpg" alt="" /> -->
                       <div v-if="selectedFile">
                         <img :src="selectedFileUrl" alt="Selected Image" />
                       </div>
 
                       <label for="img-input" class="overlay">
-                        <input id="img-input" type="file" @change="handleFileChange" />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="105" height="105" viewBox="0 0 105 105"
-                          fill="none">
-                          <circle opacity="0.6" cx="52.5" cy="52.5" r="52.5" fill="#D9D9D9" />
+                        <input
+                          id="img-input"
+                          type="file"
+                          @change="handleFileChange"
+                        />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="105"
+                          height="105"
+                          viewBox="0 0 105 105"
+                          fill="none"
+                        >
+                          <circle
+                            opacity="0.6"
+                            cx="52.5"
+                            cy="52.5"
+                            r="52.5"
+                            fill="#D9D9D9"
+                          />
                         </svg>
                         <div class="icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
                             <path
                               d="M14 14.667H2C1.72667 14.667 1.5 14.4403 1.5 14.167C1.5 13.8937 1.72667 13.667 2 13.667H14C14.2733 13.667 14.5 13.8937 14.5 14.167C14.5 14.4403 14.2733 14.667 14 14.667Z"
-                              fill="white" />
+                              fill="white"
+                            />
                             <path
                               d="M12.6799 2.32043C11.3866 1.0271 10.1199 0.993764 8.79322 2.32043L7.98655 3.1271C7.91989 3.19376 7.89322 3.30043 7.91989 3.39376C8.42655 5.16043 9.83989 6.57376 11.6066 7.08043C11.6332 7.0871 11.6599 7.09376 11.6866 7.09376C11.7599 7.09376 11.8266 7.0671 11.8799 7.01376L12.6799 6.2071C13.3399 5.55376 13.6599 4.92043 13.6599 4.28043C13.6666 3.62043 13.3466 2.98043 12.6799 2.32043Z"
-                              fill="white" />
+                              fill="white"
+                            />
                             <path
                               d="M10.4066 7.68654C10.2132 7.5932 10.0266 7.49987 9.84655 7.3932C9.69989 7.30654 9.55989 7.2132 9.41989 7.1132C9.30655 7.03987 9.17322 6.9332 9.04655 6.82654C9.03322 6.81987 8.98655 6.77987 8.93322 6.72654C8.71322 6.53987 8.46655 6.29987 8.24655 6.0332C8.22655 6.01987 8.19322 5.9732 8.14655 5.9132C8.07989 5.8332 7.96655 5.69987 7.86655 5.54654C7.78655 5.44654 7.69322 5.29987 7.60655 5.1532C7.49989 4.9732 7.40655 4.7932 7.31322 4.60654C7.19085 4.34431 6.84668 4.26641 6.64206 4.47103L2.89322 8.21987C2.80655 8.30654 2.72655 8.4732 2.70655 8.58654L2.34655 11.1399C2.27989 11.5932 2.40655 12.0199 2.68655 12.3065C2.92655 12.5399 3.25989 12.6665 3.61989 12.6665C3.69989 12.6665 3.77989 12.6599 3.85989 12.6465L6.41989 12.2865C6.53989 12.2665 6.70655 12.1865 6.78655 12.0999L10.5416 8.34484C10.7421 8.14432 10.6668 7.79929 10.4066 7.68654Z"
-                              fill="white" />
+                              fill="white"
+                            />
                           </svg>
                         </div>
                       </label>
                     </div>
                   </div>
-
                   <div class="form">
                     <div class="inputs">
-                      <div class="input">
+                      <div class="main-input">
                         <label for="">الاسم الاول</label>
-                        <input type="text" v-model="userData.first_name" placeholder="محمد" />
+                        <input
+                          type="text"
+                          v-model="userData.first_name"
+                          placeholder="محمد"
+                        />
+                        <span class="error-msg" v-if="v$.first_name.$error">{{
+                          v$.first_name.$errors[0].$message
+                        }}</span>
+                        <span class="error-msg" v-if="errors.first_name">{{
+                          errors.first_name[0]
+                        }}</span>
                       </div>
-                      <div class="input">
+                      <div class="main-input">
                         <label for="">الاسم الاخير</label>
-                        <input type="text" v-model="userData.last_name" placeholder="محمد" />
+                        <input
+                          type="text"
+                          v-model="userData.last_name"
+                          placeholder="محمد"
+                        />
+                        <span class="error-msg" v-if="v$.last_name.$error">{{
+                          v$.last_name.$errors[0].$message
+                        }}</span>
+                        <span class="error-msg" v-if="errors.last_name">{{
+                          errors.last_name[0]
+                        }}</span>
                       </div>
                     </div>
                     <div class="inputs">
-                      <div class="input">
+                      <div class="main-input">
                         <label for="">رقم الهاتف</label>
-                        <input type="tel" v-model="userData.phone" placeholder="+201066333725" />
+                        <input
+                          type="tel"
+                          v-model="userData.phone"
+                          placeholder="+201066333725"
+                        />
+                        <span class="error-msg" v-if="v$.phone.$error">{{
+                          v$.phone.$errors[0].$message
+                        }}</span>
+                        <span class="error-msg" v-if="errors.phone">{{
+                          errors.phone[0]
+                        }}</span>
                       </div>
-                      <div class="input">
+                      <div class="main-input">
                         <label for="">البريد الالكتروني</label>
-                        <input type="email" v-model="userData.email" placeholder="m.info@icloud.com" />
+                        <input
+                          type="email"
+                          v-model="userData.email"
+                          placeholder="m.info@icloud.com"
+                        />
+                        <span class="error-msg" v-if="v$.email.$error">{{
+                          v$.email.$errors[0].$message
+                        }}</span>
+                        <span class="error-msg" v-if="errors.email">{{
+                          errors.email[0]
+                        }}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div class="btns d-flex align-items-center justify-content-center gap-3">
-                    <button class="fill">حفظ التعديلات</button>
+                  <div
+                    class="btns d-flex align-items-center justify-content-center gap-3"
+                  >
+                    <button @click="updateProfile()" class="fill">
+                      حفظ التعديلات
+                    </button>
                     <button @click="personalActive = 1" class="stroke">
                       الرجوع
                     </button>
@@ -228,7 +400,7 @@
             </div>
           </div>
 
-          <div v-if="navActive == 2" class="notifications">
+          <!-- <div v-if="navActive == 2" class="notifications">
             <div class="items">
               <div v-for="i in 6" class="item">
                 <div class="icon d-flex align-items-center gap-3">
@@ -491,7 +663,6 @@
                     <v-badge color="#B1628C" :content="5">
                       <div class="image">
                         <img src="~/assets/images/watch.png" alt="" />
-                        <!-- <span class="count">3</span> -->
                       </div>
                     </v-badge>
                     <div class="d-flex flex-column gap-2">
@@ -535,7 +706,7 @@
           </div>
         </div>
           
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -544,13 +715,21 @@
 
 <script setup>
 definePageMeta({
-  middleware: 'auth'
+  middleware: "auth",
 });
 import { useStore } from "~/store";
-
+import Cookies from "js-cookie";
 import { Vue3Lottie } from "vue3-lottie";
-
+import useValidate from "@vuelidate/core";
+import {
+  required,
+  email,
+  sameAs,
+  minLength,
+  helpers,
+} from "@vuelidate/validators";
 import cart from "~/assets/animations/empty.json";
+import axios from "axios";
 let personalActive = ref(1);
 let passActive = ref(false);
 let selectedFile = ref(null);
@@ -561,6 +740,9 @@ const router = useRouter();
 let navActive = ref(0);
 const localePath = useLocalePath();
 const { locale } = useI18n();
+
+const tokenCookie = Cookies.get("token");
+
 let store = useStore;
 let user = ref(store.state.user);
 let userData = ref({
@@ -569,17 +751,21 @@ let userData = ref({
   first_name: user.value.first_name,
   last_name: user.value.last_name,
   phone: user.value.phone,
-  email: user.value.email
-
+  email: user.value.email,
 });
 
-if(MainRoute.value.query.name == 'profile'){
+let passwordUpdate = ref({
+  old_password: "",
+  password: "",
+  password_confirmation: "",
+});
+if (MainRoute.value.query.name == "profile") {
   navActive.value = 1;
 }
-if(MainRoute.value.query.name == 'notifications'){
+if (MainRoute.value.query.name == "notifications") {
   navActive.value = 2;
 }
-if(MainRoute.value.query.name == 'orders'){
+if (MainRoute.value.query.name == "orders") {
   navActive.value = 4;
 }
 const handleFileChange = (event) => {
@@ -587,11 +773,112 @@ const handleFileChange = (event) => {
   if (file) {
     selectedFile.value = file;
     // userData.value.image = '';
-    userData.value.image =  URL.createObjectURL(file);
+    userData.value.image = URL.createObjectURL(file);
+    // userData.value.image = file;
     selectedFileUrl.value = URL.createObjectURL(file);
   }
 };
 
+const rules1 = computed(() => {
+  return {
+    first_name: { required },
+    last_name: { required },
+    phone: { required, minLength: minLength(11) },
+    email: {
+      required: helpers.withMessage("The email field is required", required),
+      email: helpers.withMessage("Invalid email format", email),
+    },
+  };
+});
+const rules2 = computed(() => {
+  return {
+    password: { required, minLength: minLength(6) },
+    old_password: { required, minLength: minLength(6) },
+    password_confirmation: {
+      required,
+      sameAs: sameAs(passwordUpdate.value.password),
+    },
+  };
+});
+
+const v$ = useValidate(rules1, userData);
+const v2$ = useValidate(rules2, passwordUpdate);
+let errors = ref([]);
+let errors1 = ref([]);
+
+const updateProfile = async () => {
+  let formBody = new FormData();
+  formBody.append("first_name", userData.value.first_name);
+  formBody.append("last_name", userData.value.last_name);
+  formBody.append("phone", userData.value.phone);
+  formBody.append("email", userData.value.email);
+  if (selectedFile.value) {
+    formBody.append("image", selectedFile.value);
+  }
+  let check = await v$.value.$validate();
+  if (check) {
+    try {
+      let result = await axios.post(
+        `${getUrl()}/customers/update-info`,
+        formBody,
+        {
+          headers: {
+            "Content-Language": `${locale.value}`,
+            Authorization: `Bearer ${tokenCookie}`,
+          },
+        }
+      );
+      if (result.status >= 200) {
+        if (process.client) {
+          store.state.user = result.data.data;
+          user.value = store.state.user;
+          const userObjectString = JSON.stringify(result.data.data);
+          Cookies.set("user", userObjectString);
+          personalActive.value = 1;
+        }
+      }
+    } catch (errorss) {
+      console.log(errorss);
+      if (errorss.response) {
+        errors.value = errorss.response.data.errors;
+      }
+    }
+  }
+};
+const updatePassword = async () => {
+  let formBody = new FormData();
+  formBody.append("password", passwordUpdate.value.password);
+  formBody.append("old_password", passwordUpdate.value.old_password);
+  formBody.append(
+    "password_confirmation",
+    passwordUpdate.value.password_confirmation
+  );
+  let check = await v2$.value.$validate();
+  if (check) {
+    try {
+      let result = await axios.post(
+        `${getUrl()}/customers/update-password`,
+        formBody,
+        {
+          headers: {
+            "Content-Language": `${locale.value}`,
+            Authorization: `Bearer ${tokenCookie}`,
+          },
+        }
+      );
+      if (result.status >= 200) {
+        errors1.value = [];
+        if (process.client) {
+        }
+      }
+    } catch (errorss) {
+      console.log(errorss);
+      if (errorss.response) {
+        errors1.value = errorss.response.data.errors;
+      }
+    }
+  }
+};
 let addressNav = ref(1);
 const selectedCountry = ref("");
 const countries = ref([
@@ -664,7 +951,7 @@ const displayedOrders = computed(() => {
     } else {
       // Show only two items initially
       return {
-        allOrders: order.allOrders.slice(0, 2)
+        allOrders: order.allOrders.slice(0, 2),
       };
     }
   });
@@ -675,7 +962,6 @@ onMounted(() => {
   console.log(MainRoute.value.query.name);
   user.value = store.state.user;
   console.log(user.value);
-  
 });
 
 const showAll = (index) => {

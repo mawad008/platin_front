@@ -3,7 +3,7 @@
     <div class="container checkout-page" style="min-height: 100vh">
       <v-stepper
         class="w-100"
-        v-model="step"
+        v-model="store.state.step"
         editable
         :items="items"
         show-actions
@@ -1203,6 +1203,7 @@
 
 <script setup>
 import { useStore } from "~/store";
+import axios from 'axios';
 const store = useStore;
 
 let finalStep = computed(() => {
@@ -1217,11 +1218,21 @@ let arrData = computed(()=>{
       vendor_id: vendor_id
     }));
   })
-})
+});
+
+
+let newArr = arrData.value.map(item => ({
+  vendor_id: item.vendor_id,
+  quantity: item.quantity,
+  price: item.price,
+  id: item.id
+}));
 // let arrData = ref();
 
 
-
+const checkoutFunc = async ()=>{
+  let result = axios.post(`${getUrl()}/orders-checkout/`)
+}
 let dropDownActive = ref(0);
 
 const selectedCountry = ref("");

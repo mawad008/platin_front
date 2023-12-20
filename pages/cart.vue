@@ -341,51 +341,48 @@ import cart from "~/assets/animations/empty-cart.json";
       },
     ]);
 
-    // let aarr = [
-    //   {
-    //     vendorId:1,
-    //     vendorName:'a',
-    //     products:[
-    //       {
-    //         id:3,
-    //         item:2,
-    //         name:'n1',
-    //         price: 120
-    //       },
-    //       {
-    //         id:4,
-    //         item:2,
-    //         name:'n1',
-    //         price: 120
-    //       },
-    //       {
-    //         id:5,
-    //         item:2,
-    //         name:'n1',
-    //         price: 120
-    //       },
+    let aarr = [
+      {
+        vendor_id:1,
+        quantity:2,
+        price:100,
+        name:'asas',
+        id:1,
+       images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
+      },
+      {
+        vendor_id:1,
+        quantity:2,
+        price:100,
+        name:'asas',
+        id:2,
+       images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
+      },
+      {
+        vendor_id:1,
+        quantity:2,
+        price:100,
+        name:'asas',
+        id:3,
+       images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
+      },
+      {
+        vendor_id:3,
+        quantity:2,
+        price:100,
+        name:'asas',
+        id:4,
+       images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
+      },
+    ]
 
-    //     ]
-    //   },
-    //   {
-    //     vendorId:2,
-    //     vendorName:'a',
-    //     products:[
-    //       {
-    //         id:6,
-    //         item:2,
-    //         name:'n1',
-    //         price: 120
-    //       },
-    //       {
-    //         id:7,
-    //         item:2,
-    //         name:'n1',
-    //         price: 120
-    //       },
-    //     ]
-    //   }
-    // ]
+    let newArr = aarr.map(item => ({
+  vendor_id: item.vendor_id,
+  quantity: item.quantity,
+  price: item.price,
+  id: item.id
+}));
+
 
     //     let newArray = aarr.flatMap(vendor => {
     //   let vendorId = vendor.vendorId;

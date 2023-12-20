@@ -54,13 +54,22 @@
 
 <script setup>
 import axios from 'axios';
-let subid = route.query.subid;
-let selectbox1 = ref(subid ? subid : null);
-let selectbox2 = ref(null);
 const router = useRouter();
 const route = useRoute();
-let id = route.query.id;
-
+let id = ref(route.query.id);
+let subid = ref(route.query.subid);
+let selectbox1 = ref(subid.value ? subid.value : null);
+let selectbox2 = ref(null);
+watch(
+  () => 
+  route.query.id,
+  route.query,
+  (newId , newSup) => {
+    id.value = newId;
+    subid.value = newSup;
+    getProducts();
+  }
+);
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 let subcategoriesArr = ref([]);
@@ -86,7 +95,7 @@ const getBrands = async () => {
   brandsArr.value = result.data.data;
 };
 const getProducts = async () => {
-  let result = await axios.get(`${getUrl()}/categories-products/${id}`, {
+  let result = await axios.get(`${getUrl()}/categories-products/${id.value}`, {
     params: {
         subcategory_id: selectbox1.value ? selectbox1.value : null,
         brand_id: selectbox2.value ? selectbox2.value : null

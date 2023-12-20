@@ -308,6 +308,20 @@ a {
   color: #2d3a4a;
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #a3a3a3;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
 @media (max-width: 920px) {
   .product-checkout {
     margin-top: 50px;
@@ -2138,7 +2152,6 @@ html[dir=rtl] body {
 
 .similar-products {
   margin-top: 60px;
-  margin-bottom: 140px;
 }
 .similar-products .head {
   margin-bottom: 35px;
@@ -2237,6 +2250,7 @@ html[dir=rtl] body {
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
+  text-align: center;
 }
 .product-details .table-details .row-container span {
   font-size: 14px;
@@ -3774,24 +3788,24 @@ html[dir=rtl] body {
   margin-bottom: 30px;
   color: #2d3a4a;
 }
-.settings-container .address-container .input {
-  width: 100%;
+.settings-container .address-container .main-input {
+  width: 100% !important;
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin: 10px 0px;
 }
-.settings-container .address-container .input label {
+.settings-container .address-container .main-input label {
   font-size: 14px;
   font-weight: 700;
   color: #5a7184;
 }
-.settings-container .address-container .input label span {
+.settings-container .address-container .main-input label span {
   color: #be88a5;
   margin: 0px 4px;
 }
-.settings-container .address-container .input input,
-.settings-container .address-container .input .p-dropdown {
+.settings-container .address-container .main-input input,
+.settings-container .address-container .main-input .p-dropdown {
   padding: 22px;
   border-radius: 8px;
   background: #f6f7f9;
@@ -3802,8 +3816,8 @@ html[dir=rtl] body {
   padding: 14px;
   outline: none;
 }
-.settings-container .address-container .input input:focus,
-.settings-container .address-container .input .p-dropdown:focus {
+.settings-container .address-container .main-input input:focus,
+.settings-container .address-container .main-input .p-dropdown:focus {
   background-color: #fff;
   border: 1px solid #dcb63b;
 }

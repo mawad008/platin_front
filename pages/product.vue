@@ -1,6 +1,6 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="row">
+    <div class="row main-container-product" style="margin-bottom: 140px">
       <div class="col-12" style="position: relative">
         <div class="container product-page">
           <div class="row">
@@ -127,7 +127,7 @@
                 >
                   <div class="count d-flex flex-column gap-2">
                     <span> الكمية </span>
-                    <input type="number" v-model="quantity"  min="1" />
+                    <input type="number" v-model="quantity" min="1" />
                   </div>
                   <div class="type d-flex flex-column gap-2">
                     <span class="word"> لون البشرة </span>
@@ -455,16 +455,23 @@
                           <h6>اكتب تعليقك</h6>
                           <span> شارك معنا تعليقك علي المنتج ! </span>
                         </div>
-                        <v-rating
-                          style="direction: ltr"
-                          half-increments
-                          hover
-                          :length="5"
-                          :size="29"
-                          :model-value="3"
-                          color="#919EAB"
-                          active-color="#ECB43C"
-                        />
+                        <div
+                          class="d-flex flex-column align-items-center gap-2"
+                        >
+                          <v-rating
+                            style="direction: ltr"
+                            half-increments
+                            hover
+                            :length="5"
+                            :size="29"
+                            @update:model-value="updateRateInput"
+                            color="#919EAB"
+                            active-color="#ECB43C"
+                          />
+                          <span class="text-danger" v-if="rateInputError">{{
+                            rateInputError
+                          }}</span>
+                        </div>
                       </div>
 
                       <div
@@ -472,9 +479,10 @@
                       >
                         <input
                           type="text"
+                          v-model="commentInput"
                           placeholder="شارك معنا تعليقك علي المنتج !"
                         />
-                        <button>
+                        <button @click="addComment()">
                           <span> شارك </span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -526,11 +534,24 @@
                             <div class="main d-flex gap-2">
                               <img src="~/assets/images/kk.jpg" alt="" />
                               <div class="text d-flex flex-column gap-1">
-                                <span class="name"> {{ item.customer_name }} </span>
+                                <span class="name">
+                                  {{ item.customer_name }}
+                                </span>
                                 <div class="comment-text">
-                                  {{item.showFullText ? item.comment : item.truncatedText}}
-                                  <button v-if="item.comment.length > maxCharacters" @click="toggleReadMore(index)">
-                                    {{ item.showFullText ? "عرض القليل" : "عرض المزيد"}}
+                                  {{
+                                    item.showFullText
+                                      ? item.comment
+                                      : item.truncatedText
+                                  }}
+                                  <button
+                                    v-if="item.comment.length > maxCharacters"
+                                    @click="toggleReadMore(index)"
+                                  >
+                                    {{
+                                      item.showFullText
+                                        ? "عرض القليل"
+                                        : "عرض المزيد"
+                                    }}
                                   </button>
                                 </div>
                                 <span class="time"> {{ item.created_at }}</span>
@@ -683,8 +704,13 @@
                                 <div
                                   class="price w-100 d-flex align-items-center justify-content-between"
                                 >
-                                  <span class="item">{{ `${item.caliber} / ق` }} {{ `${item.weight} / ق` }}</span>
-                                  <span class="price-item"> {{ item.price }} ر.س </span>
+                                  <span class="item"
+                                    >{{ `${item.caliber} / ق` }}
+                                    {{ `${item.weight} / ق` }}</span
+                                  >
+                                  <span class="price-item">
+                                    {{ item.price }} ر.س
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -704,7 +730,7 @@
           :index="indexRef"
           @hide="onHide"
         ></vue-easy-lightbox>
-        <div class="container similar-products">
+        <div v-if="relatedArr.length > 0" class="container similar-products">
           <div
             class="head d-flex flex-column gap-3 align-items-center justify-content-center"
           >
@@ -739,8 +765,8 @@
               :modules="[SwiperNavigation]"
               class=""
             >
-              <swiper-slide v-for="i in 8">
-                <product-card />
+              <swiper-slide v-for="item in relatedArr">
+                <product-card :product="item" />
               </swiper-slide>
             </swiper>
 
@@ -763,13 +789,18 @@
 
 <script setup>
 import VueEasyLightbox from "vue-easy-lightbox";
+import Cookies from "js-cookie";
 import { useStore } from "~/store";
 import axios from "axios";
 const store = useStore;
 const { locale } = useI18n();
+const localePath = useLocalePath();
+
+const tokenCookie = Cookies.get("token");
 
 const MainRoute = useRoute();
-let id = MainRoute.query.id;
+const router = useRouter();
+let id = ref(MainRoute.query.id);
 
 // start swiper images
 
@@ -793,10 +824,8 @@ const onShow = () => {
 };
 const showMultiple = () => {
   for (let i = 0; i < mainProduct.value.images.length; i++) {
-
-imgsRef.value.push(mainProduct.value.images[i].full_image_path);
-
-}
+    imgsRef.value.push(mainProduct.value.images[i].full_image_path);
+  }
   indexRef.value = 0;
   onShow();
 };
@@ -807,10 +836,11 @@ const onHide = () => (visibleRef.value = false);
 const maxCharacters = 100;
 let commentPerPage = 3;
 let AllItems = ref([]);
+let rateInput = ref(null);
+let commentInput = ref("");
+let rateInputError = ref(null);
 
 let itemsArray = ref([]);
-
-
 
 let quantity = ref(1);
 let item = ref({
@@ -830,11 +860,16 @@ const addToBasket = () => {
   store.commit("add", { mainItem: item.value, qw: quantity.value });
 };
 
+const updateRateInput = (value) => {
+  rateInput.value = value;
+};
+
 let totalComments = ref([]);
+let relatedArr = ref([]);
 let mainProduct = ref({});
 let mainVendor = ref({});
 const showProduct = async () => {
-  let result = await axios.get(`${getUrl()}/products/${id}`, {
+  let result = await axios.get(`${getUrl()}/products/${id.value}`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
@@ -843,7 +878,7 @@ const showProduct = async () => {
   console.log(result.data.data);
 };
 const showVendor = async () => {
-  let result = await axios.get(`${getUrl()}/about-vendor/${id}`, {
+  let result = await axios.get(`${getUrl()}/about-vendor/${id.value}`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
@@ -853,21 +888,21 @@ const showVendor = async () => {
 };
 let checkComment = ref(false);
 const showComments = async () => {
-  let result = await axios.get(`${getUrl()}/products/${id}/rates`, {
+  let result = await axios.get(`${getUrl()}/products/${id.value}/rates`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
   });
   AllItems.value = result.data.data.customers_rates;
-  itemsArray.value = result.data.data.customers_rates.slice(0 , 3);
-  totalComments.value = result.data.data.customers_rates.slice(0 , 3);
+  itemsArray.value = result.data.data.customers_rates.slice(0, 3);
+  totalComments.value = result.data.data.customers_rates.slice(0, 3);
   // AllItems.value.slice(0, 3)
-  if(result.status == 200){
+  if (result.status == 200) {
     itemsArray.value.forEach((item) => {
       updateTruncatedText(item);
     });
     checkComment.value = true;
-    console.log('sasadasdasdas');
+    console.log("sasadasdasdas");
   }
   console.log(result.data.data.customers_rates);
 };
@@ -879,35 +914,88 @@ const toggleReadMore = (index) => {
 
 const updateTruncatedText = (item) => {
   if (!item.showFullText.value) {
-    item.truncatedText = item.comment.length > maxCharacters ? item.comment.substring(0, maxCharacters) + "..." : item.comment;
+    item.truncatedText =
+      item.comment.length > maxCharacters
+        ? item.comment.substring(0, maxCharacters) + "..."
+        : item.comment;
   } else {
     item.truncatedText = item.comment;
   }
 };
 
+const getRelatedProducts = async () => {
+  let result = await axios.get(`${getUrl()}/related-products/${id.value}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  relatedArr.value = result.data.data;
+};
+
 let showAll = ref(false);
 const showAllComments = () => {
   showAll.value = !showAll.value;
-  if(showAll.value){
+  if (showAll.value) {
     itemsArray.value = AllItems.value;
     itemsArray.value.forEach((item) => {
       updateTruncatedText(item);
     });
-
-  } else{
+  } else {
     itemsArray.value = totalComments.value;
     itemsArray.value.forEach((item) => {
       updateTruncatedText(item);
     });
   }
 };
+
+const addComment = async () => {
+  if (tokenCookie) {
+    let formBody = new FormData();
+    formBody.append("rate", rateInput.value);
+    formBody.append("comment", commentInput.value);
+    try {
+      let result = await axios.post(
+        `${getUrl()}/products/${id.value}/rate`,
+        formBody,
+        {
+          headers: {
+            "Content-Language": `${locale.value}`,
+            "Authorization": `Bearer ${tokenCookie}`,
+          },
+        }
+      );
+      if (result.status >= 200) {
+        rateInputError.value = null;
+        showComments();
+      }
+    } catch (errors) {
+      if (errors.response) {
+        rateInputError.value = errors.response.data.errors.rate[0];
+      }
+    }
+  } else {
+    const fullLocalePath = localePath('/auth');
+    router.push(fullLocalePath);
+  }
+};
+
+watch(
+  () => MainRoute.query.id,
+  (newId) => {
+    // Update the 'id' ref and call the showProduct function
+    id.value = newId;
+    showProduct();
+    showVendor();
+    showComments();
+    getRelatedProducts();
+  }
+);
 onMounted(() => {
   showProduct();
   showComments();
   showVendor();
-  if(checkComment.value){
-
-
+  getRelatedProducts();
+  if (checkComment.value) {
   }
 });
 </script>

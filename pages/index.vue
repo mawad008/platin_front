@@ -240,7 +240,7 @@
                 <span>3.4</span>
               </div>
             </div>
-            <h3>{{ item.description }}</h3>
+            <h3>{{ item.name }}</h3>
             <div
               class="price w-100 d-flex align-items-center justify-content-between"
             >
@@ -863,7 +863,7 @@ let products = ref([
     vendor_id: 1,
     vendorName: "زهرة الياقوت",
     id: 1,
-    description: "خاتم 23",
+    name: "خاتم 23",
     price: 120,
     images: [
       "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -875,7 +875,7 @@ let products = ref([
     vendor_id: 1,
     vendorName: "زهرة الياقوت",
     id: 2,
-    description: "خاتم 25",
+    name: "خاتم 25",
     price: 121,
     images: [
       "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -887,7 +887,7 @@ let products = ref([
     vendor_id: 2,
     vendorName: "زهرة البستان",
     id: 3,
-    description: "خاتم 22",
+    name: "خاتم 22",
     price: 124,
     images: [
       "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -899,7 +899,7 @@ let products = ref([
     vendor_id: 3,
     vendorName: "زهرة",
     id: 4,
-    description: "خاتم 21",
+    name: "خاتم 21",
     price: 123,
     images: [
       "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",

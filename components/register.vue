@@ -67,7 +67,6 @@
                 <div class="main-input">
                     <label for=""> صورة<span>*</span> </label>
                     <input type="file" @change="handleImageChange" placeholder="مثال : +0215984494" />
-                    <span class="error-msg" v-if="v$.image.$error">{{ v$.image.$errors[0].$message }}</span>
                     <span class="error-msg" v-if="errors.image">{{ errors.image[0] }}</span>
 
 
@@ -172,7 +171,7 @@ const rules = computed(() => {
         },
         password: { required, minLength: minLength(6) },
         password_confirmation: { required, sameAs: sameAs(form.value.password) },
-        image: { required }
+       
     };
 });
 
@@ -202,6 +201,7 @@ const registerFunc = async () => {
                 console.log(result.data.data);
                 phoneNum.value = result.data.data.customer.phone;
                 signNav.value = 2;
+                otp.value = result.data.data.customer.otp
             }
 
         } catch (errorss) {

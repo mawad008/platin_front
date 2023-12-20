@@ -135,14 +135,26 @@ const store = useStore;
     const localePath = useLocalePath();
     const { locale } = useI18n();
     let checkShare = ref(false);
+
+    
     const goToProductPage = (id, name) => {
       const queryParams = {
         id: id,
         name: name,
       };
-      const url = locale.value + "/product";
+      const url = "/product";
 
-      router.push({ path: url, query: queryParams });
+      const updatedRoute = {
+        path: url,
+        query: {
+          ...queryParams,
+        },
+      };
+
+      const fullLocalePath = localePath(updatedRoute);
+
+
+      router.push(fullLocalePath);
     };
 
     const addToBasket = (itemm) => {
