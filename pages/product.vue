@@ -982,7 +982,7 @@ const addComment = async () => {
 watch(
   () => MainRoute.query.id,
   (newId) => {
-    // Update the 'id' ref and call the showProduct function
+  
     id.value = newId;
     showProduct();
     showVendor();

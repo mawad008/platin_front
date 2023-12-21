@@ -147,6 +147,32 @@ const getProducts = async () => {
 };
 
 
+
+
+
+
+
+
+let chooseCity = ref(1);
+const selectedCity1 = ref("");
+const selectedCity2 = ref("");
+let normalCity = ref([]);
+let fastCity = ref([]);
+
+const getCities = async () => {
+  let result = await axios.get(`${getUrl()}/general`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    }
+  });
+
+  normalCity.value = result.data.data.normalCities;
+  fastCity.value = result.data.data.fastShippingCities;
+}
+
+
+
+
 onMounted(()=>{
   getTags();
   getcategories();

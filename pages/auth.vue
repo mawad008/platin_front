@@ -198,7 +198,21 @@
           />
         </svg>
       </div>
-      <div class="main">
+      <div class="container">
+      <div class="row justify-content-around  main">
+      <div class="col-6 ">
+       <div class="main-form">
+           <div v-if="store.state.checkForm == 1" class="sign-up">
+               <register/>
+           </div>
+
+            <div v-if="store.state.checkForm == 2" class="login">
+              <login/>
+            </div>
+          </div>
+      
+      </div>
+      <div class="col-6  d-flex justify-content-end">
         <div class="text-container">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -265,15 +279,11 @@
             ></span>
           </div>
         </div>
-        <div class="main-form">
-         <div v-if="store.state.checkForm == 1" class="sign-up">
-             <register/>
-         </div>
-
-          <div v-if="store.state.checkForm == 2" class="login">
-            <login/>
-          </div>
-        </div>
+      
+      </div>
+       
+      </div>
+      
       </div>
     </div>
   </div>

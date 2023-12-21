@@ -80,7 +80,7 @@ const getCities = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
-  cities.value = result.data.data.cities;
+  cities.value = result.data.data.allCities;
 };
 const getVendors = async () => {
   let result = await axios.get(`${getUrl()}/vendors`, {

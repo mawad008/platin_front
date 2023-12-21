@@ -60,16 +60,7 @@ let id = ref(route.query.id);
 let subid = ref(route.query.subid);
 let selectbox1 = ref(subid.value ? subid.value : null);
 let selectbox2 = ref(null);
-watch(
-  () => 
-  route.query.id,
-  route.query,
-  (newId , newSup) => {
-    id.value = newId;
-    subid.value = newSup;
-    getProducts();
-  }
-);
+
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 let subcategoriesArr = ref([]);
@@ -109,6 +100,15 @@ const getProducts = async () => {
   products_count.value = result.data.data.products_count;
   products.value = result.data.data.products;
 };
+
+watch(
+  [() => route.query.id, route.query.subid],
+  ([newId, newSup]) => {
+    id.value = newId;
+    subid.value = newSup;
+    getProducts();
+  }
+);
 onMounted(() => {
     getSubcategories();
     getBrands();

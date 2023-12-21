@@ -7,7 +7,7 @@
           :class="{ active: activeNav }"
         >
           <div class="items d-flex align-items-center gap-4">
-            <nuxt-link to="/">
+            <nuxt-link :to="localePath('/')">
               <span>الرئيسية</span>
             </nuxt-link>
 
@@ -73,17 +73,17 @@
                 </div>
               </div>
             </v-menu>
-            <nuxt-link to="gold">
+            <!-- <nuxt-link to="gold">
               <span>السبائك</span>
-            </nuxt-link>
-            <nuxt-link to="vendors">
+            </nuxt-link> -->
+            <nuxt-link :to="localePath('/vendors')">
               <span>التجار</span>
             </nuxt-link>
           </div>
-          <div class="d-flex align-items-center gap-2 supp">
+          <!-- <div class="d-flex align-items-center gap-2 supp">
             <i class="fa-solid fa-headset"></i>
             <span>الدعم الفني</span>
-          </div>
+          </div> -->
         </div>
         <v-divider
           class="line"
@@ -94,9 +94,9 @@
           class="d-flex align-items-center bg-dange w-100 justify-content-between"
         >
           <div class="d-flex align-items-center gap-5">
-            <div class="logo">
+            <nuxt-link :to="localePath('/')" class="logo">
               <img src="~/assets/images/logo.png" alt="" />
-            </div>
+            </nuxt-link>
 
             <div v-if="activeNav" class="items d-flex align-items-center gap-4">
               <nuxt-link :to="localePath('/')">
@@ -166,13 +166,13 @@
                   </div>
                 </div>
               </v-menu>
-              <nuxt-link :to="localePath('gold')">
+              <!-- <nuxt-link :to="localePath('gold')">
                 <span>السبائك</span>
-              </nuxt-link>
+              </nuxt-link> -->
               <nuxt-link :to="localePath('/vendors')">
                 <span>التجار</span>
               </nuxt-link>
-              <span>الدعم الفني</span>
+              <!-- <span>الدعم الفني</span> -->
             </div>
             <div
               v-if="!activeNav"
@@ -243,12 +243,12 @@
                 <span>{{ $t("ar") }}</span>
                 <img src="~/assets/images/world.png" alt="" />
               </div>
-              <nuxt-link to="wishlist">
+              <nuxt-link :to="localePath('/wishlist')">
                 <div class="icon border">
                   <i class="fa-solid fa-heart"></i>
                 </div>
               </nuxt-link>
-              <nuxt-link to="cart">
+              <nuxt-link :to="localePath('/cart')">
                 <v-badge :content="theNum" color="#B1628C">
                   <div class="icon border">
                     <svg
@@ -272,7 +272,7 @@
               <nuxt-link
                 v-if="!store.state.authenticated"
                 class="icon-auth"
-                to="/auth"
+                :to="localePath('/auth')"
               >
                 <div class="icon border">
                   <svg
@@ -312,8 +312,8 @@
                 >
                   <span @click="goSettings('profile')"> الملف الشخصي </span>
 
-                  <span @click="goSettings('notifications')"> الاشعارات </span>
-                  <span @click="goSettings('orders')"> طلباتي </span>
+                  <!-- <span @click="goSettings('notifications')"> الاشعارات </span>
+                  <span @click="goSettings('orders')"> طلباتي </span> -->
                   <div
                     @click="logOut()"
                     class="d-flex align-items-center gap-2"
@@ -380,13 +380,13 @@
             </div>
             <div class="col-12 col-xl-2 col-lg-3 col-md-6">
               <div class="box-container d-flex flex-column gap-3">
-                <h6 class="head" style="font-size: 15px">
+                <h6 class="head" style="font-size: 15px; white-space:nowrap;">
                   اشترك معنا في القائمة البريدية
                 </h6>
                 <div class="links d-flex flex-column gap-4">
                   <span class="head-link"> الرئيسية </span>
                   <div
-                    class="input d-flex align-items-center justify-content-center gap-2"
+                    class="input d-flex align-items-center  justify-content-center gap-2"
                   >
                     <input type="text" placeholder="ادخل البريد الالكتروني " />
 
@@ -442,7 +442,7 @@
     </footer>
     <footer class="mobile-footer">
       <div class="icons">
-        <nuxt-link class="icon" to="/">
+        <nuxt-link class="icon" :to="localePath('/')">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -536,7 +536,7 @@
             />
           </svg>
         </div>
-        <div class="icon">
+        <nuxt-link class="icon" :to="localePath('mobile-nav')">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -560,7 +560,7 @@
               stroke-width="1.5"
             />
           </svg>
-        </div>
+        </nuxt-link>
       </div>
     </footer>
   </div>
@@ -612,13 +612,22 @@ const changeLang = async () => {
 };
 
 const goTocategory = (id, name) => {
-  const queryParams = {
+
+   const queryParams = {
     id: id,
     name: name,
   };
-  const url = locale.value + "/category";
+  const url = "/category";
 
-  router.push({ path: url, query: queryParams });
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
 };
 const goTocategorysub = (id, name, subid) => {
 
@@ -642,12 +651,20 @@ const goTocategorysub = (id, name, subid) => {
 };
 
 const goSettings = (name) => {
-  const queryParams = {
+     const queryParams = {
     name: name,
   };
-  // const url = locale.value + "/settings";
+  const url = "/settings";
 
-  router.push({ path: "settings", query: queryParams });
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
 };
 
 const logOut = () => {
@@ -658,8 +675,8 @@ const logOut = () => {
     Cookies.remove("user");
     Cookies.remove("token");
     Cookies.remove("auth");
-
-    router.push("/");
+    const localee = localePath('/')
+    router.push(localee);
   }
 };
 const getCategories = async () => {
@@ -671,6 +688,25 @@ const getCategories = async () => {
   categoriesArr.value = result.data.data;
   console.log(categoriesArr.value);
 };
+const updateLang = () => {
+    if (locale.value == "ar") {
+    setLocale("ar");
+    useHead({
+      htmlAttrs: {
+        lang: 'ar',
+        dir: 'rtl',
+      }
+    });
+  } else if (locale.value == "en") {
+    useHead({
+      htmlAttrs: {
+        lang: 'en',
+        dir: 'ltr',
+      }
+    });
+    setLocale("en");
+  }
+}
 onMounted(() => {
   store.dispatch("loadBasketFromLocalStorage");
   window.addEventListener("scroll", function () {
@@ -689,6 +725,7 @@ onMounted(() => {
 });
 onBeforeMount(() => {
   store.dispatch("loadBasketFromLocalStorage");
+  updateLang();
 });
 </script>
 

@@ -47,7 +47,10 @@
 
       <div class="btns">
       {{ store.state.step }}
-        <button @click="checkFunc()" class="fill">تابع عملية الشراء</button>
+        <button @click="checkFunc()" class="fill gap-3">
+        <span>        تابع عملية الشراء</span>        
+        <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
+        </button>
         <button @click="checkFunc2()" class="stroke">الرجوع</button>
       </div>
     </div>
@@ -60,16 +63,17 @@ import { useStore } from "~/store";
 const store = useStore;
 // Define the props you expect
 let step = ref(store.state.step);
-const props = defineProps(["arrData"]);
+const props = defineProps(["arrData" , "myFunction" , "pending"]);
 
 
 const checkFunc = () => {
-  if (store.state.step == 4) {
-    store.state.finalStep = 2;
-    return
-  } else {
-    store.state.step += 1
-  }
+  props.myFunction();
+  // if (store.state.step == 4) {
+  //   store.state.finalStep = 2;
+  //   return
+  // } else {
+  //   store.state.step += 1
+  // }
  
   // step.value += 1;
   // store.state.step = step.value;
