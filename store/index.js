@@ -32,17 +32,27 @@ export const useStore = createStore({
       } else {
         state.favArr.push(item);
         localStorage.setItem("fav", JSON.stringify(state.favArr));
-        state.isInFav.push(true);
+        state.isInFav.push(item.id);
         //  state.isInFav[index] = true;
         localStorage.setItem("favIcon", JSON.stringify(state.isInFav));
       }
     },
-    deleteFav(state, index) {
-      state.isInFav.splice(index, 1);
-      localStorage.setItem("favIcon", JSON.stringify(state.isInFav));
-      state.favArr.splice(index, 1);
-      localStorage.setItem("fav", JSON.stringify(state.favArr));
+    deleteFav(state, payload){
+      const { indexx, itemId } = payload;
+
+     
       // state.isInFav[index] = false;
+        var index = Array.from(state.favArr).findIndex(
+          (item) => item.id === itemId
+      );
+      
+      if (index != -1) {
+        state.isInFav.splice(index, 1);
+        localStorage.setItem("favIcon", JSON.stringify(state.isInFav));
+         state.favArr.splice(index, 1);
+         localStorage.setItem("fav", JSON.stringify(state.favArr));
+      }
+
       if (state.favArr.length < 1) {
         localStorage.clear("fav");
         state.isInFav = [];
@@ -234,9 +244,7 @@ export const useStore = createStore({
       if (process.client) {
         const storedBasket = JSON.parse(localStorage.getItem("basket")) || [];
         const storedfav = JSON.parse(localStorage.getItem("fav")) || [];
-        const storedfavicon =
-          JSON.parse(localStorage.getItem("favIcon")) ||
-          Array(state.favArr.length).fill(false);
+        const storedfavicon = JSON.parse(localStorage.getItem("favIcon")) || [];
         const userCookie = Cookies.get("user");
         const authCookie = Cookies.get("auth");
 

@@ -610,6 +610,11 @@ html[dir="rtl"] body {
   background-color: $main-bg;
   direction: rtl;
 }
+html[dir="ltr"] body {
+  font-family: "Janna-lt", sans-serif;
+  background-color: $main-bg;
+  direction: ltr;
+}
 
 // end common classes and components
 
@@ -894,8 +899,7 @@ html[dir="rtl"] body {
     align-items: center;
   }
   .main-form {
-    .form-container {
-    }
+ 
     .form {
       width: 512px;
       // height: 94vh;
@@ -1073,9 +1077,30 @@ html[dir="rtl"] body {
     }
   }
 }
+// html[dir="rtl"]{
+//   .auth-container-form{
+//     direction: rtl;
+//   }
+// }
+// html[dir="ltr"]{
+//   .auth-container-form{
+//     direction: ltr;
+//   }
+// }
 
 @media (max-width: 920px) {
   .auth-container-form {
+    .container{
+      width: 100% !important;
+      padding: 0px !important;
+      margin: 0px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .row{
+      padding: 0px !important;
+    }
     .close {
       left: 20px;
     }
@@ -1084,8 +1109,15 @@ html[dir="rtl"] body {
       flex-direction: column;
       text-align: center;
       padding: 20px;
+      .main-form{
+        width: 100%;
+      }
+      .form{
+        width: 100%;
+      }
       .text-container {
         width: 100%;
+        margin-top: 50px;
         h2 {
           width: 100%;
           font-size: 20px;
@@ -4613,7 +4645,8 @@ html[dir="rtl"] body {
 }
 
 .empty-container {
-  height: 100vh;
+  // height: 100vh;
+  height: 562px;
   display: flex;
   align-items: center;
   justify-content: center;

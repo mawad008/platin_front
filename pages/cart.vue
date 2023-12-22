@@ -152,7 +152,10 @@
                 </div>
                 <h6>تابع التسوق</h6>
 
-                <button @click="dialog = true" class="pay">ابدأ عملية الشراء</button>
+                <button v-if="auth"  class="pay">
+                 <nuxt-link class="w-100" :to="localePath('/checkout')">ابدأ عملية الشراء</nuxt-link>
+                </button>
+                <button v-else @click="dialog = true" class="pay">ابدأ عملية الشراء</button>
                 <v-dialog v-model="dialog">
 
                   <div class="card-popup-container">
@@ -325,6 +328,7 @@ import cart from "~/assets/animations/empty-cart.json";
 
     const localePath = useLocalePath();
     const store = useStore;
+    let auth = ref(store.state.authenticated);
     let count = ref(1);
     let dialog = ref(false);
     let progressv = ref(0);
@@ -341,47 +345,47 @@ import cart from "~/assets/animations/empty-cart.json";
       },
     ]);
 
-    let aarr = [
-      {
-        vendor_id:1,
-        quantity:2,
-        price:100,
-        name:'asas',
-        id:1,
-       images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
-      },
-      {
-        vendor_id:1,
-        quantity:2,
-        price:100,
-        name:'asas',
-        id:2,
-       images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
-      },
-      {
-        vendor_id:1,
-        quantity:2,
-        price:100,
-        name:'asas',
-        id:3,
-       images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
-      },
-      {
-        vendor_id:3,
-        quantity:2,
-        price:100,
-        name:'asas',
-        id:4,
-       images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
-      },
-    ]
+//     let aarr = [
+//       {
+//         vendor_id:1,
+//         quantity:2,
+//         price:100,
+//         name:'asas',
+//         id:1,
+//        images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
+//       },
+//       {
+//         vendor_id:1,
+//         quantity:2,
+//         price:100,
+//         name:'asas',
+//         id:2,
+//        images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
+//       },
+//       {
+//         vendor_id:1,
+//         quantity:2,
+//         price:100,
+//         name:'asas',
+//         id:3,
+//        images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
+//       },
+//       {
+//         vendor_id:3,
+//         quantity:2,
+//         price:100,
+//         name:'asas',
+//         id:4,
+//        images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
+//       },
+//     ]
 
-    let newArr = aarr.map(item => ({
-  vendor_id: item.vendor_id,
-  quantity: item.quantity,
-  price: item.price,
-  id: item.id
-}));
+//     let newArr = aarr.map(item => ({
+//   vendor_id: item.vendor_id,
+//   quantity: item.quantity,
+//   price: item.price,
+//   id: item.id
+// }));
 
 
     //     let newArray = aarr.flatMap(vendor => {

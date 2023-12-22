@@ -198,10 +198,10 @@
           />
         </svg>
       </div>
-      <div class="container">
-      <div class="row justify-content-around  main">
-      <div class="col-6 ">
-       <div class="main-form">
+      <div class="container ">
+      <div class="row justify-content-center justify-content-xl-around justify-content-lg-around align-items-center w-100  main">
+      <div class="col-12 col-xl-6 col-lg-6 ">
+       <div class="main-form  w-100">
            <div v-if="store.state.checkForm == 1" class="sign-up">
                <register/>
            </div>
@@ -212,7 +212,7 @@
           </div>
       
       </div>
-      <div class="col-6  d-flex justify-content-end">
+      <div class="col-12 col-xl-6 col-lg-6  d-flex justify-content-end">
         <div class="text-container">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -293,6 +293,8 @@
 import { useStore } from "@/store/index";
 let store = useStore;
 let check = ref(store.state.checkForm);
+const localePath = useLocalePath();
+
 
 definePageMeta({
   layout: "custom",
@@ -302,7 +304,8 @@ let router = ref(useRouter());
 
 const goBack = () =>{
   // router.value.go(-1);
-  router.value.push('/');
+    const fullLocalePath = localePath('/');
+  router.value.push(fullLocalePath);
 }
 let theimage = ref(1);
 let authNav = ref(1);

@@ -2,7 +2,7 @@
   <div>
     <div v-if="product" class="product-card">
       <div class="head w-100 d-flex align-items-center justify-content-between">
-        <div class="octagon" :class="{ active: favIcon }">
+        <div class="octagon" :class="{ active: clickedItem(product.id) == product.id  }">
           <octagon />
           <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -12,27 +12,18 @@
         </div>
         <span> الاكثر مبيعا </span>
       </div>
-      <Swiper 
-      
-      :spaceBetween="30"
-    :centeredSlides="true"
-    :effect="'fade'"
+      <Swiper :spaceBetween="30" :centeredSlides="true" :effect="'fade'" :autoplay="{
+        delay: 2500,
+        disableOnInteraction: false,
+      }" :modules="[SwiperAutoplay, SwiperEffectFade]" class="image">
 
-    :autoplay="{
-      delay: 2500,
-      disableOnInteraction: false,
-    }"
-    :modules="[SwiperAutoplay , SwiperEffectFade]"
-      
-      class="image">
-      
 
-      
-      <swiper-slide v-for="img in product.images">
-        <img :src="img.full_image_path" alt="">
-      </swiper-slide>
 
-   
+        <swiper-slide v-for="img in product.images">
+          <img :src="img.full_image_path" alt="">
+        </swiper-slide>
+
+
       </Swiper>
       <div class="rate w-100 d-flex align-items-center justify-content-between">
         <span class="type"> {{ product.category }} </span>
@@ -50,7 +41,8 @@
       <div class="overlay">
         <div class="head-icons w-100">
           <div class="w-100 d-flex align-items-center justify-content-between">
-            <div class="octagon active">
+
+            <div v-if="clickedItem(product.id) != product.id" @click="addTofav(product, index)" class="octagon ">
               <octagon />
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -58,6 +50,17 @@
                   fill="#DCDEE0" />
               </svg>
             </div>
+
+            <div v-if="clickedItem(product.id) == product.id" @click="deleteTofav(index , product.id)" class="octagon "
+              :class="{ 'active': clickedItem(product.id) == product.id }">
+              <octagon />
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.3812 6.13389C14.1606 4.35511 17.0457 4.35511 18.8252 6.13389C20.6047 7.91277 20.6047 10.797 18.8252 12.5759L12.3392 19.0593C12.1518 19.2466 11.8479 19.2466 11.6605 19.0593L5.17453 12.5759C3.39495 10.797 3.39495 7.91277 5.17453 6.13389C6.95401 4.35511 9.83904 4.35511 11.6185 6.13389L11.9998 6.51506L12.3812 6.13389Z"
+                  fill="#DCDEE0" />
+              </svg>
+            </div>
+
             <div @click="checkShare = !checkShare" class="octagon">
               <octagon />
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -98,20 +101,20 @@
               </svg>
             </div>
 
-           
-              <div @click="goToProductPage(product.id , product.name)" class="octagon d-flex flex-column gap-3">
-                <octagon />
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <path
-                    d="M28.3346 12.1999C25.2546 7.35991 20.748 4.57324 16.0013 4.57324C13.628 4.57324 11.3213 5.26658 9.21463 6.55991C7.10797 7.86658 5.21464 9.77324 3.66797 12.1999C2.33464 14.2932 2.33464 17.6932 3.66797 19.7866C6.74797 24.6399 11.2546 27.4132 16.0013 27.4132C18.3746 27.4132 20.6813 26.7199 22.788 25.4266C24.8946 24.1199 26.788 22.2132 28.3346 19.7866C29.668 17.7066 29.668 14.2932 28.3346 12.1999ZM16.0013 21.3866C13.0146 21.3866 10.6146 18.9732 10.6146 15.9999C10.6146 13.0266 13.0146 10.6132 16.0013 10.6132C18.988 10.6132 21.388 13.0266 21.388 15.9999C21.388 18.9732 18.988 21.3866 16.0013 21.3866Z"
-                    fill="white" />
-                  <path
-                    d="M15.9992 12.1865C13.9059 12.1865 12.1992 13.8932 12.1992 15.9999C12.1992 18.0932 13.9059 19.7999 15.9992 19.7999C18.0926 19.7999 19.8126 18.0932 19.8126 15.9999C19.8126 13.9065 18.0926 12.1865 15.9992 12.1865Z"
-                    fill="white" />
-                </svg>
-              </div>
 
-          
+            <div @click="goToProductPage(product.id, product.name)" class="octagon d-flex flex-column gap-3">
+              <octagon />
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path
+                  d="M28.3346 12.1999C25.2546 7.35991 20.748 4.57324 16.0013 4.57324C13.628 4.57324 11.3213 5.26658 9.21463 6.55991C7.10797 7.86658 5.21464 9.77324 3.66797 12.1999C2.33464 14.2932 2.33464 17.6932 3.66797 19.7866C6.74797 24.6399 11.2546 27.4132 16.0013 27.4132C18.3746 27.4132 20.6813 26.7199 22.788 25.4266C24.8946 24.1199 26.788 22.2132 28.3346 19.7866C29.668 17.7066 29.668 14.2932 28.3346 12.1999ZM16.0013 21.3866C13.0146 21.3866 10.6146 18.9732 10.6146 15.9999C10.6146 13.0266 13.0146 10.6132 16.0013 10.6132C18.988 10.6132 21.388 13.0266 21.388 15.9999C21.388 18.9732 18.988 21.3866 16.0013 21.3866Z"
+                  fill="white" />
+                <path
+                  d="M15.9992 12.1865C13.9059 12.1865 12.1992 13.8932 12.1992 15.9999C12.1992 18.0932 13.9059 19.7999 15.9992 19.7999C18.0926 19.7999 19.8126 18.0932 19.8126 15.9999C19.8126 13.9065 18.0926 12.1865 15.9992 12.1865Z"
+                  fill="white" />
+              </svg>
+            </div>
+
+
           </div>
           <div class="text d-flex text-center w-100 align-items-center justify-content-between">
             <span> مقارنة </span>
@@ -128,15 +131,15 @@
 <script>
 import { useStore } from "~/store";
 export default {
-  props: ["favIcon", "product"],
+  props: ["favIcon", "product" , "index"],
   setup(props) {
-const store = useStore;
+    const store = useStore;
     const router = useRouter();
     const localePath = useLocalePath();
     const { locale } = useI18n();
     let checkShare = ref(false);
 
-    
+
     const goToProductPage = (id, name) => {
       const queryParams = {
         id: id,
@@ -158,15 +161,29 @@ const store = useStore;
     };
 
     const addToBasket = (itemm) => {
-  store.commit("add", { mainItem: itemm });
-};
+      store.commit("add", { mainItem: itemm });
+    };
+    const addTofav = (item, index) => {
+      store.commit("addFav", { item: item, index: index });
+    };
+    const deleteTofav = (index , itemId) => {
+      store.commit("deleteFav", {index:index , itemId: itemId });
+    };
+
+    const clickedItem = (id) => {
+      return store.state.isInFav.find((item) => item == id);
+    }
 
     onMounted(() => {
     });
     return {
       checkShare,
       addToBasket,
-      goToProductPage
+      goToProductPage,
+      addTofav,
+      deleteTofav,
+      store,
+      clickedItem
 
     };
   },

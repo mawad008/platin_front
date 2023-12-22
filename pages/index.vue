@@ -193,24 +193,26 @@
         <v-window-item v-for="(item, index) in tags">
           <div class="row">
             <div
-              v-for="item in productsTags"
+              v-for="item , indexx in productsTags"
               class="col-12 col-xl-3 col-lg-3 col-md-6 my-2"
             >
-              <product-card :product="item" />
+              <product-card :product="item" :index="indexx" />
             </div>
           </div>
+          <div v-if="spinnerProducts" class="d-flex align-items-center justify-content-center">
           <v-progress-circular
-            v-if="spinnerProducts"
             indeterminate
-            color="primary"
+            color="#dcba95"
           ></v-progress-circular>
+          
+          </div>
         </v-window-item>
       </v-window>
       <nuxt-link to="products">
         <span class="more mt-5"> المزيد... </span>
       </nuxt-link>
     </div>
-
+<!-- 
     <div class="container">
       <div class="row">
         <div class="col" v-for="item , index in products" :key="item.id">
@@ -319,7 +321,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div
       class="container d-flex align-items-center justify-content-center banner-container"
     >
@@ -355,10 +357,9 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="item in productsSectionsArr.latestProducts">
+        <swiper-slide v-for="item , index in productsSectionsArr.latestProducts">
           <product-card
-            :product="item"
-            style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
+            :product="item" :index="index" style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
         </swiper-slide>
       </swiper>
@@ -407,9 +408,9 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="item in productsSectionsArr.latestProducts">
+        <swiper-slide v-for="item , index in productsSectionsArr.latestProducts">
           <product-card
-            :product="item"
+            :product="item" :index="index"
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
         </swiper-slide>
@@ -459,9 +460,9 @@
         :modules="[SwiperNavigation]"
         class="mySwiper"
       >
-        <swiper-slide v-for="item in productsSectionsArr.discountedProducts">
+        <swiper-slide v-for="item , index in productsSectionsArr.discountedProducts">
           <product-card
-            :product="item"
+            :product="item" :index="index"
             style="box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08)"
           />
         </swiper-slide>
@@ -535,7 +536,7 @@
             <div
               class="btn-back d-flex align-items-center w-100 justify-content-center"
             >
-              <button class="btn1">
+              <button @click="goToProductsByBrandId(item.id)" class="btn1">
                 <span> عرض المنتجات </span>
                 <i class="fa-solid fa-arrow-left-long"></i>
               </button>
@@ -894,15 +895,63 @@ let productsSectionsArr = ref([]);
 
 
 const goTocategory = (id, name) => {
-      const queryParams = {
-        id: id,
-        name: name,
-      };
-      const url = locale.value + "/category";
 
-      router.push({ path: url, query: queryParams });
-    };
+  const queryParams = {
+    id: id,
+    name: name,
+  };
+  const url = "/category";
 
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+
+};
+const goToProductsByBrandId = (id) => {
+
+  const queryParams = {
+    brand_id: id,
+  };
+  const url = "/products";
+
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+
+};
+
+const goTocategorysub = (id, name, subid) => {
+
+  const queryParams = {
+    id: id,
+    name: name,
+    subid: subid,
+  };
+  const url = "/category";
+
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+
+};
 
 let products = ref([
   {

@@ -163,21 +163,21 @@
                             الاسم الاول
                             <span>*</span>
                           </label>
-                          <input type="text" v-model="userdata1.first_name" placeholder="مثال : محمد" />
+                          <input type="text" readonly v-model="userdata1.first_name" placeholder="مثال : محمد" />
                         </div>
                         <div class="main-input">
                           <label for=""> الاسم الاخير <span>*</span> </label>
-                          <input type="text" v-model="userdata1.last_name" placeholder="مثال : محمد" />
+                          <input type="text" readonly v-model="userdata1.last_name" placeholder="مثال : محمد" />
                         </div>
                       </div>
                       <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                         <div class="main-input">
                           <label for=""> رقم الهاتف </label>
-                          <input type="tel" v-model="userdata1.phone" placeholder="+201066333725" />
+                          <input type="tel" readonly v-model="userdata1.phone" placeholder="+201066333725" />
                         </div>
                         <div class="main-input">
                           <label for=""> البريد الالكتروني <span>*</span> </label>
-                          <input type="email" v-model="userdata1.email" placeholder="مثال : m.info@icloud.com" />
+                          <input type="email" readonly v-model="userdata1.email" placeholder="مثال : m.info@icloud.com" />
                         </div>
                       </div>
 
@@ -821,7 +821,7 @@ let userdata1 = ref({
   first_name: user.value ? user.value.first_name : '',
   last_name: user.value ? user.value.last_name : '',
   phone: user.value ? user.value.phone : '',
-  email: user.value ? user.value.first_name : '',
+  email: user.value ? user.value.email : '',
 });
 
 let gift_owner_name = ref('');
@@ -871,10 +871,13 @@ const checkoutFunc = async () => {
     } catch (errorss) {
 
       if (errorss.response) {
+        pending.value = false;
 
         errors.value = errorss.response.data.errors;
       }
     }
+  } else {
+    console.log(check);
   }
 }
 
@@ -959,7 +962,7 @@ let items = ref([
 
 onMounted(() => {
   // console.log(arrData.value);
-
+  getCities();
 });
 </script>
 

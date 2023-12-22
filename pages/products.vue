@@ -86,7 +86,7 @@ let tab = ref(null);
 let tabActive = ref(1);
 let selectbox1 = ref(null);
 let selectbox2 = ref(null);
-let selectbox3 = ref(null);
+let selectbox3 = ref(route.query.brand_id ? route.query.brand_id : null);
 let tags = ref([]);
 let products = ref([]);
 let categories = ref([]);
@@ -153,22 +153,9 @@ const getProducts = async () => {
 
 
 
-let chooseCity = ref(1);
-const selectedCity1 = ref("");
-const selectedCity2 = ref("");
-let normalCity = ref([]);
-let fastCity = ref([]);
 
-const getCities = async () => {
-  let result = await axios.get(`${getUrl()}/general`, {
-    headers: {
-      "Content-Language": `${locale.value}`,
-    }
-  });
 
-  normalCity.value = result.data.data.normalCities;
-  fastCity.value = result.data.data.fastShippingCities;
-}
+
 
 
 
