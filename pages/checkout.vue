@@ -40,10 +40,9 @@
                           </svg>
                         </div>
                         <div class="text">
-                          <h4>هدية</h4>
+                          <h4>{{$t("gift")}}</h4>
                           <span>
-                            اختر هذا الخيار إذا كنت تريد شراء الطلب كهدية لشخص
-                            آخر.
+                            {{$t("giftt1")}}
                           </span>
                         </div>
                       </div>
@@ -80,9 +79,8 @@
                           </svg>
                         </div>
                         <div class="text">
-                          <h4>شخصي</h4>
-                          <span>
-                            اختر هذا الخيار إذا كانت العملية لشراء شخصي.</span>
+                          <h4>{{$t("personaly")}}</h4>
+                          <span> {{$t('giftt2')}}</span>
                         </div>
                       </div>
                     </label>
@@ -94,23 +92,23 @@
                       <div class="d-flex my-4  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                         <div class="main-input">
                           <label for="">
-                            الاسم الاول
+                             {{ $t("first name") }}
                             <span>*</span>
                           </label>
                           <input type="text" readonly v-model="userdata1.first_name" placeholder="مثال : محمد" />
                         </div>
                         <div class="main-input">
-                          <label for=""> الاسم الاخير <span>*</span> </label>
+                          <label for=""> {{ $t("last name") }} <span>*</span> </label>
                           <input type="text" readonly v-model="userdata1.last_name" placeholder="مثال : محمد" />
                         </div>
                       </div>
                       <div class="d-flex   flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                         <div class="main-input">
-                          <label for=""> رقم الهاتف </label>
+                          <label for=""> {{ $t("phone") }} </label>
                           <input type="tel" readonly v-model="userdata1.phone" placeholder="+201066333725" />
                         </div>
                         <div class="main-input">
-                          <label for=""> البريد الالكتروني <span>*</span> </label>
+                          <label for=""> {{ $t("email") }} <span>*</span> </label>
                           <input type="email" readonly v-model="userdata1.email" placeholder="مثال : m.info@icloud.com" />
                         </div>
                       </div>
@@ -120,7 +118,7 @@
                       <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                         <div class="main-input">
                           <label for="">
-                            الاسم الاول
+                                {{ $t("first name") }}
                             <span>*</span>
                           </label>
                           <input type="text" v-model="userdata1.first_name" placeholder="مثال : محمد" />
@@ -129,7 +127,7 @@
                           <span class="error-msg" v-if="errors.first_name">{{ errors.first_name[0] }}</span>
                         </div>
                         <div class="main-input">
-                          <label for=""> الاسم الاخير <span>*</span> </label>
+                          <label for=""> {{ $t("last name") }} <span>*</span> </label>
                           <input type="text" v-model="userdata1.last_name" placeholder="مثال : محمد" />
                           <span class="error-msg" v-if="v$.last_name.$error">{{ v$.last_name.$errors[0].$message
                           }}</span>
@@ -138,14 +136,14 @@
                       </div>
                       <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                         <div class="main-input">
-                          <label for=""> رقم الهاتف </label>
+                          <label for=""> {{ $t("phone") }} </label>
                           <input type="tel" v-model="userdata1.phone" placeholder="+201066333725" />
                           <span class="error-msg" v-if="v$.phone.$error">{{ v$.phone.$errors[0].$message
                           }}</span>
                           <span class="error-msg" v-if="errors.phone">{{ errors.phone[0] }}</span>
                         </div>
                         <div class="main-input">
-                          <label for=""> البريد الالكتروني <span>*</span> </label>
+                          <label for=""> {{ $t("email") }} <span>*</span> </label>
                           <input type="email" v-model="userdata1.email" placeholder="مثال : m.info@icloud.com" />
                           <span class="error-msg" v-if="v$.email.$error">{{ v$.email.$errors[0].$message
                           }}</span>
@@ -155,28 +153,28 @@
                     </div>
                   </div>
                   <div v-if="personalorGift == 1" class="inputs">
-                    <h4>بيانات المهدي</h4>
+                    <h4>{{ $t("main gift") }}</h4>
                     <div v-if="auth">
                       <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                         <div class="main-input">
                           <label for="">
-                            الاسم الاول
+                             {{ $t("first name") }}
                             <span>*</span>
                           </label>
                           <input type="text" readonly v-model="userdata1.first_name" placeholder="مثال : محمد" />
                         </div>
                         <div class="main-input">
-                          <label for=""> الاسم الاخير <span>*</span> </label>
+                          <label for=""> {{ $t("last name") }} <span>*</span> </label>
                           <input type="text" readonly v-model="userdata1.last_name" placeholder="مثال : محمد" />
                         </div>
                       </div>
                       <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                         <div class="main-input">
-                          <label for=""> رقم الهاتف </label>
+                          <label for=""> {{ $t("phone") }}</label>
                           <input type="tel" readonly v-model="userdata1.phone" placeholder="+201066333725" />
                         </div>
                         <div class="main-input">
-                          <label for=""> البريد الالكتروني <span>*</span> </label>
+                          <label for=""> {{ $t("email") }} <span>*</span> </label>
                           <input type="email" readonly v-model="userdata1.email" placeholder="مثال : m.info@icloud.com" />
                         </div>
                       </div>
@@ -186,7 +184,7 @@
                       <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                         <div class="main-input">
                           <label for="">
-                            الاسم الاول
+                             {{ $t("first name") }}
                             <span>*</span>
                           </label>
                           <input type="text" v-model="userdata1.first_name" placeholder="مثال : محمد" />
@@ -195,7 +193,7 @@
                           <span class="error-msg" v-if="errors.first_name">{{ errors.first_name[0] }}</span>
                         </div>
                         <div class="main-input">
-                          <label for=""> الاسم الاخير <span>*</span> </label>
+                          <label for=""> {{ $t("last name") }} <span>*</span> </label>
                           <input type="text" v-model="userdata1.last_name" placeholder="مثال : محمد" />
                           <span class="error-msg" v-if="v$.last_name.$error">{{ v$.last_name.$errors[0].$message
                           }}</span>
@@ -204,14 +202,14 @@
                       </div>
                       <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                         <div class="main-input">
-                          <label for=""> رقم الهاتف </label>
+                          <label for="">  {{ $t("phone") }} </label>
                           <input type="tel" v-model="userdata1.phone" placeholder="+201066333725" />
                           <span class="error-msg" v-if="v$.phone.$error">{{ v$.phone.$errors[0].$message
                           }}</span>
                           <span class="error-msg" v-if="errors.phone">{{ errors.phone[0] }}</span>
                         </div>
                         <div class="main-input">
-                          <label for=""> البريد الالكتروني <span>*</span> </label>
+                          <label for=""> {{ $t("email") }} <span>*</span> </label>
                           <input type="email" v-model="userdata1.email" placeholder="مثال : m.info@icloud.com" />
                           <span class="error-msg" v-if="v$.email.$error">{{ v$.email.$errors[0].$message
                           }}</span>
@@ -220,26 +218,26 @@
                       </div>
 
                     </div>
-                    <h4>بيانات المهدي اليه</h4>
+                    <h4>{{ $t("main gift1") }}</h4>
                     <div class="d-flex  flex-column flex-xl-row flex-lg-row align-items-center gap-3">
                       <div class="main-input">
                         <label for="">
-                          الاسم الاول
+                          {{ $t("first name") }}
                           <span>*</span>
                         </label>
                         <input type="text" v-model="gift_owner_name" placeholder="مثال : محمد" />
                         <span class="error-msg" v-if="errors.gift_owner_name">{{ errors.gift_owner_name[0] }}</span>
                       </div>
                       <div class="main-input">
-                        <label for=""> رقم الهاتف </label>
+                        <label for=""> {{ $t("last name") }} </label>
                         <input type="tel" v-model="gift_owner_phone" placeholder="+201066333725" />
                         <span class="error-msg" v-if="errors.gift_owner_phone">{{ errors.gift_owner_phone[0] }}</span>
 
                       </div>
                     </div>
-                    <h4>نص الهدية</h4>
+                    <h4>{{ $t("gift text") }}</h4>
                     <div class="main-input">
-                      <textarea name="" v-model="gift_text" placeholder="أكتب رسالتك الخاصة هنا ليصل مع هديتك" id=""
+                      <textarea name="" v-model="gift_text" :placeholder="$t('gift text1')" id=""
                         cols="20" rows="5"></textarea>
 
                       <span class="error-msg" v-if="errors.gift_text">{{ errors.gift_text[0] }}</span>
@@ -294,10 +292,9 @@
                           </svg>
                         </div>
                         <div class="text">
-                          <h4>شحن عادي</h4>
+                          <h4>{{ $t("normal shipping") }}</h4>
                           <span>
-                            اختر هذا الخيار للتوصيل العادي، سيصلك طلبك في غضون
-                            3-7 ايام
+                            {{ $t("normal shipping1") }}
                           </span>
                         </div>
                       </div>
@@ -333,10 +330,9 @@
                           </svg>
                         </div>
                         <div class="text">
-                          <h4>شحن سريع</h4>
+                          <h4>{{ $t("fast shipp") }}</h4>
                           <span>
-                            اختر هذا الخيار لتوصيل سريع، سيصلك طلبك في غضون 3
-                            ساعات
+                          {{ $t("fast shipp1") }}
                           </span>
                         </div>
                       </div>
@@ -365,7 +361,7 @@
                         <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3">
                           <div class="main-input">
                             <label for="">
-                              المدينة
+                                {{ $t("city") }}
                               <span>*</span>
                             </label>
                             <Dropdown v-if="chooseCity == 1" v-model="selectedCity1" :options="normalCity" filter
@@ -389,7 +385,7 @@
                             <span class="error-msg" v-if="errors1.city">{{ errors1.city[0] }}</span>
                           </div>
                           <div class="main-input">
-                            <label for=""> اسم الشارع<span>*</span> </label>
+                            <label for="">  {{ $t("street name") }} <span>*</span> </label>
                             <input type="text" v-model="userdata2.street_name" placeholder=" مثال : شارع المملكة " />
                             <span class="error-msg" v-if="v2$.street_name.$error">{{ v2$.street_name.$errors[0].$message
                             }}</span>
@@ -400,7 +396,7 @@
                         <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row  gap-3">
                           <div class="main-input">
                             <label for="">
-                              الحي<span>*</span>
+                             {{ $t("dist") }}<span>*</span>
                             </label>
                             <input type="text"  v-model="userdata2.district" placeholder="مثال : الحي الخامس" />
                                <span class="error-msg" v-if="v2$.district.$error">{{ v2$.district.$errors[0].$message
@@ -409,7 +405,7 @@
                           </div>
 
                           <div class="main-input">
-                            <label for=""> رقم المبني </label>
+                            <label for=""> {{ $t("bulding number") }}</label>
                             <input type="text" v-model="userdata2.building_number" placeholder="45 ب" />
                             <span class="error-msg" v-if="v2$.building_number.$error">{{
                               v2$.building_number.$errors[0].$message
@@ -419,11 +415,11 @@
                         </div>
                       </div>
                       <div class="main-input mt-3">
-                        <label for=""> الاسم المميز للعنوان </label>
+                        <label for=""> {{ $t("special") }}</label>
                         <input type="text" placeholder="مثال : المنزل , المكتب , الشركة ..الخ" />
                       </div>
 
-                      <v-checkbox label="حفظ البيانات لاستخدامها مره أخرى" color="#DCBA95"></v-checkbox>
+                      <v-checkbox :label="$t('save data')" color="#DCBA95"></v-checkbox>
                     </div>
                     <div class="map-image col-12 col-xl-5 col-lg-5">
                       <img class="image" src="~/assets/images/map.png" alt="" />
@@ -434,8 +430,8 @@
                               d="M19.5422 8.45C18.5583 3.83 14.7821 1.75 11.4651 1.75C11.4651 1.75 11.4651 1.75 11.4558 1.75C8.14813 1.75 4.36262 3.82 3.37876 8.44C2.28246 13.6 5.24341 17.97 7.92325 20.72C8.91648 21.74 10.1908 22.25 11.4651 22.25C12.7395 22.25 14.0138 21.74 14.9977 20.72C17.6775 17.97 20.6384 13.61 19.5422 8.45ZM11.4651 13.46C9.83475 13.46 8.51357 12.05 8.51357 10.31C8.51357 8.57 9.83475 7.16 11.4651 7.16C13.0955 7.16 14.4167 8.57 14.4167 10.31C14.4167 12.05 13.0955 13.46 11.4651 13.46Z"
                               fill="white" />
                           </svg>
-                          <span> العنوان </span>
-                          <span> حدد علي الخريطة </span>
+                          <span> {{ $t("address") }}</span>
+                          <span> {{ $t("map") }}</span>
                         </div>
                       </div>
                     </div>
@@ -468,7 +464,7 @@
                                   d="M7.4756 4.26733C8.52571 4.35487 9.57582 3.74212 10.2321 2.96525C10.8775 2.16649 11.3041 1.09419 11.1947 0C10.265 0.0437675 9.1164 0.612745 8.46008 1.4115C7.85845 2.10084 7.34433 3.21691 7.4756 4.26733ZM19.9671 18.3606V1.30218H26.3662C29.6697 1.30218 31.9778 3.57809 31.9778 6.90442C31.9778 10.2307 29.626 12.5285 26.2787 12.5285H22.6143V18.3606H19.9671ZM11.1838 4.47546C10.2587 4.4222 9.41456 4.75377 8.73273 5.02158C8.29395 5.19393 7.92239 5.33987 7.63971 5.33987C7.32248 5.33987 6.93558 5.18612 6.50117 5.0135C5.93196 4.78731 5.28119 4.5287 4.59876 4.54112C3.03453 4.563 1.57969 5.44929 0.781167 6.86079C-0.859631 9.68379 0.35456 13.8636 1.94067 16.1614C2.71731 17.2993 3.6471 18.5467 4.87222 18.5029C5.41121 18.4826 5.79892 18.318 6.20017 18.1477C6.66211 17.9516 7.14199 17.748 7.89129 17.748C8.61462 17.748 9.07351 17.9463 9.51402 18.1368C9.93288 18.3178 10.3351 18.4917 10.9322 18.4811C12.2011 18.4592 12.9996 17.3431 13.7763 16.2052C14.6144 14.9838 14.9827 13.7919 15.0386 13.611L15.0452 13.59C15.0438 13.5887 15.0335 13.584 15.0152 13.5756C14.735 13.4473 12.5936 12.4666 12.573 9.83698C12.5524 7.62976 14.2716 6.51144 14.5422 6.3354L14.5422 6.33539C14.5587 6.32468 14.5698 6.31746 14.5748 6.3137C13.4809 4.6943 11.7745 4.51923 11.1838 4.47546ZM36.8128 18.4917C38.4755 18.4917 40.0178 17.6492 40.7179 16.3143H40.7726V18.3604H43.2228V9.8695C43.2228 7.40758 41.2539 5.82101 38.2239 5.82101C35.4126 5.82101 33.3343 7.42946 33.2577 9.63972H35.6423C35.8392 8.5893 36.8128 7.89996 38.1473 7.89996C39.7662 7.89996 40.6741 8.65495 40.6741 10.0446V10.9856L37.3706 11.1825C34.2969 11.3685 32.6342 12.6268 32.6342 14.8152C32.6342 17.0255 34.3516 18.4917 36.8128 18.4917ZM37.5243 16.4674C36.1132 16.4674 35.2163 15.789 35.2163 14.7495C35.2163 13.6772 36.0804 13.0535 37.7322 12.955L40.6747 12.769V13.7319C40.6747 15.3294 39.3183 16.4674 37.5243 16.4674ZM51.3511 19.0281C50.29 22.0152 49.0758 23 46.4943 23C46.2974 23 45.6411 22.9781 45.4879 22.9343V20.8882C45.652 20.9101 46.0568 20.932 46.2646 20.932C47.435 20.932 48.0914 20.4396 48.4961 19.1594L48.7367 18.4044L44.2519 5.98539H47.0194L50.1369 16.0629H50.1916L53.3091 5.98539H56L51.3511 19.0281ZM22.6146 3.5341H25.6665C27.9636 3.5341 29.2763 4.75959 29.2763 6.91514C29.2763 9.07069 27.9636 10.3071 25.6556 10.3071H22.6146V3.5341Z"
                                   fill="#919EAB" />
                               </svg>
-                              <span> الدفع عند الاستلام </span>
+                              <span> {{ $t("payment1") }} </span>
                             </div>
 
                             <svg class="checked-svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -667,7 +663,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="show-card">
-                    <span class="word px-3"> التوصيل الي </span>
+                    <span class="word px-3"> {{ $t("del to") }}</span>
                     <div class="card-container">
                       <div class="head d-flex align-items-center gap-2">
                         <div class="image">
@@ -692,7 +688,7 @@
                             <span class="text-word"> +055 3219 4323 1294 </span>
                           </div>
                           <button @click="store.state.step = 1" class="d-flex align-items-center gap-2">
-                            <span class="edit"> تعديل </span>
+                            <span class="edit"> {{ $t("edit") }} </span>
                             <img src="~/assets/images/edit.svg" alt="" />
                           </button>
                         </div>
@@ -702,7 +698,7 @@
                 </div>
                 <div class="col-12">
                   <div class="show-card">
-                    <span class="word px-3"> طريقة الدفع</span>
+                    <span class="word px-3"> {{ $t("payment method") }}</span>
                     <div class="card-container">
                       <div
                         class="head d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3 justify-content-between">
@@ -721,7 +717,7 @@
                         </div>
 
                         <button @click="store.state.step = 3" class="d-flex align-items-center gap-2">
-                          <span class="edit"> تعديل </span>
+                          <span class="edit"> {{$t("edit")}}</span>
                           <img src="~/assets/images/edit.svg" alt="" />
                         </button>
                       </div>
@@ -730,7 +726,7 @@
                 </div>
                 <div class="col-12">
                   <div class="show-card">
-                    <span class="word px-3"> الشحن </span>
+                    <span class="word px-3"> {{ $t("ship") }}</span>
                     <div class="card-container">
                       <div
                         class="head d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3 justify-content-between">
@@ -759,7 +755,7 @@
                         </div>
 
                         <button @click="store.state.step = 2" class="d-flex align-items-center gap-2">
-                          <span class="edit"> تعديل </span>
+                          <span class="edit"> {{$t("edit")}}</span>
                           <img src="~/assets/images/edit.svg" alt="" />
                         </button>
                       </div>
@@ -953,13 +949,17 @@ const checkoutFunc1 = async () => {
 let step = computed(() => {
   return store.state.step;
 });
-let items = ref([
-  "معلومات المستلم",
-  "الشحن والعنوان",
-  "طرق الدفع",
-  "مراجعة الطلب",
-]);
-
+let items = ref();
+if (locale.value == 'ar') {
+  items.value =  ["معلومات المستلم", "الشحن والعنوان", "طرق الدفع", "مراجعة الطلب",]
+} else if (locale.value == 'en') {
+  items.value = [
+    "Recipient Information",
+    "Shipping and Address",
+    "Payment Methods",
+    "Order Review",
+  ];
+}
 onMounted(() => {
   // console.log(arrData.value);
   getCities();

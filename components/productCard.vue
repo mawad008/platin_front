@@ -117,9 +117,9 @@
 
           </div>
           <div class="text d-flex text-center w-100 align-items-center justify-content-between">
-            <span> مقارنة </span>
-            <span> اضف الي السلة </span>
-            <span> شاهد </span>
+            <span> {{ $t("compare") }} </span>
+            <span>{{ $t("add to cart") }}</span>
+            <span> {{ $t("watch") }} </span>
           </div>
         </div>
 

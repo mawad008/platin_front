@@ -4,10 +4,16 @@
       <swiper
         :spaceBetween="30"
         :effect="'fade'"
+        :dir="getSwiperDirection"
+        :loop="true"
         :pagination="{
           clickable: true,
         }"
-        :modules="[SwiperEffectFade, SwiperPagination]"
+        :autoplay="{
+          delay: 2500,
+          disableOnInteraction: false,
+        }"
+        :modules="[SwiperEffectFade, SwiperPagination , SwiperAutoplay]"
         class="hero-section"
       >
         <swiper-slide v-for="(i, index) in 3" class="box">
@@ -15,15 +21,13 @@
             <!-- <img src="~/assets/images/banner.jpg" alt=""> -->
             <div class="text-container">
               {{ index + 1 }}
-              <h2>استمتع بلمسة من الأناقة والفخامة مع بلاتين</h2>
+              <h2>{{ $t("landing1") }}</h2>
               <span class="text">
-                منصتنا الإلكترونية هي المكان الذي يجمع بين تجار الذهب والمجوهرات
-                في المملكة. نفتخر بتقديم تجربة شراء آمنة وسلسة، مع تشكيلة واسعة
-                وأنيقة تلبي احتياجاتك.
+               {{$t("landing2")}}
               </span>
               <button class="btn1">
-                <span> تسوق الان </span>
-                <i class="fa-solid fa-arrow-left-long"></i>
+                <span> {{ $t("shopNow") }}</span>
+                <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
               </button>
             </div>
           </div>
@@ -36,10 +40,11 @@
       <div
         class="text w-100 d-flex align-items-center justify-content-center text-center flex-column mb-5"
       >
-        <h3>الاقسام</h3>
+        <h3>
+        {{ $t("sections") }}
+        </h3>
         <span>
-          استكشف مجموعة متنوعة من أقسامنا المميزة، حيث ستجد تشكيلات متنوعة من
-          المنتجات تلبي احتياجاتك وتعبر عن ذوقك الشخصي
+        {{ $t("explore1") }}
         </span>
       </div>
       <div
@@ -55,9 +60,9 @@
           >
             <img :src="item.image" alt="" />
             <span class="type"> {{ item.name }} </span>
-            <span class="count"> {{ item.products_count }} منتج </span>
+            <span class="count"> {{ item.products_count }} {{ $t("product") }} </span>
             
-              <button class="mt-1" @click="goTocategory(item.id , item.name)">عرض المنتجات</button>
+              <button class="mt-1" @click="goTocategory(item.id , item.name)">{{ $t("showProducts") }}</button>
           </div>
         </div>
       </div>
@@ -67,6 +72,8 @@
       <swiper
         :effect="'fade'"
         :centeredSlides="true"
+        :dir="getSwiperDirection"
+      
         :pagination="{
           clickable: true,
         }"
@@ -84,7 +91,11 @@
             spaceBetween: 20,
           },
         }"
-        :modules="[SwiperPagination]"
+         :autoplay="{
+           delay: 2500,
+           disableOnInteraction: false,
+         }"
+        :modules="[SwiperPagination , SwiperAutoplay]"
         class=""
       >
         <swiper-slide v-for="(item, index) in adsArr" class="box f1">
@@ -97,8 +108,10 @@
                 {{ item.description }}
               </span>
               <button class="btn1">
-                <span> شاهد العروض </span>
-                <i class="fa-solid fa-arrow-left-long"></i>
+                <span> 
+              {{ $t("watch1") }}                
+                 </span>
+                <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
               </button>
               <div class="circle">
                 <img class="" src="~/assets/images/offer-circle.png" alt="" />
@@ -118,18 +131,19 @@
         class="d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between"
       >
         <div class="text">
-          <h3>تسوق حسب التصنيفات</h3>
+          <h3>
+              {{ $t("shop1") }}          
+          </h3>
           <p>
-            اكتشف تجربة التسوق الفريدة حسب التصنيفات، حيث يمكنك استعراض واختيار
-            المنتجات بسهولة وفقًا لاهتماماتك وتفضيلاتك.
+          {{ $t("explore2") }}
           </p>
         </div>
-        <div class="d-flex align-items-center gap-4">
+        <div class="d-flex align-items-center gap-4 arrows">
           <div class="slider-cate-next">
-            <i class="fa-solid fa-chevron-right"></i>
+            <i class="fa-solid fa-chevron-right arrow-icon"></i>
           </div>
           <div class="slider-cate-prev">
-            <i class="fa-solid fa-chevron-left"></i>
+            <i class="fa-solid fa-chevron-left arrow-icon"></i>
           </div>
         </div>
       </div>
@@ -137,6 +151,7 @@
       <swiper
         :slidesPerView="2"
         :spaceBetween="10"
+        :dir="getSwiperDirection" 
         :navigation="{
           nextEl: '.slider-cate-next',
           prevEl: '.slider-cate-prev',
@@ -151,7 +166,11 @@
             spaceBetween: 30,
           },
         }"
-        :modules="[SwiperNavigation]"
+         :autoplay="{
+          delay: 2500,
+          disableOnInteraction: false,
+        }"
+        :modules="[SwiperNavigation , SwiperAutoplay]"
         class=""
       >
         <swiper-slide v-for="item in subcategoriesArr">
@@ -169,7 +188,7 @@
       <div
         class="header mb-5 d-flex flex-column align-items-center justify-content-center w-100"
       >
-        <h3 class="mb-5">منتجاتنا</h3>
+        <h3 class="mb-5">{{ $t("our products") }}</h3>
 
         <!-- <v-tabs v-model="tabNav" align-tabs="center">
           <v-tab v-for="(item, index) in tags" :value="index" class="head">
@@ -209,7 +228,7 @@
         </v-window-item>
       </v-window>
       <nuxt-link to="products">
-        <span class="more mt-5"> المزيد... </span>
+        <span class="more mt-5"> {{ $t("more") }} </span>
       </nuxt-link>
     </div>
 <!-- 
@@ -224,7 +243,7 @@
                 <octagon />
                 <i class="fa-solid fa-heart"></i>
               </div>
-              <span> الاكثر مبيعا </span>
+              <span>{{ $t("most selling") }}</span>
             </div>
             <Swiper
               :spaceBetween="30"
@@ -329,10 +348,10 @@
       :spaceBetween="10" -->
       <div class="arrows d-flex align-items-center gap-4">
         <div @click="banner1 = true" class="slider-cate-next arrow">
-          <i class="fa-solid fa-chevron-right"></i>
+          <i class="fa-solid fa-chevron-right arrow-icon"></i>
         </div>
         <div @click="banner1 = false" class="slider-cate-prev arrow">
-          <i class="fa-solid fa-chevron-left"></i>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
         </div>
       </div>
       <swiper
@@ -354,7 +373,13 @@
             spaceBetween: 50,
           },
         }"
-        :modules="[SwiperNavigation]"
+         :autoplay="{
+          delay: 2500,
+          disableOnInteraction: false,
+        }"
+        :dir="getSwiperDirection"
+        :loop="true"
+        :modules="[SwiperNavigation , SwiperAutoplay]"
         class="mySwiper"
       >
         <swiper-slide v-for="item , index in productsSectionsArr.latestProducts">
@@ -365,10 +390,10 @@
       </swiper>
       <div class="overlay-background f1" :class="{ active: banner1 }">
         <div class="text">
-          <h4>مضاف حديثا</h4>
+          <h4> {{ $t("add recently") }} </h4>
           <button class="btn1">
-            <span> شاهد المزيد </span>
-            <i class="fa-solid fa-arrow-left-long"></i>
+            <span> {{ $t("see more") }} </span>
+            <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
           </button>
         </div>
         <img class="img-fluid" src="~/assets/images/banner-img1.png" alt="" />
@@ -380,10 +405,10 @@
     >
       <div class="arrows d-flex align-items-center gap-4">
         <div @click="banner2 = true" class="arrow second-cate-next">
-          <i class="fa-solid fa-chevron-right"></i>
+          <i class="fa-solid fa-chevron-right arrow-icon"></i>
         </div>
         <div @click="banner2 = false" class="arrow second-cate-prev">
-          <i class="fa-solid fa-chevron-left"></i>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
         </div>
       </div>
       <swiper
@@ -405,7 +430,13 @@
             spaceBetween: 50,
           },
         }"
-        :modules="[SwiperNavigation]"
+        :dir="getSwiperDirection"
+         :loop="true"
+          :autoplay="{
+          delay: 2500,
+          disableOnInteraction: false,
+        }"
+        :modules="[SwiperNavigation , SwiperAutoplay]"
         class="mySwiper"
       >
         <swiper-slide v-for="item , index in productsSectionsArr.latestProducts">
@@ -417,10 +448,10 @@
       </swiper>
       <div class="overlay-background f2" :class="{ active: banner2 }">
         <div class="text">
-          <h4>الاكثر مبيعا</h4>
+          <h4>{{ $t("most selling") }}</h4>
           <button class="btn1">
-            <span> شاهد المزيد </span>
-            <i class="fa-solid fa-arrow-left-long"></i>
+            <span>{{ $t("see more") }}</span>
+            <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
           </button>
         </div>
         <img class="img-fluid" src="~/assets/images/banner-img2.png" alt="" />
@@ -432,10 +463,10 @@
     >
       <div class="arrows d-flex align-items-center gap-4">
         <div @click="banner3 = true" class="third-cate-next arrow">
-          <i class="fa-solid fa-chevron-right"></i>
+          <i class="fa-solid fa-chevron-right arrow-icon"></i>
         </div>
         <div @click="banner3 = false" class="third-cate-prev arrow">
-          <i class="fa-solid fa-chevron-left"></i>
+          <i class="fa-solid fa-chevron-left arrow-icon"></i>
         </div>
       </div>
       <swiper
@@ -457,7 +488,13 @@
             spaceBetween: 50,
           },
         }"
-        :modules="[SwiperNavigation]"
+          :loop="true"
+        :dir="getSwiperDirection"
+         :autoplay="{
+          delay: 2500,
+          disableOnInteraction: false,
+        }"
+        :modules="[SwiperNavigation , SwiperAutoplay]"
         class="mySwiper"
       >
         <swiper-slide v-for="item , index in productsSectionsArr.discountedProducts">
@@ -469,10 +506,10 @@
       </swiper>
       <div class="overlay-background f3" :class="{ active: banner3 }">
         <div class="text">
-          <h4>خصومات الشهر</h4>
+          <h4> {{ $t("discounts") }} </h4>
           <button class="btn1">
-            <span> شاهد المزيد </span>
-            <i class="fa-solid fa-arrow-left-long"></i>
+            <span> {{ $t("see more") }} </span>
+            <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
           </button>
         </div>
         <img class="img-fluid" src="~/assets/images/banner-img3.png" alt="" />
@@ -483,17 +520,22 @@
       <div
         class="text d-flex align-items-center justify-content-center flex-column gap-2 mb-5"
       >
-        <h3>الماركات</h3>
+        <h3>{{$t("brands")}}</h3>
         <span>
-          استكشف مجموعة مذهلة من الماركات العالمية الرائدة في عالم المجوهرات
-          والتصميم على موقع بلاتين
+         {{ $t("explore3") }}
         </span>
       </div>
       <swiper
         :centeredSlides="true"
         :grabCursor="true"
+          :loop="true"
+        :dir="getSwiperDirection"
         :thumbs="{ swiper: thumbsSwiper }"
-        :modules="[SwiperFreeMode, SwiperThumbs]"
+         :autoplay="{
+           delay: 2500,
+           disableOnInteraction: false,
+         }"
+        :modules="[SwiperFreeMode, SwiperThumbs , SwiperAutoplay]"
         :breakpoints="{
           '300': {
             slidesPerView: 2,
@@ -518,8 +560,10 @@
       <swiper
         @swiper="setThumbsSwiper"
         :freeMode="true"
+          :loop="true"
         :watchSlidesProgress="true"
         :spaceBetween="60"
+        :dir="getSwiperDirection"
         :slidesPerView="1"
       >
         <swiper-slide
@@ -537,8 +581,8 @@
               class="btn-back d-flex align-items-center w-100 justify-content-center"
             >
               <button @click="goToProductsByBrandId(item.id)" class="btn1">
-                <span> عرض المنتجات </span>
-                <i class="fa-solid fa-arrow-left-long"></i>
+                <span> {{ $t("showProducts") }} </span>
+                <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
               </button>
             </div>
           </div>
@@ -552,11 +596,9 @@
       <div
         class="text d-flex align-items-center text-center gap-2 mb-5 justify-content-center flex-column"
       >
-        <h3>عن السوق</h3>
+        <h3> {{ $t("about market") }} </h3>
         <span>
-          نحن هنا لنوفر لك أحدث الأسعار على الفور، لنضمن أنك دائمًا في علم
-          بتقلبات <br />
-          سوق الذهب وفرص الشراء والبيع في الوقت المناسب.
+         {{ $t("market desc") }}
         </span>
       </div>
       <div class="chart-container">
@@ -568,10 +610,9 @@
       <div
         class="text d-flex align-items-center mb-5 justify-content-center gap-3 flex-column text-center"
       >
-        <h3>تهادوا تحابوا</h3>
+        <h3> {{ $t("gift1") }} </h3>
         <p>
-          نقدم لك ميزة استثنائية تتيح لك إرسال هدية خاصة إلى من تحب. تمتع مع
-          بلاتين بتجربة فريدة من نوعها مع توصيل مشاعرك بأسلوب خاص ومميز.
+          {{ $t("gift desc1") }}
         </p>
       </div>
       <div class="row justify-content-evenly">
@@ -629,13 +670,11 @@
                   fill="white"
                 />
               </svg>
-              <span class="fw-bold">1.اختر الهدية التي تليق بذوقك</span>
+              <span class="fw-bold">1. {{ $t("gift2") }}</span>
             </div>
 
             <p class="mt-2 px-5">
-              استعرض مجموعة متنوعة من الهدايا المتاحة وحدد الهدية المثالية للشخص
-              الذي ترغب في إرسالها. بمجرد اختيار الهدية، انتقل إلى المرحلة
-              التالية لإدخال معلومات المستلم.
+              {{ $t("gift desc2") }}
             </p>
           </div>
         </div>
@@ -665,12 +704,11 @@
                   fill="white"
                 />
               </svg>
-              <span class="fw-bold">3.معلومات المستلم</span>
+              <span class="fw-bold">2.{{ $t("gift3") }}</span>
             </div>
 
             <p class="mt-2 px-5">
-              أدخل معلومات المستلم، بما في ذلك اسمه وعنوانه ورقم هاتفه. ثم قم
-              بكتابة رسالة شخصية ترافق الهدية.
+              {{ $t("gift desc3") }}
             </p>
           </div>
         </div>
@@ -716,13 +754,11 @@
                   fill="white"
                 />
               </svg>
-              <span class="fw-bold">2.التشويق</span>
+              <span class="fw-bold">3.{{ $t("gift4") }}</span>
             </div>
 
             <p class="mt-2 px-5">
-              في هذه المرحلة، سيكون لديك السيطرة على إرسال رسالة نصية للمستلم
-              لإعلامه بقرب وصول الهدية. يمكنك تحديد ما إذا كنت ترغب في إرسال
-              الرسالة النصية أم لا.
+            {{ $t("gift desc4") }}
             </p>
           </div>
         </div>
@@ -746,13 +782,11 @@
                   fill="white"
                 />
               </svg>
-              <span class="fw-bold"> 4.التوصيل </span>
+              <span class="fw-bold"> 4.{{ $t("gift5") }}</span>
             </div>
 
             <p class="mt-2 px-5">
-              تأكد من توصيل الهدية بأمان وسلامة إلى المستلم. نهدف دائمًا إلى
-              تقديم تجربة فريدة ومميزة، حيث نضع اهتمامًا خاصًا بكل تفاصيل الهدية
-              وعملية التوصيل لجعلها لحظة لا تُنسى.
+              {{ $t("gift desc5") }}
             </p>
           </div>
         </div>
@@ -813,11 +847,10 @@
                   </defs>
                 </svg>
 
-                <span class="border-line"> الشحن السريع </span>
+                <span class="border-line"> {{ $t("info1") }} </span>
               </div>
               <p>
-                توصيل سريع وموثوق لمنتجاتك مع شركات شحن معروفة. نهدف لضمان
-                استلامك للطلبات في أقرب وقت ممكن.
+               {{ $t("info desc1") }}
               </p>
             </div>
             <div class="box my-3">
@@ -826,10 +859,10 @@
     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.79922 3.2002H31.1992C34.292 3.2002 36.7992 5.7074 36.7992 8.8002V20.0002C36.7992 23.093 34.292 25.6002 31.1992 25.6002H8.79922C5.70642 25.6002 3.19922 23.093 3.19922 20.0002V8.8002C3.19922 5.7074 5.70642 3.2002 8.79922 3.2002ZM36.7992 24.8002V24.0002C36.7992 24.0002 35.5903 26.9289 31.1992 27.2002H8.79922C4.31413 26.869 3.19922 24.0002 3.19922 24.0002V24.8002C3.19922 27.893 5.70642 30.4002 8.79922 30.4002H31.1992C34.292 30.4002 36.7992 27.893 36.7992 24.8002ZM36.7992 29.6002V28.8002C36.7992 28.8002 35.5903 31.7289 31.1992 32.0002H8.79922C4.31413 31.669 3.19922 28.8002 3.19922 28.8002V29.6002C3.19922 32.693 5.70642 35.2002 8.79922 35.2002H31.1992C34.292 35.2002 36.7992 32.693 36.7992 29.6002ZM23.1992 9.6002H20.7992V8.8002C20.7992 8.35837 20.441 8.0002 19.9992 8.0002C19.5574 8.0002 19.1992 8.35837 19.1992 8.8002V9.6002H18.4215C17.096 9.6002 16.0215 10.6747 16.0215 12.0002V12.8014C16.0215 14.1269 17.096 15.2014 18.4215 15.2014H21.5992C22.0411 15.2014 22.3992 15.5596 22.3992 16.0014V16.8002C22.3992 17.242 22.0411 17.6002 21.5992 17.6002H17.6188C17.5859 17.1999 17.2568 16.8797 16.8458 16.8672C16.4042 16.8537 16.0353 17.2009 16.0219 17.6425L15.9996 18.3759C15.9859 18.827 16.3479 19.2002 16.7992 19.2002H19.1992V19.9862C19.1992 20.428 19.5574 20.7862 19.9992 20.7862C20.441 20.7862 20.7992 20.428 20.7992 19.9862V19.2002H21.5992C22.9247 19.2002 23.9992 18.1257 23.9992 16.8002V16.0014C23.9992 14.6759 22.9247 13.6014 21.5992 13.6014H18.4215C17.9797 13.6014 17.6215 13.2432 17.6215 12.8014V12.0002C17.6215 11.5584 17.9797 11.2002 18.4215 11.2002H22.423C22.5098 11.5481 22.8244 11.8059 23.1992 11.8059C23.6411 11.8059 23.9992 11.4477 23.9992 11.0059V10.4002C23.9992 9.95837 23.6411 9.6002 23.1992 9.6002Z" fill="#919EAB"/>
   </svg>
 
-                <span class="border-line"> استرجاع الأموال   </span>
+                <span class="border-line"> {{ $t("info2") }} </span>
               </div>
               <p>
-              رضاؤك هو أمر أساسي بالنسبة لنا. إذا كنت غير راضٍ عن المنتج، يمكنك طلب استرجاع الأموال خلال فترة محددة.
+              {{ $t("info desc2") }}
               </p>
             </div>
             <div class="box my-3">
@@ -838,10 +871,10 @@
     <path fill-rule="evenodd" clip-rule="evenodd" d="M36.7992 25.0742C36.1501 24.272 35.332 23.6121 34.3992 23.1485V20.0001C34.3992 11.8263 28.173 5.64854 19.9992 5.64854C11.8254 5.64854 5.59922 11.8263 5.59922 20.0001V23.1485C4.66639 23.6121 3.84837 24.272 3.19922 25.0742V20.0001C3.19922 10.5008 10.4999 3.24854 19.9992 3.24854C29.4985 3.24854 36.7992 10.5008 36.7992 20.0001V25.0742ZM8.06998 24.0471C8.02353 24.291 7.99922 24.5427 7.99922 24.8001V34.4001C7.99922 34.6575 8.02353 34.9092 8.06998 35.153C5.32173 34.7957 3.19922 32.4457 3.19922 29.6001C3.19922 26.7544 5.32173 24.4045 8.06998 24.0471ZM31.9992 34.4001C31.9992 34.6575 31.9749 34.9092 31.9285 35.153C34.6767 34.7957 36.7992 32.4457 36.7992 29.6001C36.7992 26.7544 34.6767 24.4045 31.9285 24.0471C31.9749 24.291 31.9992 24.5427 31.9992 24.8001V34.4001ZM11.9992 22.4001H13.5992C14.9247 22.4001 15.9992 23.4746 15.9992 24.8001V34.4001C15.9992 35.7256 14.9247 36.8001 13.5992 36.8001H11.9992C10.6737 36.8001 9.59922 35.7256 9.59922 34.4001V24.8001C9.59922 23.4746 10.6737 22.4001 11.9992 22.4001ZM27.9992 22.4001H26.3992C25.0737 22.4001 23.9992 23.4746 23.9992 24.8001V34.4001C23.9992 35.7256 25.0737 36.8001 26.3992 36.8001H27.9992C29.3247 36.8001 30.3992 35.7256 30.3992 34.4001V24.8001C30.3992 23.4746 29.3247 22.4001 27.9992 22.4001Z" fill="#919EAB"/>
   </svg>
 
-                <span class="border-line"> الدعم الفني </span>
+                <span class="border-line"> {{ $t("info3") }} </span>
               </div>
               <p>
-                نحن هنا لمساعدتك. فريق دعم فني مخصص جاهز للإجابة على استفساراتك وحل مشكلاتك في أي وقت.
+               {{ $t("info desc3") }}
 
               </p>
             </div>
@@ -851,11 +884,10 @@
     <path fill-rule="evenodd" clip-rule="evenodd" d="M31.1992 8H8.79922C5.70642 8 3.19922 10.5072 3.19922 13.6V14.4H36.7992V13.6C36.7992 10.5072 34.292 8 31.1992 8ZM3.19922 28V20.8H36.7992V28C36.7992 31.0928 34.292 33.6 31.1992 33.6H8.79922C5.70642 33.6 3.19922 31.0928 3.19922 28ZM31.1992 28.8H24.7992C24.3574 28.8 23.9992 28.4418 23.9992 28C23.9992 27.5582 24.3574 27.2 24.7992 27.2H31.1992C31.641 27.2 31.9992 27.5582 31.9992 28C31.9992 28.4418 31.641 28.8 31.1992 28.8ZM3.19922 19.2V16H36.7992V19.2H3.19922Z" fill="#919EAB"/>
   </svg>
 
-                <span class="border-line"> الدفع الآمن    </span>
+                <span class="border-line"> {{$t("info4")}} </span>
               </div>
               <p>
-              نحن نهتم بأمان معاملاتك. نقدم خيارات دفع متعددة ونقبل جميع أنواع البطاقات لتسهيل عمليات الشراء بأمان.
-
+                {{ $t("info desc4") }}
               </p>
             </div>
           </div>
@@ -1102,6 +1134,13 @@ const getProducts = async () => {
 
 
    
+const getSwiperDirection = computed(() => {
+    if (locale.value === 'ar') {
+    return 'rtl'; // Set the direction to RTL
+  } else {
+    return 'ltr'; // Set the direction to LTR
+  }
+})
 
 
 

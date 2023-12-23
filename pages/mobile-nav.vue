@@ -49,7 +49,7 @@
                                     fill="#DCBA95" />
                             </svg>
                         </div>
-                        <h6>التجار</h6>
+                        <h6> {{ $t("vendors") }} </h6>
                     </div>
                     <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
                         fill="none">
@@ -67,7 +67,7 @@
                                     fill="#DCBA95" />
                             </svg>
                         </div>
-                        <h6>السلة</h6>
+                        <h6>{{ $t("cart") }}</h6>
                     </div>
                     <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
                         fill="none">
@@ -85,7 +85,7 @@
                                     fill="#DCBA95" />
                             </svg>
                         </div>
-                        <h6>المفضلة</h6>
+                        <h6>{{ $t("fav") }}</h6>
                     </div>
                     <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
                         fill="none">
@@ -103,7 +103,7 @@
                                     fill="#DCBA95" />
                             </svg>
                         </div>
-                        <h6>تغيير اللغة</h6>
+                        <h6> {{ $t("change lang") }} </h6>
                     </div>
                     <div class="lang">
                         <button @click="changeLang()" :class="{ 'active': activeLang == 1 }">عربي</button>
@@ -119,7 +119,7 @@
                                     fill="#DCBA95" />
                             </svg>
                         </div>
-                        <h6>الاعدادت</h6>
+                        <h6>{{ $t("settings") }}</h6>
                     </div>
                     <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
                         fill="none">
@@ -140,7 +140,7 @@
                                     fill="#DCBA95" />
                             </svg>
                         </div>
-                        <h6>سياسة الخصوصية</h6>
+                        <h6> {{ $t("private") }} </h6>
                     </div>
                     <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
                         fill="none">
@@ -152,10 +152,10 @@
             </div>
 
             <div class="btns">
-             <button v-if="auth" @click="logOut()" class="out">تسجيل الخروج</button>
+             <button v-if="auth" @click="logOut()" class="out"> {{ $t("log out") }} </button>
              <button v-else  class="log">
               <nuxt-link class="w-100" :to="localePath('/auth')">
-                تسجيل الدخول 
+                {{ $t("login") }}
               </nuxt-link>
              </button>
             </div>

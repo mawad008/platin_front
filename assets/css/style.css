@@ -428,17 +428,20 @@ html[dir=rtl] input[type=tel] {
 
 .product-card-scroll {
   margin-top: 60px;
-  width: 100%;
+  width: 90%;
   border-radius: 16px;
   background: #fff;
   box-shadow: 0px 8px 24px 0px rgba(113, 128, 150, 0.08);
-  position: sticky;
-  top: 65px;
+  position: fixed;
+  overflow: auto;
+  bottom: 0px;
+  left: 0;
+  right: 0;
   padding: 40px 24px;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
-  z-index: 111;
+  z-index: 5555;
 }
 .product-card-scroll .image-container {
   display: flex;
@@ -502,6 +505,18 @@ html[dir=rtl] input[type=tel] {
   border: 1px solid #2d3a4a;
 }
 
+@media (max-width: 700px) {
+  .product-card-scroll {
+    flex-direction: column;
+    display: none !important;
+  }
+  .product-card-scroll .image-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+}
 body,
 html {
   overflow-x: clip;
@@ -1043,10 +1058,6 @@ html[dir=ltr] body {
   height: 48px;
   border-radius: 10px;
 }
-.navbar .search .inp {
-  margin-left: 10px;
-  border-left: 1px solid #000;
-}
 .navbar .search input {
   border: none;
   outline: none;
@@ -1116,6 +1127,7 @@ html[dir=ltr] body {
 .footer-container {
   background-color: #fff;
   padding: 35px;
+  z-index: 1111;
 }
 .footer-container span {
   font-size: 14px;
@@ -1382,7 +1394,6 @@ html[dir=ltr] body {
   width: 321px;
   height: 321px;
   transform: rotate(-30deg);
-  left: 50px;
   top: 0px;
   display: none;
 }
@@ -1415,7 +1426,6 @@ html[dir=ltr] body {
   width: 357px;
   height: 354px;
   bottom: 0;
-  left: 0;
 }
 .offers .box.f1 {
   background: linear-gradient(248deg, #212339 -60.76%, #09132c -32.78%, #1c222f 6.24%, #313b51 49.31%, #272e3d 122.2%, #626a7e 139.04%);
@@ -1570,6 +1580,11 @@ html[dir=ltr] body {
   width: 29.844px;
   height: 32.664px;
 }
+@media (max-width: 700px) {
+  .categories .arrows {
+    display: none !important;
+  }
+}
 .our-products {
   margin-top: 80px;
   margin-bottom: 140px;
@@ -1627,7 +1642,6 @@ html[dir=ltr] body {
 .banner-container .arrows {
   position: absolute;
   top: 30px;
-  right: 30px;
 }
 .banner-container .overlay-background {
   position: absolute;
@@ -1635,9 +1649,7 @@ html[dir=ltr] body {
   width: 364px;
   height: 100%;
   top: 0;
-  left: 0;
   z-index: 11;
-  border-radius: 20px 0px 0px 20px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -2538,6 +2550,9 @@ html[dir=ltr] body {
     width: 100%;
     height: 45px;
     font-size: 15px;
+  }
+  .product-page .mySwiper {
+    margin-top: 15px;
   }
   .product-page .mySwiper2 {
     width: 100%;
@@ -4159,4 +4174,43 @@ html[dir=ltr] body {
 }
 html[dir=ltr] .mobile-nav-container .arrow {
   transform: scaleX(-1);
+}
+
+html[dir=rtl] .navbar .search .inp {
+  margin-left: 10px;
+  border-left: 1px solid #000;
+}
+html[dir=rtl] .navbar .offers .box .circle {
+  left: 50px;
+}
+html[dir=rtl] .navbar .offers .box .main-img img {
+  left: 0;
+}
+html[dir=rtl] .navbar .banner-container .arrow {
+  right: 30px;
+}
+html[dir=rtl] .navbar .banner-container .overlay-background {
+  left: 0;
+  border-radius: 20px 0px 0px 20px;
+}
+
+html[dir=ltr] .navbar .search .inp {
+  margin-right: 10px;
+  border-right: 1px solid #000;
+}
+html[dir=ltr] .arrow-icon {
+  transform: scaleX(-1);
+}
+html[dir=ltr] .offers .circle {
+  right: 50px;
+}
+html[dir=ltr] .offers .main-img img {
+  right: 0;
+}
+html[dir=ltr] .banner-container .arrows {
+  left: 30px;
+}
+html[dir=ltr] .banner-container .overlay-background {
+  right: 0;
+  border-radius: 0px 20px 20px 0px;
 }/*# sourceMappingURL=style.css.map */

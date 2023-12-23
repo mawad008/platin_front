@@ -13,7 +13,7 @@
                 <div class="d-flex justify-content-end  gap-3 w-100">
                     <div>
                         <div class="select-box">
-                            <span> الماركات</span>
+                            <span> {{ $t("brands") }}</span>
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
 

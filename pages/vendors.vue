@@ -6,7 +6,7 @@
       >
         <div>
           <div class="select-box">
-            <span> المدينة </span>
+            <span> {{ $t("city") }} </span>
             <i class="fa-solid fa-chevron-down"></i>
           </div>
 
@@ -46,7 +46,7 @@
                 >
                   <div class="d-flex align-items-center gap-2">
                     <img src="~/assets/images/diamond.svg" alt="" />
-                    <span> {{ item.products_count }} منتج </span>
+                    <span> {{ item.products_count }} {{ $t("product") }} </span>
                   </div>
                   <div class="d-flex align-items-center gap-2">
                     <img src="~/assets/images/vstar.svg" alt="" />
@@ -55,7 +55,7 @@
                 </div>
               </div>
               <div class="overlay">
-                <button>زيارة المتجر</button>
+                <button>{{ $t("visit") }}</button>
               </div>
             </div>
      

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="signNav == 1" class="form">
-            <h3>انضم الينا الان</h3>
+            <h3> {{ $t("join") }} </h3>
             <div class="google">
                 <div class="d-flex align-items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22" fill="none">
@@ -18,18 +18,18 @@
                             d="M11.6977 5.09664C13.5419 5.09664 14.7859 5.87733 15.4953 6.52974L18.2671 3.8775C16.5648 2.32681 14.3494 1.375 11.6977 1.375C7.85637 1.375 4.53889 3.53526 2.92383 6.6794L6.09942 9.09638C6.89612 6.77569 9.10047 5.09664 11.6977 5.09664Z"
                             fill="#EB4335" />
                     </svg>
-                    <span>سجل عبر جوجل</span>
+                    <span> {{ $t("google") }}</span>
                 </div>
             </div>
             <div class="or">
-                <span>أو عبر </span>
+                <span> {{ $t("or") }}</span>
             </div>
 
             <div class="inputs">
                 <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3">
                     <div class="main-input">
                         <label for="">
-                            الاسم الاول
+                              {{ $t("first name") }}
                             <span>*</span>
                         </label>
                         <input type="text" v-model="form.first_name" placeholder="مثال : محمد" />
@@ -40,7 +40,7 @@
 
                     </div>
                     <div class="main-input">
-                        <label for=""> الاسم الاخير <span>*</span> </label>
+                        <label for=""> {{ $t("last name") }}<span>*</span> </label>
                         <input type="text" v-model="form.last_name" placeholder="مثال : محمد" />
                         <span class="error-msg" v-if="v$.last_name.$error">{{ v$.last_name.$errors[0].$message }}</span>
                         <span class="error-msg" v-if="errors.last_name">{{ errors.last_name[0] }}</span>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="main-input">
-                    <label for=""> البريد الاكتروني <span>*</span> </label>
+                    <label for=""> {{ $t("email") }} <span>*</span> </label>
                     <input type="email" v-model="form.email" placeholder="مثال : Mostafademo@icloud.com" />
                     <span class="error-msg" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
                     <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="main-input">
-                    <label for=""> رقم الهاتف <span>*</span> </label>
+                    <label for=""> {{ $t("phone") }} <span>*</span> </label>
                     <input type="tel" v-model="form.phone" placeholder="مثال : +0215984494" />
                     <span class="error-msg" v-if="v$.phone.$error">{{ v$.phone.$errors[0].$message }}</span>
                     <span class="error-msg" v-if="errors.phone">{{ errors.phone[0] }}</span>
@@ -65,14 +65,14 @@
 
                 </div>
                 <div class="main-input">
-                    <label for=""> صورة<span>*</span> </label>
+                    <label for=""> {{ $t("image") }} </label>
                     <input type="file" @change="handleImageChange" placeholder="مثال : +0215984494" />
                     <span class="error-msg" v-if="errors.image">{{ errors.image[0] }}</span>
 
 
                 </div>
                 <div class="main-input">
-                    <label for=""> كلمة المرور <span>*</span> </label>
+                    <label for=""> {{ $t("pass") }}<span>*</span> </label>
                     <input type="password" v-model="form.password" placeholder=" ********** " />
                     <span class="error-msg" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
                     <span class="error-msg" v-if="errors.password">{{ errors.password[0] }}</span>
@@ -80,7 +80,7 @@
 
                 </div>
                 <div class="main-input">
-                    <label for=""> تأكيد كلمة المرور <span>*</span> </label>
+                    <label for=""> {{ $t("confirm pass") }}<span>*</span> </label>
                     <input type="password" v-model="form.password_confirmation" placeholder=" ********** " />
                     <span class="error-msg" v-if="v$.password_confirmation.$error">{{
                         v$.password_confirmation.$errors[0].$message }}</span>
@@ -90,13 +90,13 @@
                 </div>
             </div>
             <p>
-                من خلال إنشاء حساب، فإنك توافق على
-                <span>والشروط والاحكام.</span> <span>سياسة الخصوصية</span>
+                {{ $t("auth1") }}
+                <span>{{ $t("policy1") }}</span> <span>{{ $t("policy") }}</span>
             </p>
-            <button @click="registerFunc()">انشاء حساب</button>
+            <button @click="registerFunc()">{{ $t("create") }}</button>
             <div class="type">
-                <span class="ex">لديك حساب بالفعل ؟</span>
-                <span @click="handleButtonClick(2)" class="log"> تسجيل دخول</span>
+                <span class="ex"> {{ $t("ex") }}</span>
+                <span @click="handleButtonClick(2)" class="log">{{ $t("login") }}</span>
             </div>
         </div>
         <div v-if="signNav == 2" class="form">
@@ -107,17 +107,16 @@
                         fill="#2D3A4A" />
                 </svg>
             </div>
-            <h3 class="text-center">رمز التفعيل</h3>
+            <h3 class="text-center">{{ $t("otp") }}</h3>
             <p class="text text-center">
-                ارسلنا كود تحقق عبر رسالة نصية إلى {{ phoneNum ? phoneNum : '' }} يرجى إدخال الكود
-                في الخانة المخصصة أدناه
+               {{ $t("otp2") }} {{ phoneNum ? phoneNum : '' }} {{ $t("otp1") }} {{ $t("otp3") }}
             </p>
 
             <v-otp-input v-model="otp" :length="6" placeholder="-"
                 style="direction: ltr !important; margin-bottom: 14px;"></v-otp-input>
             {{ otp }}
-            <span class="resend text-center"> اعد ارسال الكود </span>
-            <button @click="otpFunc()" class="otp">متابعة</button>
+            <span class="resend text-center"> {{ $t("resend") }}</span>
+            <button @click="otpFunc()" class="otp">{{ $t("follow") }}</button>
         </div>
 
     </div>

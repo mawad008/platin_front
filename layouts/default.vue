@@ -1,5 +1,6 @@
 <template>
   <div>
+  
     <nav class="navbar" :class="{ active: activeNav }">
       <div class="container">
         <div
@@ -8,13 +9,13 @@
         >
           <div class="items d-flex align-items-center gap-4">
             <nuxt-link :to="localePath('/')">
-              <span>الرئيسية</span>
+              <span>{{ $t("home") }}</span>
             </nuxt-link>
 
             <v-menu>
               <template v-slot:activator="{ props }">
                 <button v-bind="props" class="d-flex align-items-center gap-2">
-                  <span> الاقسام</span>
+                  <span>{{ $t("sections") }}</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -64,7 +65,7 @@
                             class="all"
                             @click="goTocategory(item.id, item.name)"
                           >
-                            الكل
+                            {{ $t("alll") }}
                           </span>
                         </div>
                       </div>
@@ -77,7 +78,7 @@
               <span>السبائك</span>
             </nuxt-link> -->
             <nuxt-link :to="localePath('/vendors')">
-              <span>التجار</span>
+              <span>{{ $t("vendors") }}</span>
             </nuxt-link>
           </div>
           <!-- <div class="d-flex align-items-center gap-2 supp">
@@ -100,7 +101,7 @@
 
             <div v-if="activeNav" class="items d-flex align-items-center gap-4">
               <nuxt-link :to="localePath('/')">
-                <span>الرئيسية</span>
+                <span>{{ $t("home") }}</span>
               </nuxt-link>
 
               <v-menu>
@@ -109,7 +110,7 @@
                     v-bind="props"
                     class="d-flex align-items-center gap-2"
                   >
-                    <span> الاقسام</span>
+                    <span> {{ $t("sections") }}</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -140,7 +141,7 @@
                             </div>
                           </div>
                           <div class="text d-flex flex-column gap-3">
-                            <h6 class="mt-3">الذهب</h6>
+                            <h6 class="mt-3">{{ item.name }}</h6>
                             <div
                               class="links d-flex align-items-center gap-3 flex-column"
                             >
@@ -157,7 +158,7 @@
                               class="all"
                               @click="goTocategory(item.id, item.name)"
                             >
-                              الكل
+                              {{ $t("alll") }}
                             </span>
                           </div>
                         </div>
@@ -170,7 +171,7 @@
                 <span>السبائك</span>
               </nuxt-link> -->
               <nuxt-link :to="localePath('/vendors')">
-                <span>التجار</span>
+                <span>{{ $t("vendors") }}</span>
               </nuxt-link>
               <!-- <span>الدعم الفني</span> -->
             </div>
@@ -310,7 +311,7 @@
                   id="list-profile"
                   class="list d-flex flex-column p-4 gap-4 text-center"
                 >
-                  <span @click="goSettings('profile')"> الملف الشخصي </span>
+                  <span @click="goSettings('profile')"> {{ $t("personal") }}</span>
 
                   <!-- <span @click="goSettings('notifications')"> الاشعارات </span>
                   <span @click="goSettings('orders')"> طلباتي </span> -->
@@ -319,7 +320,7 @@
                     class="d-flex align-items-center gap-2"
                   >
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <span> تسجيل الخروج </span>
+                    <span>{{ $t("log out") }}</span>
                   </div>
                 </div>
               </v-menu>
@@ -343,15 +344,13 @@
                   alt=""
                 />
                 <p class="">
-                  منصتنا الإلكترونية هي المكان الذي يجمع بين تجار الذهب
-                  والمجوهرات في المملكة. نفتخر بتقديم تجربة شراء آمنة وسلسة، مع
-                  تشكيلة واسعة وأنيقة تلبي احتياجاتك.
+                  {{ $t("landing2") }}
                 </p>
               </div>
             </div>
             <div class="col-12 col-xl-2 col-lg-3 col-md-6">
               <div class="box-container d-flex flex-column gap-3">
-                <h6 class="head">الاقسام</h6>
+                <h6 class="head">{{ $t("sections") }}</h6>
                 <div class="links d-flex flex-column gap-4">
                   <span class="head-link"> الذهب </span>
                   <span class="head-link"> الماس </span>
@@ -362,16 +361,16 @@
             </div>
             <div class="col-12 col-xl-2 col-lg-3 col-md-6">
               <div class="box-container d-flex flex-column gap-3">
-                <h6 class="head">الراوبط المهمه</h6>
+                <h6 class="head">{{ $t("links") }}</h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> التقديم كتاجر </span>
-                  <span class="head-link"> من نحن </span>
+                  <span class="head-link"> {{ $t("vendor app") }}</span>
+                  <span class="head-link"> {{ $t("about") }} </span>
                 </div>
               </div>
             </div>
             <div class="col-12 col-xl-2 col-lg-3 col-md-6">
               <div class="box-container d-flex flex-column gap-3">
-                <h6 class="head">الاتصال</h6>
+                <h6 class="head">{{ $t("contact") }}</h6>
                 <div class="links d-flex flex-column gap-4">
                   <span class="head-link"> الرئيسية </span>
                   <span class="head-link"> الرئيسية </span>
@@ -381,16 +380,17 @@
             <div class="col-12 col-xl-2 col-lg-3 col-md-6">
               <div class="box-container d-flex flex-column gap-3">
                 <h6 class="head" style="font-size: 15px; white-space:nowrap;">
-                  اشترك معنا في القائمة البريدية
+                  {{ $t("sub") }}
                 </h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> الرئيسية </span>
+                  <span class="head-link"> {{ $t("home") }} </span>
                   <div
                     class="input d-flex align-items-center  justify-content-center gap-2"
                   >
                     <input type="text" placeholder="ادخل البريد الالكتروني " />
 
                     <svg
+                    class="arrow-icon"
                       xmlns="http://www.w3.org/2000/svg"
                       width="19"
                       height="20"
@@ -430,12 +430,12 @@
           <div
             class="foot w-100 d-flex flex-column flex-xl-row flex-lg-row align-items-center justify-content-between"
           >
-            <span> سياسة الخصوصية والشروط والاحكام </span>
+            <span> {{ $t("policy2") }}</span>
             <div>
-              <span> تم تطويره بواسطة </span>
+              <span> {{ $t("dev") }}</span>
               <img src="~/assets/images/webstdy.png" alt="" />
             </div>
-            <span> جميع الحقوق محفوظة © 2023 . </span>
+            <span> {{ $t("rights") }} © 2023 . </span>
           </div>
         </div>
       </div>
@@ -579,6 +579,7 @@ let theNum = computed(() => {
   return store.state.basketNum;
 });
 
+
 let user = ref(store.state.user);
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
@@ -707,7 +708,27 @@ const updateLang = () => {
     setLocale("en");
   }
 }
+watch(locale, (newLocale) => {
+  if (newLocale === 'ar') {
+    setLocale('ar');
+    useHead({
+      htmlAttrs: {
+        lang: 'ar',
+        dir: 'rtl',
+      },
+    });
+  } else if (newLocale === 'en') {
+    useHead({
+      htmlAttrs: {
+        lang: 'en',
+        dir: 'ltr',
+      },
+    });
+    setLocale('en');
+  }
+});
 onMounted(() => {
+  updateLang();
   store.dispatch("loadBasketFromLocalStorage");
   window.addEventListener("scroll", function () {
     if (this.window.scrollY >= 300) {

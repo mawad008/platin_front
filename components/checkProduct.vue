@@ -13,7 +13,7 @@
         <div class="text w-100 d-flex flex-column gap-2">
           <span class="name"> {{ item.name }} </span>
           <div class="w-100 d-flex align-items-center justify-content-between">
-            <span class="price"> {{ item.price }} رس</span>
+            <span class="price"> {{ item.price }} {{ $t("curr") }}</span>
             <div @click="deleteItem(item.id , item.vendor_id)" class="trash">
               <img src="~/assets/images/trash.svg" alt="" />
             </div>
@@ -24,34 +24,34 @@
 
       <div class="total-price">
         <div class="total">
-          <span class="word all"> الاجمالي </span>
-          <span class="fw-bold price"> {{ total + (40 + 80) }} ر.س </span>
+          <span class="word all"> {{ $t("total") }} </span>
+          <span class="fw-bold price"> {{ total + (40 + 80) }} {{ $t("curr") }} </span>
         </div>
         <div class="total">
-          <span class="word"> السعر </span>
-          <span class="price"> {{ total }} ر.س </span>
+          <span class="word"> {{ $t("price") }} </span>
+          <span class="price"> {{ total }} {{ $t("curr") }} </span>
         </div>
         <div class="total">
-          <span class="word"> الخصومات </span>
-          <span class="price"> 0 ر.س </span>
+          <span class="word"> {{ $t("discountss") }}</span>
+          <span class="price"> 0 {{ $t("curr") }}</span>
         </div>
         <div class="total">
-          <span class="word"> مصاريف الشحن </span>
-          <span class="price"> 40 ر.س </span>
+          <span class="word"> {{ $t("shipping") }}</span>
+          <span class="price"> 40 {{ $t("curr") }} </span>
         </div>
         <div class="total">
-          <span class="word"> ضريبة القيمة المضافة </span>
-          <span class="price"> 80 ر.س </span>
+          <span class="word"> {{ $t("bill") }}</span>
+          <span class="price"> 80 {{ $t("curr") }} </span>
         </div>
       </div>
 
       <div class="btns">
       {{ store.state.step }}
         <button @click="checkFunc()" class="fill gap-3">
-        <span>        تابع عملية الشراء</span>        
+        <span>  {{ $t("follow buy") }} </span>        
         <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
         </button>
-        <button @click="checkFunc2()" class="stroke">الرجوع</button>
+        <button @click="checkFunc2()" class="stroke">{{ $t("back btn") }}</button>
       </div>
     </div>
   </div>

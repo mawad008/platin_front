@@ -20,7 +20,7 @@
                     fill="#919EAB" />
                 </svg>
               </div>
-              <span> الملف الشخصي </span>
+              <span> {{ $t("personal") }}  </span>
             </div>
 
             <!-- <div class="link" @click="navActive = 2" :class="{ active: navActive == 2 }">
@@ -84,7 +84,7 @@
                   </div>
                   <div class="edit d-flex justify-content-end">
                     <div @click="personalActive = 2" class="d-flex align-items-center gap-2">
-                      <span>تعديل البيانات</span>
+                      <span> {{ $t("edit") }} </span>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path
                           d="M14 14.667H2C1.72667 14.667 1.5 14.4403 1.5 14.167C1.5 13.8937 1.72667 13.667 2 13.667H14C14.2733 13.667 14.5 13.8937 14.5 14.167C14.5 14.4403 14.2733 14.667 14 14.667Z"
@@ -101,21 +101,21 @@
                   <div class="form">
                     <div class="inputs w-100">
                       <div class="main-input">
-                        <label for="">الاسم الاول</label>
+                        <label for=""> {{ $t("first name") }}</label>
                         <input type="text" readonly v-model="userData.first_name" placeholder="محمد" />
                       </div>
                       <div class="main-input">
-                        <label for="">الاسم الاخير</label>
+                        <label for="">{{ $t("last name") }}</label>
                         <input type="text" readonly v-model="userData.last_name" placeholder="محمد" />
                       </div>
                     </div>
                     <div class="inputs">
                       <div class="main-input">
-                        <label for="">رقم الهاتف</label>
+                        <label for="">{{ $t("phone") }}</label>
                         <input type="tel" readonly v-model="userData.phone" placeholder="+201066333725" />
                       </div>
                       <div class="main-input">
-                        <label for="">البريد الالكتروني</label>
+                        <label for=""> {{ $t("email") }} </label>
                         <input type="email" readonly v-model="userData.email" placeholder="m.info@icloud.com" />
                       </div>
                     </div>
@@ -131,7 +131,7 @@
                         d="M20.9101 11.1203V6.73031C20.9101 5.91031 20.2901 4.98031 19.5201 4.67031L13.9501 2.39031C12.7001 1.88031 11.2901 1.88031 10.0401 2.39031L4.47009 4.67031C3.71009 4.98031 3.09009 5.91031 3.09009 6.73031V11.1203C3.09009 16.0103 6.64009 20.5903 11.4901 21.9303C11.8201 22.0203 12.1801 22.0203 12.5101 21.9303C17.3601 20.5903 20.9101 16.0103 20.9101 11.1203ZM12.7501 12.8703V15.5003C12.7501 15.9103 12.4101 16.2503 12.0001 16.2503C11.5901 16.2503 11.2501 15.9103 11.2501 15.5003V12.8703C10.2401 12.5503 9.50009 11.6103 9.50009 10.5003C9.50009 9.12031 10.6201 8.00031 12.0001 8.00031C13.3801 8.00031 14.5001 9.12031 14.5001 10.5003C14.5001 11.6203 13.7601 12.5503 12.7501 12.8703Z"
                         fill="#DCBA95" />
                     </svg>
-                    <span>تعديل كلمة المرور</span>
+                    <span> {{ $t("edit pass") }} </span>
                   </div>
                   <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11"
                     fill="none">
@@ -144,7 +144,7 @@
                 <div v-if="passActive" style="margin-top: 37px">
                   <div class="inputs">
                     <div class="main-input w-50">
-                      <label for=""> كلمة المرور الحالية </label>
+                      <label for=""> {{ $t("cur pass") }}</label>
                       <input type="password" v-model="passwordUpdate.old_password" placeholder="************" />
                       <span class="error-msg" v-if="v2$.old_password.$error">{{
                         v2$.old_password.$errors[0].$message
@@ -156,7 +156,7 @@
                   </div>
                   <div class="inputs">
                     <div class="main-input">
-                      <label for=""> كلمة المرور الجديدة </label>
+                      <label for=""> {{ $t("new pass") }}</label>
                       <input type="password" v-model="passwordUpdate.password" placeholder="************" />
                       <span class="error-msg" v-if="v2$.password.$error">{{
                         v2$.password.$errors[0].$message
@@ -166,7 +166,7 @@
                       }}</span>
                     </div>
                     <div class="main-input">
-                      <label for="">تاكيد كلمة المرور </label>
+                      <label for=""> {{ $t("sure pass") }} </label>
                       <input type="password" v-model="passwordUpdate.password_confirmation" placeholder="************" />
                       <span class="error-msg" v-if="v2$.password_confirmation.$error">{{
                         v2$.password_confirmation.$errors[0].$message
@@ -220,7 +220,7 @@
                   <div class="form">
                     <div class="inputs">
                       <div class="main-input">
-                        <label for="">الاسم الاول</label>
+                        <label for="">{{ $t("first name") }}</label>
                         <input type="text" v-model="userData.first_name" placeholder="محمد" />
                         <span class="error-msg" v-if="v$.first_name.$error">{{
                           v$.first_name.$errors[0].$message
@@ -230,7 +230,7 @@
                         }}</span>
                       </div>
                       <div class="main-input">
-                        <label for="">الاسم الاخير</label>
+                        <label for="">{{ $t("last name") }}</label>
                         <input type="text" v-model="userData.last_name" placeholder="محمد" />
                         <span class="error-msg" v-if="v$.last_name.$error">{{
                           v$.last_name.$errors[0].$message
@@ -242,7 +242,7 @@
                     </div>
                     <div class="inputs">
                       <div class="main-input">
-                        <label for="">رقم الهاتف</label>
+                        <label for="">{{ $t("phone") }}</label>
                         <input type="tel" v-model="userData.phone" placeholder="+201066333725" />
                         <span class="error-msg" v-if="v$.phone.$error">{{
                           v$.phone.$errors[0].$message
@@ -252,7 +252,7 @@
                         }}</span>
                       </div>
                       <div class="main-input">
-                        <label for="">البريد الالكتروني</label>
+                        <label for="">{{ $t("email") }}</label>
                         <input type="email" v-model="userData.email" placeholder="m.info@icloud.com" />
                         <span class="error-msg" v-if="v$.email.$error">{{
                           v$.email.$errors[0].$message
@@ -266,10 +266,10 @@
 
                   <div class="btns d-flex align-items-center justify-content-center gap-3">
                     <button @click="updateProfile()" class="fill">
-                      حفظ التعديلات
+                      {{ $t("save edit") }}
                     </button>
                     <button @click="personalActive = 1" class="stroke">
-                      الرجوع
+                      {{ $t("back btn") }}
                     </button>
                   </div>
                 </div>

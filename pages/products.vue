@@ -2,7 +2,7 @@
   <div style="min-height:100vh;">
     <div class="container our-products ">
       <div class="header mb-5 d-flex flex-column align-items-center justify-content-center w-100">
-        <h3 class="mb-5">منتجاتنا</h3>
+        <h3 class="mb-5">{{ $t("our products") }}</h3>
 
         <div class="tabs">
           <div v-for="item , index in tags" @click="tabActive = index , tab = item.id , getProducts()" :class="{'active':tab==item.id}" class="tab">
@@ -18,7 +18,7 @@
         <div>
 
           <div class="select-box">
-            <span> الاقسام </span>
+            <span> {{ $t("sections") }} </span>
             <i class="fa-solid fa-chevron-down"></i>
           </div>
 
@@ -32,7 +32,7 @@
         <div>
 
           <div class="select-box">
-            <span> التصنيفات </span>
+            <span> {{ $t("categories") }} </span>
             <i class="fa-solid fa-chevron-down"></i>
           </div>
 
@@ -48,7 +48,7 @@
 
     
           <div class="select-box">
-            <span> الماركات</span>
+            <span> {{ $t("brands") }} </span>
             <i class="fa-solid fa-chevron-down"></i>
           </div>
 

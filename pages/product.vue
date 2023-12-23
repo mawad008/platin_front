@@ -1,6 +1,6 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="row main-container-product" style="margin-bottom: 140px">
+    <div class="row main-container-product" style="margin-bottom: 140px; position:relative">
       <div class="col-12" style="position: relative">
         <div class="container product-page">
           <div class="row">
@@ -93,21 +93,21 @@
                 <div class="vendor-list d-flex flex-column gap-3">
                   <div class="by d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-1">
-                      <span> بواسطة : </span>
+                      <span> {{$t("by")}}: </span>
                       <span class="vendor fw-bold">
-                        متجر {{ mainProduct.vendor_name }}
+                        {{ $t("store") }} {{ mainProduct.vendor_name }}
                       </span>
                     </div>
                     <div
                       class="check d-flex align-items-center justify-content-center gap-2"
                     >
                       <img src="~/assets/images/check.svg" alt="" />
-                      <span>متجر معتمد</span>
+                      <span>{{ $t("store valid") }}</span>
                     </div>
                   </div>
                   <div class="time d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-1">
-                      <span> موعد التوصيل : </span>
+                      <span> {{ $t("del date") }}: </span>
                       <span class="days fw-bold"> 7-3 أيام تقريباً </span>
                     </div>
                     <img src="~/assets/images/delivery.svg" alt="" />
@@ -115,10 +115,10 @@
                 </div>
 
                 <div class="price-list">
-                  <span class="word"> السعر </span>
+                  <span class="word"> {{ $t("price") }} </span>
                   <h4 class="d-flex align-items-center gap-2 mt-2">
-                    {{ mainProduct.price }} ر.س
-                    <span class="disc" style="font-size: 12px"> 4000 ر.س </span>
+                    {{ mainProduct.price }} {{ $t("curr") }}
+                    <span class="disc" style="font-size: 12px"> 4000 {{ $t("curr") }}</span>
                   </h4>
                 </div>
 
@@ -126,11 +126,11 @@
                   class="count-type d-flex flex-column flex-xl-row flex-lg-row align-items-start align-items-xl-center align-items-lg-center gap-3"
                 >
                   <div class="count d-flex flex-column gap-2">
-                    <span> الكمية </span>
+                    <span> {{$t("amount")}} </span>
                     <input type="number" v-model="quantity" min="1" />
                   </div>
                   <div class="type d-flex flex-column gap-2">
-                    <span class="word"> لون البشرة </span>
+                    <span class="word"> {{ $t("skin") }}</span>
                     <div class="colors">
                       <button
                         v-for="(item, index) in mainProduct.skin_colors"
@@ -144,19 +144,19 @@
 
                 <div class="actions-btns">
                   <button @click="addToBasket()" class="add-cart-btn">
-                    <span> اضف الي اسلة </span>
+                    <span> {{ $t("add to cart") }}</span>
                     <i class="fa-solid fa-cart-shopping"></i>
                   </button>
-                  <button class="try">جربيه</button>
+                  <button class="try">{{ $t("try") }}</button>
                   <div
                     class="shipping d-flex flex-column flex-xl-row flex-lg-row align-items-start align-items-xl-center align-items-lg-center mt-3 gap-3"
                   >
                     <div class="d-flex align-items-center gap-2">
                       <img src="~/assets/images/package.svg" alt="" />
                       <div class="d-flex align-items-center gap-1 speed">
-                        متوفر
-                        <span>الشحن السريع</span>
-                        في
+                         {{ $t("available") }}
+                        <span>{{$t("fast shipping")}}</span>
+                        {{ $t("in") }}
                         <div v-for="i in mainProduct.fast_shipping_cities">
                           {{ i.name }}
                         </div>
@@ -164,7 +164,7 @@
                     </div>
                     <div class="d-flex align-items-center gap-2">
                       <img src="~/assets/images/package.svg" alt="" />
-                      <span> سياسة الاسترجاع </span>
+                      <span> {{ $t("back") }}</span>
                     </div>
                   </div>
                 </div>
@@ -189,7 +189,7 @@
                 >
                   <swiper-slide v-for="img in mainProduct.images">
                     <img :src="img.full_image_path" />
-                    <button class="size"><span>دليل المقاسات</span></button>
+                    <button class="size"><span> {{$t("dir size")}} </span></button>
                     <div @click="showMultiple" class="zoom">
                       <img src="~/assets/images/zoom.svg" alt="" />
                     </div>
@@ -238,14 +238,14 @@
             </div>
           </div>
         </div>
-        <div class="container product-card-scroll">
+        <div id="hiddenDiv" class="container product-card-scroll">
           <div class="image-container">
             <div class="image">
               <img src="~/assets/images/product.png" alt="" />
             </div>
             <div class="d-flex flex-column gap-2">
               <h4>{{ mainProduct.name }}</h4>
-              <span>{{ mainProduct.price }} ر.س</span>
+              <span>{{ mainProduct.price }} {{ $t("curr") }}</span>
             </div>
           </div>
 
@@ -295,6 +295,7 @@
         </div>
 
         <div
+        id="trigger"
           class="container d-flex align-items-center justify-content-center"
           style="margin-top: 65px"
         >
@@ -327,7 +328,7 @@
                         />
                       </svg>
                     </div>
-                    <span style="letter-spacing: 0px"> المواصفات </span>
+                    <span style="letter-spacing: 0px"> {{ $t("desc1") }} </span>
                   </div>
                 </div>
 
@@ -362,7 +363,7 @@
                         />
                       </svg>
                     </div>
-                    <span style="letter-spacing: 0px"> تقييمات العملاء </span>
+                    <span style="letter-spacing: 0px"> {{ $t("desc2") }}</span>
                   </div>
                 </div>
 
@@ -391,7 +392,7 @@
                         />
                       </svg>
                     </div>
-                    <span style="letter-spacing: 0px"> عن المتجر </span>
+                    <span style="letter-spacing: 0px">{{ $t("desc3") }}</span>
                   </div>
                 </div>
               </div>
@@ -402,45 +403,45 @@
                   <v-window-item :value="0">
                     <div class="table-details">
                       <div class="row-container active">
-                        <span class="head"> التصميم </span>
+                        <span class="head"> {{ $t("design") }} </span>
                         <span class="det">
                           {{ mainProduct.description }}
                         </span>
-                        <span class="head"> مواد المنتج </span>
+                        <span class="head"> {{ $t("desc info1") }}</span>
                         <span class="det">
                           عيار {{ mainProduct.caliber }} قيراط
                         </span>
                       </div>
                       <div class="row-container">
-                        <span class="head"> الابعاد </span>
+                        <span class="head"> {{ $t("desc info2") }}</span>
                         <span class="det">
                           {{ mainProduct.size }}
                         </span>
-                        <span class="head"> الوزن </span>
-                        <span class="det">{{ mainProduct.weight }} جرام</span>
+                        <span class="head"> {{ $t("weight") }} </span>
+                        <span class="det">{{ mainProduct.weight }} {{ $t("weight1") }}</span>
                       </div>
                       <div class="row-container active">
-                        <span class="head"> صيانة ورعاية </span>
+                        <span class="head"> {{$t("desc info3")}} </span>
                         <span class="det">
                           {{ mainProduct.maintenance_and_care }}
                         </span>
-                        <span class="head"> الحجر الرئيسي </span>
+                        <span class="head"> {{ $t("desc info4") }}</span>
                         <span class="det"> {{ mainProduct.main_stone }}</span>
                       </div>
                       <div class="row-container">
-                        <span class="head"> التعبئة والتغليف </span>
+                        <span class="head"> {{ $t("desc info5") }}</span>
                         <span class="det">
                           {{ mainProduct.packaging }}
                         </span>
-                        <span class="head"> الضمان </span>
+                        <span class="head"> {{ $t("desc info6") }} </span>
                         <span class="det"> {{ mainProduct.guarantee }} </span>
                       </div>
                       <div class="row-container active">
-                        <span class="head"> أصول مستدامة </span>
+                        <span class="head"> {{$t("desc info7")}} </span>
                         <span class="det">
                           {{ mainProduct.sustainable_assets }}
                         </span>
-                        <span class="head"> اللون </span>
+                        <span class="head"> {{$t("color")}} </span>
                         <span class="det"> {{ mainProduct.color }}</span>
                       </div>
                     </div>
@@ -452,8 +453,8 @@
                         class="head w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row text-center gap-3 justify-content-between mt-4"
                       >
                         <div class="text d-flex flex-column gap-2">
-                          <h6>اكتب تعليقك</h6>
-                          <span> شارك معنا تعليقك علي المنتج ! </span>
+                          <h6> {{ $t("write comment") }} </h6>
+                          <span> {{ $t("share comment") }} </span>
                         </div>
                         <div
                           class="d-flex flex-column align-items-center gap-2"
@@ -480,11 +481,12 @@
                         <input
                           type="text"
                           v-model="commentInput"
-                          placeholder="شارك معنا تعليقك علي المنتج !"
+                          :placeholder="$t('share comment')"
                         />
                         <button @click="addComment()">
-                          <span> شارك </span>
+                          <span> {{ $t("share") }} </span>
                           <svg
+                          class="arrow-icon"
                             xmlns="http://www.w3.org/2000/svg"
                             height="1em"
                             viewBox="0 0 512 512"
@@ -502,17 +504,17 @@
                           class="head w-100 d-flex align-items-center gap-3 flex-column flex-xl-row flex-xl-row justify-content-between mt-4"
                         >
                           <div class="text d-flex flex-column gap-2">
-                            <h6>التعليقات</h6>
-                            <span> اجمالي 16 تعليق </span>
+                            <h6>{{ $t("comments") }}</h6>
+                            <span> {{ $t("comment") }} {{ AllItems.length }} {{ $t("all") }}</span>
                           </div>
                           <div
                             class="recommend d-flex align-items-center gap-2"
                           >
                             <img src="~/assets/images/medal.svg" alt="" />
                             <div class="textt d-flex flex-column gap-1">
-                              <span> موصي به </span>
+                              <span> {{ $t("rec") }} </span>
                               <span class="ratio">
-                                يوصي المشتري بهذا المنتج (98%)
+                               {{ $t("rec1") }} (98%)
                               </span>
                             </div>
                           </div>
@@ -549,8 +551,8 @@
                                   >
                                     {{
                                       item.showFullText
-                                        ? "عرض القليل"
-                                        : "عرض المزيد"
+                                        ? $t("show less")
+                                        : $t("show more")
                                     }}
                                   </button>
                                 </div>
@@ -574,7 +576,7 @@
                           >
                             <button @click="showAllComments" class="load-more">
                               <i class="fa-solid fa-rotate-left"></i>
-                              <span> اعرض كل التعليقات </span>
+                              <span> {{ $t("show comments") }} </span>
                             </button>
                           </div>
                         </div>
@@ -590,12 +592,12 @@
                         >
                           <div class="check">
                             <img src="~/assets/images/check.svg" alt="" />
-                            <span> متجر معتمد </span>
+                            <span> {{ $t("store valid") }} </span>
                           </div>
                           <img class="image" :src="mainVendor.logo" alt="" />
 
                           <div class="text">
-                            <h5>متجر {{ mainVendor.name }}</h5>
+                            <h5> {{ $t("store") }}  {{ mainVendor.name }}</h5>
                             <span> {{ mainVendor.created_at }}</span>
                           </div>
                         </div>
@@ -606,16 +608,16 @@
                             <div class="info">
                               <div class="d-flex align-items-center">
                                 <img src="~/assets/images/v1.svg" alt="" />
-                                <span class="main"> عدد المنتجات </span>
+                                <span class="main"> {{ $t("products number") }}</span>
                               </div>
                               <span class="count">
-                                {{ mainVendor.products_count }} منتج
+                                {{ mainVendor.products_count }} {{ $t("product") }}
                               </span>
                             </div>
                             <div class="info">
                               <div class="d-flex align-items-center gap-2">
                                 <img src="~/assets/images/v2.svg" alt="" />
-                                <span class="main"> تقييم المتجر </span>
+                                <span class="main"> {{ $t("rate1") }}</span>
                               </div>
                               <v-rating
                                 style="direction: ltr"
@@ -631,7 +633,7 @@
                             <div class="info">
                               <div class="d-flex align-items-center gap-2">
                                 <img src="~/assets/images/v3.svg" alt="" />
-                                <span class="main"> السجل التجاري </span>
+                                <span class="main"> {{ $t("vendor1") }}</span>
                               </div>
                               <span class="span">
                                 {{ mainVendor.commercial_register_number }}
@@ -670,9 +672,9 @@
                                     </clipPath>
                                   </defs>
                                 </svg>
-                                <span class="main"> حالة التوثيق</span>
+                                <span class="main"> {{ $t("vendor2") }}</span>
                               </div>
-                              <span class="count"> موثق </span>
+                              <span class="count"> {{$t("vendor3")}} </span>
                             </div>
                           </div>
                           <v-divider :thickness="1"></v-divider>
@@ -682,13 +684,13 @@
                             الفاخرة، مصنوعة بعناية فائقة من أرقى المواد.
                           </p>
 
-                          <button class="action">زيارة المتجر</button>
+                          <button class="action"> {{ $t("visit") }} </button>
                         </div>
                       </div>
 
                       <div class="col-12 col-xl-4 col-lg-4">
                         <div class="most-selling h-100">
-                          <h4>الاكثر مبيعا</h4>
+                          <h4> {{ $t("most selling") }}  </h4>
                           <div
                             class="boxes d-flex flex-column h-100 bg-dange gap-4"
                           >
@@ -709,7 +711,7 @@
                                     {{ `${item.weight} / ق` }}</span
                                   >
                                   <span class="price-item">
-                                    {{ item.price }} ر.س
+                                    {{ item.price }} {{ $t("curr") }}
                                   </span>
                                 </div>
                               </div>
@@ -734,11 +736,9 @@
           <div
             class="head d-flex flex-column gap-3 align-items-center justify-content-center"
           >
-            <h3>منتجات مشابهة</h3>
+            <h3> {{ $t("similar") }} </h3>
             <p>
-              استمتع بمجموعتنا المميزة من المنتجات المشابهة التي تلبي احتياجاتك
-              بشكل مثالي. حيث تتشابه هذه المنتجات مع المنتج الأصلي فيما يتعلق
-              بالمواد، الوزن، وجودة التصنيع.
+             {{ $t("similar1") }}
             </p>
           </div>
 
@@ -997,6 +997,22 @@ onMounted(() => {
   getRelatedProducts();
   if (checkComment.value) {
   }
+
+
+    const triggerDiv = document.getElementById('trigger');
+  const hiddenDiv = document.getElementById('hiddenDiv');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        hiddenDiv.style.display = 'flex';
+      } else {
+        hiddenDiv.style.display = 'none';
+      }
+    });
+  }, { threshold: 0.5 }); // Adjust the threshold as needed
+
+  observer.observe(triggerDiv);
 });
 </script>
 

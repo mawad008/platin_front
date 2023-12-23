@@ -4,8 +4,8 @@
             <div class="cover-image cate">
                 <div class="text d-flex flex-column align-items-center justify-content-center">
                     <img :src="category_image" alt="">
-                    <h4> قسم {{ category_name }}</h4>
-                    <span>{{ products_count }} منتج</span>
+                    <h4> {{ $t("section") }} {{ category_name }}</h4>
+                    <span>{{ products_count }} {{ $t("product") }}</span>
                 </div>
             </div>
 
@@ -13,7 +13,7 @@
                 <div class="d-flex justify-content-end flex-column flex-xl-row flex-lg-row  gap-3 w-100">
                     <div>
                         <div class="select-box">
-                            <span> الاقسام الفرعية  </span>
+                            <span> {{ $t("sub cate") }} </span>
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
 
@@ -27,7 +27,7 @@
                     </div>
                     <div>
                         <div class="select-box">
-                            <span> الماركات</span>
+                            <span> {{ $t("brands") }}</span>
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
 

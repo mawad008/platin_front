@@ -3,15 +3,17 @@
         <div v-if="favArr.length >= 1" class="container">
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
-            <v-icon icon="mdi-chevron-left"></v-icon>
+            <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
           </template>
         </v-breadcrumbs>
 
 
          <div class="wish-list-page">
              <div class="text-content my-4">
-                <h4> امنياتك <span>({{ favArr.length }})</span></h4>
-                <p>تصفح امنياتك الان كما يمكنك مشاركة امنياتك مع من تحب سواء عن طريق رابط خاص بالمنتج او عن طريق منصات التواصل الاجتماعي</p>
+                <h4> {{ $t("wish") }}<span>({{ favArr.length }})</span></h4>
+                <p>
+                  {{ $t("wish1") }}
+                </p>
              </div>
              <div class="row">
                 <div v-for="item ,index in favArr" class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -27,12 +29,13 @@
           <client-only>
               <Vue3Lottie :animation-data="cart" :height="200" :width="200" />
           </client-only>
-            <h4>قائمة المفضلة لديك فارغة ! </h4>
-            <p>قائمة المفضلة لديك خاصتك فارغة الآن. تفضل بتصفح منتجاتنا الراقية واستكمل تجربتك الشخصية بإضافة قطعة فريدة من نوعها
-              إلى مجموعتك</p>
+            <h4> {{ $t("empty fav") }} </h4>
+            <p>
+              {{ $t("empty fav1") }}   
+              </p>
 
             <nuxt-link :to="localePath('/')">
-              <button>تسوق الان</button>
+              <button> {{ $t("shopNow") }} </button>
 
             </nuxt-link>
 
@@ -47,6 +50,7 @@ import cart from "~/assets/animations/empty-cart.json";
 const localePath = useLocalePath();
 import { useStore } from "~/store";
 const store = useStore;
+const { locale } = useI18n();
 
 
 const deleteTofav = (index) => {
@@ -59,12 +63,12 @@ let favArr = computed(() => {
 let activeIcon = ref(true);
 let items = ref([
     {
-        title: 'الرئيسية',
+        title: locale.value == 'ar' ? 'الرئيسية' : 'home',
         disabled: true,
         href: '/',
     },
     {
-        title: 'امنياتك',
+        title: locale.valid == 'ar' ? 'امنياتك' : 'wishlist',
         disabled: false,
         href: 'wishlist',
     },

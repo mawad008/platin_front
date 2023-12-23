@@ -22,36 +22,36 @@
                                 <div class="image">
                                     <img src="~/assets/images/diamond.svg" alt="">
                                 </div>
-                                <h6> عدد المنتجات </h6>
-                                <span> {{ vendor.products_count }} منتج </span>
+                                <h6> {{ $t("products number") }}</h6>
+                                <span> {{ vendor.products_count }} {{ $t("product") }} </span>
                             </div>
                             <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
                                 <div class="image">
                                     <img src="~/assets/images/vstar.svg" alt="">
                                 </div>
-                                <h6> اجمالي التقييمات </h6>
+                                <h6> {{ $t("total rate") }}</h6>
                                 <span> {{ vendor.rate }} ( الف تقييم ) </span>
                             </div>
                             <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
                                 <div class="image">
                                     <img src="~/assets/images/vendor-c.svg" alt="">
                                 </div>
-                                <h6> السجل التجاري </h6>
+                                <h6> {{ $t("vendor1") }}</h6>
                                 <span> {{ vendor.commercial_register_number }} </span>
                             </div>
                             <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
                                 <div class="image">
                                     <img src="~/assets/images/vendor-b.svg" alt="">
                                 </div>
-                                <h6> حالة التوثيق </h6>
-                                <span> موثق </span>
+                                <h6> {{ $t("vendor2") }}</h6>
+                                <span> {{ $t("vendor3") }} </span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-xl-4 col-lg-4">
                     <div class="recent">
-                        <h4 class="fw-bold mb-4"> الاكثر مبيعا </h4>
+                        <h4 class="fw-bold mb-4"> {{ $t("most selling") }} </h4>
                         <div class="boxes d-flex flex-column h-100 bg-dange ">
                             <div v-for="item in vendor.bestSellerProducts" class="box d-flex flex-column  my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center  gap-3">
                                 <div class="image">
@@ -61,7 +61,7 @@
                                     <h5> {{ item.name }}</h5>
                                     <div class="price w-100  d-flex align-items-center justify-content-between">
                                         <span class="item">{{ `${item.caliber} / ق` }} {{ `${item.weight} / ق` }}</span>
-                                        <span class="price-item"> {{ item.price }} ر.س </span>
+                                        <span class="price-item"> {{ item.price }} {{ $t("curr") }} </span>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                                 </svg>
 
                             </div>
-                            <span>المنتجات</span>
+                            <span>{{ $t("products") }}</span>
                         </div>
                         <!-- <div @click="activeTab = 2 , tab = 'two'" :class="{'active': activeTab == 2}" class="tab">
                             <div class="icon">
@@ -147,7 +147,7 @@
                                     <div>
 
                                         <div class="select-box">
-                                            <span> الاقسام </span>
+                                            <span> {{ $t("sections") }} </span>
                                             <i class="fa-solid fa-chevron-down"></i>
                                         </div>
 
@@ -163,7 +163,7 @@
                                     <div>
 
                                         <div class="select-box">
-                                            <span> الماركات</span>
+                                            <span> {{ $t("brands") }}</span>
                                             <i class="fa-solid fa-chevron-down"></i>
                                         </div>
 

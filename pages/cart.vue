@@ -6,12 +6,12 @@
         <div class="header">
           <v-breadcrumbs :items="items">
             <template v-slot:divider>
-              <v-icon icon="mdi-chevron-left"></v-icon>
+              <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
             </template>
           </v-breadcrumbs>
 
           <button @click="deleteAll()" class="clear">
-            <span>مسح الكل</span>
+            <span>{{ $t("delete all") }}</span>
           </button>
         </div>
         <div class="main-cart">
@@ -19,7 +19,7 @@
             <div class="col-12 col-xl-7 col-lg-7">
               <div class="main">
                 <div class="head">
-                  <h5>سلة تسوقك <span> {{ `(${theNum})` }} </span></h5>
+                  <h5>{{ $t("cart1") }}<span> {{ `(${theNum})` }} </span></h5>
 
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" height="20" fill="#919EAB" viewBox="0 0 512 512">
@@ -28,7 +28,7 @@
                     </svg>
                     <v-tooltip activator="parent" location="top">
                       <div class="w-100 h-100">
-                        <span>يتم تحديث اسعار الذهب كل 24 ساعه</span>
+                        <span>{{ $t("update") }}</span>
                       </div>
                     </v-tooltip>
                   </div>
@@ -49,7 +49,7 @@
                             fill="#919EAB" />
                         </svg>
                         <div class="text">
-                          <span class="by"> بواسطة </span>
+                          <span class="by"> {{ $t("by") }} </span>
                           <span>{{ item.vendor_name }}</span>
                         </div>
                       </div>
@@ -68,7 +68,7 @@
                           <input type="number" min="1" v-model="theItem.quantity" @input="addItem(theItem.id)" />
 
                           <span class="price">
-                            {{ theItem.price * theItem.quantity }} ريال سعودي
+                            {{ theItem.price * theItem.quantity }} {{ $t("curr") }}
                           </span>
                           <button @click="deleteItem(item.vendor_id, theItem.id, index)">
                             <img src="~/assets/images/trash.svg" alt="" />
@@ -104,9 +104,9 @@
                         <div class="shipping">
                           <img src="~/assets/images/package.svg" alt="" />
                           <div class="d-flex align-items-center gap-1">
-                            <span> متوفر </span>
-                            <span class="main"> الشحن السريع </span>
-                            <span v-for="i in item.fast_shipping_cities"> في  {{ i.name }}</span>
+                            <span> {{ $t("available") }} </span>
+                            <span class="main">{{ $t("fast shipping") }} </span>
+                            <span v-for="i in item.fast_shipping_cities"> {{ $t("in") }} {{ i.name }}</span>
                           </div>
                         </div>
                       </div>
@@ -119,43 +119,43 @@
               <div class="card-details">
                 <div class="total-price">
                   <div class="total">
-                    <span class="word all"> الاجمالي </span>
+                    <span class="word all"> {{ $t("total") }}</span>
                     <span class="fw-bold price"> {{ total + (40 + 80) }} ر.س</span>
                   </div>
                   <div class="total">
-                    <span class="word"> السعر </span>
-                    <span class="price"> {{ total }} ر.س </span>
+                    <span class="word"> {{ $t("price") }} </span>
+                    <span class="price"> {{ total }} {{ $t("curr") }}</span>
                   </div>
                   <div class="total">
-                    <span class="word"> الخصومات </span>
-                    <span class="price"> 0 ر.س </span>
+                    <span class="word"> {{ $t("discountss") }} </span>
+                    <span class="price"> 0 {{ $t("curr") }} </span>
                   </div>
                   <div class="total">
-                    <span class="word"> مصاريف الشحن </span>
-                    <span class="price"> 40 ر.س </span>
+                    <span class="word"> {{ $t("shipping") }}</span>
+                    <span class="price"> 40 {{ $t("curr") }}</span>
                   </div>
                   <div class="total">
-                    <span class="word"> ضريبة القيمة المضافة </span>
-                    <span class="price"> 80 ر.س </span>
+                    <span class="word"> {{ $t("bill") }}</span>
+                    <span class="price"> 80 {{ $t("curr") }} </span>
                   </div>
                 </div>
 
                 <div class="input">
                   <input type="text" placeholder="كود الخصم" />
-                  <button>تفعيل</button>
+                  <button>{{ $t("act") }}</button>
                 </div>
 
                 <v-progress-linear color="#DCBA95" :model-value="progress" :height="6" reverse></v-progress-linear>
                 <div class="mt-3 d-flex align-items-center gap-1 order-text">
-                  <span>احصل علي شحن مجاني للطلبات الاكثر من </span>
-                  <span class="gold">600 ر.س</span>
+                  <span> {{ $t("get offer") }}</span>
+                  <span class="gold">600 {{ $t("curr") }}</span>
                 </div>
-                <h6>تابع التسوق</h6>
+                <h6>{{ $t("follow1") }}</h6>
 
                 <button v-if="auth"  class="pay">
-                 <nuxt-link class="w-100" :to="localePath('/checkout')">ابدأ عملية الشراء</nuxt-link>
+                 <nuxt-link class="w-100" :to="localePath('/checkout')">{{ $t("start") }}</nuxt-link>
                 </button>
-                <button v-else @click="dialog = true" class="pay">ابدأ عملية الشراء</button>
+                <button v-else @click="dialog = true" class="pay">{{ $t("start") }}</button>
                 <v-dialog v-model="dialog">
 
                   <div class="card-popup-container">
@@ -187,17 +187,16 @@
                           fill="#766FF8" />
                       </svg>
                       <div>
-                        <h3>تسوق بسهولة وسرعة!</h3>
-                        <p>يمكنك الآن استكمال عملية الشراء بسهولة دون تسجيل أو يمكنك تسجيل الدخول. للتمتع بالمزيد من
-                          المزايا وتتبع طلباتك.</p>
+                        <h3>{{ $t("shop") }}</h3>
+                        <p>{{ $t("shop2") }}</p>
                       </div>
 
                       <div class="btns">
-                        <nuxt-link to="/checkout">
-                          <button class="fill">شراء بدون تسجيل</button>
+                        <nuxt-link :to="localePath('/checkout')">
+                          <button class="fill">{{ $t("buy") }}</button>
                         </nuxt-link>
-                        <nuxt-link to="/auth">
-                          <button class="stroke">تسجيل دخول</button>
+                        <nuxt-link :to="localePath('/auth')">
+                          <button class="stroke">{{ $t("login") }}</button>
                         </nuxt-link>
                       </div>
 
@@ -215,7 +214,7 @@
                 </v-dialog>
 
                 <div class="pay-methods mt-4">
-                  <span class=""> خيارات دفع امنة بواسطة </span>
+                  <span class=""> {{ $t("payment") }}</span>
                   <div class="inputs my-3 d-flex align-items-center gap-3">
                     <label>
                       <input type="radio" name="card_id" value="1" />
@@ -304,12 +303,13 @@
         <client-only>
             <Vue3Lottie :animation-data="cart" :height="200" :width="200" />
         </client-only>
-          <h4>سلة تسوقك فارغة ! </h4>
-          <p>سلة التسوق خاصتك فارغة الآن. تفضل بتصفح منتجاتنا الراقية واستكمل تجربتك الشخصية بإضافة قطعة فريدة من نوعها
-            إلى مجموعتك</p>
+          <h4> {{ $t("empty cart") }} </h4>
+          <p>
+           {{ $t("empty cart1") }}
+            </p>
 
           <nuxt-link :to="localePath('/')">
-            <button>تسوق الان</button>
+            <button>{{ $t("shopNow") }}</button>
 
           </nuxt-link>
 
@@ -325,7 +325,7 @@ import { useStore } from "~/store";
 import { Vue3Lottie } from "vue3-lottie";
 
 import cart from "~/assets/animations/empty-cart.json";
-
+const { locale } = useI18n();
     const localePath = useLocalePath();
     const store = useStore;
     let auth = ref(store.state.authenticated);
@@ -334,12 +334,12 @@ import cart from "~/assets/animations/empty-cart.json";
     let progressv = ref(0);
     let items = ref([
       {
-        title: "الرئيسية",
+        title: locale.value == "ar" ? "الرئيسية" : "home",
         disabled: true,
         href: "/",
       },
       {
-        title: "السلة",
+        title: locale.value == "ar" ? "السلة" : "cart",
         disabled: false,
         href: "cart",
       },
