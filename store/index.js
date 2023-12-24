@@ -140,6 +140,7 @@ export const useStore = createStore({
         localStorage.setItem("basket", JSON.stringify(state.basket));
         console.log(state.basket);
         getTotalBasketNum(state);
+       updateBasket(state);
       }
 
       // calculate the total price
@@ -158,11 +159,16 @@ export const useStore = createStore({
           // Increment the item property
           product.quantity += 1;
         }
+      //   vendor.products.forEach((e) => {
+      //     e.price *= e.quantity;
+      //  });
       });
+ 
       localStorage.setItem("basket", JSON.stringify(state.basket));
       console.log(state.basket);
       getTotalPrice(state);
       getTotalBasketNum(state);
+      updateBasket(state);
       // addCheck(state);
     },
     deleteItem(state, payload) {
@@ -204,6 +210,7 @@ export const useStore = createStore({
 
       getTotalBasketNum(state);
       getTotalPrice(state);
+      updateBasket(state);
       // addCheck(state);
     },
     deleteAll(state) {
@@ -230,6 +237,7 @@ export const useStore = createStore({
         if (state.basket[vendorIndex].products.length == 0) {
           state.basket.splice(vendorIndex, 1);
         }
+       updateBasket(state);
         localStorage.setItem("basket", JSON.stringify(state.basket));
         console.log(
           `Item with vendorId ${vendor_id} and id ${itemid} deleted successfully.`
@@ -262,6 +270,7 @@ export const useStore = createStore({
         commit("setAuthenticated", storedAuth);
         getTotalBasketNum(state);
         getTotalPrice(state);
+       updateBasket(state);
       }
     },
     async authenticateUser({ commit }, form) {
@@ -320,6 +329,13 @@ function getTotalPrice(state) {
   }
 }
 
-const updateLocalStorage = (state) => {
-  localStorage.setItem("fav", JSON.stringify(state.favArr));
+const updateBasket = (state) => {
+ state.basketCheck = state.basket.flatMap(vendor => {
+  let vendor_id = vendor.vendor_id;
+  return vendor.products.map(product => ({
+    ...product,
+    vendor_id: vendor_id,
+    price: product.price * product.quantity
+  }));
+});
 };

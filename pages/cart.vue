@@ -120,7 +120,7 @@
                 <div class="total-price">
                   <div class="total">
                     <span class="word all"> {{ $t("total") }}</span>
-                    <span class="fw-bold price"> {{ total + (40 + 80) }} ر.س</span>
+                    <span class="fw-bold price"> {{ total + (40 + 80) }} {{ $t("curr") }}</span>
                   </div>
                   <div class="total">
                     <span class="word"> {{ $t("price") }} </span>

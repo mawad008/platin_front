@@ -260,7 +260,7 @@
           </svg>
           <h2> {{ $t("landing1") }} </h2>
           <span class="text">
-            {{ $t("landiing2") }}
+            {{ $t("landing2") }}
           </span>
           <div class="paginations">
             <span

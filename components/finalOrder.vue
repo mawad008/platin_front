@@ -41,7 +41,7 @@
                                      {{ $t("order number") }}
                                     </span>
                                 </div>
-                                <h6>15888</h6>
+                                <h6>{{ finalObj.id }}</h6>
                             </div>
                             <div class="item">
                                 <div class="d-flex alig-items-center gap-2">
@@ -56,7 +56,7 @@
                                     </svg>
                                     <span>{{ $t("date") }}</span>
                                 </div>
-                                <h6>29 اكتوبر 2023</h6>
+                                <h6>{{ finalObj.created_at }}</h6>
                             </div>
                             <div class="item">
                                 <div class="d-flex alig-items-center gap-2">
@@ -68,7 +68,7 @@
                                     </svg>
                                     <span> {{ $t("total") }} </span>
                                 </div>
-                                <h6>6000 {{ $t("curr") }}</h6>
+                                <h6>{{ finalObj.total_price }} {{ $t("curr") }}</h6>
                             </div>
                             <div class="item">
                                 <div class="d-flex alig-items-center gap-2">
@@ -117,10 +117,10 @@
                                     </svg>
                                     <span> {{ $t("payment method") }} </span>
                                 </div>
-                                <h6>دفع عند الاستلام</h6>
+                                <h6>{{ finalObj.payment_method }}</h6>
                             </div>
                         </div>
-                        <div class="copy">
+                        <!-- <div class="copy">
                             <div class="d-flex align-items-cente gap-1">
                                 <h6> {{$t("the link")  }} </h6>
                                 <span class="copy-order">https://www.aramex.com/ae/ar</span>
@@ -133,7 +133,7 @@
                                         fill="#919EAB" />
                                 </svg>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-6">
@@ -152,7 +152,7 @@ import { Vue3Lottie } from "vue3-lottie";
 import cart from "~/assets/animations/review.json";
 const store = useStore;
 // Define the props you expect
-const props = defineProps(["arrData"]);
+const props = defineProps(["arrData" , "finalObj"]);
 
 
 
