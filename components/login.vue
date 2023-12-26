@@ -48,10 +48,21 @@
       <span class="resend" @click="loginNav = 2"> {{ $t("forget") }}</span>
 
 
-      <button @click="loginFunc()" class="mt-4"> {{ $t("login") }} </button>
+      <button @click="loginFunc()" class="mt-4 gap-3"> 
+      {{ $t("login") }}
+      <v-progress-circular
+        v-if="pending"
+          indeterminate
+          :size="30"
+          :width="5"
+        ></v-progress-circular>
+       </button>
       <div class="type">
         <span class="ex"> {{ $t("ex1") }}</span>
-        <span class="log" @click="handleButtonClick(1)"> {{ $t("create") }} </span>
+        <span class="log" @click="handleButtonClick(1)"> 
+        {{ $t("create") }} 
+      
+        </span>
       </div>
     </div>
     <div v-if="loginNav == 2" class="form">
@@ -113,6 +124,7 @@ const { locale } = useI18n();
 let store = useStore;
 let loginNav = ref(1);
 let otp = ref('');
+let pending = ref(false);
 const router = useRouter();
 
 const handleButtonClick = (value) => {
@@ -148,6 +160,7 @@ const loginFunc = async () => {
   formBody.append("email", form.value.email);
   formBody.append("password", form.value.password);
   if (check) {
+    pending.value = true;
     console.log('login');
     try {
       let result = await axios.post(`${getUrl()}/login`, formBody, {
@@ -169,6 +182,7 @@ const loginFunc = async () => {
 
           //  localStorage.setItem("user", JSON.stringify(result.data.data.user));
           // localStorage.setItem("auth", true);
+         pending.value = false;
           router.push('/');
         }
       }
@@ -176,6 +190,7 @@ const loginFunc = async () => {
     } catch (errorss) {
       console.log(errorss);
       if (errorss.response) {
+       pending.value = false;
         errors.value = errorss.response.data.errors;
       }
 

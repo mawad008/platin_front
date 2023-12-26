@@ -1872,7 +1872,7 @@ html[dir=ltr] body {
   }
 }
 .info-container {
-  margin-bottom: 60px;
+  margin-bottom: 140px;
 }
 .info-container .cover-box {
   position: relative;
@@ -4180,16 +4180,16 @@ html[dir=rtl] .navbar .search .inp {
   margin-left: 10px;
   border-left: 1px solid #000;
 }
-html[dir=rtl] .navbar .offers .box .circle {
+html[dir=rtl] .offers .box .circle {
   left: 50px;
 }
-html[dir=rtl] .navbar .offers .box .main-img img {
+html[dir=rtl] .offers .box .main-img img {
   left: 0;
 }
-html[dir=rtl] .navbar .banner-container .arrow {
+html[dir=rtl] .banner-container .arrows {
   right: 30px;
 }
-html[dir=rtl] .navbar .banner-container .overlay-background {
+html[dir=rtl] .banner-container .overlay-background {
   left: 0;
   border-radius: 20px 0px 0px 20px;
 }

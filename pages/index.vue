@@ -231,8 +231,8 @@
         <span class="more mt-5"> {{ $t("more") }} </span>
       </nuxt-link>
     </div>
-<!-- 
-    <div class="container">
+
+    <!-- <div class="container">
       <div class="row">
         <div class="col" v-for="item , index in products" :key="item.id">
           <div class="product-card">
@@ -528,7 +528,6 @@
       <swiper
         :centeredSlides="true"
         :grabCursor="true"
-          :loop="true"
         :dir="getSwiperDirection"
         :thumbs="{ swiper: thumbsSwiper }"
          :autoplay="{
@@ -560,7 +559,7 @@
       <swiper
         @swiper="setThumbsSwiper"
         :freeMode="true"
-          :loop="true"
+        
         :watchSlidesProgress="true"
         :spaceBetween="60"
         :dir="getSwiperDirection"

@@ -2190,7 +2190,7 @@ html[dir="ltr"] body {
 // start info-container section
 
 .info-container {
-  margin-bottom: 60px;
+  margin-bottom: 140px;
 
   .cover-box {
     position: relative;
@@ -4852,12 +4852,15 @@ html[dir="ltr"] {
 
 // start rtl and ltr styles 
 
-html[dir="rtl"] .navbar{
-  .search{
-   .inp {
-      margin-left: 10px;
-      border-left: 1px solid #000;
+html[dir="rtl"]{
+  .navbar{
+    .search{
+     .inp {
+        margin-left: 10px;
+        border-left: 1px solid #000;
+      }
     }
+
   }
   .offers{
     .box{
@@ -4872,8 +4875,8 @@ html[dir="rtl"] .navbar{
     }
   }
 
-  .banner-container{
-    .arrow{
+  .banner-container {
+    .arrows{
         right: 30px;
     }
     .overlay-background{

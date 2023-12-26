@@ -95,6 +95,7 @@ const checkFunc2 = () => {
 let mainArr = ref(store.state.basket);
 const deleteItem = (item , vendor_id) => {
   store.commit("deleteCheckOut", {vendor_id:vendor_id , itemid:item , arr:mainArr.value});
+  console.log(props.arrData);
 };
 
 let total = computed(() => {
