@@ -1,12 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // devtools: { enabled: true },
-  server: {
-    host: "0.0.0.0",
-    port: 3000, // You can set a specific port if neede
-  },
-
-
+  // server: {
+  //   host: "0.0.0.0",
+  //   port: 3000, // You can set a specific port if neede
+  // },
 
   modules: [
     "nuxt-swiper",
@@ -33,22 +31,21 @@ export default defineNuxtConfig({
   //         login: {
   //           url: "https://platine.webstdy.net/api/login",
   //           method: "post",
-            
+
   //         },
   //         logout: { url: "/api/auth/logout", method: "delete" },
   //         user: { url: "/api/auth/user", method: "get" },
   //       },
-        
+
   //     },
   //   },
   // },
-  plugins: [
-    { src: "~/plugins/lottie.js" , mode: 'client'},
-  ],
+  plugins: [{ src: "~/plugins/lottie.js", mode: "client" }],
   i18n: {
-    lazy: true,
+    lazy: false,
     langDir: "locales",
     strategy: "prefix_and_default",
+    detectBrowserLanguage: false,
     locales: [
       {
         code: "en",
@@ -86,7 +83,7 @@ export default defineNuxtConfig({
       script: [
         {
           src: "/js/bootstrap.bundle.min.js",
-          body: true,
+          // body: true,
         },
         // {
         //   src: "/chart.utils.js",

@@ -96,7 +96,8 @@
         >
           <div class="d-flex align-items-center gap-5">
             <nuxt-link :to="localePath('/')" class="logo">
-              <img src="~/assets/images/logo.png" alt="" />
+              <!-- <img src="~/assets/images/logo.png" alt="" /> -->
+              <logo :w="87" :h="31"></logo>
             </nuxt-link>
 
             <div v-if="activeNav" class="items d-flex align-items-center gap-4">
@@ -337,12 +338,13 @@
           <div class="row">
             <div class="col-12 col-xl-4 col-lg-4 col-md-6">
               <div class="box-container d-flex flex-column gap-3">
-                <img
+                <!-- <img
                   class="img-flui"
                   src="~/assets/images/logo.png"
                   style="width: 123.999px"
                   alt=""
-                />
+                /> -->
+                  <logo :w="124" :h="44"></logo>
                 <p class="">
                   {{ $t("landing2") }}
                 </p>

@@ -1180,6 +1180,7 @@ html[dir="ltr"] body {
   transition: all 0.4s;
   background-color: #fff;
   box-shadow: 0px 8px 24px 0px rgba(113, 128, 150, 0.04);
+  padding: 18px 0px;
   &.active {
     position: sticky;
     top: 0;
@@ -3206,9 +3207,10 @@ html[dir="ltr"] body {
   }
   .inputs {
     margin-top: 32px;
+    margin-bottom: 32px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 40px;
     &.address {
       width: 50%;
     }
@@ -3240,7 +3242,7 @@ html[dir="ltr"] body {
       label {
         position: relative;
         width: 235px;
-        height: 147px;
+        height: 170px;
 
         cursor: pointer;
         &.third-labels {

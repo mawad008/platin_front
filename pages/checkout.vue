@@ -211,7 +211,7 @@
                   </div>
 
                   <div v-if="personalorGift == 2" class="inputs">
-                    <div v-if="auth">
+                    <div class="d-flex flex-column gap-5" v-if="auth">
                       <div
                         class="d-flex my-4 flex-column flex-xl-row flex-lg-row align-items-center gap-3"
                       >
@@ -264,7 +264,7 @@
                         </div>
                       </div>
                     </div>
-                    <div v-else>
+                    <div class="d-flex flex-column gap-5" v-else>
                       <div
                         class="d-flex flex-column flex-xl-row flex-lg-row align-items-center gap-3"
                       >
@@ -340,7 +340,7 @@
                   </div>
                   <div v-if="personalorGift == 1" class="inputs">
                     <h4>{{ $t("main gift") }}</h4>
-                    <div v-if="auth">
+                    <div class="d-flex flex-column gap-5" v-if="auth">
                       <div
                         class="d-flex flex-column flex-xl-row flex-lg-row align-items-center gap-3"
                       >
@@ -393,7 +393,7 @@
                         </div>
                       </div>
                     </div>
-                    <div v-else>
+                    <div class="d-flex flex-column gap-5" v-else>
                       <div
                         class="d-flex flex-column flex-xl-row flex-lg-row align-items-center gap-3"
                       >
@@ -466,7 +466,7 @@
                         </div>
                       </div>
                     </div>
-                    <h4>{{ $t("main gift1") }}</h4>
+                    <h4 class="mt-3">{{ $t("main gift1") }}</h4>
                     <div
                       class="d-flex flex-column flex-xl-row flex-lg-row align-items-center gap-3"
                     >
@@ -525,6 +525,7 @@
                 :myFunction="checkoutFunc"
                 :pending="pending"
               />
+             
             </div>
           </div>
         </template>
@@ -746,7 +747,7 @@
                   </div> -->
                   <div class="row main-inputs-container">
                     <div class="col-12 col-xl-7 col-lg-7">
-                      <div class="inputs">
+                      <div class="inputs ">
                         <div
                           class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3"
                         >
@@ -857,7 +858,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="main-input mt-3">
+                      <div class="main-input mt-4">
                         <label for=""> {{ $t("special") }}</label>
                         <input
                           type="text"
@@ -900,6 +901,8 @@
                 :myFunction="checkoutFunc1"
                 :pending="pending"
               />
+             
+
             </div>
           </div>
         </template>
@@ -1373,14 +1376,28 @@ let gift_owner_name = ref("");
 let gift_owner_phone = ref("");
 let gift_text = ref("");
 let errors = ref([]);
+let value1 = ref('value is required');
+let value2 = ref('The email field is required');
+let value3 = ref('Invalid email format');
+if(locale.value == 'ar'){
+  value1.value = 'هذا الحقل مطلوبة';
+  value2.value = 'حقل البريد الإلكتروني مطلوب';
+  value3.value = 'تنسيق البريد الإلكتروني غير صالح';
+} else {
+  value1.value = 'value is required';
+  value2.value = 'The email field is required';
+  value3.value = 'Invalid email format';
+}
 const rules = computed(() => {
   return {
-    first_name: { required },
-    last_name: { required },
-    phone: { required },
+    first_name: {
+      required: helpers.withMessage(value1.value, required)
+    },
+    last_name: {   required: helpers.withMessage(value1.value, required) },
+    phone: {   required: helpers.withMessage(value1.value, required) },
     email: {
-      required: helpers.withMessage("The email field is required", required),
-      email: helpers.withMessage("Invalid email format", email),
+      required: helpers.withMessage(value2.value, required),
+      email: helpers.withMessage(value3.value, email),
     },
   };
 });
@@ -1451,10 +1468,10 @@ let userdata2 = ref({
 });
 const rules2 = computed(() => {
   return {
-    city: { required },
-    street_name: { required },
-    building_number: { required },
-    district: { required },
+    city: { required: helpers.withMessage(value1.value, required) },
+    street_name: { required: helpers.withMessage(value1.value, required) },
+    building_number: { required: helpers.withMessage(value1.value, required) },
+    district: { required: helpers.withMessage(value1.value, required) },
   };
 });
 const v2$ = useValidate(rules2, userdata2);
