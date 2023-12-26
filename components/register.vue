@@ -136,6 +136,7 @@ let signNav = ref(1);
 
 let phoneNum = ref(null);
 
+
 const handleButtonClick = (value) => {
     store.commit("changeFormCheck", value);
     console.log(store.state.checkForm);
