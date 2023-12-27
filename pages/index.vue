@@ -20,7 +20,7 @@
           <div class="h-100">
             <!-- <img src="~/assets/images/banner.jpg" alt=""> -->
             <div class="text-container">
-              {{ index + 1 }}
+              <!-- {{ index + 1 }} -->
               <h2>{{ $t("landing1") }}</h2>
               <span class="text">
                {{$t("landing2")}}
@@ -43,7 +43,7 @@
         <h3>
         {{ $t("sections") }}
         </h3>
-        <span>
+        <span class="p-text">
         {{ $t("explore1") }}
         </span>
       </div>
@@ -134,7 +134,7 @@
           <h3>
               {{ $t("shop1") }}          
           </h3>
-          <p>
+          <p class="p-text cate">
           {{ $t("explore2") }}
           </p>
         </div>
@@ -596,7 +596,7 @@
         class="text d-flex align-items-center text-center gap-2 mb-5 justify-content-center flex-column"
       >
         <h3> {{ $t("about market") }} </h3>
-        <span>
+        <span class="p-text">
          {{ $t("market desc") }}
         </span>
       </div>
@@ -610,7 +610,7 @@
         class="text d-flex align-items-center mb-5 justify-content-center gap-3 flex-column text-center"
       >
         <h3> {{ $t("gift1") }} </h3>
-        <p>
+        <p class="p-text">
           {{ $t("gift desc1") }}
         </p>
       </div>
@@ -1060,6 +1060,7 @@ const getCategories = async () => {
     },
   });
   categoriesArr.value = result.data.data;
+  categoriesArr.value.splice(0 , 1);
 };
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brands`, {

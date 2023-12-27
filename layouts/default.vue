@@ -63,7 +63,7 @@
                           </div>
                           <span
                             class="all"
-                            @click="goTocategory(item.id, item.name)"
+                            @click="goTocategory(item.id, item.name , `f${index + 1}`)"
                           >
                             {{ $t("alll") }}
                           </span>
@@ -74,9 +74,9 @@
                 </div>
               </div>
             </v-menu>
-            <!-- <nuxt-link to="gold">
+            <div  @click="goTocategory(5,'gold')">
               <span>السبائك</span>
-            </nuxt-link> -->
+            </div>
             <nuxt-link :to="localePath('/vendors')">
               <span>{{ $t("vendors") }}</span>
             </nuxt-link>
@@ -157,7 +157,7 @@
                             </div>
                             <span
                               class="all"
-                              @click="goTocategory(item.id, item.name)"
+                              @click="goTocategory(item.id, item.name ,`f${index + 1}`)"
                             >
                               {{ $t("alll") }}
                             </span>
@@ -168,9 +168,9 @@
                   </div>
                 </div>
               </v-menu>
-              <!-- <nuxt-link :to="localePath('gold')">
-                <span>السبائك</span>
-              </nuxt-link> -->
+              <div  @click="goTocategory(5,'gold')">
+              <span>السبائك</span>
+            </div>
               <nuxt-link :to="localePath('/vendors')">
                 <span>{{ $t("vendors") }}</span>
               </nuxt-link>
@@ -433,7 +433,7 @@
             class="foot w-100 d-flex flex-column flex-xl-row flex-lg-row align-items-center justify-content-between"
           >
             <span> {{ $t("policy2") }}</span>
-            <div>
+            <div class="d-flex align-items-center" style="gap:10px;">
               <span> {{ $t("dev") }}</span>
               <img src="~/assets/images/webstdy.png" alt="" />
             </div>
@@ -458,7 +458,7 @@
             />
           </svg>
         </nuxt-link>
-        <div class="icon">
+        <nuxt-link  :to="localePath('/sections')" class="icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -499,7 +499,7 @@
               stroke-linejoin="round"
             />
           </svg>
-        </div>
+        </nuxt-link>
         <div class="icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -614,11 +614,12 @@ const changeLang = async () => {
   );
 };
 
-const goTocategory = (id, name) => {
+const goTocategory = (id, name , color) => {
 
    const queryParams = {
     id: id,
     name: name,
+    color:color
   };
   const url = "/category";
 
@@ -632,11 +633,12 @@ const goTocategory = (id, name) => {
   const fullLocalePath = localePath(updatedRoute);
   router.push(fullLocalePath);
 };
-const goTocategorysub = (id, name, subid) => {
+const goTocategorysub = (id, name, subid , color) => {
 
   const queryParams = {
     id: id,
     name: name,
+    color:color,
     subid: subid,
   };
   const url = "/category";
@@ -689,6 +691,7 @@ const getCategories = async () => {
     },
   });
   categoriesArr.value = result.data.data;
+  categoriesArr.value.splice(0 , 1);
   console.log(categoriesArr.value);
 };
 const updateLang = () => {

@@ -62,6 +62,20 @@ a {
   text-decoration: none;
 }
 
+.p-text {
+  width: 492px;
+  color:  #5A7184;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+ 
+}
+
+
+
+
 .btn1 {
   width: 172px;
   height: 64px;
@@ -94,7 +108,13 @@ a {
     // padding-right: 16px !important;
     width: 90% !important;
   }
+  .p-text {
+    width: 300px;
+  }
 }
+
+
+
 // span{
 //   font-size: 14px;
 //   color: $text-color;
@@ -1213,6 +1233,7 @@ html[dir="ltr"] body {
   .search {
     background-color: $main-bg;
     // width: 350px;
+    width: 441px;
     height: 48px;
     border-radius: 10px;
   
@@ -1539,8 +1560,8 @@ html[dir="ltr"] body {
     }
   }
   .box {
-    width: 265px;
-    height: 374px;
+    width: 296px;
+    min-height: 374px;
     border-radius: 20px;
     background-size: cover;
     background-position: center;
@@ -3848,8 +3869,17 @@ html[dir="ltr"] body {
     background-size: cover;
     border-radius: 16px;
     margin-bottom: 50px;
-    &.cate {
-      background-image: url("~/assets/images/rec-cate.png");
+    &.f1 {
+      background-image: url("~/assets/images/rec4.png");
+    }
+    &.f2 {
+      background-image: url("~/assets/images/rec3.jpg");
+    }
+    &.f3 {
+      background-image: url("~/assets/images/rec2.jpg");
+    }
+    &.f4 {
+      background-image: url("~/assets/images/rec1.jpg");
     }
     .text {
       img {
@@ -4886,6 +4916,11 @@ html[dir="rtl"]{
     border-radius: 20px 0px 0px 20px;
     }
   }
+  .p-text{
+    &.cate{
+      text-align: right;
+    }
+  }
 }
 
 
@@ -4921,6 +4956,11 @@ html[dir="ltr"]{
       right: 0;
     border-radius: 0px 20px 20px 0px;
     }
+}
+.p-text{
+  &.cate{
+    text-align: left;
+  }
 }
 }
 

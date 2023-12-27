@@ -1,5 +1,5 @@
 <template>
-  <div style="min-height: 100vh; margin-top: 80px">
+  <div style=" margin-top: 80px">
     <div class="container cart-page">
 
       <div v-if="arrData.length >= 1">

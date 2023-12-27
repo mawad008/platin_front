@@ -1,5 +1,5 @@
 <template>
-    <div style="min-height:100vh; margin-top:80px; margin-bottom:140px;">
+    <div style=" margin-top:80px; margin-bottom:140px;">
         <div v-if="favArr.length >= 1" class="container">
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
@@ -46,7 +46,7 @@
 
 <script setup>
 import { Vue3Lottie } from "vue3-lottie";
-import cart from "~/assets/animations/empty-cart.json";
+import cart from "~/assets/animations/fav.json";
 const localePath = useLocalePath();
 import { useStore } from "~/store";
 const store = useStore;

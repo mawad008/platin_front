@@ -1,7 +1,7 @@
 <template>
     <div style="min-height:100vh">
         <div class="container gold-page">
-            <div class="cover-image cate">
+          <div class="cover-image" :class="color">
                 <div class="text d-flex flex-column align-items-center justify-content-center">
                     <img :src="category_image" alt="">
                     <h4> {{ $t("section") }} {{ category_name }}</h4>
@@ -57,6 +57,7 @@ import axios from 'axios';
 const router = useRouter();
 const route = useRoute();
 let id = ref(route.query.id);
+let color = ref(route.query.color);
 let subid = ref(route.query.subid);
 let selectbox1 = ref(subid.value ? subid.value : null);
 let selectbox2 = ref(null);
@@ -102,10 +103,12 @@ const getProducts = async () => {
 };
 
 watch(
-  [() => route.query.id, route.query.subid],
-  ([newId, newSup]) => {
+  [() => route.query.id, route.query.subid , route.query.color],
+  ([newId, newSup , newcolor]) => {
     id.value = newId;
     subid.value = newSup;
+    color.value = newcolor;
+    console.log(color.value);
     getProducts();
   }
 );
