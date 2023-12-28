@@ -1,6 +1,6 @@
 {
     "search": "Search easily",
-    "sections": "Sections",
+    "sections": "All sections",
     "section": "Section",
     "categories": "Categories",
     "ar": "ar",
@@ -12,6 +12,7 @@
     "sub cate": "Subcategories",
     "or": "Or via",
     "image": "Image",
+    "gold bars":"Gold bars",
     "pass": "Password",
     "main gift": "Gift Data",
     "gift":"gift",

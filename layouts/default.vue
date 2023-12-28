@@ -1,7 +1,13 @@
 <template>
   <div>
-  
-    <nav class="navbar" :class="{ active: activeNav }">
+    <nav
+      v-if="
+        route.name !=
+        `${locale == 'ar' ? 'checkout___ar___default' : 'checkout___en'}`
+      "
+      class="navbar"
+      :class="{ active: activeNav }"
+    >
       <div class="container">
         <div
           class="items-container w-100 d-flex align-items-center justify-content-between"
@@ -63,7 +69,9 @@
                           </div>
                           <span
                             class="all"
-                            @click="goTocategory(item.id, item.name , `f${index + 1}`)"
+                            @click="
+                              goTocategory(item.id, item.name, `f${index + 1}`)
+                            "
                           >
                             {{ $t("alll") }}
                           </span>
@@ -74,8 +82,8 @@
                 </div>
               </div>
             </v-menu>
-            <div  @click="goTocategory(5,'gold')">
-              <span>السبائك</span>
+            <div style="cursor: pointer;" @click="goTocategory(5, 'gold')">
+              <span>{{ $t('gold bars') }}</span>
             </div>
             <nuxt-link :to="localePath('/vendors')">
               <span>{{ $t("vendors") }}</span>
@@ -157,7 +165,13 @@
                             </div>
                             <span
                               class="all"
-                              @click="goTocategory(item.id, item.name ,`f${index + 1}`)"
+                              @click="
+                                goTocategory(
+                                  item.id,
+                                  item.name,
+                                  `f${index + 1}`
+                                )
+                              "
                             >
                               {{ $t("alll") }}
                             </span>
@@ -168,9 +182,9 @@
                   </div>
                 </div>
               </v-menu>
-              <div  @click="goTocategory(5,'gold')">
-              <span>السبائك</span>
-            </div>
+              <div style="cursor: pointer;" @click="goTocategory(5, 'gold')">
+              <span>{{ $t('gold bars') }}</span>
+              </div>
               <nuxt-link :to="localePath('/vendors')">
                 <span>{{ $t("vendors") }}</span>
               </nuxt-link>
@@ -181,7 +195,7 @@
               class="search d-flex align-items-center justify-content-between px-1"
               style=""
             >
-              <div class="inp">
+              <div class="input inp">
                 <input type="text" :placeholder="$t('search')" style="" />
               </div>
               <div class="d-flex align-item-cente gap-4">
@@ -190,6 +204,7 @@
                     <button
                       class="d-flex align-items-center gap-1"
                       v-bind="props"
+                      style="color: #2d3a4a; font-size: 14px; font-weight: 400"
                     >
                       {{ $t("sections") }}
                       <svg
@@ -251,7 +266,7 @@
                 </div>
               </nuxt-link>
               <nuxt-link :to="localePath('/cart')">
-                <v-badge :content="theNum" color="#B1628C">
+                <v-badge v-if="theNum > 0" :content="theNum" color="#B1628C">
                   <div class="icon border">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -269,6 +284,22 @@
                     </svg>
                   </div>
                 </v-badge>
+                <div v-if="theNum <= 0" class="icon border">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="25"
+                    viewBox="0 0 24 25"
+                    fill="none"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M3.82541 6.08669L3.643 4.57513C3.5773 3.93433 3.0364 3.44704 2.39089 3.44704H1.71649C1.29919 3.44704 0.960937 3.10954 0.960938 2.69325C0.960938 2.27696 1.29919 1.93945 1.71649 1.93945H2.39089C3.81144 1.93945 5.00168 3.01173 5.14626 4.4217L5.28392 5.76417H20.6172C20.9342 5.76417 21.1724 6.0529 21.1114 6.36328L19.7718 13.1793C19.4475 14.8293 17.998 16.0195 16.3128 16.0195H8.2843C8.51585 17.0389 9.42891 17.7779 10.494 17.7779H16.8175C16.8547 17.7779 16.8917 17.7806 16.8731 17.7839C16.9285 17.7799 16.9842 17.7779 17.0401 17.7779C18.2917 17.7779 19.3063 18.7902 19.3063 20.039C19.3063 21.2877 18.2917 22.3001 17.0401 22.3001C15.7885 22.3001 14.7739 21.2877 14.7739 20.039C14.7739 19.7787 14.8181 19.5247 14.9028 19.2855H12.1277C12.2124 19.5247 12.2566 19.7787 12.2566 20.039C12.2566 21.2877 11.242 22.3001 9.99041 22.3001C8.73881 22.3001 7.72421 21.2877 7.72421 20.039C7.72421 19.4883 7.92289 18.9693 8.27201 18.5647C7.41318 17.9407 6.84663 16.9781 6.73678 15.9038L6.72518 15.7904C5.49555 15.3233 4.58805 14.1879 4.46716 12.809L4.16266 9.33533C4.15752 9.31385 4.15375 9.29178 4.15143 9.26921L3.82541 6.08669ZM9.99041 21.0438C10.5466 21.0438 10.9975 20.5939 10.9975 20.039C10.9975 19.484 10.5466 19.0341 9.99041 19.0341C9.43421 19.0341 8.98331 19.484 8.98331 20.039C8.98331 20.5939 9.43421 21.0438 9.99041 21.0438ZM17.0401 21.0438C17.5963 21.0438 18.0472 20.5939 18.0472 20.039C18.0472 19.484 17.5963 19.0341 17.0401 19.0341C16.4839 19.0341 16.033 19.484 16.033 20.039C16.033 20.5939 16.4839 21.0438 17.0401 21.0438Z"
+                      fill="#919EAB"
+                    />
+                  </svg>
+                </div>
               </nuxt-link>
 
               <nuxt-link
@@ -312,7 +343,9 @@
                   id="list-profile"
                   class="list d-flex flex-column p-4 gap-4 text-center"
                 >
-                  <span @click="goSettings('profile')"> {{ $t("personal") }}</span>
+                  <span @click="goSettings('profile')">
+                    {{ $t("personal") }}</span
+                  >
 
                   <!-- <span @click="goSettings('notifications')"> الاشعارات </span>
                   <span @click="goSettings('orders')"> طلباتي </span> -->
@@ -330,6 +363,22 @@
         </div>
       </div>
     </nav>
+
+    <nav
+      class="container"
+      v-if="
+        route.name ==
+        `${locale == 'ar' ? 'checkout___ar___default' : 'checkout___en'}`
+      "
+    >
+      <div class="checkout-nav">
+        <logo :w="124" :h="45"></logo>
+
+        <button>الرجوع للتسوق</button>
+      </div>
+    </nav>
+
+    <Loader2 v-if="checkInt"></Loader2>
     <slot />
 
     <footer class="footer-container">
@@ -344,7 +393,7 @@
                   style="width: 123.999px"
                   alt=""
                 /> -->
-                  <logo :w="124" :h="44"></logo>
+                <logo :w="124" :h="44"></logo>
                 <p class="">
                   {{ $t("landing2") }}
                 </p>
@@ -381,18 +430,18 @@
             </div>
             <div class="col-12 col-xl-2 col-lg-3 col-md-6">
               <div class="box-container d-flex flex-column gap-3">
-                <h6 class="head" style="font-size: 15px; white-space:nowrap;">
+                <h6 class="head" style="font-size: 15px; white-space: nowrap">
                   {{ $t("sub") }}
                 </h6>
                 <div class="links d-flex flex-column gap-4">
                   <span class="head-link"> {{ $t("home") }} </span>
                   <div
-                    class="input d-flex align-items-center  justify-content-center gap-2"
+                    class="input d-flex align-items-center justify-content-center gap-2"
                   >
                     <input type="text" placeholder="ادخل البريد الالكتروني " />
 
                     <svg
-                    class="arrow-icon"
+                      class="arrow-icon"
                       xmlns="http://www.w3.org/2000/svg"
                       width="19"
                       height="20"
@@ -433,7 +482,7 @@
             class="foot w-100 d-flex flex-column flex-xl-row flex-lg-row align-items-center justify-content-between"
           >
             <span> {{ $t("policy2") }}</span>
-            <div class="d-flex align-items-center" style="gap:10px;">
+            <div class="d-flex align-items-center" style="gap: 10px">
               <span> {{ $t("dev") }}</span>
               <img src="~/assets/images/webstdy.png" alt="" />
             </div>
@@ -458,7 +507,7 @@
             />
           </svg>
         </nuxt-link>
-        <nuxt-link  :to="localePath('/sections')" class="icon">
+        <nuxt-link :to="localePath('/sections')" class="icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -574,6 +623,7 @@ import Cookies from "js-cookie";
 import { useStore } from "~/store";
 const store = useStore;
 const router = useRouter();
+const route = useRoute();
 let categoriesArr = ref([]);
 let activeNav = ref(false);
 let activeItemsContainer = ref(false);
@@ -581,6 +631,7 @@ let theNum = computed(() => {
   return store.state.basketNum;
 });
 
+let checkInt = ref(false);
 
 let user = ref(store.state.user);
 const localePath = useLocalePath();
@@ -614,12 +665,11 @@ const changeLang = async () => {
   );
 };
 
-const goTocategory = (id, name , color) => {
-
-   const queryParams = {
+const goTocategory = (id, name, color) => {
+  const queryParams = {
     id: id,
     name: name,
-    color:color
+    color: color,
   };
   const url = "/category";
 
@@ -633,12 +683,11 @@ const goTocategory = (id, name , color) => {
   const fullLocalePath = localePath(updatedRoute);
   router.push(fullLocalePath);
 };
-const goTocategorysub = (id, name, subid , color) => {
-
+const goTocategorysub = (id, name, subid, color) => {
   const queryParams = {
     id: id,
     name: name,
-    color:color,
+    color: color,
     subid: subid,
   };
   const url = "/category";
@@ -652,11 +701,10 @@ const goTocategorysub = (id, name, subid , color) => {
 
   const fullLocalePath = localePath(updatedRoute);
   router.push(fullLocalePath);
-
 };
 
 const goSettings = (name) => {
-     const queryParams = {
+  const queryParams = {
     name: name,
   };
   const url = "/settings";
@@ -680,7 +728,7 @@ const logOut = () => {
     Cookies.remove("user");
     Cookies.remove("token");
     Cookies.remove("auth");
-    const localee = localePath('/')
+    const localee = localePath("/");
     router.push(localee);
   }
 };
@@ -690,49 +738,56 @@ const getCategories = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
-  categoriesArr.value = result.data.data;
-  categoriesArr.value.splice(0 , 1);
-  console.log(categoriesArr.value);
+  categoriesArr.value = result.data.data.slice(0, 4);
 };
 const updateLang = () => {
-    if (locale.value == "ar") {
+  if (locale.value == "ar") {
     setLocale("ar");
     useHead({
       htmlAttrs: {
-        lang: 'ar',
-        dir: 'rtl',
-      }
+        lang: "ar",
+        dir: "rtl",
+      },
     });
   } else if (locale.value == "en") {
     useHead({
       htmlAttrs: {
-        lang: 'en',
-        dir: 'ltr',
-      }
+        lang: "en",
+        dir: "ltr",
+      },
     });
     setLocale("en");
   }
-}
+};
 watch(locale, (newLocale) => {
-  if (newLocale === 'ar') {
-    setLocale('ar');
+  if (newLocale === "ar") {
+    setLocale("ar");
     useHead({
       htmlAttrs: {
-        lang: 'ar',
-        dir: 'rtl',
+        lang: "ar",
+        dir: "rtl",
       },
     });
-  } else if (newLocale === 'en') {
+  } else if (newLocale === "en") {
     useHead({
       htmlAttrs: {
-        lang: 'en',
-        dir: 'ltr',
+        lang: "en",
+        dir: "ltr",
       },
     });
-    setLocale('en');
+    setLocale("en");
   }
 });
 onMounted(() => {
+  console.log(route.name);
+  window.addEventListener("online", function () {
+    checkInt.value = false;
+  });
+  window.addEventListener("offline", function () {
+    checkInt.value = true;
+    console.log("offfff");
+  });
+
   updateLang();
   store.dispatch("loadBasketFromLocalStorage");
   window.addEventListener("scroll", function () {
@@ -755,4 +810,27 @@ onBeforeMount(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+nav {
+  .checkout-nav {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      display: flex;
+      width: 157px;
+      height: 56px;
+      padding: 8px 16px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      border: 1px solid #dbdde0;
+      color: #5a7184;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}
+</style>

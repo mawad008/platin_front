@@ -32,14 +32,14 @@
           <label for=""> {{ $t("email") }}<span>*</span> </label>
           <input type="email" v-model="form.email" placeholder="مثال : Mostafademo@icloud.com" />
           <span class="error-msg" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
-          <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>
+          <span class="error-msg2" v-if="errors.email">{{ errors.email[0] }}</span>
 
         </div>
         <div class="main-input">
           <label for=""> {{ $t("pass") }}<span>*</span> </label>
           <input type="password" v-model="form.password" placeholder=" ********** " />
           <span class="error-msg" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
-          <span class="error-msg" v-if="errors.password">{{ errors.password[0] }}</span>
+          <span class="error-msg2" v-if="errors.password">{{ errors.password[0] }}</span>
 
 
         </div>

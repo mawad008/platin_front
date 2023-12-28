@@ -4,7 +4,7 @@
       <v-stepper
         class="w-100"
         v-model="store.state.step"
-        editable
+       
         :items="items"
         show-actions
         v-if="finalStep == 1"
@@ -499,7 +499,7 @@
                       </div>
                     </div>
                     <h4>{{ $t("gift text") }}</h4>
-                    <div class="main-input">
+                    <div class="main-input textarea">
                       <textarea
                         name=""
                         v-model="gift_text"

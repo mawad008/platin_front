@@ -43,17 +43,20 @@
           <div class="w-100 d-flex align-items-center justify-content-between">
 
             <div v-if="clickedItem(product.id) != product.id" @click="addTofav(product, index)" class="octagon ">
-              <octagon />
+              <octagon class="main"/>
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M12.3812 6.13389C14.1606 4.35511 17.0457 4.35511 18.8252 6.13389C20.6047 7.91277 20.6047 10.797 18.8252 12.5759L12.3392 19.0593C12.1518 19.2466 11.8479 19.2466 11.6605 19.0593L5.17453 12.5759C3.39495 10.797 3.39495 7.91277 5.17453 6.13389C6.95401 4.35511 9.83904 4.35511 11.6185 6.13389L11.9998 6.51506L12.3812 6.13389Z"
                   fill="#DCDEE0" />
               </svg>
+              <client-only>
+              <Vue3Lottie :animation-data="fav" :height="50" :width="50" />
+          </client-only>
             </div>
 
             <div v-if="clickedItem(product.id) == product.id" @click="deleteTofav(index , product.id)" class="octagon "
               :class="{ 'active': clickedItem(product.id) == product.id }">
-              <octagon />
+              <octagon class="main"/>
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M12.3812 6.13389C14.1606 4.35511 17.0457 4.35511 18.8252 6.13389C20.6047 7.91277 20.6047 10.797 18.8252 12.5759L12.3392 19.0593C12.1518 19.2466 11.8479 19.2466 11.6605 19.0593L5.17453 12.5759C3.39495 10.797 3.39495 7.91277 5.17453 6.13389C6.95401 4.35511 9.83904 4.35511 11.6185 6.13389L11.9998 6.51506L12.3812 6.13389Z"
@@ -62,7 +65,7 @@
             </div>
 
             <div @click="checkShare = !checkShare" class="octagon">
-              <octagon />
+              <octagon class="main"/>
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M19.2233 5.27988C19.2233 3.9544 18.1488 2.87988 16.8233 2.87988C15.4978 2.87988 14.4233 3.9544 14.4233 5.27988C14.4233 6.60537 15.4978 7.67988 16.8233 7.67988C18.1488 7.67988 19.2233 6.60537 19.2233 5.27988ZM19.2233 17.7599C19.2233 16.4344 18.1488 15.3599 16.8233 15.3599C15.4978 15.3599 14.4233 16.4344 14.4233 17.7599C14.4233 19.0854 15.4978 20.1599 16.8233 20.1599C18.1488 20.1599 19.2233 19.0854 19.2233 17.7599ZM6.26328 9.59988C7.58876 9.59988 8.66328 10.6744 8.66328 11.9999C8.66328 13.3254 7.58876 14.3999 6.26328 14.3999C4.9378 14.3999 3.86328 13.3254 3.86328 11.9999C3.86328 10.6744 4.9378 9.59988 6.26328 9.59988ZM13.6341 6.34043C13.7366 6.64873 13.8825 6.93719 14.0646 7.19855L8.7806 9.77436C8.54693 9.51025 8.27234 9.28319 7.96676 9.1031L13.6341 6.34043ZM13.6647 16.6114C13.5531 16.9183 13.4849 17.2461 13.4676 17.5873L8.04526 14.8489C8.34052 14.6639 8.60496 14.4342 8.82912 14.1693L13.6647 16.6114Z"
@@ -81,7 +84,7 @@
           </div>
         </div>
 
-        <div class="center-icons w-100">
+        <div class="center-icons w-100 text-center">
           <div class="d-flex w-100 align-items-center justify-content-between">
             <div class="octagon d-flex flex-column gap-3">
               <octagon />
@@ -94,7 +97,7 @@
 
             <div @click="addToBasket(product)" class="octagon d-flex flex-column gap-3">
               <octagon />
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="none">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M5.10055 8.03523L4.85734 6.03967C4.76973 5.19369 4.04854 4.55038 3.18786 4.55038H2.28865C1.73226 4.55038 1.28125 4.10481 1.28125 3.55522C1.28125 3.00563 1.73226 2.56006 2.28865 2.56006H3.18786C5.08193 2.56006 6.6689 3.97568 6.86168 5.83711L7.04522 7.60943H27.4896C27.9123 7.60943 28.2298 7.99062 28.1485 8.40038L26.3624 17.3989C25.93 19.5772 23.9974 21.1485 21.7505 21.1485H11.0457C11.3545 22.4944 12.5719 23.4699 13.992 23.4699H22.4233C22.473 23.4699 22.5223 23.4735 22.4975 23.4779C22.5714 23.4726 22.6456 23.4699 22.7201 23.4699C24.389 23.4699 25.7417 24.8064 25.7417 26.455C25.7417 28.1036 24.389 29.4401 22.7201 29.4401C21.0513 29.4401 19.6985 28.1036 19.6985 26.455C19.6985 26.1114 19.7575 25.7761 19.8705 25.4602H16.1702C16.2832 25.7761 16.3421 26.1114 16.3421 26.455C16.3421 28.1036 14.9894 29.4401 13.3205 29.4401C11.6517 29.4401 10.299 28.1036 10.299 26.455C10.299 25.7279 10.5638 25.0428 11.0293 24.5087C9.88424 23.6849 9.12883 22.414 8.98237 20.9958L8.9669 20.846C7.3274 20.2294 6.11739 18.7305 5.95622 16.9099L5.55022 12.3241C5.54337 12.2957 5.53833 12.2666 5.53524 12.2368L5.10055 8.03523ZM13.3205 27.7816C14.0622 27.7816 14.6633 27.1876 14.6633 26.455C14.6633 25.7223 14.0622 25.1284 13.3205 25.1284C12.5789 25.1284 11.9778 25.7223 11.9778 26.455C11.9778 27.1876 12.5789 27.7816 13.3205 27.7816ZM22.7201 27.7816C23.4618 27.7816 24.0629 27.1876 24.0629 26.455C24.0629 25.7223 23.4618 25.1284 22.7201 25.1284C21.9785 25.1284 21.3773 25.7223 21.3773 26.455C21.3773 27.1876 21.9785 27.7816 22.7201 27.7816Z"
                   fill="white" />
@@ -128,18 +131,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useStore } from "~/store";
-export default {
-  props: ["favIcon", "product" , "index"],
-  setup(props) {
-    const store = useStore;
+import { Vue3Lottie } from "vue3-lottie";
+import fav from "~/assets/animations/fav-icon.json";
+ const props = defineProps(["favIcon", "product" , "index"]);
+  const store = useStore;
     const router = useRouter();
     const localePath = useLocalePath();
     const { locale } = useI18n();
     let checkShare = ref(false);
-
-
     const goToProductPage = (id, name) => {
       const queryParams = {
         id: id,
@@ -174,20 +175,6 @@ export default {
       return store.state.isInFav.find((item) => item == id);
     }
 
-    onMounted(() => {
-    });
-    return {
-      checkShare,
-      addToBasket,
-      goToProductPage,
-      addTofav,
-      deleteTofav,
-      store,
-      clickedItem
-
-    };
-  },
-};
 </script>
 
 <style lang="scss" scoped></style>

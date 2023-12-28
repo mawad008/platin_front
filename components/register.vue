@@ -46,7 +46,7 @@
             <span class="error-msg" v-if="v$.first_name.$error">{{
               v$.first_name.$errors[0].$message
             }}</span>
-            <span class="error-msg" v-if="errors.first_name">{{
+            <span class="error-msg2" v-if="errors.first_name">{{
               errors.first_name[0]
             }}</span>
           </div>
@@ -56,7 +56,7 @@
             <span class="error-msg" v-if="v$.last_name.$error">{{
               v$.last_name.$errors[0].$message
             }}</span>
-            <span class="error-msg" v-if="errors.last_name">{{
+            <span class="error-msg2" v-if="errors.last_name">{{
               errors.last_name[0]
             }}</span>
           </div>
@@ -71,7 +71,7 @@
           <span class="error-msg" v-if="v$.email.$error">{{
             v$.email.$errors[0].$message
           }}</span>
-          <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>
+          <span class="error-msg2" v-if="errors.email">{{ errors.email[0] }}</span>
         </div>
 
         <div class="main-input">
@@ -80,7 +80,7 @@
           <span class="error-msg" v-if="v$.phone.$error">{{
             v$.phone.$errors[0].$message
           }}</span>
-          <span class="error-msg" v-if="errors.phone">{{ errors.phone[0] }}</span>
+          <span class="error-msg2" v-if="errors.phone">{{ errors.phone[0] }}</span>
         </div>
         <div class="main-input">
           <label for=""> {{ $t("image") }} </label>
@@ -89,7 +89,7 @@
             @change="handleImageChange"
             placeholder="مثال : +0215984494"
           />
-          <span class="error-msg" v-if="errors.image">{{ errors.image[0] }}</span>
+          <span class="error-msg2" v-if="errors.image">{{ errors.image[0] }}</span>
         </div>
         <div class="main-input">
           <label for=""> {{ $t("pass") }}<span>*</span> </label>
@@ -97,7 +97,7 @@
           <span class="error-msg" v-if="v$.password.$error">{{
             v$.password.$errors[0].$message
           }}</span>
-          <span class="error-msg" v-if="errors.password">{{ errors.password[0] }}</span>
+          <span class="error-msg2" v-if="errors.password">{{ errors.password[0] }}</span>
         </div>
         <div class="main-input">
           <label for=""> {{ $t("confirm pass") }}<span>*</span> </label>
@@ -109,7 +109,7 @@
           <span class="error-msg" v-if="v$.password_confirmation.$error">{{
             v$.password_confirmation.$errors[0].$message
           }}</span>
-          <span class="error-msg" v-if="errors.password_confirmation">{{
+          <span class="error-msg2" v-if="errors.password_confirmation">{{
             errors.password_confirmation[0]
           }}</span>
         </div>
@@ -211,9 +211,8 @@ const handleImageChange = (event) => {
   }
 };
 
-const rules = computed(() => {
-  return {
-    first_name: { required },
+const rules = {
+  first_name: { required },
     last_name: { required },
     phone: { required },
     email: {
@@ -222,8 +221,7 @@ const rules = computed(() => {
     },
     password: { required, minLength: minLength(6) },
     password_confirmation: { required, sameAs: sameAs(form.value.password) },
-  };
-});
+}
 
 let errors = ref([]);
 let emailError = ref(null);

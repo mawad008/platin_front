@@ -539,7 +539,7 @@
                                 <span class="name">
                                   {{ item.customer_name }}
                                 </span>
-                                <div class="comment-text">
+                                <div v-if="item && item.comment" class="comment-text">
                                   {{
                                     item.showFullText
                                       ? item.comment
@@ -784,6 +784,8 @@
         </div>
       </div>
     </div>
+
+    <loader v-if="pending"></loader>
   </div>
 </template>
 
@@ -795,6 +797,8 @@ import axios from "axios";
 const store = useStore;
 const { locale } = useI18n();
 const localePath = useLocalePath();
+
+let pending = ref(true);
 
 const tokenCookie = Cookies.get("token");
 
@@ -874,7 +878,10 @@ const showProduct = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
-  mainProduct.value = result.data.data;
+  if(result.status == 200){
+    mainProduct.value = result.data.data;
+    pending.value = false;
+  }
   console.log(result.data.data);
 };
 const showVendor = async () => {
@@ -902,9 +909,9 @@ const showComments = async () => {
       updateTruncatedText(item);
     });
     checkComment.value = true;
-    console.log("sasadasdasdas");
   }
   console.log(result.data.data.customers_rates);
+  console.log(itemsArray.value);
 };
 const toggleReadMore = (index) => {
   let item = itemsArray.value[index];
@@ -913,13 +920,13 @@ const toggleReadMore = (index) => {
 };
 
 const updateTruncatedText = (item) => {
-  if (!item.showFullText.value) {
-    item.truncatedText =
-      item.comment.length > maxCharacters
-        ? item.comment.substring(0, maxCharacters) + "..."
-        : item.comment;
-  } else {
-    item.truncatedText = item.comment;
+  if(item && item.comment){
+    if (!item.showFullText) {
+      item.truncatedText = item.comment.length > maxCharacters ? item.comment.substring(0, maxCharacters) + "..." : item.comment;
+    } else {
+      item.truncatedText = item.comment;
+    }
+
   }
 };
 
@@ -995,8 +1002,7 @@ onMounted(() => {
   showComments();
   showVendor();
   getRelatedProducts();
-  if (checkComment.value) {
-  }
+
 
 
     const triggerDiv = document.getElementById('trigger');
