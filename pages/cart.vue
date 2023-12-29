@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="input">
-                  <input type="text" placeholder="كود الخصم" />
+                  <input type="text" :placeholder="$t('code')" />
                   <button>{{ $t("act") }}</button>
                 </div>
 

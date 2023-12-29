@@ -66,14 +66,34 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div
             v-for="item in products"
             class="col-12 col-xl-3 col-lg-3 col-md-6"
           >
             <product-card :product="item" style="margin: 30px 0px" />
           </div>
-        </div>
+        </div> -->
+          <v-data-iterator :items="paginatedItems"  :items-per-page="itemsPerPage" :page="page">
+        <template v-slot:default="{ items }">
+    
+            <div class="">
+            <div class="row">
+              <div class="col-12 col-xl-3 col-lg-3 col-md-6" v-for="item, index in items" :key="item.id">
+               <product-card :product="item.raw" />
+              </div>
+            </div>
+          </div>
+        </template>
+      </v-data-iterator>
+
+          <v-pagination
+          v-if="pageCount > 1"
+          v-model="page"
+          :length="pageCount"
+          rounded="circle"
+          @input="updatePage"
+        ></v-pagination>
       </div>
     </div>
   </div>
@@ -128,6 +148,25 @@ const getProducts = async () => {
   products_count.value = result.data.data.products_count;
   products.value = result.data.data.products;
 };
+
+
+let page = ref(1);
+let itemsPerPage = ref(4);
+
+const pageCount = computed(() => {
+  return Math.ceil(products.value.length / itemsPerPage.value);
+});
+
+const paginatedItems = computed(() => {
+  const startIndex = (page.value - 1) * itemsPerPage.value;
+  const endIndex = startIndex + itemsPerPage.value;
+  return products.value.slice(startIndex, endIndex);
+});
+
+const updatePage = (newPage) => {
+  page.value = newPage;
+}
+
 
 watch(
   [() => route.query.id, () => route.query.subid, () => route.query.color],

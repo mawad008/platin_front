@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { TRUE } from "sass";
 // process.client ? JSON.parse(sessionStorage.getItem("basket")) :
 export const useStore = createStore({
   state: {
@@ -12,8 +13,16 @@ export const useStore = createStore({
     checkForm: 1,
     finalStep: 1,
     lang: "ar",
+    check1: true,
+    check2: false,
+    check3: false,
+    check4: false,
+    lineActive1: false,
+    lineActive2: false,
+    lineActive3: false,
     authenticated: false,
     final: false,
+    animCart:false,
     isInFav: [],
     step: 1,
     user: {},

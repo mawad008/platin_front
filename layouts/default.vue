@@ -62,16 +62,14 @@
                           >
                             <span
                               v-for="i in item.subcategories"
-                              @click="goTocategorysub(item.id, item.name, i.id)"
+                              @click="goTocategorysub(item.id, item.name, i.id , `f${index + 1}`)"
                             >
                               {{ i.name }}
                             </span>
                           </div>
                           <span
                             class="all"
-                            @click="
-                              goTocategory(item.id, item.name, `f${index + 1}`)
-                            "
+                            @click=" goTocategory(item.id, item.name, `f${index + 1}`)"
                           >
                             {{ $t("alll") }}
                           </span>
@@ -105,7 +103,8 @@
           <div class="d-flex align-items-center gap-5">
             <nuxt-link :to="localePath('/')" class="logo">
               <!-- <img src="~/assets/images/logo.png" alt="" /> -->
-              <logo :w="87" :h="31"></logo>
+            <logo v-if="locale == 'ar'" class="a-logo" :w="87" :h="31"></logo>
+          <e-logo v-if="locale == 'en'" class="e-logo" :w="87" :h="31"></e-logo>
             </nuxt-link>
 
             <div v-if="activeNav" class="items d-flex align-items-center gap-4">
@@ -157,7 +156,7 @@
                               <span
                                 v-for="i in item.subcategories"
                                 @click="
-                                  goTocategorysub(item.id, item.name, i.id)
+                                  goTocategorysub(item.id, item.name, i.id ,`f${index + 1}`)
                                 "
                               >
                                 {{ i.name }}
@@ -221,15 +220,11 @@
                       </svg>
                     </button>
                   </template>
-                  <v-list>
-                    <!-- <v-list-item
-          v-for="(item, index) in items"
-          :key="index"
-          :value="index"
-        >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item> -->
-                  </v-list>
+            <div
+                    class="list-profile list d-flex flex-column p-4 gap-4 text-center"
+                  >
+                    <button type="" v-for="item in categoriesArr"> {{ item.name }}</button>
+                  </div>
                 </v-menu>
                 <div class="search-icon">
                   <svg
@@ -266,6 +261,7 @@
                 </div>
               </nuxt-link>
               <nuxt-link :to="localePath('/cart')">
+              <div v-if="!store.state.animCart">
                 <v-badge v-if="theNum > 0" :content="theNum" color="#B1628C">
                   <div class="icon border">
                     <svg
@@ -300,6 +296,11 @@
                     />
                   </svg>
                 </div>
+              
+              </div>
+                <client-only>
+                <Vue3Lottie v-if="store.state.animCart" class=" icon border" :animation-data="cartIcon" :height="20" :width="20" />
+              </client-only>
               </nuxt-link>
 
               <nuxt-link
@@ -372,9 +373,17 @@
       "
     >
       <div class="checkout-nav">
-        <logo :w="124" :h="45"></logo>
+      <nuxt-link :to="localePath('/')">
+        <logo v-if="locale == 'ar' " class="a-logo" :w="124" :h="45"></logo>
+        <e-logo v-if="locale == 'en'" class="e-logo" :w="124" :h="45"></e-logo>
+      
+      </nuxt-link>
 
-        <button>الرجوع للتسوق</button>
+        <nuxt-link :to="localePath('/')">
+        <button>
+          {{ $t('back2') }}
+        </button>
+        </nuxt-link>
       </div>
     </nav>
 
@@ -393,7 +402,8 @@
                   style="width: 123.999px"
                   alt=""
                 /> -->
-                <logo :w="124" :h="44"></logo>
+             <logo v-if="locale == 'ar'" class="a-logo" :w="124" :h="45"></logo>
+          <e-logo v-if="locale == 'en'" class="e-logo" :w="124" :h="45"></e-logo>
                 <p class="">
                   {{ $t("landing2") }}
                 </p>
@@ -403,10 +413,7 @@
               <div class="box-container d-flex flex-column gap-3">
                 <h6 class="head">{{ $t("sections") }}</h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> الذهب </span>
-                  <span class="head-link"> الماس </span>
-                  <span class="head-link"> الفضة </span>
-                  <span class="head-link"> الساعات </span>
+                  <span  v-for="item , index in categoriesArr"  @click=" goTocategory(item.id, item.name, `f${index + 1}`)" class="head-link"> {{ item.name }} </span>
                 </div>
               </div>
             </div>
@@ -423,8 +430,8 @@
               <div class="box-container d-flex flex-column gap-3">
                 <h6 class="head">{{ $t("contact") }}</h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> الرئيسية </span>
-                  <span class="head-link"> الرئيسية </span>
+                  <span class="head-link">  {{$t('home')}}  </span>
+                  <span class="head-link">  {{$t('home')}}  </span>
                 </div>
               </div>
             </div>
@@ -438,7 +445,7 @@
                   <div
                     class="input d-flex align-items-center justify-content-center gap-2"
                   >
-                    <input type="text" placeholder="ادخل البريد الالكتروني " />
+                    <input type="text" :placeholder="$t('enter')" />
 
                     <svg
                       class="arrow-icon"
@@ -621,6 +628,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useStore } from "~/store";
+import { Vue3Lottie } from "vue3-lottie";
+import cartIcon from "~/assets/animations/cart-icon.json";
 const store = useStore;
 const router = useRouter();
 const route = useRoute();
@@ -658,6 +667,7 @@ const changeLang = async () => {
     store.state.lang = "en";
   }
   const query = useRoute().query;
+  getCategories();
   await navigateTo(
     localePath({ path: useRoute().path, query: query }, undefined, {
       preserveQuery: true,
@@ -687,8 +697,8 @@ const goTocategorysub = (id, name, subid, color) => {
   const queryParams = {
     id: id,
     name: name,
-    color: color,
     subid: subid,
+    color: color,
   };
   const url = "/category";
 
@@ -759,27 +769,26 @@ const updateLang = () => {
     setLocale("en");
   }
 };
-watch(locale, (newLocale) => {
-  if (newLocale === "ar") {
-    setLocale("ar");
-    useHead({
-      htmlAttrs: {
-        lang: "ar",
-        dir: "rtl",
-      },
-    });
-  } else if (newLocale === "en") {
-    useHead({
-      htmlAttrs: {
-        lang: "en",
-        dir: "ltr",
-      },
-    });
-    setLocale("en");
-  }
-});
+// watch(locale, (newLocale) => {
+//   if (newLocale === "ar") {
+//     setLocale("ar");
+//     useHead({
+//       htmlAttrs: {
+//         lang: "ar",
+//         dir: "rtl",
+//       },
+//     });
+//   } else if (newLocale === "en") {
+//     useHead({
+//       htmlAttrs: {
+//         lang: "en",
+//         dir: "ltr",
+//       },
+//     });
+//     setLocale("en");
+//   }
+// });
 onMounted(() => {
-  console.log(route.name);
   window.addEventListener("online", function () {
     checkInt.value = false;
   });
@@ -831,6 +840,21 @@ nav {
       font-size: 16px;
       font-weight: 400;
     }
+  }
+}
+
+@media(max-width:760px){
+  nav{
+     .checkout-nav{
+      button{
+        width:108px;
+        height:45px;
+        font-size:12px;
+      }
+      svg{
+        width:100px !important;
+      }
+     }
   }
 }
 </style>

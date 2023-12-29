@@ -3,7 +3,7 @@
 
         <div class="final-order">
             <div class="row align-items-center">
-                <div class="col-6">
+                <div class="col-12 col-xl-6 col-lg-6">
                     <div class="main">
                         <span>{{ $t("cong") }}</span>
                         <h3>  {{ $t("final order") }} </h3>
@@ -136,7 +136,7 @@
                         </div> -->
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-xl-6 col-lg-6">
                 <Vue3Lottie :animation-data="cart"  />
                 </div>
             </div>

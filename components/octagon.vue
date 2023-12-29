@@ -1,6 +1,6 @@
 <template>
     <div>
-           <svg class="oct" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+           <svg class="oct iconn product" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
       <path d="M27.6806 40H12.3206C12.1278 40 11.9408 39.9621 11.7618 39.8887C11.584 39.8153
    11.4245 39.7086 11.2879 39.572L0.427973 28.7116C0.401583 28.6852 0.375194
     28.6553 0.352246 28.6232C0.248982 28.5039 0.168665 28.3765 0.111296 

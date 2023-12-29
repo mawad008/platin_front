@@ -1,8 +1,8 @@
 <template>
   <div style="min-height:100vh;">
-    <div class="container our-products ">
-      <div class="header mb-5 d-flex flex-column align-items-center justify-content-center w-100">
-        <h3 class="mb-5">{{ $t("our products") }}</h3>
+    <div class="container our-products " style="margin-top: 75px;">
+      <div class="header  d-flex flex-column align-items-center justify-content-center w-100">
+        <h3 class="">{{ $t("our products") }}</h3>
 
         <div class="tabs">
           <div v-for="item , index in tags" @click="tabActive = index , tab = item.id , getProducts()" :class="{'active':tab==item.id}" class="tab">
@@ -14,7 +14,7 @@
      
       </div>
 
-      <div class="d-flex justify-content-end flex-column flex-xl-row flex-lg-row  gap-3 w-100 my-3">
+      <div class="d-flex justify-content-end flex-column flex-xl-row flex-lg-row  gap-3 mb-5 w-100">
         <div>
 
           <div class="select-box">
@@ -64,13 +64,30 @@
 
       <v-window v-model="tabActive">
         <v-window-item v-for="(item, index) in tags">
+       
+        <v-data-iterator :items="paginatedItems"  :items-per-page="itemsPerPage" :page="page">
+      <template v-slot:default="{ items }">
+    
+          <div class="">
           <div class="row">
-            <div v-for="item in products" class="col-12 col-xl-3 col-lg-3 col-md-6 my-2">
-              <product-card :product="item" />
+            <div class="col" v-for="item, index in items" :key="item.id">
+             <product-card :product="item.raw" />
             </div>
           </div>
+        </div>
+      </template>
+    </v-data-iterator>
         </v-window-item>
       </v-window>
+
+
+  <v-pagination
+        v-if="pageCount > 1"
+        v-model="page"
+        :length="pageCount"
+        rounded="circle"
+        @input="updatePage"
+      ></v-pagination>
 
     </div>
   </div>
@@ -92,6 +109,9 @@ let products = ref([]);
 let categories = ref([]);
 let subcategories = ref([]);
 let brands = ref([]);
+
+
+
 const getTags = async () => {
   let result = await axios.get(`${getUrl()}/tags`, {
     headers: {
@@ -149,7 +169,22 @@ const getProducts = async () => {
 
 
 
+let page = ref(1);
+let itemsPerPage = ref(4);
 
+const pageCount = computed(() => {
+  return Math.ceil(products.value.length / itemsPerPage.value);
+});
+
+const paginatedItems = computed(() => {
+  const startIndex = (page.value - 1) * itemsPerPage.value;
+  const endIndex = startIndex + itemsPerPage.value;
+  return products.value.slice(startIndex, endIndex);
+});
+
+const updatePage = (newPage) => {
+  page.value = newPage;
+}
 
 
 

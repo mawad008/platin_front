@@ -64,7 +64,7 @@
               {{ item.products_count }} {{ $t("product") }}
             </span>
 
-            <button class="mt-1" @click="goTocategory(item.id, item.name)">
+            <button class="mt-1" @click="goTocategory(item.id, item.name , `f${index + 1}`)">
               {{ $t("showProducts") }}
             </button>
           </div>
@@ -983,10 +983,11 @@ let productsTags = ref([]);
 let adsArr = ref([]);
 let productsSectionsArr = ref([]);
 
-const goTocategory = (id, name) => {
+const goTocategory = (id, name , color) => {
   const queryParams = {
     id: id,
     name: name,
+    color:color
   };
   const url = "/category";
 

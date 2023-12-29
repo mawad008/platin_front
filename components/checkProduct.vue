@@ -46,8 +46,8 @@
       </div>
 
       <div class="btns">
-      {{ store.state.step }}
-        <button @click="checkFunc()" class="fill gap-3">
+      <!-- {{ store.state.step }} -->
+        <button @click="checkFunc()" :disabled="pending" class="fill gap-3">
         <span>  {{ $t("follow buy") }} </span>        
         <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
         </button>

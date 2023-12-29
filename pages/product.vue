@@ -33,11 +33,11 @@
                 <span class="type-sapn">{{ mainProduct.category }}</span>
 
                 <div
-                  class="type-list w-100 d-flex align-items-xl-center align-items-lg-center flex-column flex-xl-row flex-lg-row gap-2 mt-2 mb-2 justify-content-between"
+                  class="type-list w-100 d-flex align-items-xl-center align-items-lg-center flex-column flex-xl-row flex-lg-row gap-2  justify-content-between"
                 >
                   <h5 class="fw-bold">{{ mainProduct.name }}</h5>
                   <div class="icons d-flex align-items-center gap-2">
-                    <div class="octagon">
+                    <div class="octagon product">
                       <octagon />
                       <svg
                         class="icon"
@@ -55,7 +55,7 @@
                         />
                       </svg>
                     </div>
-                    <div class="octagon">
+                    <div class="octagon product">
                       <octagon />
                       <svg
                         class="icon"
@@ -71,7 +71,7 @@
                         />
                       </svg>
                     </div>
-                    <div class="octagon">
+                    <div class="octagon product">
                       <octagon />
                       <svg
                         class="icon"
@@ -90,11 +90,11 @@
                   </div>
                 </div>
 
-                <div class="vendor-list d-flex flex-column gap-3">
+                <div class="vendor-list d-flex flex-column gap-4">
                   <div class="by d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-1">
                       <span> {{$t("by")}}: </span>
-                      <span class="vendor fw-bold">
+                      <span @click="goToVendor(mainProduct.vendor_id , mainProduct.vendor_name)" class="vendor fw-bold">
                         {{ $t("store") }} {{ mainProduct.vendor_name }}
                       </span>
                     </div>
@@ -250,7 +250,6 @@
           </div>
 
           <div class="actions">
-            {{ quantity }}
             <input type="number" min="1" name="" v-model="quantity" />
             <button @click="addToBasket()" class="fill" type="">
               <svg
@@ -623,7 +622,7 @@
                                 style="direction: ltr"
                                 half-increments
                                 readonly
-                                :length="mainVendor.rate"
+                                :length="5"
                                 :size="20"
                                 :model-value="mainVendor.rate"
                                 color="#919EAB"
@@ -684,7 +683,7 @@
                             الفاخرة، مصنوعة بعناية فائقة من أرقى المواد.
                           </p>
 
-                          <button class="action"> {{ $t("visit") }} </button>
+                          <button @click="goToVendor(mainProduct.vendor_id, mainProduct.vendor_name)"  class="action"> {{ $t("visit") }} </button>
                         </div>
                       </div>
 
@@ -794,6 +793,8 @@ import VueEasyLightbox from "vue-easy-lightbox";
 import Cookies from "js-cookie";
 import { useStore } from "~/store";
 import axios from "axios";
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css';
 const store = useStore;
 const { locale } = useI18n();
 const localePath = useLocalePath();
@@ -846,26 +847,30 @@ let rateInputError = ref(null);
 
 let itemsArray = ref([]);
 
-let quantity = ref(1);
-let item = ref({
-  vendor_id: 1,
-  vendorName: "زهرة الياقوت",
-  id: 1,
-  description: "خاتم 23",
-  price: 120,
-  images: [
-    "https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1702141258459-6dd8f817e79a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1701031977495-0351a1c8d889?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ],
-});
 
-const addToBasket = () => {
-  store.commit("add", { mainItem: item.value, qw: quantity.value });
-};
 
 const updateRateInput = (value) => {
   rateInput.value = value;
+};
+
+const goToVendor = (id, name) => {
+  const queryParams = {
+    id: id,
+    name: name,
+  };
+  const url = "/vendor";
+
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+
+
+  router.push(fullLocalePath);
 };
 
 let totalComments = ref([]);
@@ -884,6 +889,45 @@ const showProduct = async () => {
   }
   console.log(result.data.data);
 };
+
+
+let quantity = ref(1);
+let item = ref({
+  vendor_id: mainProduct.value.vendor_id,
+  id: mainProduct.value.id,
+  name: mainProduct.value.name,
+  price: mainProduct.value.price,
+  images: [imgsRef.value.length > 0 ? imgsRef.value[0] : ''],
+  fast_shipping_cities: mainProduct.value.fast_shipping_cities,
+  vendor_name: mainProduct.value.vendor_name,
+});
+
+let text2 = ref('تم الاضافة الي السلة');
+if (locale.value == 'ar') {
+  text2.value = 'تم الاضافة الي السلة'
+} else if (locale.value == 'en') {
+  text2.value = 'added to cart';
+}
+const addToBasket = () => {
+  if (mainProduct.value) {
+    store.commit("add", { mainItem: mainProduct.value, qw: quantity.value });
+    createToast({
+      title: text2.value
+    },
+      {
+        showIcon: 'true',
+        type: 'success',
+        toastBackgroundColor: '#dcba95',
+        timeout: 2000,
+      });
+    store.state.animCart = true;
+    setTimeout(() => {
+      store.state.animCart = false;
+    }, 2000);
+  }
+};
+
+
 const showVendor = async () => {
   let result = await axios.get(`${getUrl()}/about-vendor/${id.value}`, {
     headers: {
