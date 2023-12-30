@@ -37,7 +37,7 @@
                 >
                   <h5 class="fw-bold">{{ mainProduct.name }}</h5>
                   <div class="icons d-flex align-items-center gap-2">
-                    <div class="octagon product">
+                    <div @click="shareBtn = ! shareBtn" class="octagon product">
                       <octagon />
                       <svg
                         class="icon"
@@ -55,7 +55,7 @@
                         />
                       </svg>
                     </div>
-                    <div class="octagon product">
+                    <!-- <div class="octagon product">
                       <octagon />
                       <svg
                         class="icon"
@@ -70,8 +70,8 @@
                           fill="#919EAB"
                         />
                       </svg>
-                    </div>
-                    <div class="octagon product">
+                    </div> -->
+                    <div v-if="clickedItem(mainProduct.id) != mainProduct.id" @click="addTofav(mainProduct)" class="octagon product">
                       <octagon />
                       <svg
                         class="icon"
@@ -87,6 +87,29 @@
                         />
                       </svg>
                     </div>
+                    <div v-if="clickedItem(mainProduct.id) == mainProduct.id" @click="deleteTofav(mainProduct.id)" class="octagon product active">
+                      <octagon />
+                      <svg
+                        class="icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M8.00065 14.4331C7.79398 14.4331 7.59398 14.4064 7.42732 14.3464C4.88065 13.4731 0.833984 10.3731 0.833984 5.79307C0.833984 3.45974 2.72065 1.56641 5.04065 1.56641C6.16732 1.56641 7.22065 2.00641 8.00065 2.79307C8.78065 2.00641 9.83399 1.56641 10.9607 1.56641C13.2807 1.56641 15.1673 3.46641 15.1673 5.79307C15.1673 10.3797 11.1207 13.4731 8.57398 14.3464C8.40732 14.4064 8.20732 14.4331 8.00065 14.4331ZM5.04065 2.56641C3.27398 2.56641 1.83398 4.01307 1.83398 5.79307C1.83398 10.3464 6.21398 12.8797 7.75398 13.4064C7.87398 13.4464 8.13398 13.4464 8.25398 13.4064C9.78732 12.8797 14.174 10.3531 14.174 5.79307C14.174 4.01307 12.734 2.56641 10.9673 2.56641C9.95399 2.56641 9.01398 3.03974 8.40732 3.85974C8.22065 4.11307 7.79398 4.11307 7.60732 3.85974C6.98732 3.03307 6.05398 2.56641 5.04065 2.56641Z"
+                          fill="#919EAB"
+                        />
+                      </svg>
+                    </div>
+                     <div v-if="shareBtn" class="share-box">
+                <img src="~/assets/images/social1.svg" alt="" />
+                <img src="~/assets/images/social2.svg" alt="" />
+                <img src="~/assets/images/social3.svg" alt="" />
+                <img src="~/assets/images/social4.svg" alt="" />
+                <img src="~/assets/images/social5.svg" alt="" />
+              </div>
                   </div>
                 </div>
 
@@ -134,7 +157,8 @@
                     <div class="colors">
                       <button
                         v-for="(item, index) in mainProduct.skin_colors"
-                        :class="{ active: index == 0 }"
+                        :class="{ active: btnActive == index }"
+                        @click="btnActive = index"
                       >
                         <span> {{ item.name }} </span>
                       </button>
@@ -408,7 +432,7 @@
                         </span>
                         <span class="head"> {{ $t("desc info1") }}</span>
                         <span class="det">
-                          عيار {{ mainProduct.caliber }} قيراط
+                          {{$t('caliber')}} {{ mainProduct.caliber }} {{$t('carat')}}
                         </span>
                       </div>
                       <div class="row-container">
@@ -468,8 +492,8 @@
                             color="#919EAB"
                             active-color="#ECB43C"
                           />
-                          <span class="text-danger" v-if="rateInputError">{{
-                            rateInputError
+                          <span class="text-danger" v-if="rateInputError.rate">{{
+                            rateInputError.rate[0]
                           }}</span>
                         </div>
                       </div>
@@ -497,6 +521,9 @@
                           </svg>
                         </button>
                       </div>
+                         <span class="text-danger" v-if="rateInputError.comment">{{
+                           rateInputError.comment[0]
+                         }}</span>
 
                       <div class="comments-container">
                         <div
@@ -532,7 +559,7 @@
                             :key="index"
                             class="comment w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between"
                           >
-                            <div class="main d-flex gap-2">
+                            <div class="main d-flex gap-2  w-100">
                               <img src="~/assets/images/kk.jpg" alt="" />
                               <div class="text d-flex flex-column gap-1">
                                 <span class="name">
@@ -706,8 +733,8 @@
                                   class="price w-100 d-flex align-items-center justify-content-between"
                                 >
                                   <span class="item"
-                                    >{{ `${item.caliber} / ق` }}
-                                    {{ `${item.weight} / ق` }}</span
+                                    >{{ `${item.caliber} / ${locale == 'ar' ? 'ق' : 'c'}` }}
+                                    {{ `${item.weight} / ${locale == 'ar' ? 'ج' : 'g'}` }}</span
                                   >
                                   <span class="price-item">
                                     {{ item.price }} {{ $t("curr") }}
@@ -795,11 +822,15 @@ import { useStore } from "~/store";
 import axios from "axios";
 import { createToast } from 'mosha-vue-toastify';
 import 'mosha-vue-toastify/dist/style.css';
+import { Vue3Lottie } from "vue3-lottie";
+import fav from "~/assets/animations/fav-icon.json";
 const store = useStore;
 const { locale } = useI18n();
 const localePath = useLocalePath();
 
 let pending = ref(true);
+
+let btnActive = ref(0);
 
 const tokenCookie = Cookies.get("token");
 
@@ -843,7 +874,8 @@ let commentPerPage = 3;
 let AllItems = ref([]);
 let rateInput = ref(null);
 let commentInput = ref("");
-let rateInputError = ref(null);
+let shareBtn = ref(false);
+let rateInputError = ref([]);
 
 let itemsArray = ref([]);
 
@@ -901,12 +933,15 @@ let item = ref({
   fast_shipping_cities: mainProduct.value.fast_shipping_cities,
   vendor_name: mainProduct.value.vendor_name,
 });
-
+let text1 = ref('تم الاضافة الي قائمة المفضلات');
 let text2 = ref('تم الاضافة الي السلة');
 if (locale.value == 'ar') {
-  text2.value = 'تم الاضافة الي السلة'
+  text2.value = 'تم الاضافة الي السلة';
+  text1.value = 'تم الاضافة الي قائمة المفضلات'
+
 } else if (locale.value == 'en') {
   text2.value = 'added to cart';
+    text1.value = 'added to wishlist';
 }
 const addToBasket = () => {
   if (mainProduct.value) {
@@ -1016,12 +1051,13 @@ const addComment = async () => {
         }
       );
       if (result.status >= 200) {
-        rateInputError.value = null;
+        rateInputError.value = [];
+        commentInput.value = '';
         showComments();
       }
     } catch (errors) {
       if (errors.response) {
-        rateInputError.value = errors.response.data.errors.rate[0];
+        rateInputError.value = errors.response.data.errors;
       }
     }
   } else {
@@ -1029,6 +1065,31 @@ const addComment = async () => {
     router.push(fullLocalePath);
   }
 };
+
+let anim = ref(false);
+const addTofav = (item, index) => {
+  store.commit("addFav", { item: item, index: index });
+  anim.value = true;
+  createToast({
+    title: text1.value
+  },
+    {
+      showIcon: 'true',
+      type: 'success',
+      toastBackgroundColor: '#dcba95',
+      timeout: 2000,
+    });
+  setTimeout(() => {
+    anim.value = false;
+  }, 2000);
+};
+const deleteTofav = (itemId) => {
+  store.commit("deleteFav", { itemId: itemId });
+};
+
+const clickedItem = (id) => {
+  return store.state.isInFav.find((item) => item == id);
+}
 
 watch(
   () => MainRoute.query.id,

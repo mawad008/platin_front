@@ -46,7 +46,7 @@
       <h3>{{ product.name }}</h3>
       <div class="price w-100 d-flex align-items-center justify-content-between">
         <span class="price-text">{{ product.price }} {{ $t('curr') }} </span>
-        <span> ق{{ product.caliber }} / ج {{ product.weight }}</span>
+        <span> {{locale == 'ar' ? 'ق' : 'c'}} {{ product.caliber }} / {{locale == 'ar' ? 'ج' : 'g'}} {{ product.weight }}</span>
       </div>
 
       <div class="overlay">

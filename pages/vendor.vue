@@ -30,7 +30,7 @@
                                     <img src="~/assets/images/vstar.svg" alt="">
                                 </div>
                                 <h6> {{ $t("total rate") }}</h6>
-                                <span> {{ vendor.rate }} ( الف تقييم ) </span>
+                                <span> {{ vendor.rate }}</span>
                             </div>
                             <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
                                 <div class="image">
@@ -53,6 +53,21 @@
                     <div class="recent">
                         <h4 class="fw-bold mb-4"> {{ $t("most selling") }} </h4>
                         <div class="boxes d-flex flex-column h-100 bg-dange ">
+                            <div v-for="item in vendor.bestSellerProducts" class="box d-flex flex-column  my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center  gap-3">
+                                <div class="image">
+                                    <img :src="item.images[0].full_image_path" alt="">
+                                </div>
+                                <div class="text w-100 d-flex flex-column gap-1">
+                                    <h5> {{ item.name }}</h5>
+                                    <div class="price w-100  d-flex align-items-center justify-content-between">
+                                         <span class="item">
+                                 {{ `${item.caliber} / ${locale == 'ar' ? 'ق' : 'c'}` }}
+                                {{ `${item.weight} / ${locale == 'ar' ? 'ج' : 'g'}` }}</span
+                                      >
+                                        <span class="price-item"> {{ item.price }} {{ $t("curr") }} </span>
+                                    </div>
+                                </div>
+                            </div>
                             <div v-for="item in vendor.bestSellerProducts" class="box d-flex flex-column  my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center  gap-3">
                                 <div class="image">
                                     <img :src="item.images[0].full_image_path" alt="">
@@ -147,15 +162,15 @@
                                     <div>
 
                                         <div class="select-box">
-                                            <span> {{ $t("sections") }} </span>
+                                            <span> {{ text1 == '' ? $t("sections") : text1 }} </span>
                                             <i class="fa-solid fa-chevron-down"></i>
                                         </div>
 
                                         <v-overlay activator="parent" location-strategy="connected"
                                             scroll-strategy="reposition">
                                             <div id="select-product"
-                                                class="d-flex  flex-column align-items-center text-center gap-3 justify-content-center">
-                                                <span v-for="item in categories" @click="selectbox1 = item.id , getVendorproducts()" :class="{ 'active': selectbox1 == item.id }"> {{ item.name }} </span>
+                                                class="d-flex  flex-column">
+                                                <span v-for="item in categories" @click="selectbox1 = item.id , text1 = item.name , getVendorproducts()" :class="{ 'active': selectbox1 == item.id }"> {{ item.name }} </span>
                                              
                                             </div>
                                         </v-overlay>
@@ -163,15 +178,15 @@
                                     <div>
 
                                         <div class="select-box">
-                                            <span> {{ $t("brands") }}</span>
+                                            <span> {{ text2 == '' ? $t("brands") : text2 }}</span>
                                             <i class="fa-solid fa-chevron-down"></i>
                                         </div>
 
                                         <v-overlay activator="parent" location-strategy="connected"
                                             scroll-strategy="reposition">
                                             <div id="select-product"
-                                                class="d-flex  flex-column align-items-center text-center gap-3 justify-content-center">
-                                                <span v-for="item in brands" @click="selectbox2 = item.id , getVendorproducts()" :class="{ 'active': selectbox2 == item.id }"> {{ item.name }} </span>
+                                                class="d-flex  flex-column">
+                                                <span v-for="item in brands" @click="selectbox2 = item.id , text2 = item.name , getVendorproducts()" :class="{ 'active': selectbox2 == item.id }"> {{ item.name }} </span>
 
                                             </div>
                                         </v-overlay>
@@ -182,6 +197,9 @@
                                         <product-card :product="item" />
                                     </div>
                                 </div>
+                                  <div v-if="spinner" class="d-flex align-items-center justify-content-center" style="min-height:50vh;">
+                    <v-progress-circular size="70" indeterminate color="#dcba95"></v-progress-circular>
+                  </div>
                             </v-window-item>
 
                             <!-- <v-window-item value="two">
@@ -242,6 +260,8 @@
 
             </div>
         </div>
+
+          <loader v-if="pending"></loader>
     </div>
 </template>
 
@@ -259,11 +279,15 @@ let selectbox2 = ref(null);
 let activeTab = ref(1);
 let brands = ref([]);
 let categories = ref([]);
+let text1 = ref('');
+let text2 = ref('');
 const tab = ref(null);
+let pending = ref(true);
 const maxCharacters = 100;
 let commentPerPage = 3;
 let vendor = ref({});
 let vendors = ref([]);
+let spinner = ref(false);
 let AllItems = ref([
     { fullText: "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ", showFullText: false, truncatedText: "" },
     { fullText: "لم أكن أتوقع أن يكون لدي فرصة امتلاك مثل هذه القلادة الفاخرة. إنها رائعة بكل معنى الكلمة", showFullText: false, truncatedText: "" },
@@ -302,6 +326,9 @@ const getVendors = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
+    if (result.status == 200) {
+        pending.value = false;
+  }
   vendor.value = result.data.data;
 };
 
@@ -323,6 +350,7 @@ const getcategories = async () => {
   categories.value = result.data.data;
 };
 const getVendorproducts = async () => {
+    spinner.value = true;
   let result = await axios.get(`${getUrl()}/vendors-products/${id}`, {
     params: {
         category_id: selectbox1.value,
@@ -332,6 +360,10 @@ const getVendorproducts = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
+
+    if (result.status == 200) {
+    spinner.value = false;
+  }
   vendors.value = result.data.data;
 };
 

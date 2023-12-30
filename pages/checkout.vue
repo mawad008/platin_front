@@ -967,7 +967,7 @@
                           <span class="error-msg" v-if="v$.first_name.$error">{{
                             v$.first_name.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors.first_name">{{
+                          <span class="error-msg2" v-if="errors.first_name">{{
                             errors.first_name[0]
                           }}</span>
                         </div>
@@ -979,7 +979,7 @@
                           <span class="error-msg" v-if="v$.last_name.$error">{{
                             v$.last_name.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors.last_name">{{
+                          <span class="error-msg2" v-if="errors.last_name">{{
                             errors.last_name[0]
                           }}</span>
                         </div>
@@ -991,7 +991,7 @@
                           <span class="error-msg" v-if="v$.phone.$error">{{
                             v$.phone.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors.phone">{{
+                          <span class="error-msg2" v-if="errors.phone">{{
                             errors.phone[0]
                           }}</span>
                         </div>
@@ -1003,7 +1003,7 @@
                           <span class="error-msg" v-if="v$.email.$error">{{
                             v$.email.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors.email">{{
+                          <span class="error-msg2" v-if="errors.email">{{
                             errors.email[0]
                           }}</span>
                         </div>
@@ -1052,7 +1052,7 @@
                           <span class="error-msg" v-if="v$.first_name.$error">{{
                             v$.first_name.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors.first_name">{{
+                          <span class="error-msg2" v-if="errors.first_name">{{
                             errors.first_name[0]
                           }}</span>
                         </div>
@@ -1064,7 +1064,7 @@
                           <span class="error-msg" v-if="v$.last_name.$error">{{
                             v$.last_name.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors.last_name">{{
+                          <span class="error-msg2" v-if="errors.last_name">{{
                             errors.last_name[0]
                           }}</span>
                         </div>
@@ -1076,7 +1076,7 @@
                           <span class="error-msg" v-if="v$.phone.$error">{{
                             v$.phone.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors.phone">{{
+                          <span class="error-msg2" v-if="errors.phone">{{
                             errors.phone[0]
                           }}</span>
                         </div>
@@ -1088,7 +1088,7 @@
                           <span class="error-msg" v-if="v$.email.$error">{{
                             v$.email.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors.email">{{
+                          <span class="error-msg2" v-if="errors.email">{{
                             errors.email[0]
                           }}</span>
                         </div>
@@ -1102,14 +1102,14 @@
                           <span>*</span>
                         </label>
                         <input type="text" v-model="gift_owner_name" placeholder="مثال : محمد" />
-                        <span class="error-msg" v-if="errors.gift_owner_name">{{
+                        <span class="error-msg2" v-if="errors.gift_owner_name">{{
                           errors.gift_owner_name[0]
                         }}</span>
                       </div>
                       <div class="main-input">
                         <label for=""> {{ $t("last name") }} </label>
                         <input type="tel" v-model="gift_owner_phone" placeholder="+201066333725" />
-                        <span class="error-msg" v-if="errors.gift_owner_phone">{{ errors.gift_owner_phone[0] }}</span>
+                        <span class="error-msg2" v-if="errors.gift_owner_phone">{{ errors.gift_owner_phone[0] }}</span>
                       </div>
                     </div>
                     <h4>{{ $t("gift text") }}</h4>
@@ -1117,7 +1117,7 @@
                       <textarea name="" v-model="gift_text" :placeholder="$t('gift text1')" id="" cols="20"
                         rows="5"></textarea>
 
-                      <span class="error-msg" v-if="errors.gift_text">{{
+                      <span class="error-msg2" v-if="errors.gift_text">{{
                         errors.gift_text[0]
                       }}</span>
                     </div>
@@ -1265,7 +1265,7 @@
                             <span class="error-msg" v-if="v2$.city.$error">{{
                               v2$.city.$errors[0].$message
                             }}</span>
-                            <span class="error-msg" v-if="errors1.city">{{
+                            <span class="error-msg2" v-if="errors1.city">{{
                               errors1.city[0]
                             }}</span>
                           </div>
@@ -1276,7 +1276,7 @@
                             <input type="text" v-model="userdata2.street_name" placeholder=" مثال : شارع المملكة " />
                             <span class="error-msg" v-if="v2$.street_name.$error">{{ v2$.street_name.$errors[0].$message
                             }}</span>
-                            <span class="error-msg" v-if="errors1.street_name">{{ errors1.street_name[0] }}</span>
+                            <span class="error-msg2" v-if="errors1.street_name">{{ errors1.street_name[0] }}</span>
                           </div>
                         </div>
                         <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3">
@@ -1287,7 +1287,7 @@
                             <input type="text" v-model="userdata2.district" placeholder="مثال : الحي الخامس" />
                             <span class="error-msg" v-if="v2$.district.$error">{{ v2$.district.$errors[0].$message
                             }}</span>
-                            <span class="error-msg" v-if="errors1.district">{{
+                            <span class="error-msg2" v-if="errors1.district">{{
                               errors1.district[0]
                             }}</span>
                           </div>
@@ -1298,7 +1298,7 @@
                             <span class="error-msg" v-if="v2$.building_number.$error">{{
                               v2$.building_number.$errors[0].$message
                             }}</span>
-                            <span class="error-msg" v-if="errors1.building_number">{{ errors1.building_number[0] }}</span>
+                            <span class="error-msg2" v-if="errors1.building_number">{{ errors1.building_number[0] }}</span>
                           </div>
                         </div>
                       </div>

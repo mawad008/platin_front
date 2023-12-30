@@ -6,7 +6,7 @@
       >
         <div>
           <div class="select-box">
-            <span> {{ $t("city") }} </span>
+            <span> {{text1 == '' ?  $t("city") : text1}} </span>
             <i class="fa-solid fa-chevron-down"></i>
           </div>
 
@@ -17,11 +17,11 @@
           >
             <div
               id="select-product"
-              class="d-flex flex-column align-items-center text-center gap-3 justify-content-center"
+              class="d-flex flex-column "
             >
               <span
                 v-for="item in cities"
-                @click="selectbox1 = item.id , getVendors()"
+                @click="selectbox1 = item.id , getVendors() , text1 = item.name"
                 :class="{ active: selectbox1 == item.id }"
               >
                 {{ item.name }}</span
@@ -50,7 +50,7 @@
                   </div>
                   <div class="d-flex align-items-center gap-2">
                     <img src="~/assets/images/vstar.svg" alt="" />
-                    <span> {{ item.rate }} ( الف تقييم ) </span>
+                    <span> {{ item.rate }} </span>
                   </div>
                 </div>
               </div>
@@ -61,6 +61,11 @@
      
         </div>
       </div>
+        
+         <div v-if="spinner" class="d-flex align-items-center justify-content-center" style="min-height:50vh;">
+                <v-progress-circular size="70" indeterminate color="#dcba95"></v-progress-circular>
+              </div>
+
     </div>
   </div>
 </template>
@@ -74,6 +79,8 @@ const localePath = useLocalePath();
 const { locale } = useI18n();
 let cities = ref([]);
 let vendors = ref([]);
+let text1 = ref('');
+let spinner = ref(false);
 const getCities = async () => {
   let result = await axios.get(`${getUrl()}/general`, {
     headers: {
@@ -83,6 +90,7 @@ const getCities = async () => {
   cities.value = result.data.data.allCities;
 };
 const getVendors = async () => {
+  spinner.value = true;
   let result = await axios.get(`${getUrl()}/vendors`, {
     params: {
         city_id: selectbox1.value,
@@ -91,6 +99,9 @@ const getVendors = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
+  if (result.status == 200) {
+    spinner.value = false;
+  }
   vendors.value = result.data.data;
 };
 

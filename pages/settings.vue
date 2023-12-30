@@ -3,7 +3,7 @@
     <div class="container settings-container" style="margin-top: 100px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
-          <v-icon icon="mdi-chevron-left"></v-icon>
+          <v-icon icon="mdi-chevron-left arrow-icon"></v-icon>
         </template>
       </v-breadcrumbs>
       <div class="row">
@@ -133,7 +133,7 @@
                     </svg>
                     <span> {{ $t("edit pass") }} </span>
                   </div>
-                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11"
+                  <svg class="icon arrow-icon" xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11"
                     fill="none">
                     <path
                       d="M5.21436 9.49337L5.21436 5.34004L5.21436 1.60004C5.21436 0.960041 4.44102 0.640041 3.98769 1.09337L0.534355 4.54671C-0.0189778 5.10004 -0.0189779 6.00004 0.534355 6.55337L1.84769 7.86671L3.98769 10.0067C4.44102 10.4534 5.21436 10.1334 5.21436 9.49337Z"
@@ -149,7 +149,7 @@
                       <span class="error-msg" v-if="v2$.old_password.$error">{{
                         v2$.old_password.$errors[0].$message
                       }}</span>
-                      <span class="error-msg" v-if="errors1.old_password">{{
+                      <span class="error-msg2" v-if="errors1.old_password">{{
                         errors1.old_password[0]
                       }}</span>
                     </div>
@@ -161,7 +161,7 @@
                       <span class="error-msg" v-if="v2$.password.$error">{{
                         v2$.password.$errors[0].$message
                       }}</span>
-                      <span class="error-msg" v-if="errors1.password">{{
+                      <span class="error-msg2" v-if="errors1.password">{{
                         errors1.password[0]
                       }}</span>
                     </div>
@@ -171,14 +171,14 @@
                       <span class="error-msg" v-if="v2$.password_confirmation.$error">{{
                         v2$.password_confirmation.$errors[0].$message
                       }}</span>
-                      <span class="error-msg" v-if="errors1.password_confirmation">{{
+                      <span class="error-msg2" v-if="errors1.password_confirmation">{{
                         errors1.password_confirmation[0]
                       }}</span>
                     </div>
                   </div>
                   <div class="d-flex align-items-center justify-content-center">
                     <button @click="updatePassword()" class="fill">
-                      حفظ التعديلات
+                        {{ $t('save edit') }}
                     </button>
                   </div>
                 </div>
@@ -225,7 +225,7 @@
                         <span class="error-msg" v-if="v$.first_name.$error">{{
                           v$.first_name.$errors[0].$message
                         }}</span>
-                        <span class="error-msg" v-if="errors.first_name">{{
+                        <span class="error-msg22" v-if="errors.first_name">{{
                           errors.first_name[0]
                         }}</span>
                       </div>
@@ -235,7 +235,7 @@
                         <span class="error-msg" v-if="v$.last_name.$error">{{
                           v$.last_name.$errors[0].$message
                         }}</span>
-                        <span class="error-msg" v-if="errors.last_name">{{
+                        <span class="error-msg2" v-if="errors.last_name">{{
                           errors.last_name[0]
                         }}</span>
                       </div>
@@ -247,7 +247,7 @@
                         <span class="error-msg" v-if="v$.phone.$error">{{
                           v$.phone.$errors[0].$message
                         }}</span>
-                        <span class="error-msg" v-if="errors.phone">{{
+                        <span class="error-msg2" v-if="errors.phone">{{
                           errors.phone[0]
                         }}</span>
                       </div>
@@ -257,7 +257,7 @@
                         <span class="error-msg" v-if="v$.email.$error">{{
                           v$.email.$errors[0].$message
                         }}</span>
-                        <span class="error-msg" v-if="errors.email">{{
+                        <span class="error-msg2" v-if="errors.email">{{
                           errors.email[0]
                         }}</span>
                       </div>
@@ -658,14 +658,36 @@ const handleFileChange = (event) => {
   }
 };
 
+let value1 = ref("value is required");
+let value2 = ref("The email field is required");
+let value3 = ref("Invalid email format");
+let value4 = ref("This field should be at least 8 characters long");
+let value5 = ref("This field should be at least 8 numbers long");
+if (locale.value == "ar") {
+  value1.value = "هذا الحقل مطلوبة";
+  value2.value = "حقل البريد الإلكتروني مطلوب";
+  value3.value = "تنسيق البريد الإلكتروني غير صالح";
+  value4.value = "يجب أن يكون هذا الحقل 8 أحرف على الأقل";
+  value5.value = "يجب أن يكون هذا الحقل 12 رقم على الأقل";
+} else {
+  value1.value = 'value is required';
+  value2.value = "The email field is required";
+  value3.value = "Invalid email format";
+  value4.value = "This field should be at least 8 characters long";
+  value5.value = "This field should be at least 12 numbers long";
+}
+
 const rules1 = computed(() => {
   return {
-    first_name: { required },
-    last_name: { required },
-    phone: { required, minLength: minLength(11) },
+    first_name: { required: helpers.withMessage(value1.value , required) },
+    last_name: { required: helpers.withMessage(value1.value, required) },
+    phone: {
+      required: helpers.withMessage(value1.value, required),
+      minLength: helpers.withMessage(value5.value , minLength(11)) 
+    },
     email: {
-      required: helpers.withMessage("The email field is required", required),
-      email: helpers.withMessage("Invalid email format", email),
+      required: helpers.withMessage(value2.value, required),
+      email: helpers.withMessage(value3.value, email),
     },
   };
 });
@@ -869,14 +891,13 @@ const showAll = (index) => {
 };
 let items = ref([
   {
-    title: "الاعدادات",
+    title: locale.value == 'ar' ? "الاعدادات" : "settings",
     disabled: true,
     href: "/",
   },
   {
-    title: "الملف الشخصي",
+    title: locale.value == 'ar' ? "الملف الشخصي" : "profile", 
     disabled: false,
-    href: "cart",
     class: "fw-bold",
   },
 ]);

@@ -107,7 +107,8 @@
           <e-logo v-if="locale == 'en'" class="e-logo" :w="87" :h="31"></e-logo>
             </nuxt-link>
 
-            <div v-if="activeNav" class="items d-flex align-items-center gap-4">
+            <div v-if="activeNav" class="items-container">
+            <div class="items   d-flex align-items-center gap-4">
               <nuxt-link :to="localePath('/')">
                 <span>{{ $t("home") }}</span>
               </nuxt-link>
@@ -187,6 +188,8 @@
               <nuxt-link :to="localePath('/vendors')">
                 <span>{{ $t("vendors") }}</span>
               </nuxt-link>
+            
+            </div>
               <!-- <span>الدعم الفني</span> -->
             </div>
             <div
@@ -342,7 +345,7 @@
                 </template>
                 <div
                   id="list-profile"
-                  class="list d-flex flex-column p-4 gap-4 text-center"
+                  class="list d-flex flex-column justify-content-start p-4 gap-4 text-center"
                 >
                   <span @click="goSettings('profile')">
                     {{ $t("personal") }}</span

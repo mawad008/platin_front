@@ -17,7 +17,7 @@
         >
           <div>
             <div class="select-box">
-              <span> {{ $t("sub cate") }} </span>
+              <span> {{ text1 == '' ? $t("sub cate") : text1 }} </span>
               <i class="fa-solid fa-chevron-down"></i>
             </div>
 
@@ -32,7 +32,7 @@
               >
                 <span
                   v-for="(item, index) in subcategoriesArr"
-                  @click="(selectbox1 = item.id), getProducts()"
+                  @click="(selectbox1 = item.id), getProducts() , text1 = item.name"
                   :class="{ active: selectbox1 == item.id }"
                   >{{ item.name }}</span
                 >
@@ -41,7 +41,7 @@
           </div>
           <div>
             <div class="select-box">
-              <span> {{ $t("brands") }}</span>
+              <span> {{ text2 == '' ? $t("brands") : text2 }}</span>
               <i class="fa-solid fa-chevron-down"></i>
             </div>
 
@@ -56,7 +56,7 @@
               >
                 <span
                   v-for="(item, index) in brandsArr"
-                  @click="(selectbox2 = item.id), getProducts()"
+                  @click="(selectbox2 = item.id), getProducts() , text2 = item.name"
                   :class="{ active: selectbox2 == item.id }"
                 >
                   {{ item.name }}</span
@@ -87,6 +87,10 @@
         </template>
       </v-data-iterator>
 
+       <div v-if="spinnerProducts" class="d-flex align-items-center justify-content-center" style="min-height:50vh;">
+                <v-progress-circular size="70" indeterminate color="#dcba95"></v-progress-circular>
+              </div>
+
           <v-pagination
           v-if="pageCount > 1"
           v-model="page"
@@ -108,7 +112,8 @@ let color = ref(route.query.color || null);
 let subid = ref(route.query.subid || null);
 let selectbox1 = ref(subid.value ? subid.value : null);
 let selectbox2 = ref(null);
-
+let text1 = ref('');
+let text2 = ref('');
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 let subcategoriesArr = ref([]);
@@ -117,6 +122,8 @@ let products = ref([]);
 let category_name = ref(null);
 let category_image = ref(null);
 let products_count = ref(null);
+let spinnerProducts = ref(false);
+
 const getSubcategories = async () => {
   let result = await axios.get(`${getUrl()}/subcategories`, {
     headers: {
@@ -134,6 +141,7 @@ const getBrands = async () => {
   brandsArr.value = result.data.data;
 };
 const getProducts = async () => {
+  spinnerProducts.value = true;
   let result = await axios.get(`${getUrl()}/categories-products/${id.value}`, {
     params: {
       subcategory_id: selectbox1.value ? selectbox1.value : null,
@@ -143,6 +151,9 @@ const getProducts = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
+  if (result.status == 200) {
+    spinnerProducts.value = false;
+  }
   category_name.value = result.data.data.category_name;
   category_image.value = result.data.data.category_image;
   products_count.value = result.data.data.products_count;

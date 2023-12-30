@@ -9,9 +9,9 @@
 
 
          <div class="wish-list-page">
-             <div class="text-content my-4">
+             <div class="text-content">
                 <h4> {{ $t("wish") }}<span>({{ favArr.length }})</span></h4>
-                <p>
+                <p class="">
                   {{ $t("wish1") }}
                 </p>
              </div>
@@ -68,7 +68,7 @@ let items = ref([
         href: '/',
     },
     {
-        title: locale.valid == 'ar' ? 'امنياتك' : 'wishlist',
+        title: locale.value == 'ar' ? 'امنياتك' : 'wishlist',
         disabled: false,
         href: 'wishlist',
     },
