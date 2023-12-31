@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="arrData.length > 0" class="product-checkout">
-      <div v-for="(item, index) in arrData" class="head my-4">
+      <div v-for="(item, index) in arrData" class="head ">
         <v-badge color="#B1628C" :content="item.quantity">
           <div class="image">
             <!-- <img src="~/assets/images/watch.png" alt="" /> -->
@@ -48,10 +48,13 @@
       <div class="btns">
       <!-- {{ store.state.step }} -->
         <button @click="checkFunc()" :disabled="pending" class="fill gap-3">
-        <span>  {{ $t("follow buy") }} </span>        
+        <span>  {{ text1 ? text1 : $t("follow buy") }} </span>        
         <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
         </button>
-        <button @click="checkFunc2()" class="stroke">{{ $t("back btn") }}</button>
+        <button v-if="cartBtn"  class="stroke">
+          <nuxt-link class="w-100" :to="localePath('/cart')">{{ text ? text : $t("back btn") }}</nuxt-link>
+        </button>
+        <button v-else @click="checkFunc2()" class="stroke">{{ text ? text : $t("back btn") }}</button>
       </div>
     </div>
   </div>
@@ -63,8 +66,9 @@ import { useStore } from "~/store";
 const store = useStore;
 // Define the props you expect
 let step = ref(store.state.step);
-const props = defineProps(["arrData" , "myFunction" , "pending"]);
+const props = defineProps(["arrData" , "myFunction" , "pending" , "text" , "text1" , "cartBtn"]);
 
+const localePath = useLocalePath();
 
 const checkFunc = () => {
   props.myFunction();

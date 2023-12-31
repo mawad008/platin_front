@@ -157,7 +157,7 @@ const getProducts = async () => {
   category_name.value = result.data.data.category_name;
   category_image.value = result.data.data.category_image;
   products_count.value = result.data.data.products_count;
-  products.value = result.data.data.products;
+  products.value = result.data.data.products.data;
 };
 
 

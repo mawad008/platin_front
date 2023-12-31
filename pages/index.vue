@@ -445,15 +445,12 @@
     <div class="brands-container">
       <div class="text d-flex align-items-center justify-content-center flex-column ">
         <h3>{{ $t("brands") }}</h3>
-        <span>
+        <span class="p-text">
           {{ $t("explore3") }}
         </span>
       </div>
       <swiper :centeredSlides="true" :grabCursor="true" :dir="getSwiperDirection" :thumbs="{ swiper: thumbsSwiper }"
-        :autoplay="{
-          delay: 2500,
-          disableOnInteraction: false,
-        }" :modules="[SwiperFreeMode, SwiperThumbs, SwiperAutoplay]" :breakpoints="{
+        :modules="[SwiperFreeMode, SwiperThumbs, SwiperAutoplay]" :breakpoints="{
   '300': {
     slidesPerView: 2,
     spaceBetween: 80,
@@ -468,7 +465,7 @@
   },
 }" class="mySwiper">
         <swiper-slide v-for="(item, index) in brandsArr" class="px">
-          <img src="~/assets/images/vector.svg" class="w-100" alt="" />
+          <img :src="item.image" class="w-100" alt="" />
         </swiper-slide>
       </swiper>
 
@@ -476,7 +473,7 @@
         :dir="getSwiperDirection" :slidesPerView="1">
         <swiper-slide v-for="(item, index) in brandsArr" class="" style="padding: 0px 50px">
           <div class="d-flex flex-column align-items-center justify-content-center">
-            <p class=" text-center" style="">
+            <p class="p-text text-center" style="">
               {{ item.description }}
             </p>
             <div class="btn-back d-flex align-items-center w-100 justify-content-center">

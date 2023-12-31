@@ -1,10 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // devtools: { enabled: true },
-  // server: {
-  //   host: "0.0.0.0",
-  //   port: 3000, // You can set a specific port if neede
-  // },
+  server: {
+    host: "0.0.0.0",
+    port: 3000, // You can set a specific port if neede
+  },
 
   modules: [
     "nuxt-swiper",

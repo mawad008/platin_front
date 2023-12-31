@@ -376,14 +376,14 @@
       "
     >
       <div class="checkout-nav">
-      <nuxt-link :to="localePath('/')">
+      <nuxt-link @click="clearCheck()" :to="localePath('/')">
         <logo v-if="locale == 'ar' " class="a-logo" :w="124" :h="45"></logo>
         <e-logo v-if="locale == 'en'" class="e-logo" :w="124" :h="45"></e-logo>
       
       </nuxt-link>
 
         <nuxt-link :to="localePath('/')">
-        <button>
+        <button @click="clearCheck()">
           {{ $t('back2') }}
         </button>
         </nuxt-link>
@@ -745,6 +745,17 @@ const logOut = () => {
     router.push(localee);
   }
 };
+
+const clearCheck = ()=>{
+  store.state.finalStep = 1;
+   store.state.step = 1;
+   store.state.check2 = false;
+   store.state.check3 = false;
+   store.state.check4 = false;
+   store.state.lineActive1 = false;
+   store.state.lineActive2 = false;
+   store.state.lineActive3 = false;
+}
 const getCategories = async () => {
   let result = await axios.get(`${getUrl()}/categories`, {
     headers: {

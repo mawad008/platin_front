@@ -16,7 +16,7 @@
         </div>
         <div class="main-cart">
           <div class="row">
-            <div class="col-12 col-xl-7 col-lg-7">
+            <div class="col-12 col-xl-8 col-lg-7=8">
               <div class="main">
                 <div class="head">
                   <h5>{{ $t("cart1") }}<span> {{ `(${theNum})` }} </span></h5>
@@ -49,21 +49,19 @@
                             fill="#919EAB" />
                         </svg>
                         <div class="text">
-                          <span class="by"> {{ $t("by") }} </span>
-                          <span>{{ item.vendor_name }}</span>
+                          <span class=""> {{ $t("by") }} </span>
+                          <span class="by">{{ item.vendor_name }}</span>
                         </div>
                       </div>
                       <div class="boxes d-flex flex-column gap-4">
                         <div v-for="(theItem, vindex) in item.products"
                           class="box d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between">
-                          <div class="image-box d-flex align-items-center gap-2">
+                          <div class="image-box d-flex align-items-center gap-3">
                             <div class="image">
                               <!-- <img src="~/assets/images/product.png" alt="" /> -->
                               <img :src="theItem.images[0].full_image_path" alt="" />
                             </div>
-                            <span @click="addItem(theItem.id)">{{
-                              theItem.name
-                            }}</span>
+                            <span class="textt" @click="addItem(theItem.id)">{{theItem.name}}</span>
                           </div>
                           <input type="number" min="1" v-model="theItem.quantity" @input="addItem(theItem.id)" />
 
@@ -115,7 +113,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-xl-5 col-lg-5">
+            <div class="col-12 col-xl-4 col-lg-4">
               <div class="card-details">
                 <div class="total-price">
                   <div class="total">
@@ -213,7 +211,7 @@
 
                 </v-dialog>
 
-                <div class="pay-methods mt-4">
+                <!-- <div class="pay-methods ">
                   <span class=""> {{ $t("payment") }}</span>
                   <div class="inputs my-3 d-flex align-items-center gap-3">
                     <label>
@@ -291,7 +289,7 @@
                       </div>
                     </label>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

@@ -65,7 +65,7 @@
       <v-window v-model="tabActive">
         <v-window-item v-for="(item, index) in tags">
        
-        <v-data-iterator :items="paginatedItems"  :items-per-page="itemsPerPage" :page="page">
+        <!-- <v-data-iterator :items="products"  :items-per-page="itemsPerPage" :page="page">
       <template v-slot:default="{ items }">
     
           <div class="">
@@ -76,7 +76,13 @@
           </div>
         </div>
       </template>
-    </v-data-iterator>
+    </v-data-iterator> -->
+
+    <div class="row">
+            <div class="col-12 col-xl-3 col-lg-3 col-md-6" v-for="item, index in products" :key="item.id">
+             <product-card :product="item" />
+            </div>
+          </div>
         </v-window-item>
          
 
@@ -88,13 +94,12 @@
 
 
   <v-pagination
-        v-if="pageCount > 1"
+        v-if="pageCount >= 1"
         v-model="page"
         :length="pageCount"
         rounded="circle"
         @input="updatePage"
       ></v-pagination>
-
     </div>
   </div>
 </template>
@@ -119,6 +124,9 @@ let brands = ref([]);
 let item1 = ref('');
 let item2 = ref('');
 let item3 = ref('');
+let page = ref(1);
+let itemsPerPage = ref();
+let total = ref();
 
 let spinnerProducts = ref(false);
 const getTags = async () => {
@@ -167,6 +175,7 @@ const getProducts = async () => {
       category_id: selectbox1.value ? selectbox1.value : null,
       subcategory_id: selectbox2.value ? selectbox2.value : null,
       brand_id: selectbox3.value ? selectbox3.value : null,
+      page:page.value
     },
     headers: {
       "Content-Language": `${locale.value}`,
@@ -177,16 +186,17 @@ const getProducts = async () => {
     spinnerProducts.value = false;
    }
   products.value = result.data.data;
+  itemsPerPage.value = result.data.meta.per_page;
+  total.value = result.data.meta.total;
 };
 
 
 
 
-let page = ref(1);
-let itemsPerPage = ref(4);
+
 
 const pageCount = computed(() => {
-  return Math.ceil(products.value.length / itemsPerPage.value);
+  return Math.ceil(total.value / itemsPerPage.value);
 });
 
 const paginatedItems = computed(() => {

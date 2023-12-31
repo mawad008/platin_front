@@ -18,7 +18,7 @@
                         </div>
                         <div class="details">
                             <div class="item">
-                                <div class="d-flex alig-items-center gap-2">
+                                <div class="d-flex align-items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="28" viewBox="0 0 23 28"
                                         fill="none">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -44,7 +44,7 @@
                                 <h6>{{ finalObj.id }}</h6>
                             </div>
                             <div class="item">
-                                <div class="d-flex alig-items-center gap-2">
+                                <div class="d-flex align-items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28"
                                         fill="none">
                                         <path
@@ -59,7 +59,7 @@
                                 <h6>{{ finalObj.created_at }}</h6>
                             </div>
                             <div class="item">
-                                <div class="d-flex alig-items-center gap-2">
+                                <div class="d-flex align-items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="31" viewBox="0 0 24 31"
                                         fill="none">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -71,7 +71,7 @@
                                 <h6>{{ finalObj.total_price }} {{ $t("curr") }}</h6>
                             </div>
                             <div class="item">
-                                <div class="d-flex alig-items-center gap-2">
+                                <div class="d-flex align-items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none">
                                         <path

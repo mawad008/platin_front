@@ -1,6 +1,9 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="row main-container-product" style="margin-bottom: 140px; position:relative">
+    <div
+      class="row main-container-product"
+      style="margin-bottom: 140px; position: relative"
+    >
       <div class="col-12" style="position: relative">
         <div class="container product-page">
           <div class="row">
@@ -33,11 +36,11 @@
                 <span class="type-sapn">{{ mainProduct.category }}</span>
 
                 <div
-                  class="type-list w-100 d-flex align-items-xl-center align-items-lg-center flex-column flex-xl-row flex-lg-row gap-2  justify-content-between"
+                  class="type-list w-100 d-flex align-items-xl-center align-items-lg-center flex-column flex-xl-row flex-lg-row gap-2 justify-content-between"
                 >
                   <h5 class="fw-bold">{{ mainProduct.name }}</h5>
                   <div class="icons d-flex align-items-center gap-2">
-                    <div @click="shareBtn = ! shareBtn" class="octagon product">
+                    <div @click="shareBtn = !shareBtn" class="octagon product">
                       <octagon />
                       <svg
                         class="icon"
@@ -71,7 +74,11 @@
                         />
                       </svg>
                     </div> -->
-                    <div v-if="clickedItem(mainProduct.id) != mainProduct.id" @click="addTofav(mainProduct)" class="octagon product">
+                    <div
+                      v-if="clickedItem(mainProduct.id) != mainProduct.id"
+                      @click="addTofav(mainProduct)"
+                      class="octagon product"
+                    >
                       <octagon />
                       <svg
                         class="icon"
@@ -87,7 +94,11 @@
                         />
                       </svg>
                     </div>
-                    <div v-if="clickedItem(mainProduct.id) == mainProduct.id" @click="deleteTofav(mainProduct.id)" class="octagon product active">
+                    <div
+                      v-if="clickedItem(mainProduct.id) == mainProduct.id"
+                      @click="deleteTofav(mainProduct.id)"
+                      class="octagon product active"
+                    >
                       <octagon />
                       <svg
                         class="icon"
@@ -103,21 +114,29 @@
                         />
                       </svg>
                     </div>
-                     <div v-if="shareBtn" class="share-box">
-                <img src="~/assets/images/social1.svg" alt="" />
-                <img src="~/assets/images/social2.svg" alt="" />
-                <img src="~/assets/images/social3.svg" alt="" />
-                <img src="~/assets/images/social4.svg" alt="" />
-                <img src="~/assets/images/social5.svg" alt="" />
-              </div>
+                    <div v-if="shareBtn" class="share-box">
+                      <img src="~/assets/images/social1.svg" alt="" />
+                      <img src="~/assets/images/social2.svg" alt="" />
+                      <img src="~/assets/images/social3.svg" alt="" />
+                      <img src="~/assets/images/social4.svg" alt="" />
+                      <img src="~/assets/images/social5.svg" alt="" />
+                    </div>
                   </div>
                 </div>
 
                 <div class="vendor-list d-flex flex-column gap-4">
                   <div class="by d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-1">
-                      <span> {{$t("by")}}: </span>
-                      <span @click="goToVendor(mainProduct.vendor_id , mainProduct.vendor_name)" class="vendor fw-bold">
+                      <span> {{ $t("by") }}: </span>
+                      <span
+                        @click="
+                          goToVendor(
+                            mainProduct.vendor_id,
+                            mainProduct.vendor_name
+                          )
+                        "
+                        class="vendor fw-bold"
+                      >
                         {{ $t("store") }} {{ mainProduct.vendor_name }}
                       </span>
                     </div>
@@ -141,7 +160,9 @@
                   <span class="word"> {{ $t("price") }} </span>
                   <h4 class="d-flex align-items-center gap-2 mt-2">
                     {{ mainProduct.price }} {{ $t("curr") }}
-                    <span class="disc" style="font-size: 12px"> 4000 {{ $t("curr") }}</span>
+                    <span class="disc" style="font-size: 12px">
+                      4000 {{ $t("curr") }}</span
+                    >
                   </h4>
                 </div>
 
@@ -149,7 +170,7 @@
                   class="count-type d-flex flex-column flex-xl-row flex-lg-row align-items-start align-items-xl-center align-items-lg-center gap-3"
                 >
                   <div class="count d-flex flex-column gap-2">
-                    <span> {{$t("amount")}} </span>
+                    <span> {{ $t("amount") }} </span>
                     <input type="number" v-model="quantity" min="1" />
                   </div>
                   <div class="type d-flex flex-column gap-2">
@@ -178,8 +199,8 @@
                     <div class="d-flex align-items-center gap-2">
                       <img src="~/assets/images/package.svg" alt="" />
                       <div class="d-flex align-items-center gap-1 speed">
-                         {{ $t("available") }}
-                        <span>{{$t("fast shipping")}}</span>
+                        {{ $t("available") }}
+                        <span>{{ $t("fast shipping") }}</span>
                         {{ $t("in") }}
                         <div v-for="i in mainProduct.fast_shipping_cities">
                           {{ i.name }}
@@ -213,7 +234,9 @@
                 >
                   <swiper-slide v-for="img in mainProduct.images">
                     <img :src="img.full_image_path" />
-                    <button class="size"><span> {{$t("dir size")}} </span></button>
+                    <button class="size">
+                      <span> {{ $t("dir size") }} </span>
+                    </button>
                     <div @click="showMultiple" class="zoom">
                       <img src="~/assets/images/zoom.svg" alt="" />
                     </div>
@@ -318,7 +341,7 @@
         </div>
 
         <div
-        id="trigger"
+          id="trigger"
           class="container d-flex align-items-center justify-content-center"
           style="margin-top: 65px"
         >
@@ -424,7 +447,7 @@
               <v-card-text class="">
                 <v-window v-model="tab">
                   <v-window-item :value="0">
-                    <div class="table-details">
+                    <!-- <div class="table-details">
                       <div class="row-container active">
                         <span class="head"> {{ $t("design") }} </span>
                         <span class="det">
@@ -467,7 +490,48 @@
                         <span class="head"> {{$t("color")}} </span>
                         <span class="det"> {{ mainProduct.color }}</span>
                       </div>
-                    </div>
+                    </div> -->
+
+                    <table class="table table-stripe">
+                      <thead>
+                        <tr>
+                          <!-- <th scope="col">{{ $t("design") }}</th> -->
+                          <!-- <th scope="col">{{ $t("desc info2")  }}</th> -->
+                        </tr>
+                      </thead>
+                      <tbody class=" ">
+                        <tr class="">
+                          <th scope="row">{{ $t("design")  }}</th>
+                          <td class="">{{ mainProduct.description }}</td>
+                          <th>{{ $t("desc info1") }}</th>
+                          <td>{{$t('caliber')}} {{ mainProduct.caliber }} {{$t('carat')}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">{{ $t("desc info2") }}</th>
+                          <td>{{ mainProduct.size }}</td>
+                          <th scope="row">{{ $t("weight") }}</th>
+                          <td>{{ mainProduct.weight }} {{ $t("weight1") }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">{{$t("desc info3")}}</th>
+                          <td> {{ mainProduct.maintenance_and_care }}</td>
+                          <th scope="row">{{ $t("desc info4") }}</th>
+                          <td>{{ mainProduct.main_stone }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">{{ $t("desc info5") }}</th>
+                          <td>{{ mainProduct.packaging }}</td>
+                          <th scope="row">{{ $t("desc info6") }}</th>
+                          <td>{{ mainProduct.guarantee }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">{{$t("desc info7")}}</th>
+                          <td>{{ mainProduct.sustainable_assets }}</td>
+                          <th scope="row">{{$t("color")}}</th>
+                          <td>{{ mainProduct.color }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </v-window-item>
 
                   <v-window-item :value="1">
@@ -476,7 +540,7 @@
                         class="head w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row text-center gap-3 justify-content-between mt-4"
                       >
                         <div class="text d-flex flex-column gap-2">
-                          <h6> {{ $t("write comment") }} </h6>
+                          <h6>{{ $t("write comment") }}</h6>
                           <span> {{ $t("share comment") }} </span>
                         </div>
                         <div
@@ -492,9 +556,11 @@
                             color="#919EAB"
                             active-color="#ECB43C"
                           />
-                          <span class="text-danger" v-if="rateInputError.rate">{{
-                            rateInputError.rate[0]
-                          }}</span>
+                          <span
+                            class="text-danger"
+                            v-if="rateInputError.rate"
+                            >{{ rateInputError.rate[0] }}</span
+                          >
                         </div>
                       </div>
 
@@ -509,7 +575,7 @@
                         <button @click="addComment()">
                           <span> {{ $t("share") }} </span>
                           <svg
-                          class="arrow-icon"
+                            class="arrow-icon"
                             xmlns="http://www.w3.org/2000/svg"
                             height="1em"
                             viewBox="0 0 512 512"
@@ -521,9 +587,9 @@
                           </svg>
                         </button>
                       </div>
-                         <span class="text-danger" v-if="rateInputError.comment">{{
-                           rateInputError.comment[0]
-                         }}</span>
+                      <span class="text-danger" v-if="rateInputError.comment">{{
+                        rateInputError.comment[0]
+                      }}</span>
 
                       <div class="comments-container">
                         <div
@@ -531,7 +597,10 @@
                         >
                           <div class="text d-flex flex-column gap-2">
                             <h6>{{ $t("comments") }}</h6>
-                            <span> {{ $t("comment") }} {{ AllItems.length }} {{ $t("all") }}</span>
+                            <span>
+                              {{ $t("comment") }} {{ AllItems.length }}
+                              {{ $t("all") }}</span
+                            >
                           </div>
                           <div
                             class="recommend d-flex align-items-center gap-2"
@@ -540,7 +609,7 @@
                             <div class="textt d-flex flex-column gap-1">
                               <span> {{ $t("rec") }} </span>
                               <span class="ratio">
-                               {{ $t("rec1") }} (98%)
+                                {{ $t("rec1") }} (98%)
                               </span>
                             </div>
                           </div>
@@ -559,13 +628,16 @@
                             :key="index"
                             class="comment w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between"
                           >
-                            <div class="main d-flex gap-2  w-100">
+                            <div class="main d-flex gap-2 w-100">
                               <img src="~/assets/images/kk.jpg" alt="" />
                               <div class="text d-flex flex-column gap-1">
                                 <span class="name">
                                   {{ item.customer_name }}
                                 </span>
-                                <div v-if="item && item.comment" class="comment-text">
+                                <div
+                                  v-if="item && item.comment"
+                                  class="comment-text"
+                                >
                                   {{
                                     item.showFullText
                                       ? item.comment
@@ -623,7 +695,7 @@
                           <img class="image" :src="mainVendor.logo" alt="" />
 
                           <div class="text">
-                            <h5> {{ $t("store") }}  {{ mainVendor.name }}</h5>
+                            <h5>{{ $t("store") }} {{ mainVendor.name }}</h5>
                             <span> {{ mainVendor.created_at }}</span>
                           </div>
                         </div>
@@ -634,10 +706,13 @@
                             <div class="info">
                               <div class="d-flex align-items-center">
                                 <img src="~/assets/images/v1.svg" alt="" />
-                                <span class="main"> {{ $t("products number") }}</span>
+                                <span class="main">
+                                  {{ $t("products number") }}</span
+                                >
                               </div>
                               <span class="count">
-                                {{ mainVendor.products_count }} {{ $t("product") }}
+                                {{ mainVendor.products_count }}
+                                {{ $t("product") }}
                               </span>
                             </div>
                             <div class="info">
@@ -700,7 +775,7 @@
                                 </svg>
                                 <span class="main"> {{ $t("vendor2") }}</span>
                               </div>
-                              <span class="count"> {{$t("vendor3")}} </span>
+                              <span class="count"> {{ $t("vendor3") }} </span>
                             </div>
                           </div>
                           <v-divider :thickness="1"></v-divider>
@@ -710,13 +785,23 @@
                             الفاخرة، مصنوعة بعناية فائقة من أرقى المواد.
                           </p>
 
-                          <button @click="goToVendor(mainProduct.vendor_id, mainProduct.vendor_name)"  class="action"> {{ $t("visit") }} </button>
+                          <button
+                            @click="
+                              goToVendor(
+                                mainProduct.vendor_id,
+                                mainProduct.vendor_name
+                              )
+                            "
+                            class="action"
+                          >
+                            {{ $t("visit") }}
+                          </button>
                         </div>
                       </div>
 
                       <div class="col-12 col-xl-4 col-lg-4">
                         <div class="most-selling h-100">
-                          <h4> {{ $t("most selling") }}  </h4>
+                          <h4>{{ $t("most selling") }}</h4>
                           <div
                             class="boxes d-flex flex-column h-100 bg-dange gap-4"
                           >
@@ -733,8 +818,16 @@
                                   class="price w-100 d-flex align-items-center justify-content-between"
                                 >
                                   <span class="item"
-                                    >{{ `${item.caliber} / ${locale == 'ar' ? 'ق' : 'c'}` }}
-                                    {{ `${item.weight} / ${locale == 'ar' ? 'ج' : 'g'}` }}</span
+                                    >{{
+                                      `${item.caliber} / ${
+                                        locale == "ar" ? "ق" : "c"
+                                      }`
+                                    }}
+                                    {{
+                                      `${item.weight} / ${
+                                        locale == "ar" ? "ج" : "g"
+                                      }`
+                                    }}</span
                                   >
                                   <span class="price-item">
                                     {{ item.price }} {{ $t("curr") }}
@@ -762,9 +855,9 @@
           <div
             class="head d-flex flex-column gap-3 align-items-center justify-content-center"
           >
-            <h3> {{ $t("similar") }} </h3>
+            <h3>{{ $t("similar") }}</h3>
             <p>
-             {{ $t("similar1") }}
+              {{ $t("similar1") }}
             </p>
           </div>
 
@@ -820,8 +913,8 @@ import VueEasyLightbox from "vue-easy-lightbox";
 import Cookies from "js-cookie";
 import { useStore } from "~/store";
 import axios from "axios";
-import { createToast } from 'mosha-vue-toastify';
-import 'mosha-vue-toastify/dist/style.css';
+import { createToast } from "mosha-vue-toastify";
+import "mosha-vue-toastify/dist/style.css";
 import { Vue3Lottie } from "vue3-lottie";
 import fav from "~/assets/animations/fav-icon.json";
 const store = useStore;
@@ -879,8 +972,6 @@ let rateInputError = ref([]);
 
 let itemsArray = ref([]);
 
-
-
 const updateRateInput = (value) => {
   rateInput.value = value;
 };
@@ -901,7 +992,6 @@ const goToVendor = (id, name) => {
 
   const fullLocalePath = localePath(updatedRoute);
 
-
   router.push(fullLocalePath);
 };
 
@@ -915,13 +1005,12 @@ const showProduct = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
-  if(result.status == 200){
+  if (result.status == 200) {
     mainProduct.value = result.data.data;
     pending.value = false;
   }
   console.log(result.data.data);
 };
-
 
 let quantity = ref(1);
 let item = ref({
@@ -929,39 +1018,39 @@ let item = ref({
   id: mainProduct.value.id,
   name: mainProduct.value.name,
   price: mainProduct.value.price,
-  images: [imgsRef.value.length > 0 ? imgsRef.value[0] : ''],
+  images: [imgsRef.value.length > 0 ? imgsRef.value[0] : ""],
   fast_shipping_cities: mainProduct.value.fast_shipping_cities,
   vendor_name: mainProduct.value.vendor_name,
 });
-let text1 = ref('تم الاضافة الي قائمة المفضلات');
-let text2 = ref('تم الاضافة الي السلة');
-if (locale.value == 'ar') {
-  text2.value = 'تم الاضافة الي السلة';
-  text1.value = 'تم الاضافة الي قائمة المفضلات'
-
-} else if (locale.value == 'en') {
-  text2.value = 'added to cart';
-    text1.value = 'added to wishlist';
+let text1 = ref("تم الاضافة الي قائمة المفضلات");
+let text2 = ref("تم الاضافة الي السلة");
+if (locale.value == "ar") {
+  text2.value = "تم الاضافة الي السلة";
+  text1.value = "تم الاضافة الي قائمة المفضلات";
+} else if (locale.value == "en") {
+  text2.value = "added to cart";
+  text1.value = "added to wishlist";
 }
 const addToBasket = () => {
   if (mainProduct.value) {
     store.commit("add", { mainItem: mainProduct.value, qw: quantity.value });
-    createToast({
-      title: text2.value
-    },
+    createToast(
       {
-        showIcon: 'true',
-        type: 'success',
-        toastBackgroundColor: '#dcba95',
+        title: text2.value,
+      },
+      {
+        showIcon: "true",
+        type: "success",
+        toastBackgroundColor: "#dcba95",
         timeout: 2000,
-      });
+      }
+    );
     store.state.animCart = true;
     setTimeout(() => {
       store.state.animCart = false;
     }, 2000);
   }
 };
-
 
 const showVendor = async () => {
   let result = await axios.get(`${getUrl()}/about-vendor/${id.value}`, {
@@ -999,13 +1088,15 @@ const toggleReadMore = (index) => {
 };
 
 const updateTruncatedText = (item) => {
-  if(item && item.comment){
+  if (item && item.comment) {
     if (!item.showFullText) {
-      item.truncatedText = item.comment.length > maxCharacters ? item.comment.substring(0, maxCharacters) + "..." : item.comment;
+      item.truncatedText =
+        item.comment.length > maxCharacters
+          ? item.comment.substring(0, maxCharacters) + "..."
+          : item.comment;
     } else {
       item.truncatedText = item.comment;
     }
-
   }
 };
 
@@ -1046,13 +1137,13 @@ const addComment = async () => {
         {
           headers: {
             "Content-Language": `${locale.value}`,
-            "Authorization": `Bearer ${tokenCookie}`,
+            Authorization: `Bearer ${tokenCookie}`,
           },
         }
       );
       if (result.status >= 200) {
         rateInputError.value = [];
-        commentInput.value = '';
+        commentInput.value = "";
         showComments();
       }
     } catch (errors) {
@@ -1061,7 +1152,7 @@ const addComment = async () => {
       }
     }
   } else {
-    const fullLocalePath = localePath('/auth');
+    const fullLocalePath = localePath("/auth");
     router.push(fullLocalePath);
   }
 };
@@ -1070,15 +1161,17 @@ let anim = ref(false);
 const addTofav = (item, index) => {
   store.commit("addFav", { item: item, index: index });
   anim.value = true;
-  createToast({
-    title: text1.value
-  },
+  createToast(
     {
-      showIcon: 'true',
-      type: 'success',
-      toastBackgroundColor: '#dcba95',
+      title: text1.value,
+    },
+    {
+      showIcon: "true",
+      type: "success",
+      toastBackgroundColor: "#dcba95",
       timeout: 2000,
-    });
+    }
+  );
   setTimeout(() => {
     anim.value = false;
   }, 2000);
@@ -1089,12 +1182,11 @@ const deleteTofav = (itemId) => {
 
 const clickedItem = (id) => {
   return store.state.isInFav.find((item) => item == id);
-}
+};
 
 watch(
   () => MainRoute.query.id,
   (newId) => {
-  
     id.value = newId;
     showProduct();
     showVendor();
@@ -1108,20 +1200,21 @@ onMounted(() => {
   showVendor();
   getRelatedProducts();
 
+  const triggerDiv = document.getElementById("trigger");
+  const hiddenDiv = document.getElementById("hiddenDiv");
 
-
-    const triggerDiv = document.getElementById('trigger');
-  const hiddenDiv = document.getElementById('hiddenDiv');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        hiddenDiv.style.display = 'flex';
-      } else {
-        hiddenDiv.style.display = 'none';
-      }
-    });
-  }, { threshold: 0.5 }); // Adjust the threshold as needed
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          hiddenDiv.style.display = "flex";
+        } else {
+          hiddenDiv.style.display = "none";
+        }
+      });
+    },
+    { threshold: 0.5 }
+  ); // Adjust the threshold as needed
 
   observer.observe(triggerDiv);
 });
