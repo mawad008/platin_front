@@ -130,7 +130,6 @@ a {
   transition: 0.2s all;
   width: 296px;
   margin-bottom: 20px;
-  min-height: 443px;
 }
 .product-card .overlay {
   transition: 0.5s;
@@ -3633,6 +3632,8 @@ html[dir=ltr] body {
   border: 1px solid #dbdde0;
   color: #5a7184;
   cursor: pointer;
+  position: relative;
+  z-index: 1111 !important;
 }
 
 #select-product {
@@ -3642,6 +3643,8 @@ html[dir=ltr] body {
   height: 170px;
   overflow: auto;
   padding: 10px;
+  position: relative;
+  z-index: 1111 !important;
   background-color: #2d3a4a;
   gap: 13px !important;
   text-align: center;

@@ -17,29 +17,30 @@
       <div class="d-flex justify-content-end flex-column flex-xl-row flex-lg-row  gap-3 mb-5 w-100">
         <div>
 
-          <div class="select-box">
+          <div  @click="toggleOverlay" class="select-box ">
             <span> {{item1 == '' ?  $t("sections") : item1 }} </span>
-            <i class="fa-solid fa-chevron-down"></i>
+            <i v-if="overlayVisible" class="fa-solid fa-chevron-up"></i>
+            <i v-else class="fa-solid fa-chevron-down"></i>
           </div>
-
-          <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition">
-            <div id="select-product"
-              class="d-flex  flex-column  gap-3 ">
-              <span v-for="item in categories" @click="selectbox1 = item.id, item1 = item.name , getProducts()" :class="{ 'active': selectbox1 == item.id }"> {{ item.name }}</span>
-            </div>
+              <div v-if="overlayVisible" id="select-product"
+                class="d-flex  flex-column  gap-3 ">
+                <span v-for="item in categories" @click="selectbox1 = item.id, item1 = item.name, getProducts() ,  overlayVisible = false" :class="{ 'active': selectbox1 == item.id }"> {{ item.name }}</span>
+              </div>
+          <v-overlay v-if="overlayVisible" activator="parent" location-strategy="connected" scroll-strategy="reposition" @click="hideOverlay">
+           
           </v-overlay>
         </div>
         <div>
 
-          <div class="select-box">
+          <div class="select-box" >
             <span> {{ item2 == '' ? $t("categories") : item2 }} </span>
             <i class="fa-solid fa-chevron-down"></i>
           </div>
 
-          <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition">
+          <v-overlay  activator="parent" location-strategy="connected" scroll-strategy="reposition" >
             <div id="select-product"
               class="d-flex  flex-column text-center">
-              <span v-for="item in subcategories" @click="selectbox2 = item.id , item2 = item.name , getProducts()" :class="{ 'active': selectbox2 == item.id }"> {{ item.name }}</span>
+              <span v-for="item in subcategories" @click="selectbox2 = item.id , item2 = item.name , getProducts() " :class="{ 'active': selectbox2 == item.id }"> {{ item.name }}</span>
 
             </div>
           </v-overlay>
@@ -52,7 +53,7 @@
             <i class="fa-solid fa-chevron-down"></i>
           </div>
 
-          <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition">
+          <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition" >
             <div id="select-product"
               class="d-flex  flex-column text-center">
               <span v-for="item in brands" @click="selectbox3 = item.id , item3 = item.name , getProducts()" :class="{ 'active': selectbox3 == item.id }"> {{ item.name }}</span>
@@ -99,6 +100,7 @@
         :length="pageCount"
         rounded="circle"
         @input="updatePage"
+        @click="getProducts()"
       ></v-pagination>
     </div>
   </div>
@@ -127,6 +129,20 @@ let item3 = ref('');
 let page = ref(1);
 let itemsPerPage = ref();
 let total = ref();
+
+let dropdown1 = ref(false);
+
+const overlayVisible = ref(false);
+
+// Event handlers
+const toggleOverlay = () => {
+  overlayVisible.value = !overlayVisible.value;
+};
+
+const hideOverlay = () => {
+  overlayVisible.value = false;
+};
+
 
 let spinnerProducts = ref(false);
 const getTags = async () => {
@@ -169,6 +185,7 @@ const getBrands = async () => {
 };
 const getProducts = async () => {
   spinnerProducts.value = true;
+  products.value = [];
   let result = await axios.get(`${getUrl()}/products`, {
     params: {
       tag_id:tab.value,
@@ -207,6 +224,7 @@ const paginatedItems = computed(() => {
 
 const updatePage = (newPage) => {
   page.value = newPage;
+  getProducts();
 }
 
 
