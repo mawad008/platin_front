@@ -492,7 +492,7 @@
                       </div>
                     </div> -->
 
-                    <table class="table table-stripe">
+                    <table class="table table-striped">
                       <thead>
                         <tr>
                           <!-- <th scope="col">{{ $t("design") }}</th> -->
@@ -501,34 +501,34 @@
                       </thead>
                       <tbody class=" ">
                         <tr class="">
-                          <th scope="row">{{ $t("design")  }}</th>
+                          <td class="headd headd1">{{ $t("design")  }}</td>
                           <td class="">{{ mainProduct.description }}</td>
-                          <th>{{ $t("desc info1") }}</th>
-                          <td>{{$t('caliber')}} {{ mainProduct.caliber }} {{$t('carat')}}</td>
+                          <td class="headd">{{ $t("desc info1") }}</td>
+                          <td class="headd2">{{$t('caliber')}} {{ mainProduct.caliber }} {{$t('carat')}}</td>
                         </tr>
                         <tr>
-                          <th scope="row">{{ $t("desc info2") }}</th>
+                          <td  class="headd headd1">{{ $t("desc info2") }}</td>
                           <td>{{ mainProduct.size }}</td>
-                          <th scope="row">{{ $t("weight") }}</th>
-                          <td>{{ mainProduct.weight }} {{ $t("weight1") }}</td>
+                          <td class="headd">{{ $t("weight") }}</td>
+                          <td class="headd2 ">{{ mainProduct.weight }} {{ $t("weight1") }}</td>
                         </tr>
                         <tr>
-                          <th scope="row">{{$t("desc info3")}}</th>
+                          <td class="headd headd1">{{$t("desc info3")}}</td>
                           <td> {{ mainProduct.maintenance_and_care }}</td>
-                          <th scope="row">{{ $t("desc info4") }}</th>
-                          <td>{{ mainProduct.main_stone }}</td>
+                          <td class="headd ">{{ $t("desc info4") }}</td>
+                          <td class="headd2">{{ mainProduct.main_stone }}</td>
                         </tr>
                         <tr>
-                          <th scope="row">{{ $t("desc info5") }}</th>
+                          <td class="headd headd1">{{ $t("desc info5") }}</td>
                           <td>{{ mainProduct.packaging }}</td>
-                          <th scope="row">{{ $t("desc info6") }}</th>
-                          <td>{{ mainProduct.guarantee }}</td>
+                          <td class="headd">{{ $t("desc info6") }}</td>
+                          <td class="headd2">{{ mainProduct.guarantee }}</td>
                         </tr>
                         <tr>
-                          <th scope="row">{{$t("desc info7")}}</th>
+                          <td class="headd headd1">{{$t("desc info7")}}</td>
                           <td>{{ mainProduct.sustainable_assets }}</td>
-                          <th scope="row">{{$t("color")}}</th>
-                          <td>{{ mainProduct.color }}</td>
+                          <td class="headd">{{$t("color")}}</td>
+                          <td class="headd2">{{ mainProduct.color }}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -537,7 +537,7 @@
                   <v-window-item :value="1">
                     <div class="rating-container">
                       <div
-                        class="head w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row text-center gap-3 justify-content-between mt-4"
+                        class="head w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row  gap-3 justify-content-between mt-4"
                       >
                         <div class="text d-flex flex-column gap-2">
                           <h6>{{ $t("write comment") }}</h6>

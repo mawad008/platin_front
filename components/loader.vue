@@ -26,6 +26,6 @@ import loader from "~/assets/animations/loader.json";
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    z-index: 5555555555;
+    z-index: 55555555555555;
 }
 </style>

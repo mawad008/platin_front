@@ -1,120 +1,158 @@
 <template>
-    <div style="min-height:100vh;">
-        <div class="container vendor-page">
-            <div class="row">
-                <div class="col-12 col-xl-8 col-lg-8">
-                    <div class="main-box">
-                        <div class="cover">
-                            <img :src="vendor.cover" alt="">
-                            <div class="overlay"></div>
-                        </div>
-
-                        <div class="circle-image">
-                            <img :src="vendor.logo" alt="">
-                        </div>
-
-                        <p> زهرة الياقوت هو عالم من الجمال والرقي في عالم المجوهرات. نقدم لكم تشكيلة متنوعة من المجوهرات
-                            الفاخرة، مصنوعة بعناية فائقة من أرقى المواد. </p>
-
-
-                        <div class="icons row">
-                            <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
-                                <div class="image">
-                                    <img src="~/assets/images/diamond.svg" alt="">
-                                </div>
-                                <h6> {{ $t("products number") }}</h6>
-                                <span> {{ vendor.products_count }} {{ $t("product") }} </span>
-                            </div>
-                            <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
-                                <div class="image">
-                                    <img src="~/assets/images/vstar.svg" alt="">
-                                </div>
-                                <h6> {{ $t("total rate") }}</h6>
-                                <span> {{ vendor.rate }}</span>
-                            </div>
-                            <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
-                                <div class="image">
-                                    <img src="~/assets/images/vendor-c.svg" alt="">
-                                </div>
-                                <h6> {{ $t("vendor1") }}</h6>
-                                <span> {{ vendor.commercial_register_number }} </span>
-                            </div>
-                            <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4 ">
-                                <div class="image">
-                                    <img src="~/assets/images/vendor-b.svg" alt="">
-                                </div>
-                                <h6> {{ $t("vendor2") }}</h6>
-                                <span> {{ $t("vendor3") }} </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-xl-4 col-lg-4">
-                    <div class="recent">
-                        <h4 class="fw-bold mb-4"> {{ $t("most selling") }} </h4>
-                        <div class="boxes d-flex flex-column h-100 bg-dange ">
-                            <div v-for="item in vendor.bestSellerProducts" class="box d-flex flex-column  my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center  gap-3">
-                                <div class="image">
-                                    <img :src="item.images[0].full_image_path" alt="">
-                                </div>
-                                <div class="text w-100 d-flex flex-column gap-1">
-                                    <h5> {{ item.name }}</h5>
-                                    <div class="price w-100  d-flex align-items-center justify-content-between">
-                                         <span class="item">
-                                 {{ `${item.caliber} / ${locale == 'ar' ? 'ق' : 'c'}` }}
-                                {{ `${item.weight} / ${locale == 'ar' ? 'ج' : 'g'}` }}</span
-                                      >
-                                        <span class="price-item"> {{ item.price }} {{ $t("curr") }} </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-for="item in vendor.bestSellerProducts" class="box d-flex flex-column  my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center  gap-3">
-                                <div class="image">
-                                    <img :src="item.images[0].full_image_path" alt="">
-                                </div>
-                                <div class="text w-100 d-flex flex-column gap-1">
-                                    <h5> {{ item.name }}</h5>
-                                    <div class="price w-100  d-flex align-items-center justify-content-between">
-                                        <span class="item">{{ `${item.caliber} / ق` }} {{ `${item.weight} / ق` }}</span>
-                                        <span class="price-item"> {{ item.price }} {{ $t("curr") }} </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div style="min-height: 100vh">
+    <div class="container vendor-page">
+      <div class="row">
+        <div class="col-12 col-xl-8 col-lg-8">
+          <div class="main-box">
+            <div class="cover">
+              <img :src="vendor.cover" alt="" />
+              <div class="overlay"></div>
             </div>
 
+            <div class="circle-container">
+              <div class="circle-image">
+                <img :src="vendor.logo" alt="" />
+              </div>
+            </div>
 
+            <div class="textt-container">
+              <h4>{{ vendor.name }}</h4>
+              <p>
+                زهرة الياقوت هو عالم من الجمال والرقي في عالم المجوهرات. نقدم
+                لكم تشكيلة متنوعة من المجوهرات الفاخرة، مصنوعة بعناية فائقة من
+                أرقى المواد.
+              </p>
+            </div>
+
+            <div class="icons row">
+              <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4">
+                <div class="image">
+                  <img src="~/assets/images/diamond.svg" alt="" />
+                </div>
+                <h6>{{ $t("products number") }}</h6>
+                <span> {{ vendor.products_count }} {{ $t("product") }} </span>
+              </div>
+              <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4">
+                <div class="image">
+                  <img src="~/assets/images/vstar.svg" alt="" />
+                </div>
+                <h6>{{ $t("total rate") }}</h6>
+                <span> {{ vendor.rate }}</span>
+              </div>
+              <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4">
+                <div class="image">
+                  <img src="~/assets/images/vendor-c.svg" alt="" />
+                </div>
+                <h6>{{ $t("vendor1") }}</h6>
+                <span> {{ vendor.commercial_register_number }} </span>
+              </div>
+              <div class="icon col-6 col-xl-3 my-3 col-lg-3 col-md-4">
+                <div class="image">
+                  <img src="~/assets/images/vendor-b.svg" alt="" />
+                </div>
+                <h6>{{ $t("vendor2") }}</h6>
+                <span> {{ $t("vendor3") }} </span>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="col-12 col-xl-4 col-lg-4">
+          <div class="recent">
+            <h4 class="fw-bold mb-4">{{ $t("most selling") }}</h4>
+            <div class="boxes d-flex flex-column h-100 bg-dange">
+              <div
+                v-for="item in vendor.bestSellerProducts"
+                class="box d-flex flex-column my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center gap-3"
+              >
+                <div class="image">
+                  <img :src="item.images[0].full_image_path" alt="" />
+                </div>
+                <div class="text w-100 d-flex flex-column gap-1">
+                  <h5>{{ item.name }}</h5>
+                  <div
+                    class="price w-100 d-flex align-items-center justify-content-between"
+                  >
+                    <span class="item">
+                      {{ `${item.caliber} / ${locale == "ar" ? "ق" : "c"}` }}
+                      {{
+                        `${item.weight} / ${locale == "ar" ? "ج" : "g"}`
+                      }}</span
+                    >
+                    <span class="price-item">
+                      {{ item.price }} {{ $t("curr") }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                v-for="item in vendor.bestSellerProducts"
+                class="box d-flex flex-column my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center gap-3"
+              >
+                <div class="image">
+                  <img :src="item.images[0].full_image_path" alt="" />
+                </div>
+                <div class="text w-100 d-flex flex-column gap-1">
+                  <h5>{{ item.name }}</h5>
+                  <div
+                    class="price w-100 d-flex align-items-center justify-content-between"
+                  >
+                    <span class="item"
+                      >{{ `${item.caliber} / ق` }}
+                      {{ `${item.weight} / ق` }}</span
+                    >
+                    <span class="price-item">
+                      {{ item.price }} {{ $t("curr") }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <div class="container the-vendor d-flex justify-content-center" style="margin-top:80px">
-
-            <div class="product-details  p-3">
-                <div class="h-100">
-                    <div class="tabs">
-                        <div @click="activeTab = 1 , tab = 'one'" :class="{'active': activeTab == 1}"  class="tab">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20"
-                                    fill="none">
-                                    <path
-                                        d="M0.0870261 5.4502C3.14163 6.80127 6.1375 8.13277 9.1921 9.46426C9.1921 12.9105 9.1921 16.435 9.1921 19.9987C8.9963 19.9204 8.82007 19.8617 8.62426 19.7833C6.43121 18.8043 4.23816 17.8448 2.04511 16.8462C0.713612 16.2392 0.00870258 15.1819 0.00870258 13.7133C-0.0108782 11.2657 0.00870258 8.81809 0.00870258 6.37049C0.00870258 6.07678 0.0478645 5.78307 0.0870261 5.4502Z"
-                                        fill="#919EAB" />
-                                    <path
-                                        d="M10.876 19.9998C10.876 16.4361 10.876 12.9115 10.876 9.44571C12.0508 8.93661 13.1865 8.44708 14.3614 7.93798C14.3614 8.29044 14.3614 8.62331 14.3614 8.9366C14.3614 9.2499 14.3614 9.56319 14.3614 9.87648C14.3614 10.366 14.7138 10.738 15.1838 10.7576C15.6537 10.7772 16.0257 10.3856 16.0453 9.89606C16.0453 9.09325 16.0649 8.29044 16.0453 7.48763C16.0453 7.27224 16.1041 7.15475 16.3194 7.05685C17.4747 6.56733 18.6104 6.03865 19.7657 5.52954C19.8244 5.50996 19.9027 5.4708 20.0006 5.43164C20.0398 5.72535 20.0985 5.99948 20.0985 6.27361C20.0985 8.77996 20.1181 11.2863 20.0985 13.7731C20.079 15.1046 19.4524 16.1619 18.2384 16.7298C15.9278 17.8067 13.5781 18.8249 11.248 19.8431C11.1305 19.941 11.013 19.9606 10.876 19.9998Z"
-                                        fill="#919EAB" />
-                                    <path
-                                        d="M6.1377 1.43739C6.80344 1.14368 7.44961 0.830384 8.09578 0.575834C8.56572 0.380026 9.03566 0.184222 9.52518 0.0667373C10.1322 -0.0703283 10.7196 0.00799492 11.2874 0.262545C13.598 1.28075 15.9085 2.29895 18.1995 3.33673C18.5324 3.47379 18.8065 3.72835 19.1394 3.94374C19.0023 4.02206 18.9435 4.04164 18.8848 4.0808C17.7295 4.5899 16.5547 5.11859 15.3994 5.62769C15.3015 5.66685 15.1645 5.68643 15.0665 5.64727C12.149 4.27661 9.23146 2.90596 6.3335 1.5353C6.27476 1.51572 6.2356 1.49614 6.1377 1.43739Z"
-                                        fill="#919EAB" />
-                                    <path
-                                        d="M13.1667 6.62694C12.3835 6.9794 11.659 7.31226 10.8953 7.62556C10.2688 7.88011 9.62259 7.84095 9.01559 7.56682C6.37218 6.39197 3.72877 5.21712 1.10494 4.04227C1.06578 4.02269 1.02662 4.00311 0.928711 3.92479C1.32033 3.68982 1.63362 3.43527 2.00566 3.25904C2.63224 2.94575 3.27841 2.6912 3.905 2.41707C4.0029 2.3779 4.13996 2.3779 4.23787 2.41707C7.15541 3.78772 10.073 5.15838 13.0101 6.52904C13.0492 6.5682 13.0884 6.58778 13.1667 6.62694Z"
-                                        fill="#919EAB" />
-                                </svg>
-
-                            </div>
-                            <span>{{ $t("products") }}</span>
-                        </div>
-                        <!-- <div @click="activeTab = 2 , tab = 'two'" :class="{'active': activeTab == 2}" class="tab">
+    <div
+      class="container the-vendor d-flex justify-content-center"
+      style="margin-top: 80px"
+    >
+      <div class="product-details p-3">
+        <div class="h-100">
+          <div class="tabs">
+            <div
+              @click="(activeTab = 1), (tab = 'one')"
+              :class="{ active: activeTab == 1 }"
+              class="tab"
+            >
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="21"
+                  height="20"
+                  viewBox="0 0 21 20"
+                  fill="none"
+                >
+                  <path
+                    d="M0.0870261 5.4502C3.14163 6.80127 6.1375 8.13277 9.1921 9.46426C9.1921 12.9105 9.1921 16.435 9.1921 19.9987C8.9963 19.9204 8.82007 19.8617 8.62426 19.7833C6.43121 18.8043 4.23816 17.8448 2.04511 16.8462C0.713612 16.2392 0.00870258 15.1819 0.00870258 13.7133C-0.0108782 11.2657 0.00870258 8.81809 0.00870258 6.37049C0.00870258 6.07678 0.0478645 5.78307 0.0870261 5.4502Z"
+                    fill="#919EAB"
+                  />
+                  <path
+                    d="M10.876 19.9998C10.876 16.4361 10.876 12.9115 10.876 9.44571C12.0508 8.93661 13.1865 8.44708 14.3614 7.93798C14.3614 8.29044 14.3614 8.62331 14.3614 8.9366C14.3614 9.2499 14.3614 9.56319 14.3614 9.87648C14.3614 10.366 14.7138 10.738 15.1838 10.7576C15.6537 10.7772 16.0257 10.3856 16.0453 9.89606C16.0453 9.09325 16.0649 8.29044 16.0453 7.48763C16.0453 7.27224 16.1041 7.15475 16.3194 7.05685C17.4747 6.56733 18.6104 6.03865 19.7657 5.52954C19.8244 5.50996 19.9027 5.4708 20.0006 5.43164C20.0398 5.72535 20.0985 5.99948 20.0985 6.27361C20.0985 8.77996 20.1181 11.2863 20.0985 13.7731C20.079 15.1046 19.4524 16.1619 18.2384 16.7298C15.9278 17.8067 13.5781 18.8249 11.248 19.8431C11.1305 19.941 11.013 19.9606 10.876 19.9998Z"
+                    fill="#919EAB"
+                  />
+                  <path
+                    d="M6.1377 1.43739C6.80344 1.14368 7.44961 0.830384 8.09578 0.575834C8.56572 0.380026 9.03566 0.184222 9.52518 0.0667373C10.1322 -0.0703283 10.7196 0.00799492 11.2874 0.262545C13.598 1.28075 15.9085 2.29895 18.1995 3.33673C18.5324 3.47379 18.8065 3.72835 19.1394 3.94374C19.0023 4.02206 18.9435 4.04164 18.8848 4.0808C17.7295 4.5899 16.5547 5.11859 15.3994 5.62769C15.3015 5.66685 15.1645 5.68643 15.0665 5.64727C12.149 4.27661 9.23146 2.90596 6.3335 1.5353C6.27476 1.51572 6.2356 1.49614 6.1377 1.43739Z"
+                    fill="#919EAB"
+                  />
+                  <path
+                    d="M13.1667 6.62694C12.3835 6.9794 11.659 7.31226 10.8953 7.62556C10.2688 7.88011 9.62259 7.84095 9.01559 7.56682C6.37218 6.39197 3.72877 5.21712 1.10494 4.04227C1.06578 4.02269 1.02662 4.00311 0.928711 3.92479C1.32033 3.68982 1.63362 3.43527 2.00566 3.25904C2.63224 2.94575 3.27841 2.6912 3.905 2.41707C4.0029 2.3779 4.13996 2.3779 4.23787 2.41707C7.15541 3.78772 10.073 5.15838 13.0101 6.52904C13.0492 6.5682 13.0884 6.58778 13.1667 6.62694Z"
+                    fill="#919EAB"
+                  />
+                </svg>
+              </div>
+              <span>{{ $t("products") }}</span>
+            </div>
+            <!-- <div @click="activeTab = 2 , tab = 'two'" :class="{'active': activeTab == 2}" class="tab">
                             <div class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                                     fill="none">
@@ -134,8 +172,8 @@
                             <span style=""> تقييمات العملاء </span>
 
                         </div> -->
-                    </div>
-                    <!-- <v-tabs v-model="tab" bg-color="" class="" style="border-bottom: 1px solid #EBEAED;">
+          </div>
+          <!-- <v-tabs v-model="tab" bg-color="" class="" style="border-bottom: 1px solid #EBEAED;">
                         <v-tab value="one">
                             <div class="d-flex align-items-center gap-2">
                                 <div class="circle">
@@ -154,55 +192,100 @@
 
                     </v-tabs> -->
 
-                    <v-card-text class="">
-                        <v-window v-model="tab">
-                            <v-window-item value="one" class=" p-1">
+          <v-card-text class="">
+            <v-window v-model="tab">
+              <v-window-item value="one" class="p-1">
+                <div
+                  class="d-flex justify-content-end flex-column flex-xl-row flex-xl-row flex-md-row gap-3 w-100"
+                >
+                  <div>
+                    <div @click="overlayVisible1 = ! overlayVisible1" class="select-box">
+                      <span> {{ text1 == "" ? $t("sections") : text1 }} </span>
+                      <i
+                        v-if="overlayVisible1"
+                        class="fa-solid fa-chevron-up"
+                      ></i>
+                      <i v-else class="fa-solid fa-chevron-down"></i>
+                    </div>
 
-                                <div class="d-flex justify-content-end flex-column flex-xl-row flex-xl-row flex-md-row gap-3 w-100">
-                                    <div>
+                    <div v-if="overlayVisible1" id="select-product" class="d-flex flex-column">
+                      <span
+                        v-for="item in categories"
+                        @click="
+                          (selectbox1 = item.id),
+                            (text1 = item.name),
+                            getVendorproducts(),
+                            overlayVisible1 = false;
+                        "
+                        :class="{ active: selectbox1 == item.id }"
+                      >
+                        {{ item.name }}
+                      </span>
+                    </div>
 
-                                        <div class="select-box">
-                                            <span> {{ text1 == '' ? $t("sections") : text1 }} </span>
-                                            <i class="fa-solid fa-chevron-down"></i>
-                                        </div>
-
-                                        <v-overlay activator="parent" location-strategy="connected"
-                                            scroll-strategy="reposition">
-                                            <div id="select-product"
-                                                class="d-flex  flex-column">
-                                                <span v-for="item in categories" @click="selectbox1 = item.id , text1 = item.name , getVendorproducts()" :class="{ 'active': selectbox1 == item.id }"> {{ item.name }} </span>
-                                             
-                                            </div>
-                                        </v-overlay>
-                                    </div>
-                                    <div>
-
-                                        <div class="select-box">
-                                            <span> {{ text2 == '' ? $t("brands") : text2 }}</span>
-                                            <i class="fa-solid fa-chevron-down"></i>
-                                        </div>
-
-                                        <v-overlay activator="parent" location-strategy="connected"
-                                            scroll-strategy="reposition">
-                                            <div id="select-product"
-                                                class="d-flex  flex-column">
-                                                <span v-for="item in brands" @click="selectbox2 = item.id , text2 = item.name , getVendorproducts()" :class="{ 'active': selectbox2 == item.id }"> {{ item.name }} </span>
-
-                                            </div>
-                                        </v-overlay>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div v-for="item in vendors" class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <product-card :product="item" />
-                                    </div>
-                                </div>
-                                  <div v-if="spinner" class="d-flex align-items-center justify-content-center" style="min-height:50vh;">
-                    <v-progress-circular size="70" indeterminate color="#dcba95"></v-progress-circular>
+                    <v-overlay
+                    @click="overlayVisible1 = false"
+                      activator="parent"
+                      location-strategy="connected"
+                      scroll-strategy="reposition"
+                    >
+                    </v-overlay>
                   </div>
-                            </v-window-item>
+                  <div>
+                    <div @click="overlayVisible2 = !overlayVisible2" class="select-box">
+                      <span> {{ text2 == "" ? $t("brands") : text2 }}</span>
+                      <i
+                        v-if="overlayVisible2"
+                        class="fa-solid fa-chevron-up"
+                      ></i>
+                      <i v-else class="fa-solid fa-chevron-down"></i>
+                    </div>
 
-                            <!-- <v-window-item value="two">
+                      <div v-if="overlayVisible2" id="select-product" class="d-flex flex-column">
+                        <span
+                          v-for="item in brands"
+                          @click="
+                            (selectbox2 = item.id),
+                              (text2 = item.name),
+                              getVendorproducts(),
+                              overlayVisible2 = false
+                          "
+                          :class="{ active: selectbox2 == item.id }"
+                        >
+                          {{ item.name }}
+                        </span>
+                      </div>
+                    <v-overlay
+                    @click="overlayVisible2 = false"
+                      activator="parent"
+                      location-strategy="connected"
+                      scroll-strategy="reposition"
+                    >
+                    </v-overlay>
+                  </div>
+                </div>
+                <div class="row">
+                  <div
+                    v-for="item in vendors"
+                    class="col-12 col-xl-4 col-lg-4 col-md-6"
+                  >
+                    <product-card :product="item" />
+                  </div>
+                </div>
+                <div
+                  v-if="spinner"
+                  class="d-flex align-items-center justify-content-center"
+                  style="min-height: 50vh"
+                >
+                  <v-progress-circular
+                    size="70"
+                    indeterminate
+                    color="#dcba95"
+                  ></v-progress-circular>
+                </div>
+              </v-window-item>
+
+              <!-- <v-window-item value="two">
                                 <div class="rating-container">
 
                                     <div class="comments-container">
@@ -252,23 +335,20 @@
                                     </div>
                                 </div>
                             </v-window-item> -->
-
-
-                        </v-window>
-                    </v-card-text>
-                </div>
-
-            </div>
+            </v-window>
+          </v-card-text>
         </div>
-
-          <loader v-if="pending"></loader>
+      </div>
     </div>
+
+    <loader v-if="pending"></loader>
+  </div>
 </template>
 
 <script setup>
 import { useStore } from "~/store";
 const store = useStore;
-import axios from 'axios';
+import axios from "axios";
 const router = useRouter();
 const route = useRoute();
 const localePath = useLocalePath();
@@ -279,59 +359,92 @@ let selectbox2 = ref(null);
 let activeTab = ref(1);
 let brands = ref([]);
 let categories = ref([]);
-let text1 = ref('');
-let text2 = ref('');
+let text1 = ref("");
+let text2 = ref("");
 const tab = ref(null);
 let pending = ref(true);
 const maxCharacters = 100;
 let commentPerPage = 3;
 let vendor = ref({});
 let vendors = ref([]);
+let overlayVisible1 = ref(false);
+let overlayVisible2 = ref(false);
 let spinner = ref(false);
 let AllItems = ref([
-    { fullText: "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ", showFullText: false, truncatedText: "" },
-    { fullText: "لم أكن أتوقع أن يكون لدي فرصة امتلاك مثل هذه القلادة الفاخرة. إنها رائعة بكل معنى الكلمة", showFullText: false, truncatedText: "" },
-    { fullText: "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ", showFullText: false, truncatedText: "" },
-    { fullText: "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ", showFullText: false, truncatedText: "" },
-    { fullText: "لم أكن أتوقع أن يكون لدي فرصة امتلاك مثل هذه القلادة الفاخرة. إنها رائعة بكل معنى الكلمة", showFullText: false, truncatedText: "" },
-    { fullText: "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ", showFullText: false, truncatedText: "" },
-],);
+  {
+    fullText:
+      "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ",
+    showFullText: false,
+    truncatedText: "",
+  },
+  {
+    fullText:
+      "لم أكن أتوقع أن يكون لدي فرصة امتلاك مثل هذه القلادة الفاخرة. إنها رائعة بكل معنى الكلمة",
+    showFullText: false,
+    truncatedText: "",
+  },
+  {
+    fullText:
+      "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ",
+    showFullText: false,
+    truncatedText: "",
+  },
+  {
+    fullText:
+      "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ",
+    showFullText: false,
+    truncatedText: "",
+  },
+  {
+    fullText:
+      "لم أكن أتوقع أن يكون لدي فرصة امتلاك مثل هذه القلادة الفاخرة. إنها رائعة بكل معنى الكلمة",
+    showFullText: false,
+    truncatedText: "",
+  },
+  {
+    fullText:
+      "لقد اشتريت هذه القلادة كهدية لعيد ميلاد صديقتي، ولم يمكن أن تكون أكثر سعادة! القلادة رائعة والماسة بريقها لا يصدق. تصميمها الفريد يجعلها تبرز بشكل خاص. تم توصيلها بسرعة وبتعبئة فاخرة ",
+    showFullText: false,
+    truncatedText: "",
+  },
+]);
 
 let itemsArray = ref(AllItems.value.slice(0, 3));
 
-
 const toggleReadMore = (index) => {
-    let item = itemsArray.value[index];
-    item.showFullText = !item.showFullText;
-    updateTruncatedText(item);
+  let item = itemsArray.value[index];
+  item.showFullText = !item.showFullText;
+  updateTruncatedText(item);
 };
 
 const updateTruncatedText = (item) => {
-    if (!item.showFullText.value) {
-        item.truncatedText = item.fullText.length > maxCharacters ? item.fullText.substring(0, maxCharacters) + '...' : item.fullText;
-    } else {
-        item.truncatedText = item.fullText;
-    }
+  if (!item.showFullText.value) {
+    item.truncatedText =
+      item.fullText.length > maxCharacters
+        ? item.fullText.substring(0, maxCharacters) + "..."
+        : item.fullText;
+  } else {
+    item.truncatedText = item.fullText;
+  }
 };
 
 const showAllComments = () => {
-    itemsArray.value = AllItems.value;
-    itemsArray.value.forEach((item) => {
-        updateTruncatedText(item);
-    });
-}
+  itemsArray.value = AllItems.value;
+  itemsArray.value.forEach((item) => {
+    updateTruncatedText(item);
+  });
+};
 const getVendors = async () => {
   let result = await axios.get(`${getUrl()}/vendors/${id}`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
   });
-    if (result.status == 200) {
-        pending.value = false;
+  if (result.status == 200) {
+    pending.value = false;
   }
   vendor.value = result.data.data;
 };
-
 
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brands`, {
@@ -350,33 +463,32 @@ const getcategories = async () => {
   categories.value = result.data.data;
 };
 const getVendorproducts = async () => {
-    spinner.value = true;
+  spinner.value = true;
   let result = await axios.get(`${getUrl()}/vendors-products/${id}`, {
     params: {
-        category_id: selectbox1.value,
-        brand_id: selectbox2.value,
+      category_id: selectbox1.value,
+      brand_id: selectbox2.value,
     },
     headers: {
       "Content-Language": `${locale.value}`,
     },
   });
 
-    if (result.status == 200) {
+  if (result.status == 200) {
     spinner.value = false;
   }
   vendors.value = result.data.data;
 };
 
 onMounted(() => {
-    itemsArray.value.forEach((item) => {
-        updateTruncatedText(item);
-    });
-    getVendors();
-    getBrands();
-    getcategories();
-    getVendorproducts();
+  itemsArray.value.forEach((item) => {
+    updateTruncatedText(item);
+  });
+  getVendors();
+  getBrands();
+  getcategories();
+  getVendorproducts();
 });
-
 </script>
 
 <style lang="scss" scoped></style>

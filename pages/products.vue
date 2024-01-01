@@ -32,33 +32,36 @@
         </div>
         <div>
 
-          <div class="select-box" >
+          <div @click="overlayVisible2 = ! overlayVisible2" class="select-box" >
             <span> {{ item2 == '' ? $t("categories") : item2 }} </span>
-            <i class="fa-solid fa-chevron-down"></i>
+            <i v-if="overlayVisible2" class="fa-solid fa-chevron-up"></i>
+            <i v-else class="fa-solid fa-chevron-down"></i>
           </div>
 
-          <v-overlay  activator="parent" location-strategy="connected" scroll-strategy="reposition" >
-            <div id="select-product"
+            <div v-if="overlayVisible2" id="select-product"
               class="d-flex  flex-column text-center">
-              <span v-for="item in subcategories" @click="selectbox2 = item.id , item2 = item.name , getProducts() " :class="{ 'active': selectbox2 == item.id }"> {{ item.name }}</span>
+              <span v-for="item in subcategories" @click="selectbox2 = item.id , item2 = item.name , getProducts() , overlayVisible2 = false " :class="{ 'active': selectbox2 == item.id }"> {{ item.name }}</span>
 
             </div>
+
+          <v-overlay  activator="parent" location-strategy="connected" @click="overlayVisible2 = false" scroll-strategy="reposition" >
           </v-overlay>
         </div>
         <div>
 
     
-          <div class="select-box">
+          <div @click="overlayVisible3 = ! overlayVisible3" class="select-box">
             <span> {{ item3 == '' ? $t("brands") : item3 }} </span>
-            <i class="fa-solid fa-chevron-down"></i>
+            <i v-if="overlayVisible3" class="fa-solid fa-chevron-up"></i>
+            <i v-else class="fa-solid fa-chevron-down"></i>
           </div>
 
-          <v-overlay activator="parent" location-strategy="connected" scroll-strategy="reposition" >
-            <div id="select-product"
+            <div v-if="overlayVisible3" id="select-product"
               class="d-flex  flex-column text-center">
-              <span v-for="item in brands" @click="selectbox3 = item.id , item3 = item.name , getProducts()" :class="{ 'active': selectbox3 == item.id }"> {{ item.name }}</span>
+              <span v-for="item in brands" @click="selectbox3 = item.id , item3 = item.name , getProducts() , overlayVisible3 = false" :class="{ 'active': selectbox3 == item.id }"> {{ item.name }}</span>
 
             </div>
+          <v-overlay activator="parent" location-strategy="connected"  @click="overlayVisible3 = false" scroll-strategy="reposition" >
           </v-overlay>
         </div>
       </div>
@@ -113,9 +116,10 @@ const route = useRoute();
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let tabId = ref(route.query.tagId);
+let search_value = ref(route.query.search_value ? route.query.search_value : null );
 let tab = ref(null);
 let tabActive = ref(1);
-let selectbox1 = ref(null);
+let selectbox1 = ref(route.query.id ? route.query.id : null);
 let selectbox2 = ref(null);
 let selectbox3 = ref(route.query.brand_id ? route.query.brand_id : null);
 let tags = ref([]);
@@ -133,6 +137,8 @@ let total = ref();
 let dropdown1 = ref(false);
 
 const overlayVisible = ref(false);
+const overlayVisible2 = ref(false);
+const overlayVisible3 = ref(false);
 
 // Event handlers
 const toggleOverlay = () => {
@@ -189,10 +195,11 @@ const getProducts = async () => {
   let result = await axios.get(`${getUrl()}/products`, {
     params: {
       tag_id:tab.value,
-      category_id: selectbox1.value ? selectbox1.value : null,
+      category_id: selectbox1.value,
       subcategory_id: selectbox2.value ? selectbox2.value : null,
-      brand_id: selectbox3.value ? selectbox3.value : null,
-      page:page.value
+      brand_id: selectbox3.value,
+      page:page.value,
+      search_value: search_value.value
     },
     headers: {
       "Content-Language": `${locale.value}`,
@@ -229,7 +236,14 @@ const updatePage = (newPage) => {
 
 
 
-
+watch(
+  [() => route.query.id, () => route.query.search_value,],
+  ([newId, newSup]) => {
+    selectbox1.value = newId;
+    search_value.value = newSup;
+    getProducts();
+  }
+);
 
 
 

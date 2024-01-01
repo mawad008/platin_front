@@ -34,7 +34,7 @@
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    z-index: 55555555555;
+    z-index: 55555555555555;
     text-align: center;
     h4 {
       color: #2d3a4a;

@@ -1,7 +1,7 @@
 <template>
   <div style="min-height: 100vh">
     <div class="container hero-container" style="">
-      <swiper :spaceBetween="30" :effect="'fade'" :dir="getSwiperDirection" :loop="true" :pagination="{
+      <swiper :spaceBetween="30" :effect="'fade'" :dir="getSwiperDirection"  :pagination="{
         clickable: true,
       }" :autoplay="{
   delay: 2500,
@@ -308,7 +308,7 @@
 }" :autoplay="{
   delay: 2500,
   disableOnInteraction: false,
-}" :dir="getSwiperDirection" :loop="true" :modules="[SwiperNavigation, SwiperAutoplay]" class="mySwiper">
+}" :dir="getSwiperDirection" :modules="[SwiperNavigation, SwiperAutoplay]" class="mySwiper">
           <swiper-slide v-for="(item, index) in productsSectionsArr.latestProducts">
             <product-card :product="item" :index="index"/>
           </swiper-slide>
@@ -359,7 +359,7 @@
     slidesPerView: 3.5,
     spaceBetween: 50,
   },
-}" :dir="getSwiperDirection" :loop="true" :autoplay="{
+}" :dir="getSwiperDirection" :autoplay="{
   delay: 2500,
   disableOnInteraction: false,
 }" :modules="[SwiperNavigation, SwiperAutoplay]" class="mySwiper">
@@ -413,7 +413,7 @@
     slidesPerView: 3.5,
     spaceBetween: 50,
   },
-}" :loop="true" :dir="getSwiperDirection" :autoplay="{
+}"  :dir="getSwiperDirection" :autoplay="{
   delay: 2500,
   disableOnInteraction: false,
 }" :modules="[SwiperNavigation, SwiperAutoplay]" class="mySwiper">

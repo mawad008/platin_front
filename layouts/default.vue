@@ -198,7 +198,7 @@
               style=""
             >
               <div class="input inp">
-                <input type="text" :placeholder="$t('search')" style="" />
+                <input type="text" v-model="search_value" @keypress.enter="goToProducts()" :placeholder="$t('search')" style="" />
               </div>
               <div class="d-flex align-item-cente gap-4">
                 <v-menu>
@@ -208,7 +208,7 @@
                       v-bind="props"
                       style="color: #2d3a4a; font-size: 14px; font-weight: 400"
                     >
-                      {{ $t("sections") }}
+                      {{ text7 ? text7 :$t("sections") }}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -226,10 +226,10 @@
             <div
                     class="list-profile list d-flex flex-column p-4 gap-4 text-center"
                   >
-                    <button type="" v-for="item in categoriesArr"> {{ item.name }}</button>
+                    <button type="" v-for="item in categoriesArr" @click="cateId  = item.id , text7 = item.name"> {{ item.name }}</button>
                   </div>
                 </v-menu>
-                <div class="search-icon">
+                <div @click="goToProducts()" class="search-icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -645,6 +645,9 @@ let theNum = computed(() => {
 
 let checkInt = ref(false);
 
+let cateId = ref();
+let text7 = ref('');
+
 let user = ref(store.state.user);
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
@@ -721,6 +724,25 @@ const goSettings = (name) => {
     name: name,
   };
   const url = "/settings";
+
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+};
+
+let search_value = ref('');
+const goToProducts = () => {
+  const queryParams = {
+    search_value: search_value.value,
+    id: cateId.value
+  };
+  const url = "/products";
 
   const updatedRoute = {
     path: url,

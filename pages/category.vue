@@ -16,52 +16,58 @@
           class="d-flex justify-content-end flex-column flex-xl-row flex-lg-row gap-3 w-100"
         >
           <div>
-            <div class="select-box">
+            <div @click="overlayVisible1 = !overlayVisible1" class="select-box">
               <span> {{ text1 == '' ? $t("sub cate") : text1 }} </span>
-              <i class="fa-solid fa-chevron-down"></i>
+              <i v-if="overlayVisible1" class="fa-solid fa-chevron-up"></i>
+              <i v-else class="fa-solid fa-chevron-down"></i>
             </div>
 
-            <v-overlay
-              activator="parent"
-              location-strategy="connected"
-              scroll-strategy="reposition"
-            >
               <div
+              v-if="overlayVisible1"
                 id="select-product"
                 class="d-flex flex-column align-items-center text-center gap-3 justify-content-center"
               >
                 <span
                   v-for="(item, index) in subcategoriesArr"
-                  @click="(selectbox1 = item.id), getProducts() , text1 = item.name"
+                  @click="(selectbox1 = item.id), getProducts() , text1 = item.name , overlayVisible1 = false"
                   :class="{ active: selectbox1 == item.id }"
                   >{{ item.name }}</span
                 >
               </div>
-            </v-overlay>
-          </div>
-          <div>
-            <div class="select-box">
-              <span> {{ text2 == '' ? $t("brands") : text2 }}</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-
             <v-overlay
+            @click="overlayVisible1 = false"
               activator="parent"
               location-strategy="connected"
               scroll-strategy="reposition"
             >
+            </v-overlay>
+          </div>
+          <div>
+            <div @click="overlayVisible2 = !overlayVisible2" class="select-box">
+              <span> {{ text2 == '' ? $t("brands") : text2 }}</span>
+              <i v-if="overlayVisible2" class="fa-solid fa-chevron-up"></i>
+              <i v-else class="fa-solid fa-chevron-down"></i>
+            </div>
+
               <div
+              v-if="overlayVisible2"
                 id="select-product"
                 class="d-flex flex-column align-items-center text-center gap-3 justify-content-center"
               >
                 <span
                   v-for="(item, index) in brandsArr"
-                  @click="(selectbox2 = item.id), getProducts() , text2 = item.name"
+                  @click="(selectbox2 = item.id), getProducts() , text2 = item.name  , overlayVisible2 = false"
                   :class="{ active: selectbox2 == item.id }"
                 >
                   {{ item.name }}</span
                 >
               </div>
+            <v-overlay
+            @click="overlayVisible2 = false"
+              activator="parent"
+              location-strategy="connected"
+              scroll-strategy="reposition"
+            >
             </v-overlay>
           </div>
         </div>
@@ -123,6 +129,8 @@ let category_name = ref(null);
 let category_image = ref(null);
 let products_count = ref(null);
 let spinnerProducts = ref(false);
+let overlayVisible1 = ref(false);
+let overlayVisible2 = ref(false);
 
 const getSubcategories = async () => {
   let result = await axios.get(`${getUrl()}/subcategories`, {

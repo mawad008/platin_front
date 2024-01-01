@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import Cookies from "js-cookie";
 import axios from "axios";
 // process.client ? JSON.parse(sessionStorage.getItem("basket")) :
+import CircularJSON from 'circular-json';
 export const useStore = createStore({
   state: {
     basket: [],
@@ -172,7 +173,13 @@ export const useStore = createStore({
       //  });
       });
  
-      localStorage.setItem("basket", JSON.stringify(state.basket));
+      // localStorage.setItem("basket", JSON.stringify(state.basket));
+      const clonedState = CircularJSON.parse(CircularJSON.stringify(state.basket));
+      localStorage.setItem('basket', CircularJSON.stringify(clonedState));
+
+      console.log(state.basket);
+      console.log(clonedState);
+      state.basket = clonedState;
       console.log(state.basket);
       getTotalPrice(state);
       getTotalBasketNum(state);
@@ -198,7 +205,15 @@ export const useStore = createStore({
           if (state.basket[indexx].products.length == 0) {
             state.basket.splice(indexx, 1);
           }
-          localStorage.setItem("basket", JSON.stringify(state.basket));
+          // let temp = state.basket
+          // localStorage.setItem("basket", JSON.stringify(temp));
+
+          const clonedState = CircularJSON.parse(CircularJSON.stringify(state.basket));
+          localStorage.setItem('basket', CircularJSON.stringify(clonedState));
+
+          console.log(state.basket);
+          console.log(clonedState);
+          state.basket = clonedState;
 
           console.log(`Item with id ${itemid} deleted successfully.`);
         } else {
@@ -347,3 +362,27 @@ const updateBasket = (state) => {
   }));
 });
 };
+
+function deepCopy(obj) {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  if (Array.isArray(obj)) {
+    const copyArr = [];
+    for (let i = 0; i < obj.length; i++) {
+      copyArr[i] = deepCopy(obj[i]);
+    }
+    return copyArr;
+  }
+
+  const copyObj = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      copyObj[key] = deepCopy(obj[key]);
+    }
+  }
+
+  return copyObj;
+}
+

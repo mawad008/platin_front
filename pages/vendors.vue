@@ -5,28 +5,31 @@
         class="d-flex justify-content-end flex-column flex-xl-row flex-xl-row flex-md-row gap-3 w-100"
       >
         <div>
-          <div class="select-box">
+          <div @click="overlayVisible2 = ! overlayVisible2" class="select-box">
             <span> {{text1 == '' ?  $t("city") : text1}} </span>
-            <i class="fa-solid fa-chevron-down"></i>
+            <i v-if="overlayVisible2" class="fa-solid fa-chevron-up"></i>
+            <i v-else class="fa-solid fa-chevron-down"></i>
           </div>
-
-          <v-overlay
-            activator="parent"
-            location-strategy="connected"
-            scroll-strategy="reposition"
-          >
             <div
+              v-if="overlayVisible2"
               id="select-product"
               class="d-flex flex-column "
             >
               <span
                 v-for="item in cities"
-                @click="selectbox1 = item.id , getVendors() , text1 = item.name"
+                @click="selectbox1 = item.id , getVendors() , text1 = item.name ,  overlayVisible2 = false"
                 :class="{ active: selectbox1 == item.id }"
               >
                 {{ item.name }}</span
               >
             </div>
+
+          <v-overlay
+          @click="overlayVisible2 = false"
+            activator="parent"
+            location-strategy="connected"
+            scroll-strategy="reposition"
+          >
           </v-overlay>
         </div>
         <div></div>
@@ -80,6 +83,7 @@ const { locale } = useI18n();
 let cities = ref([]);
 let vendors = ref([]);
 let text1 = ref('');
+let overlayVisible2 = ref(false);
 let spinner = ref(false);
 const getCities = async () => {
   let result = await axios.get(`${getUrl()}/general`, {

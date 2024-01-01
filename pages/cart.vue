@@ -395,10 +395,12 @@ const { locale } = useI18n();
     // });
 
 
-    let arrData = ref(store.state.basket);
     const deleteItem = (vendor_id, itemid, index) => {
       store.commit("deleteItem", { vendor_id: vendor_id, itemid: itemid, indexx: index });
     };
+    let arrData = computed(()=>{
+      return store.state.basket;
+    })
 
     const addItem = (id) => {
       store.commit("addItem", { id: id });
