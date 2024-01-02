@@ -378,7 +378,17 @@ a {
   border-radius: 16px;
   border: 1px solid #ebeaed;
   // width: 507px;
-  padding: 32px;
+  .boxes{
+    overflow-y: auto;
+    height: 250px;
+    width: 100%;
+    // background-color: red;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+  }
   .head {
     display: flex;
     align-items: center;
@@ -422,6 +432,8 @@ a {
   }
 
   .total-price {
+  padding: 32px;
+
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -446,6 +458,9 @@ a {
   }
 
   .btns {
+  padding: 0px 32px;
+  padding-bottom: 32px;
+
     margin-top: 30px;
     display: flex;
     flex-direction: column;
@@ -615,6 +630,20 @@ html[dir="rtl"] input[type="tel"] {
   }
 }
 
+.p-dropdown-label{
+  color: #959EAD !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+}
+.p-dropdown-trigger{
+  svg{
+    fill: #959EAD !important;
+    path{
+      fill: #959EAD !important;  
+    }
+  }
+}
 .product-card-scroll {
   margin-top: 60px;
   width: 90%;
@@ -817,14 +846,73 @@ html[dir="ltr"] body {
   justify-content: center;
   // width: 427px !important;
 }
+html[dir="rtl"] .card-popup-container{
+  direction: rtl;
+}
+html[dir="ltr"] .card-popup-container{
+  direction: ltr;
+}
 .card-popup-container {
   width: 427px;
-  height: 528px;
+  height: 570px;
   border-radius: 24px;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .boxes{
+    overflow-y: auto;
+    height: 200px;
+    width: 100%;
+    // background-color: red;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+  }
+  .box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    .image {
+      display: flex;
+      width: 72px;
+      height: 72px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 6px;
+      border: 1px solid #dbdde0;
+      img {
+        width: 56px;
+        height: 56px;
+      }
+    }
+    .text {
+      .name {
+        color: $secondary-black;
+        font-weight: 700;
+        font-size: 17px;
+      }
+      .price {
+        color: #5a7184;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .trash {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f8f8;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    }
+  }
   .main {
     width: 100%;
     display: flex;
@@ -1832,7 +1920,7 @@ html[dir="ltr"] body {
         display: block;
       }
     }
-    &.f2 {
+    &.f2 , &.ff2 {
       background-image: url("~/assets/images/offer1.png");
       background-position: center;
       background-size: cover;
@@ -1840,7 +1928,7 @@ html[dir="ltr"] body {
         // background-image: url("~/assets/images/gift.png");
       }
     }
-    &.f3 {
+    &.f3 , &.ff3 {
       background-image: url("~/assets/images/offer2.png");
       .main-img {
         // background-image: url("~/assets/images/gift.png");
@@ -4397,7 +4485,7 @@ background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0.00) 100%);
   border-radius: 8px;
   opacity: 0.56;
   width: 170px;
-  height: 170px;
+  height: 185px;
   overflow: auto;
   padding: 10px;
   position: relative;
@@ -4510,7 +4598,7 @@ background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0.00) 100%);
       img {
         width: 200px;
         height: 200px;
-        object-fit: cover;
+        object-fit: contain;
       }
       h4,
       span {

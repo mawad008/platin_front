@@ -1370,7 +1370,7 @@
                           name="card"
                           type="radio"
                           checked
-                          value="1"
+                          value="0"
                         />
                         <div class="radio-input">
                           <div
@@ -1461,7 +1461,7 @@
                           v-model="chooseCity"
                           name="card"
                           type="radio"
-                          value="2"
+                          value="1"
                         />
                         <div class="radio-input">
                           <div
@@ -1575,7 +1575,7 @@
                                 <span>*</span>
                               </label>
                               <Dropdown
-                                v-if="chooseCity == 1"
+                                v-if="chooseCity == 0"
                                 v-model="selectedCity1"
                                 :options="normalCity"
                                 filter
@@ -1590,7 +1590,7 @@
                                 </template>
                               </Dropdown>
                               <Dropdown
-                                v-if="chooseCity == 2"
+                                v-if="chooseCity == 1"
                                 v-model="selectedCity1"
                                 :options="fastCity"
                                 filter
@@ -1729,6 +1729,52 @@
               </div>
             </div>
           </div>
+
+
+          <v-dialog v-model="dialog">
+
+<div class="card-popup-container">
+  <div class="main">
+
+    <div>
+      <h3>{{ $t("shipp") }}</h3>
+      <p>{{ $t("shippText") }}</p>
+    </div>
+    <div class="boxes">
+     <div class="box flex-column flex-xl-row flex-lg-row " v-for="item in productsPopup">
+     
+      <v-badge color="#B1628C" :content="item.quantity">
+          <div class="image">
+            <img :src="item.image" alt="" />
+          </div>
+        </v-badge>
+
+        <div class="text w-100 d-flex flex-column gap-2 ">
+          <span class="name"> {{ item.name }} </span>
+          <div class="w-100 d-flex align-items-center justify-content-center text-center text-xl-start text-lg-start">
+            <span class="price"> {{ item.price }} {{ $t("curr") }}</span>
+          </div>
+        </div>
+     </div>
+    </div>
+
+    <div class="btns" >
+        <button @click="dialog = false" class="stroke">{{ $t("agree") }}</button>
+    </div>
+
+    <div @click="dialog = false" class="close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M18.3007 5.70971C18.1139 5.52246 17.8602 5.41723 17.5957 5.41723C17.3312 5.41723 17.0775 5.52246 16.8907 5.70971L12.0007 10.5897L7.1107 5.69971C6.92387 5.51246 6.67022 5.40723 6.4057 5.40723C6.14119 5.40723 5.88753 5.51246 5.7007 5.69971C5.3107 6.08971 5.3107 6.71971 5.7007 7.10971L10.5907 11.9997L5.7007 16.8897C5.3107 17.2797 5.3107 17.9097 5.7007 18.2997C6.0907 18.6897 6.7207 18.6897 7.1107 18.2997L12.0007 13.4097L16.8907 18.2997C17.2807 18.6897 17.9107 18.6897 18.3007 18.2997C18.6907 17.9097 18.6907 17.2797 18.3007 16.8897L13.4107 11.9997L18.3007 7.10971C18.6807 6.72971 18.6807 6.08971 18.3007 5.70971Z"
+          fill="#2D3A4A" />
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+</v-dialog>
+
           <div v-if="store.state.step == 3">
             <div class="row">
               <div class="col-12 col-xl-8 col-lg-8">
@@ -1988,6 +2034,9 @@
                           <div v-if="user.image" class="image">
                             <img :src="user.image" alt="" />
                           </div>
+                          <div v-else class="image">
+                            <!-- <img :src="user.image" alt="" /> -->
+                          </div>
                           <div class="text d-flex flex-column">
                             <h6>
                               {{ userdata1.first_name }}
@@ -2135,7 +2184,7 @@
                                 "
                               >
                                 {{
-                                  chooseCity == 1
+                                  chooseCity == 0
                                     ? $t("normal shipping")
                                     : $t("fast shipp")
                                 }}
@@ -2191,7 +2240,7 @@ import { useStore } from "~/store";
 const store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
-
+let dialog = ref(false);
 let text1 = ref("الرجوع للسلة");
 let text2 = ref("الرجوع الي معلومات المستلم");
 let text3 = ref("الرجوع الي الشحن والعنوان");
@@ -2317,6 +2366,7 @@ const selectedCity1 = ref("");
 const selectedCity2 = ref("");
 let normalCity = ref([]);
 let fastCity = ref([]);
+let productsPopup = ref([]);
 
 const getCities = async () => {
   let result = await axios.get(`${getUrl()}/general`, {
@@ -2359,7 +2409,15 @@ const checkoutFunc1 = async () => {
   if (check) {
     pending.value = true;
     try {
-      let result = await axios.post(`${getUrl()}/orders-checkout/1`, formBody, {
+      let result = await axios.post(`${getUrl()}/orders-checkout/1`,{
+        city:userdata2.value.city.id,
+        street_name:userdata2.value.street_name,
+        building_number:userdata2.value.building_number,
+        district:userdata2.value.district,
+        marks:userdata2.value.marks,
+        fast_shipping:chooseCity.value,
+        products: newArr.value,
+      }, {
         headers: {
           "Content-Language": `${locale.value}`,
         },
@@ -2369,6 +2427,11 @@ const checkoutFunc1 = async () => {
         store.state.step = 3;
         store.state.check3 = true;
         store.state.lineActive2 = true;
+        
+      }
+      if(result.data.data.length >= 1){
+        dialog.value = true;
+        productsPopup.value = result.data.data;
       }
     } catch (errorss) {
       if (errorss.response) {

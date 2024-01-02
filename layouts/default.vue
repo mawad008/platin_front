@@ -81,7 +81,9 @@
               </div>
             </v-menu>
             <div style="cursor: pointer;" @click="goTocategory(5, 'gold')">
+            <nuxt-link :to="localePath('/category')">
               <span>{{ $t('gold bars') }}</span>
+            </nuxt-link>
             </div>
             <nuxt-link :to="localePath('/vendors')">
               <span>{{ $t("vendors") }}</span>
@@ -198,7 +200,7 @@
               style=""
             >
               <div class="input inp">
-                <input type="text" v-model="search_value" @keypress.enter="goToProducts()" :placeholder="$t('search')" style="" />
+                <input type="text" v-model="store.state.search" @keypress.enter="goToProducts()" :placeholder="$t('search')" style="" />
               </div>
               <div class="d-flex align-item-cente gap-4">
                 <v-menu>
@@ -424,8 +426,10 @@
               <div class="box-container d-flex flex-column gap-3">
                 <h6 class="head">{{ $t("links") }}</h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> {{ $t("vendor app") }}</span>
+                  <!-- <span class="head-link"> {{ $t("vendor app") }}</span> -->
+                  <nuxt-link :to="localePath('about')">
                   <span class="head-link"> {{ $t("about") }} </span>
+                  </nuxt-link>
                 </div>
               </div>
             </div>
@@ -444,7 +448,7 @@
                   {{ $t("sub") }}
                 </h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> {{ $t("home") }} </span>
+                
                   <div
                     class="input d-flex align-items-center justify-content-center gap-2"
                   >
@@ -630,9 +634,9 @@
 <script setup>
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useStore } from "~/store";
 import { Vue3Lottie } from "vue3-lottie";
 import cartIcon from "~/assets/animations/cart-icon.json";
+import { useStore } from "~/store";
 const store = useStore;
 const router = useRouter();
 const route = useRoute();
@@ -739,7 +743,7 @@ const goSettings = (name) => {
 let search_value = ref('');
 const goToProducts = () => {
   const queryParams = {
-    search_value: search_value.value,
+    search_value: store.state.search,
     id: cateId.value
   };
   const url = "/products";

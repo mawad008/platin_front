@@ -5,13 +5,12 @@
           <Vue3Lottie :animation-data="cart" :height="300" :width="300" />
         </client-only>
         <div class="d-flex align-items-center  justify-content-center flex-column">
-        <h4>يبدو أن اتصال الانترنت قد انقطع!</h4>
+        <h4>{{ $t('internet') }}</h4>
         <p class="p-text">
-          عذرًا، توقفت الرحلة! يبدو أن اتصال الانترنت قد انقطع. نحن هنا لإعادتك
-          إلى الطريق الصحيح. ارتقِ بمقعدك واستمتع بالرحلة، سنكون معك في لحظة.
+           {{ $t('sorry') }}
         </p>
         
-        <button>اعادة المحاولة</button>
+        <button @click="retry()">{{ $t('retry') }}</button>
         </div>
       </div>
     </div>
@@ -20,6 +19,13 @@
   <script setup>
   import { Vue3Lottie } from "vue3-lottie";
   import cart from "~/assets/animations/loader2.json";
+  
+  let retry = ()=>{
+    if(process.client){
+      window.location.reload();
+    }
+  }
+  
   </script>
   
   <style lang="scss">
@@ -49,7 +55,7 @@
     }
     button {
       display: flex;
-       width: 400px;
+       width: 200px;
       height: 56px;
       padding: 0px 8px;
       justify-content: center;
@@ -58,6 +64,17 @@
       border: 1px solid #2d3a4a;
       color: #2d3a4a;
       font-weight: 700;
+    }
+  }
+
+  @media(max-width:760px){
+    .loader-page{
+      h4{
+       font-size: 24px;
+      }
+      button{
+        
+      }
     }
   }
   </style>

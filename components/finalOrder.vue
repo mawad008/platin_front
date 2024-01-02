@@ -8,7 +8,7 @@
                         <span>{{ $t("cong") }}</span>
                         <h3>  {{ $t("final order") }} </h3>
                         <div class="row">
-                            <div v-for="item in arrData" class="col-6 col-xl-3 col-lg-3 col-md-4">
+                            <div v-for="item in arrData" class="col-6 col-xl-3 col-lg-3 col-md-4 mb-3">
                                 <v-badge color="#B1628C" :content="item.quantity">
                                     <div class="image">
                                         <img :src="item.images[0].full_image_path" alt="" />

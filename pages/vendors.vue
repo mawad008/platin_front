@@ -69,6 +69,10 @@
                 <v-progress-circular size="70" indeterminate color="#dcba95"></v-progress-circular>
               </div>
 
+
+      <loader v-if="pending"></loader>
+
+
     </div>
   </div>
 </template>
@@ -85,6 +89,7 @@ let vendors = ref([]);
 let text1 = ref('');
 let overlayVisible2 = ref(false);
 let spinner = ref(false);
+let pending = ref(true);
 const getCities = async () => {
   let result = await axios.get(`${getUrl()}/general`, {
     headers: {
@@ -105,6 +110,7 @@ const getVendors = async () => {
   });
   if (result.status == 200) {
     spinner.value = false;
+    pending.value = false;
   }
   vendors.value = result.data.data;
 };

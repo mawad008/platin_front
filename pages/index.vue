@@ -73,7 +73,7 @@
   delay: 2500,
   disableOnInteraction: false,
 }" :modules="[SwiperPagination, SwiperAutoplay]" class="">
-        <swiper-slide v-for="(item, index) in adsArr" class="box" :class="`f${index + 1}`">
+        <swiper-slide v-for="(item, index) in adsArr" class="box" :class="`f${index + 1} ff${index % 2 == 0 ? 1 : 2}`">
           <div class="h-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row">
             <div class="text-container">
               <h2 v-html="item.title"></h2>
@@ -449,7 +449,7 @@
           {{ $t("explore3") }}
         </span>
       </div>
-      <swiper :centeredSlides="true" :grabCursor="true" :dir="getSwiperDirection" :thumbs="{ swiper: thumbsSwiper }"
+      <swiper :centeredSlides="true" :loop="true" :grabCursor="true" :dir="getSwiperDirection" :thumbs="{ swiper: thumbsSwiper }"
         :modules="[SwiperFreeMode, SwiperThumbs, SwiperAutoplay]" :breakpoints="{
   '300': {
     slidesPerView: 2,
@@ -463,7 +463,13 @@
     slidesPerView: 9,
     spaceBetween: 60,
   },
-}" class="mySwiper">
+}"
+:autoplay="{
+  delay: 4500,
+  disableOnInteraction: false,
+}"
+
+ class="mySwiper">
         <swiper-slide v-for="(item, index) in brandsArr" class="px">
           <img :src="item.image" class="w-100" alt="" />
         </swiper-slide>

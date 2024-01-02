@@ -1,7 +1,7 @@
 <template>
     <div style="min-height: 100vh;">
         <div class="container about-us-page">
-        <h3>من نحن</h3>
+        <h3>{{ $t('aboutUs') }}</h3>
         <div class="about-container">
          <div class="row justify-content-betwee">
           

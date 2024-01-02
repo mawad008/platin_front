@@ -1,6 +1,6 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="container gold-page">
+    <div v-if="!pending" class="container gold-page">
       <div class="cover-image" :class="color">
         <div
           class="text d-flex flex-column align-items-center justify-content-center"
@@ -83,7 +83,7 @@
           <v-data-iterator :items="paginatedItems"  :items-per-page="itemsPerPage" :page="page">
         <template v-slot:default="{ items }">
     
-            <div class="">
+            <div class="mt-4">
             <div class="row">
               <div class="col-12 col-xl-3 col-lg-3 col-md-6" v-for="item, index in items" :key="item.id">
                <product-card :product="item.raw" />
@@ -105,7 +105,9 @@
           @input="updatePage"
         ></v-pagination>
       </div>
+
     </div>
+      <loader v-if="pending"></loader>
   </div>
 </template>
 
@@ -113,7 +115,7 @@
 import axios from "axios";
 const router = useRouter();
 const route = useRoute();
-let id = ref(route.query.id || null);
+let id = ref(route.query.id || '');
 let color = ref(route.query.color || null);
 let subid = ref(route.query.subid || null);
 let selectbox1 = ref(subid.value ? subid.value : null);
@@ -131,9 +133,13 @@ let products_count = ref(null);
 let spinnerProducts = ref(false);
 let overlayVisible1 = ref(false);
 let overlayVisible2 = ref(false);
+let pending = ref(true);
 
 const getSubcategories = async () => {
   let result = await axios.get(`${getUrl()}/subcategories`, {
+    params:{
+      category_id: id.value
+    },
     headers: {
       "Content-Language": `${locale.value}`,
     },
@@ -161,6 +167,7 @@ const getProducts = async () => {
   });
   if (result.status == 200) {
     spinnerProducts.value = false;
+    pending.value = false;
   }
   category_name.value = result.data.data.category_name;
   category_image.value = result.data.data.category_image;
@@ -193,8 +200,7 @@ watch(
     id.value = newId;
     subid.value = newSup;
     color.value = newColor;
-    console.log(color.value);
-    console.log(id.value);
+    getSubcategories();
     getProducts();
   }
 );

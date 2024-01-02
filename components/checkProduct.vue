@@ -1,6 +1,7 @@
 <template>
   <div>
     <div v-if="arrData.length > 0" class="product-checkout">
+    <div class="boxes">
       <div v-for="(item, index) in arrData" class="head ">
         <v-badge color="#B1628C" :content="item.quantity">
           <div class="image">
@@ -20,6 +21,9 @@
           </div>
         </div>
       </div>
+    
+    
+    </div>
       <v-divider :thickness="1"></v-divider>
 
       <div class="total-price">

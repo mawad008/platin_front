@@ -100,26 +100,31 @@
                       class="octagon product active"
                     >
                       <octagon />
-                      <svg
-                        class="icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M8.00065 14.4331C7.79398 14.4331 7.59398 14.4064 7.42732 14.3464C4.88065 13.4731 0.833984 10.3731 0.833984 5.79307C0.833984 3.45974 2.72065 1.56641 5.04065 1.56641C6.16732 1.56641 7.22065 2.00641 8.00065 2.79307C8.78065 2.00641 9.83399 1.56641 10.9607 1.56641C13.2807 1.56641 15.1673 3.46641 15.1673 5.79307C15.1673 10.3797 11.1207 13.4731 8.57398 14.3464C8.40732 14.4064 8.20732 14.4331 8.00065 14.4331ZM5.04065 2.56641C3.27398 2.56641 1.83398 4.01307 1.83398 5.79307C1.83398 10.3464 6.21398 12.8797 7.75398 13.4064C7.87398 13.4464 8.13398 13.4464 8.25398 13.4064C9.78732 12.8797 14.174 10.3531 14.174 5.79307C14.174 4.01307 12.734 2.56641 10.9673 2.56641C9.95399 2.56641 9.01398 3.03974 8.40732 3.85974C8.22065 4.11307 7.79398 4.11307 7.60732 3.85974C6.98732 3.03307 6.05398 2.56641 5.04065 2.56641Z"
-                          fill="#919EAB"
-                        />
-                      </svg>
+                      <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.3812 6.13389C14.1606 4.35511 17.0457 4.35511 18.8252 6.13389C20.6047 7.91277 20.6047 10.797 18.8252 12.5759L12.3392 19.0593C12.1518 19.2466 11.8479 19.2466 11.6605 19.0593L5.17453 12.5759C3.39495 10.797 3.39495 7.91277 5.17453 6.13389C6.95401 4.35511 9.83904 4.35511 11.6185 6.13389L11.9998 6.51506L12.3812 6.13389Z"
+                  fill="#DCDEE0" />
+              </svg>
                     </div>
                     <div v-if="shareBtn" class="share-box">
-                      <img src="~/assets/images/social1.svg" alt="" />
+                     
+                      <a  target="_blank" :href="`https://t.me/share/url?url=${route}`">
+                        <img src="~/assets/images/social1.svg" alt="" />
+                      </a>
+                      <a  target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?${route}&quote=${name}`">
                       <img src="~/assets/images/social2.svg" alt="" />
-                      <img src="~/assets/images/social3.svg" alt="" />
+                      </a>
+                      <a  target="_blank" :href="`https://twitter.com/intent/tweet?url=${route}`">
+                        <img src="~/assets/images/social3.svg" alt="" />
+                      </a>
+                      <a  target="_blank" :href="`https://wa.me/?text=${route}/`">
                       <img src="~/assets/images/social4.svg" alt="" />
-                      <img src="~/assets/images/social5.svg" alt="" />
+                      </a>
+
+                      <button @click="copyToClipboard();">
+                      <img v-if="check" src="~/assets/images/social5.svg" alt="" />
+                      <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#fff" height="20" width="20" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -150,7 +155,7 @@
                   <div class="time d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-1">
                       <span> {{ $t("del date") }}: </span>
-                      <span class="days fw-bold"> 7-3 أيام تقريباً </span>
+                      <span class="days fw-bold"> {{ $t('days') }}</span>
                     </div>
                     <img src="~/assets/images/delivery.svg" alt="" />
                   </div>
@@ -915,8 +920,7 @@ import { useStore } from "~/store";
 import axios from "axios";
 import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
-import { Vue3Lottie } from "vue3-lottie";
-import fav from "~/assets/animations/fav-icon.json";
+
 const store = useStore;
 const { locale } = useI18n();
 const localePath = useLocalePath();
@@ -928,8 +932,29 @@ let btnActive = ref(0);
 const tokenCookie = Cookies.get("token");
 
 const MainRoute = useRoute();
-const router = useRouter();
+let route = ref(MainRoute.fullPath);
+let name = MainRoute.query.name;
+if (process.client) {
+  route.value = window.location.href;
+}
 let id = ref(MainRoute.query.id);
+const router = useRouter();
+let check = ref(true);
+
+function copyToClipboard() {
+      /* Copy the text */
+      if (process.client) {
+         check.value = false;
+        const clipBoard = navigator.clipboard;
+        clipBoard.writeText(route.value).then(() => {
+        });
+        
+        setTimeout(() => {
+          check.value = true;
+        }, 1000);
+      }
+
+    }
 
 // start swiper images
 
@@ -1023,13 +1048,16 @@ let item = ref({
   vendor_name: mainProduct.value.vendor_name,
 });
 let text1 = ref("تم الاضافة الي قائمة المفضلات");
+let text3 = ref('تم الحذف من قائمة المفضلات');
 let text2 = ref("تم الاضافة الي السلة");
 if (locale.value == "ar") {
   text2.value = "تم الاضافة الي السلة";
   text1.value = "تم الاضافة الي قائمة المفضلات";
+  text3.value = 'تم الحذف من قائمة المفضلات';
 } else if (locale.value == "en") {
   text2.value = "added to cart";
   text1.value = "added to wishlist";
+  text3.value = 'removed from wishlist';
 }
 const addToBasket = () => {
   if (mainProduct.value) {
@@ -1178,6 +1206,17 @@ const addTofav = (item, index) => {
 };
 const deleteTofav = (itemId) => {
   store.commit("deleteFav", { itemId: itemId });
+  createToast(
+    {
+      title: text3.value,
+    },
+    {
+      showIcon: "true",
+      type: "success",
+      toastBackgroundColor: "#dcba95",
+      timeout: 2000,
+    }
+  );
 };
 
 const clickedItem = (id) => {

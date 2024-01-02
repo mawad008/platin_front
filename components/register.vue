@@ -120,7 +120,7 @@
 
       <v-otp-input v-model="otp" :length="6" placeholder="-"
         style="direction: ltr !important; margin-bottom: 14px"></v-otp-input>
-      {{ otp }}
+
       <span class="resend text-center"> {{ $t("resend") }}</span>
       <button @keyup.enter="otpFunc()"  @click="otpFunc()" class="otp gap-3">
         {{ $t("follow") }}

@@ -24,7 +24,7 @@
           </div>
               <div v-if="overlayVisible" id="select-product"
                 class="d-flex  flex-column  gap-3 ">
-                <span v-for="item in categories" @click="selectbox1 = item.id, item1 = item.name, getProducts() ,  overlayVisible = false" :class="{ 'active': selectbox1 == item.id }"> {{ item.name }}</span>
+                <span v-for="item in categories" @click="selectbox1 = item.id, item1 = item.name, getProducts() , getSubcategories() ,  overlayVisible = false" :class="{ 'active': selectbox1 == item.id }"> {{ item.name }}</span>
               </div>
           <v-overlay v-if="overlayVisible" activator="parent" location-strategy="connected" scroll-strategy="reposition" @click="hideOverlay">
            
@@ -40,7 +40,7 @@
 
             <div v-if="overlayVisible2" id="select-product"
               class="d-flex  flex-column text-center">
-              <span v-for="item in subcategories" @click="selectbox2 = item.id , item2 = item.name , getProducts() , overlayVisible2 = false " :class="{ 'active': selectbox2 == item.id }"> {{ item.name }}</span>
+              <span v-for="item in subcategories" @click="selectbox2 = item.id , item2 = item.name , getProducts()  , overlayVisible2 = false " :class="{ 'active': selectbox2 == item.id }"> {{ item.name }}</span>
 
             </div>
 
@@ -95,6 +95,9 @@
             <div v-if="spinnerProducts" class="d-flex align-items-center justify-content-center" style="min-height:50vh;">
               <v-progress-circular size="70" indeterminate color="#dcba95"></v-progress-circular>
             </div>
+            
+
+            <loader3 v-if="loaderSpan"></loader3>
 
 
   <v-pagination
@@ -106,15 +109,23 @@
         @click="getProducts()"
       ></v-pagination>
     </div>
+
+    <loader v-if="pending"></loader>
+
+   
+   
   </div>
 </template>
 
 <script setup>
+import { useStore } from "~/store";
+const store = useStore;
 import axios from 'axios';
 const router = useRouter();
 const route = useRoute();
 const localePath = useLocalePath();
 const { locale } = useI18n();
+let pending = ref(true);
 let tabId = ref(route.query.tagId);
 let search_value = ref(route.query.search_value ? route.query.search_value : null );
 let tab = ref(null);
@@ -133,6 +144,7 @@ let item3 = ref('');
 let page = ref(1);
 let itemsPerPage = ref();
 let total = ref();
+let loaderSpan = ref(false);
 
 let dropdown1 = ref(false);
 
@@ -175,6 +187,9 @@ const getcategories = async () => {
 };
 const getSubcategories = async () => {
   let result = await axios.get(`${getUrl()}/subcategories`, {
+    params:{
+      category_id: selectbox1.value
+    },
     headers: {
       "Content-Language": `${locale.value}`,
     },
@@ -199,7 +214,7 @@ const getProducts = async () => {
       subcategory_id: selectbox2.value ? selectbox2.value : null,
       brand_id: selectbox3.value,
       page:page.value,
-      search_value: search_value.value
+      search_value: store.state.search
     },
     headers: {
       "Content-Language": `${locale.value}`,
@@ -208,8 +223,15 @@ const getProducts = async () => {
 
   if (result.status == 200) {
     spinnerProducts.value = false;
+    pending.value = false;
    }
   products.value = result.data.data;
+  if(products.value.length <=0 ){
+    loaderSpan.value = true;
+  } else{
+    loaderSpan.value = false;
+
+  }
   itemsPerPage.value = result.data.meta.per_page;
   total.value = result.data.meta.total;
 };

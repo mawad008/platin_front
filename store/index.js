@@ -22,6 +22,7 @@ export const useStore = createStore({
     lineActive3: false,
     authenticated: false,
     final: false,
+    search: '',
     animCart:false,
     isInFav: [],
     step: 1,

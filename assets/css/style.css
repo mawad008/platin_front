@@ -268,7 +268,15 @@ a {
 .product-checkout {
   border-radius: 16px;
   border: 1px solid #ebeaed;
+}
+.product-checkout .boxes {
+  overflow-y: auto;
+  height: 250px;
+  width: 100%;
   padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 .product-checkout .head {
   display: flex;
@@ -310,6 +318,7 @@ a {
   cursor: pointer;
 }
 .product-checkout .total-price {
+  padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -333,6 +342,8 @@ a {
   font-size: 14px;
 }
 .product-checkout .btns {
+  padding: 0px 32px;
+  padding-bottom: 32px;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
@@ -493,6 +504,20 @@ html[dir=rtl] input[type=tel] {
   margin: 5px 0px;
   font-size: 16px;
   color: #5a7184;
+}
+
+.p-dropdown-label {
+  color: #959EAD !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+}
+
+.p-dropdown-trigger svg {
+  fill: #959EAD !important;
+}
+.p-dropdown-trigger svg path {
+  fill: #959EAD !important;
 }
 
 .product-card-scroll {
@@ -684,14 +709,70 @@ html[dir=ltr] body {
   justify-content: center;
 }
 
+html[dir=rtl] .card-popup-container {
+  direction: rtl;
+}
+
+html[dir=ltr] .card-popup-container {
+  direction: ltr;
+}
+
 .card-popup-container {
   width: 427px;
-  height: 528px;
+  height: 570px;
   border-radius: 24px;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.card-popup-container .boxes {
+  overflow-y: auto;
+  height: 200px;
+  width: 100%;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.card-popup-container .box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+.card-popup-container .box .image {
+  display: flex;
+  width: 72px;
+  height: 72px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid #dbdde0;
+}
+.card-popup-container .box .image img {
+  width: 56px;
+  height: 56px;
+}
+.card-popup-container .box .text .name {
+  color: #2d3a4a;
+  font-weight: 700;
+  font-size: 17px;
+}
+.card-popup-container .box .text .price {
+  color: #5a7184;
+  font-size: 14px;
+  font-weight: 700;
+}
+.card-popup-container .box .text .trash {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .card-popup-container .main {
   width: 100%;
@@ -1575,12 +1656,12 @@ html[dir=ltr] body {
 .offers .box.f1 .overlay {
   display: block;
 }
-.offers .box.f2 {
+.offers .box.f2, .offers .box.ff2 {
   background-image: url("~/assets/images/offer1.png");
   background-position: center;
   background-size: cover;
 }
-.offers .box.f3 {
+.offers .box.f3, .offers .box.ff3 {
   background-image: url("~/assets/images/offer2.png");
 }
 .offers .box .text-container {
@@ -3740,7 +3821,7 @@ html[dir=ltr] body {
   border-radius: 8px;
   opacity: 0.56;
   width: 170px;
-  height: 170px;
+  height: 185px;
   overflow: auto;
   padding: 10px;
   position: relative;
@@ -3836,8 +3917,8 @@ html[dir=ltr] body {
 .gold-page .cover-image .text img {
   width: 200px;
   height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .gold-page .cover-image .text h4,
 .gold-page .cover-image .text span {
