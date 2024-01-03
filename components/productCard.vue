@@ -3,7 +3,7 @@
     <div
       v-if="product"
       class="product-card"
-      @click="goToProductPage2(product.id, product.name)"
+      
     >
       <div class="head w-100 d-flex align-items-center justify-content-between">
         <div
@@ -61,6 +61,7 @@
           />
         </client-only>
       </div>
+      <div @click="goToProductPage2(product.id, product.name)">
       <Swiper
         :spaceBetween="30"
         :centeredSlides="true"
@@ -279,6 +280,8 @@
             </div>
           </div>
         </div>
+      </div>
+      
       </div>
     </div>
   </div>

@@ -2122,7 +2122,7 @@
                               fill="#2566AF" />
                           </svg> -->
                             <div class="d-flex flex-column">
-                              <h6 style="font-size: 14px">
+                              <h6 style="font-size: 14px; font-weight: 700;">
                                 {{ $t("payment1") }}
                               </h6>
                               <span class="text-word">
@@ -2347,6 +2347,12 @@ const checkoutFunc = async () => {
         store.state.step = 2;
         store.state.check2 = true;
         store.state.lineActive1 = true;
+        if (process.client) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
       }
     } catch (errorss) {
       if (errorss.response) {
@@ -2427,6 +2433,12 @@ const checkoutFunc1 = async () => {
         store.state.step = 3;
         store.state.check3 = true;
         store.state.lineActive2 = true;
+        if (process.client) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
         
       }
       if(result.data.data.length >= 1){
@@ -2463,6 +2475,12 @@ const checkoutFunc2 = async () => {
       store.state.step = 4;
       store.state.check4 = true;
       store.state.lineActive3 = true;
+      if (process.client) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
     }
   } catch (errorss) {
     console.log(errorss);
@@ -2506,6 +2524,12 @@ const checkoutFunc3 = async () => {
       store.state.check4 = true;
       store.state.lineActive3 = true;
       finalObj.value = result.data.data;
+      if (process.client) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
       // store.state.finalStep = 1;
     }
   } catch (errorss) {

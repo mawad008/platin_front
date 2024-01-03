@@ -68,11 +68,11 @@
           }}</span>
           <span class="error-msg2" v-if="errors.phone">{{ errors.phone[0] }}</span>
         </div>
-        <div class="main-input">
+        <!-- <div class="main-input">
           <label for=""> {{ $t("image") }} </label>
           <input type="file" @change="handleImageChange" placeholder="+0215984494" />
           <span class="error-msg2" v-if="errors.image">{{ errors.image[0] }}</span>
-        </div>
+        </div> -->
         <div class="main-input">
           <label for=""> {{ $t("pass") }}<span>*</span> </label>
           <input type="password" v-model="form.password" placeholder=" ********** " />

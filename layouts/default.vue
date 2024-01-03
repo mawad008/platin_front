@@ -89,8 +89,8 @@
                 </div>
               </div>
             </v-menu>
-            <div style="cursor: pointer" @click="goTocategory(5, 'gold')">
-              <nuxt-link :to="localePath('/category')">
+            <div style="cursor: pointer" @click="goTogold(5, 'gold')">
+              <nuxt-link :to="localePath('/gold')">
                 <span>{{ $t("gold bars") }}</span>
               </nuxt-link>
             </div>
@@ -112,7 +112,7 @@
           class="d-flex align-items-center bg-dange w-100 justify-content-between"
         >
           <div class="d-flex align-items-center gap-5">
-            <nuxt-link :to="localePath('/')" class="logo">
+            <nuxt-link :to="localePath('/')"  @click="store.state.activeMobile = 1" class="logo">
               <!-- <img src="~/assets/images/logo.png" alt="" /> -->
               <logo v-if="locale == 'ar'" class="a-logo" :w="87" :h="31"></logo>
               <e-logo
@@ -205,8 +205,10 @@
                     </div>
                   </div>
                 </v-menu>
-                <div style="cursor: pointer" @click="goTocategory(5, 'gold')">
-                  <span>{{ $t("gold bars") }}</span>
+                <div style="cursor: pointer" @click="goTogold(5, 'gold')">
+                  <nuxt-link :to="localePath('/gold')">
+                <span>{{ $t("gold bars") }}</span>
+              </nuxt-link>
                 </div>
                 <nuxt-link :to="localePath('/vendors')">
                   <span>{{ $t("vendors") }}</span>
@@ -298,7 +300,7 @@
                 </div>
               </nuxt-link>
               <nuxt-link :to="localePath('/cart')">
-                <div v-if="!store.state.animCart">
+                <div>
                   <v-badge v-if="theNum > 0" :content="theNum" color="#B1628C">
                     <div class="icon border">
                       <svg
@@ -334,7 +336,7 @@
                     </svg>
                   </div>
                 </div>
-                <client-only>
+                <!-- <client-only>
                   <Vue3Lottie
                     v-if="store.state.animCart"
                     class="icon border"
@@ -342,7 +344,7 @@
                     :height="20"
                     :width="20"
                   />
-                </client-only>
+                </client-only> -->
               </nuxt-link>
 
               <nuxt-link
@@ -415,7 +417,7 @@
       "
     >
       <div class="checkout-nav">
-        <nuxt-link @click="clearCheck()" :to="localePath('/')">
+        <nuxt-link @click="clearCheck() , store.state.activeMobile = 1" :to="localePath('/')">
           <logo v-if="locale == 'ar'" class="a-logo" :w="124" :h="45"></logo>
           <e-logo
             v-if="locale == 'en'"
@@ -563,7 +565,7 @@
     </footer>
     <footer class="mobile-footer">
       <div class="icons">
-        <nuxt-link class="icon" :to="localePath('/')">
+        <nuxt-link class="icon" @click="store.state.activeMobile = 1" :class="{'activeMobile': store.state.activeMobile == 1}" :to="localePath('/')">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -577,7 +579,7 @@
             />
           </svg>
         </nuxt-link>
-        <nuxt-link :to="localePath('/sections')" class="icon">
+        <nuxt-link :to="localePath('/sections')" @click="store.state.activeMobile = 2" :class="{'activeMobile': store.state.activeMobile == 2}" class="icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -619,7 +621,7 @@
             />
           </svg>
         </nuxt-link>
-        <nuxt-link :to="localePath('search')" class="icon">
+        <nuxt-link :to="localePath('search')" @click="store.state.activeMobile = 3" :class="{'activeMobile': store.state.activeMobile == 3}" class="icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -657,7 +659,7 @@
             />
           </svg>
         </nuxt-link>
-        <nuxt-link class="icon" :to="localePath('mobile-nav')">
+        <nuxt-link class="icon" @click="store.state.activeMobile = 4" :class="{'activeMobile': store.state.activeMobile == 4}" :to="localePath('mobile-nav')">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -708,6 +710,8 @@ let checkInt = ref(false);
 let cateId = ref();
 let text7 = ref("");
 
+let activeMobile = ref(store.state.activeMobile);
+
 let user = ref(store.state.user);
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
@@ -748,6 +752,24 @@ const goTocategory = (id, name, color) => {
     color: color,
   };
   const url = "/category";
+
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+};
+const goTogold = (id, name, color) => {
+  const queryParams = {
+    id: id,
+    name: name,
+    color: color,
+  };
+  const url = "/gold";
 
   const updatedRoute = {
     path: url,

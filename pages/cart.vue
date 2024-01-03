@@ -102,7 +102,8 @@
                         <div class="shipping">
                           <img src="~/assets/images/package.svg" alt="" />
                           <div class="d-flex align-items-center gap-1">
-                            <span> {{ $t("available") }} </span>
+                            <span v-if="item.fast_shipping_cities.length <= 0"> {{ $t("unavailable") }} </span>
+                            <span v-else> {{ $t("available") }} </span>
                             <span class="main">{{ $t("fast shipping") }} </span>
                             <span v-for="i in item.fast_shipping_cities"> {{ $t("in") }} {{ i.name }}</span>
                           </div>
@@ -138,7 +139,7 @@
                   </div>
                 </div>
 
-                <div class="input">
+                <!-- <div class="input">
                   <input type="text" :placeholder="$t('code')" />
                   <button>{{ $t("act") }}</button>
                 </div>
@@ -147,8 +148,8 @@
                 <div class="mt-3 d-flex align-items-center gap-1 order-text">
                   <span> {{ $t("get offer") }}</span>
                   <span class="gold">600 {{ $t("curr") }}</span>
-                </div>
-                <h6>{{ $t("follow1") }}</h6>
+                </div> -->
+                <h6 class="mt-4">{{ $t("follow1") }}</h6>
 
                 <button v-if="auth"  class="pay">
                  <nuxt-link class="w-100" :to="localePath('/checkout')">{{ $t("start") }}</nuxt-link>

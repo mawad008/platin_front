@@ -145,13 +145,13 @@
 
     <div class="container categories">
       <div
-        class="d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between"
+        class="d-flex align-items-center  flex-column flex-xl-row flex-lg-row justify-content-between"
       >
         <div class="text">
           <h3>
             {{ $t("shop1") }}
           </h3>
-          <p class="p-text cate">
+          <p class="p-text cate  ">
             {{ $t("explore2") }}
           </p>
         </div>
@@ -251,7 +251,7 @@
         </v-window-item>
       </v-window>
 
-      <span @click="goToProducts()" class="more mt-5"> {{ $t("more") }} </span>
+      <span @click="goToProducts()" class="more"> {{ $t("more") }} </span>
     </div>
 
     <!-- <div class="container">
@@ -345,7 +345,7 @@
     </div> -->
     <div class="main-banner-container">
       <div
-        class="container d-flex align-items-center justify-content-center banner-container"
+        class="container d-flex align-items-center flex-column justify-content-center banner-container"
       >
         <!-- :slidesPerView="1"
       :spaceBetween="10" -->
@@ -357,14 +357,38 @@
             <i class="fa-solid fa-chevron-left arrow-icon"></i>
           </div>
         </div>
+        <div class="banner-mobile f1">
+        <div class="text">
+         <h4>{{ $t("add recently") }}</h4>
+         <svg
+              class="svg arrow-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M9.56994 18.8201C9.37994 18.8201 9.18994 18.7501 9.03994 18.6001L2.96994 12.5301C2.67994 12.2401 2.67994 11.7601 2.96994 11.4701L9.03994 5.40012C9.32994 5.11012 9.80994 5.11012 10.0999 5.40012C10.3899 5.69012 10.3899 6.17012 10.0999 6.46012L4.55994 12.0001L10.0999 17.5401C10.3899 17.8301 10.3899 18.3101 10.0999 18.6001C9.95994 18.7501 9.75994 18.8201 9.56994 18.8201Z"
+                fill="white"
+              />
+              <path
+                d="M20.4999 12.75H3.66992C3.25992 12.75 2.91992 12.41 2.91992 12C2.91992 11.59 3.25992 11.25 3.66992 11.25H20.4999C20.9099 11.25 21.2499 11.59 21.2499 12C21.2499 12.41 20.9099 12.75 20.4999 12.75Z"
+                fill="white"
+              />
+            </svg>
+        </div>
+          <img class="img-fluid" src="~/assets/images/banner-img1.png" alt="" />
+        </div>
         <swiper
           :navigation="{
             nextEl: '.slider-cate-next',
             prevEl: '.slider-cate-prev',
           }"
+          :spaceBetween="20"
           :breakpoints="{
-            '640': {
-              slidesPerView: 1,
+            '200': {
+              slidesPerView: 1.3,
               spaceBetween: 20,
             },
             '768': {
@@ -430,14 +454,38 @@
             <i class="fa-solid fa-chevron-left arrow-icon"></i>
           </div>
         </div>
+        <div class="banner-mobile f2">
+        <div class="text">
+         <h4>{{ $t("most selling") }}</h4>
+         <svg
+              class="svg arrow-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M9.56994 18.8201C9.37994 18.8201 9.18994 18.7501 9.03994 18.6001L2.96994 12.5301C2.67994 12.2401 2.67994 11.7601 2.96994 11.4701L9.03994 5.40012C9.32994 5.11012 9.80994 5.11012 10.0999 5.40012C10.3899 5.69012 10.3899 6.17012 10.0999 6.46012L4.55994 12.0001L10.0999 17.5401C10.3899 17.8301 10.3899 18.3101 10.0999 18.6001C9.95994 18.7501 9.75994 18.8201 9.56994 18.8201Z"
+                fill="white"
+              />
+              <path
+                d="M20.4999 12.75H3.66992C3.25992 12.75 2.91992 12.41 2.91992 12C2.91992 11.59 3.25992 11.25 3.66992 11.25H20.4999C20.9099 11.25 21.2499 11.59 21.2499 12C21.2499 12.41 20.9099 12.75 20.4999 12.75Z"
+                fill="white"
+              />
+            </svg>
+        </div>
+          <img class="img-fluid" src="~/assets/images/banner-img2.png" alt="" />
+        </div>
         <swiper
           :navigation="{
             nextEl: '.second-cate-next',
             prevEl: '.second-cate-prev',
           }"
+          :spaceBetween="20"
           :breakpoints="{
-            '640': {
-              slidesPerView: 1,
+            '200': {
+              slidesPerView: 1.3,
               spaceBetween: 20,
             },
             '768': {
@@ -503,14 +551,38 @@
             <i class="fa-solid fa-chevron-left arrow-icon"></i>
           </div>
         </div>
+        <div class="banner-mobile f3">
+        <div class="text">
+         <h4>{{ $t("discounts") }}</h4>
+         <svg
+              class="svg arrow-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M9.56994 18.8201C9.37994 18.8201 9.18994 18.7501 9.03994 18.6001L2.96994 12.5301C2.67994 12.2401 2.67994 11.7601 2.96994 11.4701L9.03994 5.40012C9.32994 5.11012 9.80994 5.11012 10.0999 5.40012C10.3899 5.69012 10.3899 6.17012 10.0999 6.46012L4.55994 12.0001L10.0999 17.5401C10.3899 17.8301 10.3899 18.3101 10.0999 18.6001C9.95994 18.7501 9.75994 18.8201 9.56994 18.8201Z"
+                fill="white"
+              />
+              <path
+                d="M20.4999 12.75H3.66992C3.25992 12.75 2.91992 12.41 2.91992 12C2.91992 11.59 3.25992 11.25 3.66992 11.25H20.4999C20.9099 11.25 21.2499 11.59 21.2499 12C21.2499 12.41 20.9099 12.75 20.4999 12.75Z"
+                fill="white"
+              />
+            </svg>
+        </div>
+          <img class="img-fluid" src="~/assets/images/banner-img3.png" alt="" />
+        </div>
         <swiper
           :navigation="{
             nextEl: '.third-cate-next',
             prevEl: '.third-cate-prev',
           }"
+          :spaceBetween="20"
           :breakpoints="{
-            '640': {
-              slidesPerView: 1,
+            '200': {
+              slidesPerView: 1.3,
               spaceBetween: 20,
             },
             '768': {
@@ -570,7 +642,7 @@
         class="text d-flex align-items-center justify-content-center flex-column"
       >
         <h3>{{ $t("brands") }}</h3>
-        <span class="p-text">
+        <span class="p-text textt">
           {{ $t("explore3") }}
         </span>
       </div>
@@ -584,8 +656,8 @@
         :modules="[SwiperFreeMode, SwiperThumbs, SwiperAutoplay]"
         :breakpoints="{
           '300': {
-            slidesPerView: 2,
-            spaceBetween: 80,
+            slidesPerView: 2.5,
+            spaceBetween: 40,
           },
           '700': {
             slidesPerView: 5,
@@ -614,6 +686,7 @@
         :spaceBetween="60"
         :dir="getSwiperDirection"
         :slidesPerView="1"
+        class="mySwiper2"
       >
         <swiper-slide
           v-for="(item, index) in brandsArr"
@@ -643,7 +716,7 @@
 
     <div class="container chart-div">
       <div
-        class="text d-flex align-items-center text-center gap-2 mb-5 justify-content-center flex-column"
+        class="text d-flex align-items-center text-center gap-2  justify-content-center flex-column"
       >
         <h3>{{ $t("about market") }}</h3>
         <span class="p-text">
@@ -845,7 +918,7 @@
 
     <div class="info-container container">
       <div class="row justify-content-center bg">
-        <div class="col-12 bg col-xl-5 col-lg-5 cover-box my-2">
+        <div class="col-12 bg col-xl-5 col-lg-5 cover-box">
           <div class="img-box">
             <div class="image bg-dang">
               <img src="~/assets/images/info-bg.png" alt="" />

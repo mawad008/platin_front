@@ -1,5 +1,5 @@
 <template>
-  <div style="min-height: 100vh">
+  <div>
     <div class="container vendors-container">
       <div
         class="d-flex justify-content-end flex-column flex-xl-row flex-xl-row flex-md-row gap-3 w-100"
@@ -45,7 +45,7 @@
               <div class="text text-center">
                 <h4>{{ item.name }}</h4>
                 <div
-                  class="det d-flex align-items-center w-100 justify-content-between"
+                  class="det d-flex align-items-center gap-3 w-100 justify-content-center"
                 >
                   <div class="d-flex align-items-center gap-2">
                     <img src="~/assets/images/diamond.svg" alt="" />
