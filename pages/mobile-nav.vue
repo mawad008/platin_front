@@ -152,12 +152,12 @@
             </div>
 
             <div class="btns">
-             <button v-if="auth" @click="logOut()" class="out"> {{ $t("log out") }} </button>
-             <button v-else  class="log">
+             <button v-if="!store.state.authenticated"  class="log">
               <nuxt-link class="w-100" :to="localePath('/auth')">
                 {{ $t("login") }}
               </nuxt-link>
              </button>
+             <div v-else @click="logOut()" class="out"> {{ $t("log out") }} </div>
             </div>
         </div>
     </div>
