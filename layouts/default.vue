@@ -62,14 +62,23 @@
                           >
                             <span
                               v-for="i in item.subcategories"
-                              @click="goTocategorysub(item.id, item.name, i.id , `f${index + 1}`)"
+                              @click="
+                                goTocategorysub(
+                                  item.id,
+                                  item.name,
+                                  i.id,
+                                  `f${index + 1}`
+                                )
+                              "
                             >
                               {{ i.name }}
                             </span>
                           </div>
                           <span
                             class="all"
-                            @click=" goTocategory(item.id, item.name, `f${index + 1}`)"
+                            @click="
+                              goTocategory(item.id, item.name, `f${index + 1}`)
+                            "
                           >
                             {{ $t("alll") }}
                           </span>
@@ -80,10 +89,10 @@
                 </div>
               </div>
             </v-menu>
-            <div style="cursor: pointer;" @click="goTocategory(5, 'gold')">
-            <nuxt-link :to="localePath('/category')">
-              <span>{{ $t('gold bars') }}</span>
-            </nuxt-link>
+            <div style="cursor: pointer" @click="goTocategory(5, 'gold')">
+              <nuxt-link :to="localePath('/category')">
+                <span>{{ $t("gold bars") }}</span>
+              </nuxt-link>
             </div>
             <nuxt-link :to="localePath('/vendors')">
               <span>{{ $t("vendors") }}</span>
@@ -105,112 +114,28 @@
           <div class="d-flex align-items-center gap-5">
             <nuxt-link :to="localePath('/')" class="logo">
               <!-- <img src="~/assets/images/logo.png" alt="" /> -->
-            <logo v-if="locale == 'ar'" class="a-logo" :w="87" :h="31"></logo>
-          <e-logo v-if="locale == 'en'" class="e-logo" :w="87" :h="31"></e-logo>
+              <logo v-if="locale == 'ar'" class="a-logo" :w="87" :h="31"></logo>
+              <e-logo
+                v-if="locale == 'en'"
+                class="e-logo"
+                :w="87"
+                :h="31"
+              ></e-logo>
             </nuxt-link>
 
             <div v-if="activeNav" class="items-container">
-            <div class="items   d-flex align-items-center gap-4">
-              <nuxt-link :to="localePath('/')">
-                <span>{{ $t("home") }}</span>
-              </nuxt-link>
+              <div class="items d-flex align-items-center gap-4">
+                <nuxt-link :to="localePath('/')">
+                  <span>{{ $t("home") }}</span>
+                </nuxt-link>
 
-              <v-menu>
-                <template v-slot:activator="{ props }">
-                  <button
-                    v-bind="props"
-                    class="d-flex align-items-center gap-2"
-                  >
-                    <span> {{ $t("sections") }}</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M11.9465 5.45312H7.79317H4.05317C3.41317 5.45312 3.09317 6.22646 3.5465 6.67979L6.99983 10.1331C7.55317 10.6865 8.45317 10.6865 9.0065 10.1331L10.3198 8.81979L12.4598 6.67979C12.9065 6.22646 12.5865 5.45312 11.9465 5.45312Z"
-                        fill="#2D3A4A"
-                      />
-                    </svg>
-                  </button>
-                </template>
-                <div>
-                  <div id="mega-menu-id" class="mega-menu">
-                    <div class="row justify-content-end">
-                      <div
-                        v-for="(item, index) in categoriesArr"
-                        class="col-12 col-xl-3 col-lg-3 col-md-6"
-                      >
-                        <div class="box d-flex flex-column align-items-center">
-                          <div
-                            class="d-flex align-items-center justify-content-center w-100"
-                          >
-                            <div class="image" :class="`f${index + 1}`">
-                              <img :src="item.image" alt="" />
-                            </div>
-                          </div>
-                          <div class="text d-flex flex-column gap-3">
-                            <h6 class="mt-3">{{ item.name }}</h6>
-                            <div
-                              class="links d-flex align-items-center gap-3 flex-column"
-                            >
-                              <span
-                                v-for="i in item.subcategories"
-                                @click="
-                                  goTocategorysub(item.id, item.name, i.id ,`f${index + 1}`)
-                                "
-                              >
-                                {{ i.name }}
-                              </span>
-                            </div>
-                            <span
-                              class="all"
-                              @click="
-                                goTocategory(
-                                  item.id,
-                                  item.name,
-                                  `f${index + 1}`
-                                )
-                              "
-                            >
-                              {{ $t("alll") }}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </v-menu>
-              <div style="cursor: pointer;" @click="goTocategory(5, 'gold')">
-              <span>{{ $t('gold bars') }}</span>
-              </div>
-              <nuxt-link :to="localePath('/vendors')">
-                <span>{{ $t("vendors") }}</span>
-              </nuxt-link>
-            
-            </div>
-              <!-- <span>الدعم الفني</span> -->
-            </div>
-            <div
-              v-if="!activeNav"
-              class="search d-flex align-items-center justify-content-between px-1"
-              style=""
-            >
-              <div class="input inp">
-                <input type="text" v-model="store.state.search" @keypress.enter="goToProducts()" :placeholder="$t('search')" style="" />
-              </div>
-              <div class="d-flex align-item-cente gap-4">
                 <v-menu>
                   <template v-slot:activator="{ props }">
                     <button
-                      class="d-flex align-items-center gap-1"
                       v-bind="props"
-                      style="color: #2d3a4a; font-size: 14px; font-weight: 400"
+                      class="d-flex align-items-center gap-2"
                     >
-                      {{ text7 ? text7 :$t("sections") }}
+                      <span> {{ $t("sections") }}</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -225,10 +150,117 @@
                       </svg>
                     </button>
                   </template>
+                  <div>
+                    <div id="mega-menu-id" class="mega-menu">
+                      <div class="row justify-content-end">
+                        <div
+                          v-for="(item, index) in categoriesArr"
+                          class="col-12 col-xl-3 col-lg-3 col-md-6"
+                        >
+                          <div
+                            class="box d-flex flex-column align-items-center"
+                          >
+                            <div
+                              class="d-flex align-items-center justify-content-center w-100"
+                            >
+                              <div class="image" :class="`f${index + 1}`">
+                                <img :src="item.image" alt="" />
+                              </div>
+                            </div>
+                            <div class="text d-flex flex-column gap-3">
+                              <h6 class="mt-3">{{ item.name }}</h6>
+                              <div
+                                class="links d-flex align-items-center gap-3 flex-column"
+                              >
+                                <span
+                                  v-for="i in item.subcategories"
+                                  @click="
+                                    goTocategorysub(
+                                      item.id,
+                                      item.name,
+                                      i.id,
+                                      `f${index + 1}`
+                                    )
+                                  "
+                                >
+                                  {{ i.name }}
+                                </span>
+                              </div>
+                              <span
+                                class="all"
+                                @click="
+                                  goTocategory(
+                                    item.id,
+                                    item.name,
+                                    `f${index + 1}`
+                                  )
+                                "
+                              >
+                                {{ $t("alll") }}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </v-menu>
+                <div style="cursor: pointer" @click="goTocategory(5, 'gold')">
+                  <span>{{ $t("gold bars") }}</span>
+                </div>
+                <nuxt-link :to="localePath('/vendors')">
+                  <span>{{ $t("vendors") }}</span>
+                </nuxt-link>
+              </div>
+              <!-- <span>الدعم الفني</span> -->
+            </div>
             <div
+              v-if="!activeNav"
+              class="search d-flex align-items-center justify-content-between px-1"
+              style=""
+            >
+              <div class="input inp">
+                <input
+                  type="text"
+                  v-model="store.state.search"
+                  @keypress.enter="goToProducts()"
+                  :placeholder="$t('search')"
+                  style=""
+                />
+              </div>
+              <div class="d-flex align-item-cente gap-4">
+                <v-menu>
+                  <template v-slot:activator="{ props }">
+                    <button
+                      class="d-flex align-items-center gap-1"
+                      v-bind="props"
+                      style="color: #2d3a4a; font-size: 14px; font-weight: 400"
+                    >
+                      {{ text7 ? text7 : $t("sections") }}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M11.9465 5.45312H7.79317H4.05317C3.41317 5.45312 3.09317 6.22646 3.5465 6.67979L6.99983 10.1331C7.55317 10.6865 8.45317 10.6865 9.0065 10.1331L10.3198 8.81979L12.4598 6.67979C12.9065 6.22646 12.5865 5.45312 11.9465 5.45312Z"
+                          fill="#2D3A4A"
+                        />
+                      </svg>
+                    </button>
+                  </template>
+                  <div
                     class="list-profile list d-flex flex-column p-4 gap-4 text-center"
                   >
-                    <button type="" v-for="item in categoriesArr" @click="cateId  = item.id , text7 = item.name"> {{ item.name }}</button>
+                    <button
+                      type=""
+                      v-for="item in categoriesArr"
+                      @click="(cateId = item.id), (text7 = item.name)"
+                    >
+                      {{ item.name }}
+                    </button>
                   </div>
                 </v-menu>
                 <div @click="goToProducts()" class="search-icon">
@@ -266,9 +298,26 @@
                 </div>
               </nuxt-link>
               <nuxt-link :to="localePath('/cart')">
-              <div v-if="!store.state.animCart">
-                <v-badge v-if="theNum > 0" :content="theNum" color="#B1628C">
-                  <div class="icon border">
+                <div v-if="!store.state.animCart">
+                  <v-badge v-if="theNum > 0" :content="theNum" color="#B1628C">
+                    <div class="icon border">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="25"
+                        viewBox="0 0 24 25"
+                        fill="none"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M3.82541 6.08669L3.643 4.57513C3.5773 3.93433 3.0364 3.44704 2.39089 3.44704H1.71649C1.29919 3.44704 0.960937 3.10954 0.960938 2.69325C0.960938 2.27696 1.29919 1.93945 1.71649 1.93945H2.39089C3.81144 1.93945 5.00168 3.01173 5.14626 4.4217L5.28392 5.76417H20.6172C20.9342 5.76417 21.1724 6.0529 21.1114 6.36328L19.7718 13.1793C19.4475 14.8293 17.998 16.0195 16.3128 16.0195H8.2843C8.51585 17.0389 9.42891 17.7779 10.494 17.7779H16.8175C16.8547 17.7779 16.8917 17.7806 16.8731 17.7839C16.9285 17.7799 16.9842 17.7779 17.0401 17.7779C18.2917 17.7779 19.3063 18.7902 19.3063 20.039C19.3063 21.2877 18.2917 22.3001 17.0401 22.3001C15.7885 22.3001 14.7739 21.2877 14.7739 20.039C14.7739 19.7787 14.8181 19.5247 14.9028 19.2855H12.1277C12.2124 19.5247 12.2566 19.7787 12.2566 20.039C12.2566 21.2877 11.242 22.3001 9.99041 22.3001C8.73881 22.3001 7.72421 21.2877 7.72421 20.039C7.72421 19.4883 7.92289 18.9693 8.27201 18.5647C7.41318 17.9407 6.84663 16.9781 6.73678 15.9038L6.72518 15.7904C5.49555 15.3233 4.58805 14.1879 4.46716 12.809L4.16266 9.33533C4.15752 9.31385 4.15375 9.29178 4.15143 9.26921L3.82541 6.08669ZM9.99041 21.0438C10.5466 21.0438 10.9975 20.5939 10.9975 20.039C10.9975 19.484 10.5466 19.0341 9.99041 19.0341C9.43421 19.0341 8.98331 19.484 8.98331 20.039C8.98331 20.5939 9.43421 21.0438 9.99041 21.0438ZM17.0401 21.0438C17.5963 21.0438 18.0472 20.5939 18.0472 20.039C18.0472 19.484 17.5963 19.0341 17.0401 19.0341C16.4839 19.0341 16.033 19.484 16.033 20.039C16.033 20.5939 16.4839 21.0438 17.0401 21.0438Z"
+                          fill="#919EAB"
+                        />
+                      </svg>
+                    </div>
+                  </v-badge>
+                  <div v-if="theNum <= 0" class="icon border">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -284,28 +333,16 @@
                       />
                     </svg>
                   </div>
-                </v-badge>
-                <div v-if="theNum <= 0" class="icon border">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M3.82541 6.08669L3.643 4.57513C3.5773 3.93433 3.0364 3.44704 2.39089 3.44704H1.71649C1.29919 3.44704 0.960937 3.10954 0.960938 2.69325C0.960938 2.27696 1.29919 1.93945 1.71649 1.93945H2.39089C3.81144 1.93945 5.00168 3.01173 5.14626 4.4217L5.28392 5.76417H20.6172C20.9342 5.76417 21.1724 6.0529 21.1114 6.36328L19.7718 13.1793C19.4475 14.8293 17.998 16.0195 16.3128 16.0195H8.2843C8.51585 17.0389 9.42891 17.7779 10.494 17.7779H16.8175C16.8547 17.7779 16.8917 17.7806 16.8731 17.7839C16.9285 17.7799 16.9842 17.7779 17.0401 17.7779C18.2917 17.7779 19.3063 18.7902 19.3063 20.039C19.3063 21.2877 18.2917 22.3001 17.0401 22.3001C15.7885 22.3001 14.7739 21.2877 14.7739 20.039C14.7739 19.7787 14.8181 19.5247 14.9028 19.2855H12.1277C12.2124 19.5247 12.2566 19.7787 12.2566 20.039C12.2566 21.2877 11.242 22.3001 9.99041 22.3001C8.73881 22.3001 7.72421 21.2877 7.72421 20.039C7.72421 19.4883 7.92289 18.9693 8.27201 18.5647C7.41318 17.9407 6.84663 16.9781 6.73678 15.9038L6.72518 15.7904C5.49555 15.3233 4.58805 14.1879 4.46716 12.809L4.16266 9.33533C4.15752 9.31385 4.15375 9.29178 4.15143 9.26921L3.82541 6.08669ZM9.99041 21.0438C10.5466 21.0438 10.9975 20.5939 10.9975 20.039C10.9975 19.484 10.5466 19.0341 9.99041 19.0341C9.43421 19.0341 8.98331 19.484 8.98331 20.039C8.98331 20.5939 9.43421 21.0438 9.99041 21.0438ZM17.0401 21.0438C17.5963 21.0438 18.0472 20.5939 18.0472 20.039C18.0472 19.484 17.5963 19.0341 17.0401 19.0341C16.4839 19.0341 16.033 19.484 16.033 20.039C16.033 20.5939 16.4839 21.0438 17.0401 21.0438Z"
-                      fill="#919EAB"
-                    />
-                  </svg>
                 </div>
-              
-              </div>
                 <client-only>
-                <Vue3Lottie v-if="store.state.animCart" class=" icon border" :animation-data="cartIcon" :height="20" :width="20" />
-              </client-only>
+                  <Vue3Lottie
+                    v-if="store.state.animCart"
+                    class="icon border"
+                    :animation-data="cartIcon"
+                    :height="20"
+                    :width="20"
+                  />
+                </client-only>
               </nuxt-link>
 
               <nuxt-link
@@ -378,16 +415,20 @@
       "
     >
       <div class="checkout-nav">
-      <nuxt-link @click="clearCheck()" :to="localePath('/')">
-        <logo v-if="locale == 'ar' " class="a-logo" :w="124" :h="45"></logo>
-        <e-logo v-if="locale == 'en'" class="e-logo" :w="124" :h="45"></e-logo>
-      
-      </nuxt-link>
+        <nuxt-link @click="clearCheck()" :to="localePath('/')">
+          <logo v-if="locale == 'ar'" class="a-logo" :w="124" :h="45"></logo>
+          <e-logo
+            v-if="locale == 'en'"
+            class="e-logo"
+            :w="124"
+            :h="45"
+          ></e-logo>
+        </nuxt-link>
 
         <nuxt-link :to="localePath('/')">
-        <button @click="clearCheck()">
-          {{ $t('back2') }}
-        </button>
+          <button @click="clearCheck()">
+            {{ $t("back2") }}
+          </button>
         </nuxt-link>
       </div>
     </nav>
@@ -407,8 +448,18 @@
                   style="width: 123.999px"
                   alt=""
                 /> -->
-             <logo v-if="locale == 'ar'" class="a-logo" :w="124" :h="45"></logo>
-          <e-logo v-if="locale == 'en'" class="e-logo" :w="124" :h="45"></e-logo>
+                <logo
+                  v-if="locale == 'ar'"
+                  class="a-logo"
+                  :w="124"
+                  :h="45"
+                ></logo>
+                <e-logo
+                  v-if="locale == 'en'"
+                  class="e-logo"
+                  :w="124"
+                  :h="45"
+                ></e-logo>
                 <p class="">
                   {{ $t("landing2") }}
                 </p>
@@ -418,7 +469,13 @@
               <div class="box-container d-flex flex-column gap-3">
                 <h6 class="head">{{ $t("sections") }}</h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span  v-for="item , index in categoriesArr"  @click=" goTocategory(item.id, item.name, `f${index + 1}`)" class="head-link"> {{ item.name }} </span>
+                  <span
+                    v-for="(item, index) in categoriesArr"
+                    @click="goTocategory(item.id, item.name, `f${index + 1}`)"
+                    class="head-link"
+                  >
+                    {{ item.name }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -428,7 +485,7 @@
                 <div class="links d-flex flex-column gap-4">
                   <!-- <span class="head-link"> {{ $t("vendor app") }}</span> -->
                   <nuxt-link :to="localePath('about')">
-                  <span class="head-link"> {{ $t("about") }} </span>
+                    <span class="head-link"> {{ $t("about") }} </span>
                   </nuxt-link>
                 </div>
               </div>
@@ -437,8 +494,8 @@
               <div class="box-container d-flex flex-column gap-3">
                 <h6 class="head">{{ $t("contact") }}</h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link">  {{$t('home')}}  </span>
-                  <span class="head-link">  {{$t('home')}}  </span>
+                  <span class="head-link"> {{ $t("home") }} </span>
+                  <span class="head-link"> {{ $t("home") }} </span>
                 </div>
               </div>
             </div>
@@ -448,7 +505,6 @@
                   {{ $t("sub") }}
                 </h6>
                 <div class="links d-flex flex-column gap-4">
-                
                   <div
                     class="input d-flex align-items-center justify-content-center gap-2"
                   >
@@ -517,7 +573,7 @@
           >
             <path
               d="M20.83 8.01002L14.28 2.77002C13 1.75002 11 1.74002 9.72996 2.76002L3.17996 8.01002C2.23996 8.76002 1.66996 10.26 1.86996 11.44L3.12996 18.98C3.41996 20.67 4.98996 22 6.69996 22H17.3C18.99 22 20.59 20.64 20.88 18.97L22.14 11.43C22.32 10.26 21.75 8.76002 20.83 8.01002ZM12.75 18C12.75 18.41 12.41 18.75 12 18.75C11.59 18.75 11.25 18.41 11.25 18V15C11.25 14.59 11.59 14.25 12 14.25C12.41 14.25 12.75 14.59 12.75 15V18Z"
-              fill="#DCBA95"
+              fill="#919EAB"
             />
           </svg>
         </nuxt-link>
@@ -563,7 +619,7 @@
             />
           </svg>
         </nuxt-link>
-        <div class="icon">
+        <nuxt-link :to="localePath('search')" class="icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -600,7 +656,7 @@
               stroke-linejoin="round"
             />
           </svg>
-        </div>
+        </nuxt-link>
         <nuxt-link class="icon" :to="localePath('mobile-nav')">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -650,7 +706,7 @@ let theNum = computed(() => {
 let checkInt = ref(false);
 
 let cateId = ref();
-let text7 = ref('');
+let text7 = ref("");
 
 let user = ref(store.state.user);
 const localePath = useLocalePath();
@@ -740,11 +796,11 @@ const goSettings = (name) => {
   router.push(fullLocalePath);
 };
 
-let search_value = ref('');
+let search_value = ref("");
 const goToProducts = () => {
   const queryParams = {
     search_value: store.state.search,
-    id: cateId.value
+    id: cateId.value,
   };
   const url = "/products";
 
@@ -772,16 +828,16 @@ const logOut = () => {
   }
 };
 
-const clearCheck = ()=>{
+const clearCheck = () => {
   store.state.finalStep = 1;
-   store.state.step = 1;
-   store.state.check2 = false;
-   store.state.check3 = false;
-   store.state.check4 = false;
-   store.state.lineActive1 = false;
-   store.state.lineActive2 = false;
-   store.state.lineActive3 = false;
-}
+  store.state.step = 1;
+  store.state.check2 = false;
+  store.state.check3 = false;
+  store.state.check4 = false;
+  store.state.lineActive1 = false;
+  store.state.lineActive2 = false;
+  store.state.lineActive3 = false;
+};
 const getCategories = async () => {
   let result = await axios.get(`${getUrl()}/categories`, {
     headers: {
@@ -883,18 +939,18 @@ nav {
   }
 }
 
-@media(max-width:760px){
-  nav{
-     .checkout-nav{
-      button{
-        width:108px;
-        height:45px;
-        font-size:12px;
+@media (max-width: 760px) {
+  nav {
+    .checkout-nav {
+      button {
+        width: 108px;
+        height: 45px;
+        font-size: 12px;
       }
-      svg{
-        width:100px !important;
+      svg {
+        width: 100px !important;
       }
-     }
+    }
   }
 }
 </style>

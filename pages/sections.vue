@@ -33,6 +33,8 @@
         </div>
       </div>
     </div>
+
+    <loader v-if="pending"></loader>
   </div>
 
 </template>
@@ -46,7 +48,7 @@ const router = useRouter();
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let categoriesArr = ref([]);
-
+let pending = ref(true);
 const goTocategory = (id, name , color) => {
 
 const queryParams = {
@@ -74,6 +76,9 @@ const getCategories = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
+  if(result.status == 200){
+    pending.value = false;
+  }
   categoriesArr.value = result.data.data;
 //   categoriesArr.value.splice(0 , 1);
 //   console.log(categoriesArr.value);

@@ -205,7 +205,7 @@ a {
 .product-card .head span {
   color: #dcba95;
   padding: 4px 12px;
-  background-color: #f9f4ee;
+  background-color: #F9F4EE;
   text-align: center;
   border-radius: 8px;
 }
@@ -260,9 +260,6 @@ a {
   }
   .product-card .overlay {
     display: none;
-  }
-  .product-card h3 {
-    font-size: 14px;
   }
 }
 .product-checkout {
@@ -1465,7 +1462,7 @@ html[dir=ltr] .card-popup-container {
   right: 0;
   opacity: 0.88;
   border-radius: 24px;
-  background: linear-gradient(180deg, rgba(69, 86, 102, 0) 0%, rgba(55, 69, 83, 0.39) 19.12%, #212b36 77.72%);
+  background: linear-gradient(180deg, rgba(69, 86, 102, 0) 0%, rgba(55, 69, 83, 0.39) 19.12%, #212B36 77.72%);
 }
 .hero-section .box .text-container {
   display: flex;
@@ -1487,9 +1484,6 @@ html[dir=ltr] .card-popup-container {
   font-size: 20px;
   line-height: 32px;
   margin-bottom: 48px;
-}
-.hero-section .box .text-container button {
-  margin-bottom: 32px;
 }
 .hero-section .swiper-pagination {
   display: flex;
@@ -1514,10 +1508,21 @@ html[dir=ltr] .card-popup-container {
     height: 50px;
     font-size: 14px;
   }
+  .hero-section .swiper-pagination {
+    justify-content: center;
+    padding: 48px 50px;
+  }
+  .hero-section .box {
+    text-align: center;
+  }
+  .hero-section .box h2 {
+    margin-bottom: 30px !important;
+  }
   .hero-section .box .text-container .text {
     width: 100%;
     line-height: 30px;
     font-size: 14px;
+    margin-bottom: 30px !important;
   }
   .hero-section .box .text-container h2 {
     width: 100%;
@@ -1721,6 +1726,10 @@ html[dir=ltr] .card-popup-container {
 }
 
 @media (max-width: 920px) {
+  .offers {
+    width: 90%;
+    margin: 0px auto;
+  }
   .offers .btn-container {
     display: flex;
     align-items: center;
@@ -1823,6 +1832,9 @@ html[dir=ltr] .card-popup-container {
   height: 32.664px;
 }
 @media (max-width: 700px) {
+  .categories {
+    margin-top: 50px;
+  }
   .categories .arrows {
     display: none !important;
   }
@@ -1881,6 +1893,9 @@ html[dir=ltr] .card-popup-container {
 .v-pagination {
   direction: ltr;
   margin-top: 56px;
+}
+.v-pagination ul {
+  padding-left: 0px !important;
 }
 .v-pagination .v-pagination__item--is-active .v-btn__overlay {
   opacity: 1 !important;

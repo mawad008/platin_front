@@ -47,6 +47,8 @@
 
   @media(max-width:760px){
     .loader-page2{
+      text-align: center;
+      padding: 30px;
     }
   }
   </style>

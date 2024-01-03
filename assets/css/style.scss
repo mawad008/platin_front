@@ -284,7 +284,7 @@ a {
     span {
       color: #dcba95;
       padding: 4px 12px;
-      background-color: $primary-light;
+      background-color: #F9F4EE;
       text-align: center;
       border-radius: 8px;
     }
@@ -365,7 +365,8 @@ a {
       display: none;
     }
     h3 {
-      font-size: 14px;
+      // width: 119px;
+      // font-size: 14px;
     }
   }
 }
@@ -1684,12 +1685,7 @@ html[dir="ltr"] .card-popup-container{
       right: 0;
       opacity: 0.88;
       border-radius: 24px;
-      background: linear-gradient(
-        180deg,
-        rgba(69, 86, 102, 0) 0%,
-        rgba(55, 69, 83, 0.39) 19.12%,
-        #212b36 77.72%
-      );
+      background: linear-gradient(180deg, rgba(69, 86, 102, 0.00) 0%, rgba(55, 69, 83, 0.39) 19.12%, #212B36 77.72%);
     }
     .text-container {
       display: flex;
@@ -1714,7 +1710,7 @@ html[dir="ltr"] .card-popup-container{
         margin-bottom: 48px;
       }
       button {
-        margin-bottom: 32px;
+        // margin-bottom: 32px;
       }
     }
   }
@@ -1739,17 +1735,27 @@ html[dir="ltr"] .card-popup-container{
 
 @media (max-width: 920px) {
   .hero-section {
+    
     .btn1 {
       width: 135px;
       height: 50px;
       font-size: 14px;
     }
+    .swiper-pagination{
+      justify-content: center;
+      padding: 48px 50px;
+    }
     .box {
+      text-align: center;
+      h2{
+       margin-bottom: 30px !important;
+      }
       .text-container {
         .text {
           width: 100%;
           line-height: 30px;
           font-size: 14px;
+          margin-bottom: 30px !important;
         }
         h2 {
           width: 100%;
@@ -1988,6 +1994,9 @@ html[dir="ltr"] .card-popup-container{
 
 @media (max-width: 920px) {
   .offers {
+    width: 90%;
+    margin: 0px auto;
+    
     .btn-container {
       display: flex;
       align-items: center;
@@ -2106,6 +2115,7 @@ html[dir="ltr"] .card-popup-container{
 
 @media (max-width: 700px) {
   .categories {
+    margin-top: 50px;
     .arrows {
       display: none !important;
     }
@@ -2184,6 +2194,9 @@ html[dir="ltr"] .card-popup-container{
 .v-pagination {
   direction: ltr;
   margin-top: 56px;
+  ul{
+    padding-left: 0px !important;
+  }
   .v-pagination__item--is-active .v-btn__overlay {
     opacity: 1 !important;
   }
@@ -2351,6 +2364,7 @@ html[dir="ltr"] .card-popup-container{
       // background-color: red;
       height: 100%;
     }
+    
     .overlay-background {
       width: 100px;
     }
