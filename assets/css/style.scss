@@ -1423,6 +1423,7 @@ html[dir="ltr"] .card-popup-container{
       }
       .form {
         width: 100%;
+        padding: 30px !important;
       }
       .text-container {
         width: 100%;
@@ -1623,7 +1624,7 @@ html[dir="ltr"] .card-popup-container{
   .box-container {
     color: $body-text;
     p {
-      width: 323px;
+      // width: 323px;
     }
     h6 {
       color: $secondary-black;
@@ -1959,15 +1960,6 @@ html[dir="ltr"] .card-popup-container{
 
 @media (max-width: 1400px) {
   .sections {
-    margin-bottom: 48px;
-    .text{
-      margin-bottom: 16px !important;
-      span {
-        color: $body-text;
-        margin: 0px 0px;
-        margin-top: 14px !important;
-      }
-    }
     .box {
       width: 100%;
     }
@@ -2146,6 +2138,17 @@ html[dir="ltr"] .card-popup-container{
 }
 
 @media (max-width: 920px) {
+  .sections{
+     margin-bottom: 48px;
+        .text{
+      margin-bottom: 16px !important;
+      span {
+        color: $body-text;
+        margin: 0px 0px;
+        margin-top: 14px !important;
+      }
+    }
+  }
   .offers {
     width: 90%;
     margin: 0px auto;
@@ -2391,7 +2394,7 @@ html[dir="ltr"] .card-popup-container{
   position: relative;
   padding: 32px;
   // margin-bottom: 50px;
-  min-height: 595px;
+    height: 595px;
   // margin-top: 80px;
   .arrows {
     position: absolute;
@@ -4968,6 +4971,7 @@ html[dir="ltr"] .product-page{
     }
     .recent{
       margin-top: 20px;
+      height: 315px;
       .box{
         margin: 10px 0px !important;
       }
@@ -5882,6 +5886,16 @@ html[dir="ltr"] .product-page{
 @media (max-width: 920px) {
   .settings-container {
     margin-top: 48px !important;
+    .settings-links{
+      .link{
+        justify-content: center;
+        &.active{
+          &::after{
+            right: auto;
+          }
+        }
+      }
+    }
     .main-input {
       width: 100% !important;
     }
@@ -5891,7 +5905,7 @@ html[dir="ltr"] .product-page{
         .personal {
           .details {
             .image {
-              top: -170px;
+              top: -150px;
               left: auto;
               transform: translateX(0%);
             }
@@ -5925,6 +5939,10 @@ html[dir="ltr"] .product-page{
   }
 }
 
+html[dir="ltr"] .settings-container .main .personal .edit{
+  right: 10px;
+  left: auto;
+}
 .empty-container {
   // height: 100vh;
   height: 562px;

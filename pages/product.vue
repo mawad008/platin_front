@@ -299,11 +299,11 @@
                       <img :src="img.full_image_path" />
                     </swiper-slide>
                   </swiper>
-                  <div class="play-icon">
+                  <a :href="mainProduct.video_link" target="_blank" class="play-icon">
                     <div class="circle">
                       <i class="fa-solid fa-play"></i>
                     </div>
-                  </div>
+                  </a>
                   <div @click="setThumbsSwiper" class="slider__next">
                     <i class="fa-solid fa-chevron-down"></i>
                   </div>

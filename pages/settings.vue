@@ -177,8 +177,14 @@
                     </div>
                   </div>
                   <div class="d-flex align-items-center justify-content-center">
-                    <button @click="updatePassword()" class="fill">
+                    <button @click="updatePassword()" :disabled="pendingPass" class="fill gap-3">
                         {{ $t('save edit') }}
+                              <v-progress-circular
+                        v-if="pendingPass"
+                        indeterminate
+                        :size="25"
+                        :width="3"
+                      ></v-progress-circular>
                     </button>
                   </div>
                 </div>
@@ -265,8 +271,15 @@
                   </div>
 
                   <div class="btns d-flex align-items-center justify-content-center gap-3">
-                    <button @click="updateProfile()" class="fill">
+                    <button @click="updateProfile()" :disabled="pendingedit" class="fill gap-3">
                       {{ $t("save edit") }}
+                       <v-progress-circular
+                      v-if="pendingedit"
+                      indeterminate
+                      :size="25"
+                      :width="3"
+                    ></v-progress-circular>
+                 
                     </button>
                     <button @click="personalActive = 1" class="stroke">
                       {{ $t("back btn") }}
@@ -622,6 +635,9 @@ const { locale } = useI18n();
 
 const tokenCookie = Cookies.get("token");
 
+let pendingPass = ref(false);
+let pendingedit = ref(false);
+
 let store = useStore;
 let user = ref(store.state.user);
 let userData = ref({
@@ -693,8 +709,8 @@ const rules1 = computed(() => {
 });
 const rules2 = computed(() => {
   return {
-    password: { required, minLength: minLength(6) },
-    old_password: { required, minLength: minLength(6) },
+    password: { required, minLength: minLength(8) },
+    old_password: { required, minLength: minLength(8) },
     password_confirmation: {
       required,
       sameAs: sameAs(passwordUpdate.value.password),
@@ -718,6 +734,7 @@ const updateProfile = async () => {
   }
   let check = await v$.value.$validate();
   if (check) {
+    pendingedit.value = true;
     try {
       let result = await axios.post(
         `${getUrl()}/customers/update-info`,
@@ -730,6 +747,7 @@ const updateProfile = async () => {
         }
       );
       if (result.status >= 200) {
+        pendingedit.value = false;
         if (process.client) {
           store.state.user = result.data.data;
           user.value = store.state.user;
@@ -741,6 +759,7 @@ const updateProfile = async () => {
     } catch (errorss) {
       console.log(errorss);
       if (errorss.response) {
+        pendingedit.value = false;
         errors.value = errorss.response.data.errors;
       }
     }
@@ -761,9 +780,10 @@ const updatePassword = async () => {
   formBody.append(
     "password_confirmation",
     passwordUpdate.value.password_confirmation
-  );
-  let check = await v2$.value.$validate();
-  if (check) {
+    );
+    let check = await v2$.value.$validate();
+    if (check) {
+    pendingPass.value = true;
     try {
       let result = await axios.post(
         `${getUrl()}/customers/update-password`,
@@ -776,6 +796,7 @@ const updatePassword = async () => {
         }
       );
       if (result.status >= 200) {
+  pendingPass.value = false;
         errors1.value = [];
         passwordUpdate.value.password = '';
         passwordUpdate.value.old_password = '';
@@ -796,6 +817,7 @@ const updatePassword = async () => {
     } catch (errorss) {
       console.log(errorss);
       if (errorss.response) {
+  pendingPass.value = false;
         errors1.value = errorss.response.data.errors;
       }
     }

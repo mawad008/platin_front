@@ -94,9 +94,9 @@
       </div>
       <p>
         {{ $t("auth1") }}
-        <span>{{ $t("policy1") }}</span> <span>{{ $t("policy") }}</span>
+       <nuxt-link :to="localePath('/policy')"> <span>{{ $t("policy2") }}</span> </nuxt-link>  -   <nuxt-link :to="localePath('/terms')"><span>{{ $t("policy3") }}</span></nuxt-link> 
       </p>
-      <button class="gap-3" @keyup.enter="registerFunc()" @click="registerFunc()">
+      <button class="gap-3" @keyup.enter="registerFunc()" :disabled="pending" @click="registerFunc()">
         {{ $t("create") }}
         <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
       </button>
@@ -122,7 +122,7 @@
         style="direction: ltr !important; margin-bottom: 14px"></v-otp-input>
 
       <span class="resend text-center"> {{ $t("resend") }}</span>
-      <button @keyup.enter="otpFunc()"  @click="otpFunc()" class="otp gap-3">
+      <button @keyup.enter="otpFunc()" :disabled="pending"  @click="otpFunc()" class="otp gap-3">
         {{ $t("follow") }}
         <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
       </button>

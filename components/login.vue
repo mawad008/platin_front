@@ -59,7 +59,7 @@
       </div>
       <span class="resend" @click="loginNav = 2"> {{ $t("forget") }}</span>
 
-      <button @keyup.enter="loginFunc()" @click="loginFunc()" class="mt-4 gap-3">
+      <button @keyup.enter="loginFunc()" :disabled="pending" @click="loginFunc()" class="mt-4 gap-3">
         {{ $t("login") }}
         <v-progress-circular
           v-if="pending"
@@ -223,7 +223,10 @@ const loginFunc = async () => {
           //  localStorage.setItem("user", JSON.stringify(result.data.data.user));
           // localStorage.setItem("auth", true);
           pending.value = false;
-          router.push("/");
+
+          store.state.activeMobile = 1;
+            const fullLocalePath = localePath('/');
+          router.push(fullLocalePath);
         }
       }
     } catch (errorss) {

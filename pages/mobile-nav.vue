@@ -8,6 +8,7 @@
                         <h4>{{ user.first_name }} {{ user.last_name }}</h4>
                         <div class="d-flex align-items-center justify-content-between">
                             <span>{{ user.email }}</span>
+                            <nuxt-link :to="localePath({ path: '/settings', query: { name: 'profile' } })">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
                                 <path
                                     d="M15.75 17.4165H2.25C1.9425 17.4165 1.6875 17.1473 1.6875 16.8228C1.6875 16.4982 1.9425 16.229 2.25 16.229H15.75C16.0575 16.229 16.3125 16.4982 16.3125 16.8228C16.3125 17.1473 16.0575 17.4165 15.75 17.4165Z"
@@ -19,6 +20,8 @@
                                     d="M11.7075 9.12788C11.49 9.01705 11.28 8.90622 11.0775 8.77955C10.9125 8.67663 10.755 8.5658 10.5975 8.44705C10.47 8.35997 10.32 8.2333 10.1775 8.10663C10.1625 8.09872 10.11 8.05122 10.05 7.98788C9.80249 7.76622 9.52499 7.48122 9.27749 7.16455C9.25499 7.14872 9.21749 7.0933 9.16499 7.02205C9.08999 6.92705 8.96249 6.76872 8.84999 6.58663C8.75999 6.46788 8.65499 6.29372 8.55749 6.11955C8.43749 5.9058 8.33249 5.69205 8.22749 5.47038C8.09272 5.16553 7.69225 5.07744 7.46302 5.31941L3.25499 9.76122C3.1575 9.86413 3.06749 10.0621 3.04499 10.1966L2.63999 13.2287C2.56499 13.767 2.7075 14.2737 3.0225 14.6141C3.2925 14.8912 3.66749 15.0416 4.07249 15.0416C4.16249 15.0416 4.25249 15.0337 4.34249 15.0179L7.22249 14.5904C7.35749 14.5666 7.54499 14.4716 7.63499 14.3687L11.869 9.89951C12.0951 9.66083 12.0065 9.26464 11.7075 9.12788Z"
                                     fill="#DCBA95" />
                             </svg>
+                            
+                            </nuxt-link>
                         </div>
                     </div>
                 </div>
@@ -110,7 +113,7 @@
                         <button @click="changeLang()" :class="{ 'active': activeLang == 2 }">En</button>
                     </div>
                 </div>
-                <nuxt-link :to="localePath('/settings' , { name:'profile' })" class="link">
+                <nuxt-link :to="localePath({path:'/settings', query: {name:'profile'}})" class="link">
                     <div class="d-flex align-items-center gap-3">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -376,6 +379,8 @@ const logOut = () => {
         Cookies.remove("user");
         Cookies.remove("token");
         Cookies.remove("auth");
+
+        store.state.activeMobile = 1;
         const localee = localePath('/')
         router.push(localee);
     }

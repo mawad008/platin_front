@@ -60,7 +60,7 @@
             <div class="boxes d-flex flex-column h-100 bg-dange">
               <div
                 v-for="item in vendor.bestSellerProducts"
-                class="box d-flex flex-column my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center gap-3"
+                class="box d-flex flex-colum my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center gap-3"
               >
                 <div class="image">
                   <img :src="item.images[0].full_image_path" alt="" />
@@ -75,28 +75,6 @@
                       {{
                         `${item.weight} / ${locale == "ar" ? "ج" : "g"}`
                       }}</span
-                    >
-                    <span class="price-item">
-                      {{ item.price }} {{ $t("curr") }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div
-                v-for="item in vendor.bestSellerProducts"
-                class="box d-flex flex-column my-3 flex-xl-row flex-lg-row flex-md-row align-items-start align-items-xl-center align-items-lg-center gap-3"
-              >
-                <div class="image">
-                  <img :src="item.images[0].full_image_path" alt="" />
-                </div>
-                <div class="text w-100 d-flex flex-column gap-1">
-                  <h5>{{ item.name }}</h5>
-                  <div
-                    class="price w-100 d-flex align-items-center justify-content-between"
-                  >
-                    <span class="item"
-                      >{{ `${item.caliber} / ق` }}
-                      {{ `${item.weight} / ق` }}</span
                     >
                     <span class="price-item">
                       {{ item.price }} {{ $t("curr") }}
@@ -281,6 +259,15 @@
                     color="#dcba95"
                   ></v-progress-circular>
                 </div>
+
+                  <v-pagination
+                v-if="pageCount >= 1"
+                v-model="page"
+                :length="pageCount"
+                rounded="circle"
+                @input="updatePage"
+                @click="getVendorproducts()"
+              ></v-pagination>
               </v-window-item>
 
               <!-- <v-window-item value="two">
@@ -426,6 +413,10 @@ const updateTruncatedText = (item) => {
   }
 };
 
+let itemsPerPage = ref();
+let total = ref();
+let page = ref(1);
+
 const showAllComments = () => {
   itemsArray.value = AllItems.value;
   itemsArray.value.forEach((item) => {
@@ -466,6 +457,7 @@ const getVendorproducts = async () => {
     params: {
       category_id: selectbox1.value,
       brand_id: selectbox2.value,
+      page: page.value,
     },
     headers: {
       "Content-Language": `${locale.value}`,
@@ -475,8 +467,20 @@ const getVendorproducts = async () => {
   if (result.status == 200) {
     spinner.value = false;
   }
+  itemsPerPage.value = result.data.meta.per_page;
+  total.value = result.data.meta.total;
   vendors.value = result.data.data;
 };
+
+
+const pageCount = computed(() => {
+  return Math.ceil(total.value / itemsPerPage.value);
+});
+
+const updatePage = (newPage) => {
+  page.value = newPage;
+  getVendorproducts();
+}
 
 onMounted(() => {
   itemsArray.value.forEach((item) => {

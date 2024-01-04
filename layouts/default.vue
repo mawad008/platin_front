@@ -911,6 +911,7 @@ const clearCheck = () => {
   store.state.lineActive3 = false;
 };
 const getCategories = async () => {
+  text7.value = '';
   let result = await axios.get(`${getUrl()}/categories`, {
     headers: {
       "Content-Language": `${locale.value}`,
