@@ -6,9 +6,9 @@
          <div class="row justify-content-betwee">
           
           <div class="col-12 col-xl-6 col-lg-6">
-           <div class="text-container">
-            <h4>عننا !</h4>
-            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.ومن هنا وجب على المصمم أن يضع نصوصا مؤقتة على التصميم ليظهر للعميل الشكل كاملاً،دور مولد النص العربى أن يوفر على المصمم عناء البحث عن نص بديل لا علاقة له بالموضوع الذى يتحدث عنه التصميم فيظهر بشكل لا يليق.هذا النص يمكن أن يتم تركيبه على أي تصميم دون مشكلة فلن يبدو وكأنه نص منسوخ، غير منظم، غير منسق، أو حتى غير مفهوم. لأنه مازال نصاً بديلاً ومؤقتاً.</p>
+           <div v-if="generalArr.about_us" class="text-container">
+            <h4>{{ generalArr.about_us.label }}</h4>
+            <p> {{ generalArr.about_us.description  }} </p>
            </div>
           </div>
           <div class="col-12 col-xl-6 col-lg-6">
@@ -22,11 +22,31 @@
         </div>
         
         </div>
+        <loader v-if="pending"></loader>
     </div>
 </template>
 
 
 <script setup>
+import axios from 'axios';
+const localePath = useLocalePath();
+const { locale, setLocale } = useI18n();
+let generalArr = ref([]);
+let pending = ref(true);
+const getGeneral = async () => {
+  let result = await axios.get(`${getUrl()}/general`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  if(result.status == 200){
+    pending.value = false;
+  }
+  generalArr.value = result.data.data;
+};
 
+onMounted(()=>{
+  getGeneral();
+});
 
 </script>

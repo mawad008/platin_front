@@ -184,7 +184,7 @@
         third: theimage == 3,
       }"
     >
-      <div @click="goBack()" class="close">
+      <div @click="goBack() , store.state.activeMobile = 1" class="close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"

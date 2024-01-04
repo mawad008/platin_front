@@ -61,7 +61,7 @@
           />
         </client-only>
       </div>
-      <div @click="goToProductPage2(product.id, product.name)">
+      <div class="h-100" @click="goToProductPage2(product.id, product.name)">
       <Swiper
         :spaceBetween="30"
         :centeredSlides="true"
@@ -84,6 +84,7 @@
           <span>{{ product.rate }}</span>
         </div>
       </div>
+      <div class="bg-dange d-flex flex-column justify-content-between" style="height: 127px;">
       <h3>{{ product.name }}</h3>
       <div
         class="price w-100 d-flex align-items-center justify-content-between"
@@ -93,6 +94,7 @@
           {{ locale == "ar" ? "ق" : "c" }} {{ product.caliber }} /
           {{ locale == "ar" ? "ج" : "g" }} {{ product.weight }}</span
         >
+      </div>
       </div>
 
       <div class="overlay">

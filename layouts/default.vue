@@ -19,8 +19,10 @@
             </nuxt-link>
 
             <v-menu>
+            
               <template v-slot:activator="{ props }">
-                <button v-bind="props" class="d-flex align-items-center gap-2">
+            
+                <button v-bind="props" class="d-flex align-items-center btn-navv gap-2"  :class="{ active: isExpanded }" @click="toggleExpanded" :aria-expanded="isExpanded.toString()">
                   <span>{{ $t("sections") }}</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +135,8 @@
                   <template v-slot:activator="{ props }">
                     <button
                       v-bind="props"
-                      class="d-flex align-items-center gap-2"
+                      class="d-flex align-items-center gap-2 btn-navv"
+                      :class="{ active: isExpanded2 }" @click="toggleExpanded2" :aria-expanded="isExpanded2.toString()"
                     >
                       <span> {{ $t("sections") }}</span>
                       <svg
@@ -381,7 +384,7 @@
                       <i class="fa-solid fa-caret-down"></i>
                     </div>
                     <img v-if="user.image" :src="user.image" alt="" />
-                    <img v-else src="~/assets/images/kk.jpg" alt="" />
+                    <!-- <img v-else src="~/assets/images/kk.jpg" alt="" /> -->
                   </button>
                 </template>
                 <div
@@ -441,9 +444,9 @@
     <footer class="footer-container">
       <div>
         <div class="container">
-          <div class="row">
-            <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-              <div class="box-container d-flex flex-column gap-3">
+          <div class="row justify-content-between">
+            <div class="col-12 col-xl-3 col-lg-3 col-md-6">
+              <div class="box-container  d-flex flex-column gap-3">
                 <!-- <img
                   class="img-flui"
                   src="~/assets/images/logo.png"
@@ -467,8 +470,8 @@
                 </p>
               </div>
             </div>
-            <div class="col-12 col-xl-2 col-lg-3 col-md-6">
-              <div class="box-container d-flex flex-column gap-3">
+            <div class="col-12 col-xl-2 col-lg-3 col-md-6 d-flex justify-content-center align-items-center">
+              <div class="box-container bg-dange w-100 d-flex flex-column align-items-center text-center gap-3">
                 <h6 class="head">{{ $t("sections") }}</h6>
                 <div class="links d-flex flex-column gap-4">
                   <span
@@ -481,8 +484,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-xl-2 col-lg-3 col-md-6">
-              <div class="box-container d-flex flex-column gap-3">
+            <div class="col-12 col-xl-2 col-lg-3 bg-dange d-flex justify-content-center col-md-6">
+              <div class="box-container d-flex flex-column align-items-center text-center w-100 gap-3">
                 <h6 class="head">{{ $t("links") }}</h6>
                 <div class="links d-flex flex-column gap-4">
                   <!-- <span class="head-link"> {{ $t("vendor app") }}</span> -->
@@ -492,8 +495,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-xl-2 col-lg-3 col-md-6">
-              <div class="box-container d-flex flex-column gap-3">
+            <div class="col-12 col-xl-2 col-lg-3 d-flex justify-content-center col-md-6">
+              <div class="box-container d-flex flex-column align-items-center text-center w-100 gap-3">
                 <h6 class="head">{{ $t("contact") }}</h6>
                 <div class="links d-flex flex-column gap-4">
                   <span class="head-link"> {{ $t("home") }} </span>
@@ -501,18 +504,20 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-xl-2 col-lg-3 col-md-6">
-              <div class="box-container d-flex flex-column gap-3">
+            <div class="col-12 col-xl-3  col-lg-3 col-md-6   d-flex justify-content-center">
+              <div class="box-container d-flex flex-column align-items-center text-center w-100  gap-3">
                 <h6 class="head" style="font-size: 15px; white-space: nowrap">
                   {{ $t("sub") }}
                 </h6>
-                <div class="links d-flex flex-column gap-4">
+                <div class="links w-100 d-flex flex-column gap-2">
                   <div
-                    class="input d-flex align-items-center justify-content-center gap-2"
+                    class="input w-100 d-flex align-items-center justify-content-center gap-2"
                   >
-                    <input type="text" :placeholder="$t('enter')" />
-
+                    <input type="email" v-model="email" @keypress.enter="subscripe()"  :placeholder="$t('enter')" />
+                     
+                     <button  @click="subscripe()">                 
                     <svg
+                   
                       class="arrow-icon"
                       xmlns="http://www.w3.org/2000/svg"
                       width="19"
@@ -531,7 +536,10 @@
                         fill="#2D3A4A"
                       />
                     </svg>
+                     </button>
                   </div>
+                  
+                    <span v-if="error" class="text-center" style="color:#b1628c; font-size: 14px;">{{ error.email[0] }}</span>
                 </div>
               </div>
             </div>
@@ -542,18 +550,46 @@
           >
             <img src="~/assets/images/footer-logo.png" alt="" />
             <div class="icons d-flex align-items-center gap-3">
-              <i class="fa-brands fa-youtube"></i>
-              <i class="fa-brands fa-linkedin-in"></i>
-              <i class="fa-brands fa-instagram"></i>
-              <i class="fa-brands fa-twitter"></i>
-              <i class="fa-brands fa-facebook-f"></i>
+            <a :href="generalArr.youtube_link" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="29" height="21" viewBox="0 0 29 21" fill="none">
+  <path d="M15.7727 19.8446L10.3536 19.7433C8.59905 19.708 6.84011 19.7785 5.11993 19.4128C2.50315 18.8665 2.31777 16.1879 2.12379 13.9411C1.8565 10.7823 1.95997 7.56625 2.46438 4.43385C2.74914 2.67625 3.86976 1.62747 5.60277 1.51335C11.453 1.09917 17.342 1.14825 23.1792 1.34148C23.7957 1.3592 24.4165 1.45601 25.0243 1.56622C28.025 2.10372 28.0982 5.13917 28.2927 7.69444C28.4866 10.2761 28.4047 12.871 28.034 15.435C27.7365 17.558 27.1674 19.3383 24.7656 19.5102C21.7564 19.7349 18.8162 19.9159 15.7985 19.8583C15.7986 19.8446 15.7813 19.8446 15.7727 19.8446ZM12.5868 14.4698C14.8545 13.1393 17.079 11.8309 19.3337 10.5092C17.0618 9.17863 14.8416 7.87023 12.5868 6.54858V14.4698Z" fill="#2D3A4A"/>
+</svg>
+            </a>
+            <a :href="generalArr.linkedin_link" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
+  <path d="M1.50067 4.42213C1.50067 3.65211 1.77109 3.01686 2.3119 2.51638C2.85272 2.01587 3.5558 1.76562 4.42111 1.76562C5.27098 1.76562 5.95858 2.01201 6.48396 2.50483C7.02478 3.01303 7.29519 3.67521 7.29519 4.49143C7.29519 5.23063 7.03252 5.84662 6.50714 6.33943C5.96632 6.84763 5.25552 7.10173 4.37475 7.10173H4.35158C3.50171 7.10173 2.8141 6.84763 2.28873 6.33943C1.76335 5.83123 1.50067 5.19212 1.50067 4.42213ZM1.80199 24.6347V9.20384H6.94752V24.6347H1.80199ZM9.79843 24.6347H14.944V16.0183C14.944 15.4793 15.0058 15.0635 15.1294 14.7709C15.3457 14.2473 15.6741 13.8046 16.1145 13.4427C16.5548 13.0808 17.1072 12.8998 17.7717 12.8998C19.5023 12.8998 20.3676 14.0625 20.3676 16.3879V24.6347H25.5132V15.7873C25.5132 13.5081 24.9724 11.7795 23.8907 10.6014C22.8091 9.42329 21.3798 8.83424 19.6028 8.83424C17.6094 8.83424 16.0565 9.68894 14.944 11.3983V11.4445H14.9208L14.944 11.3983V9.20384H9.79843C9.82932 9.69663 9.84478 11.2289 9.84478 13.8007C9.84478 16.3725 9.82932 19.9838 9.79843 24.6347Z" fill="#2D3A4A"/>
+</svg>
+            </a>
+            <a :href="generalArr.instagram_link" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M1.1546 12.5336C1.1546 7.73758 1.1546 5.33957 2.29745 3.61235C2.80779 2.84107 3.46833 2.18053 4.23961 1.67019C5.96683 0.527344 8.36484 0.527344 13.1609 0.527344C17.9569 0.527344 20.3549 0.527344 22.0821 1.67019C22.8534 2.18053 23.5139 2.84107 24.0243 3.61235C25.1671 5.33957 25.1671 7.73757 25.1671 12.5336V12.5336V12.5336C25.1671 17.3296 25.1671 19.7276 24.0243 21.4548C23.5139 22.2261 22.8534 22.8867 22.0821 23.397C20.3549 24.5398 17.9569 24.5398 13.1609 24.5398H13.1609H13.1608C8.36483 24.5398 5.96683 24.5398 4.23961 23.397C3.46833 22.8867 2.80779 22.2261 2.29745 21.4548C1.1546 19.7276 1.1546 17.3296 1.1546 12.5336ZM19.3762 12.5332C19.3762 15.966 16.5933 18.7489 13.1604 18.7489C9.72754 18.7489 6.94464 15.966 6.94464 12.5332C6.94464 9.10028 9.72754 6.31738 13.1604 6.31738C16.5933 6.31738 19.3762 9.10028 19.3762 12.5332ZM13.1604 16.646C15.4319 16.646 17.2732 14.8046 17.2732 12.5332C17.2732 10.2617 15.4319 8.42035 13.1604 8.42035C10.889 8.42035 9.04761 10.2617 9.04761 12.5332C9.04761 14.8046 10.889 16.646 13.1604 16.646ZM19.6218 7.46581C20.4284 7.46581 21.0823 6.81191 21.0823 6.00528C21.0823 5.19866 20.4284 4.54476 19.6218 4.54476C18.8152 4.54476 18.1613 5.19866 18.1613 6.00528C18.1613 6.81191 18.8152 7.46581 19.6218 7.46581Z" fill="#2D3A4A"/>
+</svg>
+            </a>
+            <a :href="generalArr.twitter_link" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" height="26" width="20" viewBox="0 0 512 512"><path fill="#2D3A4A" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+            </a>
+            <a :href="generalArr.facebook_link" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="26" viewBox="0 0 15 26" fill="none">
+  <path d="M9.7561 24.5398V13.5866H13.6177L14.1958 9.31792H9.75599V6.59254C9.75599 5.35666 10.1164 4.51447 11.978 4.51447L14.3521 4.51341V0.695527C13.9415 0.643599 12.5321 0.527344 10.8926 0.527344C7.46944 0.527344 5.1259 2.51661 5.1259 6.16991V9.31792H1.25439V13.5866H5.1259V24.5397H9.7561V24.5398Z" fill="#2D3A4A"/>
+</svg>
+            </a>
             </div>
           </div>
           <v-divider :thickness="1"></v-divider>
           <div
             class="foot w-100 d-flex flex-column flex-xl-row flex-lg-row align-items-center justify-content-between"
           >
+
+          <div class="d-flex align-items-center gap-2 ">
+          <nuxt-link :to="localePath('/policy')">
             <span> {{ $t("policy2") }}</span>
+          </nuxt-link>
+              /
+              <nuxt-link :to="localePath('/terms')">
+            <span> {{ $t("policy3") }}</span>  
+              </nuxt-link>
+
+          </div>
             <div class="d-flex align-items-center" style="gap: 10px">
               <span> {{ $t("dev") }}</span>
               <img src="~/assets/images/webstdy.png" alt="" />
@@ -690,6 +726,8 @@
 </template>
 
 <script setup>
+import { createToast } from "mosha-vue-toastify";
+import "mosha-vue-toastify/dist/style.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Vue3Lottie } from "vue3-lottie";
@@ -818,6 +856,7 @@ const goSettings = (name) => {
   router.push(fullLocalePath);
 };
 
+let generalArr = ref([]);
 let search_value = ref("");
 const goToProducts = () => {
   const queryParams = {
@@ -835,6 +874,17 @@ const goToProducts = () => {
 
   const fullLocalePath = localePath(updatedRoute);
   router.push(fullLocalePath);
+};
+
+
+const isExpanded = ref(false);
+const isExpanded2 = ref(false);
+
+const toggleExpanded = () => {
+  isExpanded.value = !isExpanded.value;
+};
+const toggleExpanded2 = () => {
+  isExpanded2.value = !isExpanded2.value;
 };
 
 const logOut = () => {
@@ -868,6 +918,63 @@ const getCategories = async () => {
   });
   categoriesArr.value = result.data.data.slice(0, 4);
 };
+
+
+const getGeneral = async () => {
+  let result = await axios.get(`${getUrl()}/general`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  generalArr.value = result.data.data;
+};
+
+
+let email = ref('');
+let error = ref();
+let emailText = ref('تم الاشتراك بنجاح');
+if(locale.value == 'ar'){
+  emailText.value = 'تم الاشتراك بنجاح';
+} else{
+  emailText.value = 'You have successfully subscribed'
+}
+const subscripe = async()=>{
+  if(email.value != ''){
+    try{
+      let result = await axios.post(
+      `${getUrl()}/news-letter`,
+      { email: email.value },
+      {
+        headers: {
+          "Content-Language": `${locale.value}`,
+        },
+      }
+    );
+
+      if(result.status >= 200){
+        error.value = '';
+        email.value = '';
+        createToast({
+          title: emailText.value
+        },
+        {
+        type: 'success',
+        transition: 'bounce',
+        showIcon: 'true',
+        timeout: 3000,
+        toastBackgroundColor: '#dcba95',
+        });
+      }
+
+    }catch(errors){
+      if (errors.response) {
+                error.value = errors.response.data.errors;
+            }
+
+    }
+
+  }
+}
 const updateLang = () => {
   if (locale.value == "ar") {
     setLocale("ar");
@@ -929,7 +1036,7 @@ onMounted(() => {
   getCategories();
 
   user.value = store.state.user;
-  console.log(user.value);
+  getGeneral();
 });
 onBeforeMount(() => {
   store.dispatch("loadBasketFromLocalStorage");

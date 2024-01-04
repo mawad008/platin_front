@@ -110,7 +110,7 @@
                         <button @click="changeLang()" :class="{ 'active': activeLang == 2 }">En</button>
                     </div>
                 </div>
-                <nuxt-link :to="localePath('/settings')" class="link">
+                <nuxt-link :to="localePath('/settings' , { name:'profile' })" class="link">
                     <div class="d-flex align-items-center gap-3">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -128,7 +128,7 @@
                             fill="#2D3A4A" />
                     </svg>
                 </nuxt-link>
-                <nuxt-link :to="localePath('/settings')" class="link">
+                <nuxt-link :to="localePath('/policy')" class="link">
                     <div class="d-flex align-items-center gap-3">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -140,7 +140,7 @@
                                     fill="#DCBA95" />
                             </svg>
                         </div>
-                        <h6> {{ $t("private") }} </h6>
+                        <h6> {{ $t("policy2") }} </h6>
                     </div>
                     <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
                         fill="none">
@@ -149,7 +149,94 @@
                             fill="#2D3A4A" />
                     </svg>
                 </nuxt-link>
+                <nuxt-link :to="localePath('/terms')" class="link">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M15.7999 2.20999C15.3899 1.79999 14.6799 2.07999 14.6799 2.64999V6.13999C14.6799 7.59999 15.9199 8.80999 17.4299 8.80999C18.3799 8.81999 19.6999 8.81999 20.8299 8.81999C21.3999 8.81999 21.6999 8.14999 21.2999 7.74999C19.8599 6.29999 17.2799 3.68999 15.7999 2.20999Z"
+                                    fill="#DCBA95" />
+                                <path
+                                    d="M20.5 10.19H17.61C15.24 10.19 13.31 8.26 13.31 5.89V3C13.31 2.45 12.86 2 12.31 2H8.07C4.99 2 2.5 4 2.5 7.57V16.43C2.5 20 4.99 22 8.07 22H15.93C19.01 22 21.5 20 21.5 16.43V11.19C21.5 10.64 21.05 10.19 20.5 10.19ZM11.5 17.75H7.5C7.09 17.75 6.75 17.41 6.75 17C6.75 16.59 7.09 16.25 7.5 16.25H11.5C11.91 16.25 12.25 16.59 12.25 17C12.25 17.41 11.91 17.75 11.5 17.75ZM13.5 13.75H7.5C7.09 13.75 6.75 13.41 6.75 13C6.75 12.59 7.09 12.25 7.5 12.25H13.5C13.91 12.25 14.25 12.59 14.25 13C14.25 13.41 13.91 13.75 13.5 13.75Z"
+                                    fill="#DCBA95" />
+                            </svg>
+                        </div>
+                        <h6> {{ $t("policy3") }} </h6>
+                    </div>
+                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5.46849 0.414376C5.79194 0.673133 5.84438 1.1451 5.58562 1.46855L1.96044 6.00003L5.58562 10.5315C5.84438 10.855 5.79194 11.3269 5.46849 11.5857C5.14505 11.8444 4.67308 11.792 4.41432 11.4685L0.414321 6.46855C0.195189 6.19464 0.195189 5.80542 0.414321 5.53151L4.41432 0.531506C4.67308 0.20806 5.14505 0.155619 5.46849 0.414376Z"
+                            fill="#2D3A4A" />
+                    </svg>
+                </nuxt-link>
+                <nuxt-link :to="localePath('/about')" class="link">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M15.7999 2.20999C15.3899 1.79999 14.6799 2.07999 14.6799 2.64999V6.13999C14.6799 7.59999 15.9199 8.80999 17.4299 8.80999C18.3799 8.81999 19.6999 8.81999 20.8299 8.81999C21.3999 8.81999 21.6999 8.14999 21.2999 7.74999C19.8599 6.29999 17.2799 3.68999 15.7999 2.20999Z"
+                                    fill="#DCBA95" />
+                                <path
+                                    d="M20.5 10.19H17.61C15.24 10.19 13.31 8.26 13.31 5.89V3C13.31 2.45 12.86 2 12.31 2H8.07C4.99 2 2.5 4 2.5 7.57V16.43C2.5 20 4.99 22 8.07 22H15.93C19.01 22 21.5 20 21.5 16.43V11.19C21.5 10.64 21.05 10.19 20.5 10.19ZM11.5 17.75H7.5C7.09 17.75 6.75 17.41 6.75 17C6.75 16.59 7.09 16.25 7.5 16.25H11.5C11.91 16.25 12.25 16.59 12.25 17C12.25 17.41 11.91 17.75 11.5 17.75ZM13.5 13.75H7.5C7.09 13.75 6.75 13.41 6.75 13C6.75 12.59 7.09 12.25 7.5 12.25H13.5C13.91 12.25 14.25 12.59 14.25 13C14.25 13.41 13.91 13.75 13.5 13.75Z"
+                                    fill="#DCBA95" />
+                            </svg>
+                        </div>
+                        <h6> {{ $t("about") }} </h6>
+                    </div>
+                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5.46849 0.414376C5.79194 0.673133 5.84438 1.1451 5.58562 1.46855L1.96044 6.00003L5.58562 10.5315C5.84438 10.855 5.79194 11.3269 5.46849 11.5857C5.14505 11.8444 4.67308 11.792 4.41432 11.4685L0.414321 6.46855C0.195189 6.19464 0.195189 5.80542 0.414321 5.53151L4.41432 0.531506C4.67308 0.20806 5.14505 0.155619 5.46849 0.414376Z"
+                            fill="#2D3A4A" />
+                    </svg>
+                </nuxt-link>
+                <div @click="dialog = true" class="link">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512" fill="#DCBA95"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+                        </div>
+                        <h6> {{ $t("mail") }} </h6>
+                    </div>
+                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5.46849 0.414376C5.79194 0.673133 5.84438 1.1451 5.58562 1.46855L1.96044 6.00003L5.58562 10.5315C5.84438 10.855 5.79194 11.3269 5.46849 11.5857C5.14505 11.8444 4.67308 11.792 4.41432 11.4685L0.414321 6.46855C0.195189 6.19464 0.195189 5.80542 0.414321 5.53151L4.41432 0.531506C4.67308 0.20806 5.14505 0.155619 5.46849 0.414376Z"
+                            fill="#2D3A4A" />
+                    </svg>
+                </div>
             </div>
+
+            <v-dialog v-model="dialog">
+
+<div class="card-popup-container">
+  <div class="main">
+
+    <div>
+      <h3>{{ $t("subNow") }}</h3>
+      <p>{{ $t("subNowText") }}</p>
+    </div>
+    <div class="main-input">
+          <label for=""> {{ $t("email") }} <span>*</span> </label>
+          <input type="email" v-model="email" @keypress.enter="subscripe()" placeholder="Mostafademo@icloud.com" />
+          <span class="error-msg2" v-if="error">{{ error.email[0] }}</span>
+        </div>
+    <div class="btns" >
+        <button @click="subscripe()" class="fill">{{ $t("subb") }}</button>
+    </div>
+
+    <div @click="dialog = false" class="close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M18.3007 5.70971C18.1139 5.52246 17.8602 5.41723 17.5957 5.41723C17.3312 5.41723 17.0775 5.52246 16.8907 5.70971L12.0007 10.5897L7.1107 5.69971C6.92387 5.51246 6.67022 5.40723 6.4057 5.40723C6.14119 5.40723 5.88753 5.51246 5.7007 5.69971C5.3107 6.08971 5.3107 6.71971 5.7007 7.10971L10.5907 11.9997L5.7007 16.8897C5.3107 17.2797 5.3107 17.9097 5.7007 18.2997C6.0907 18.6897 6.7207 18.6897 7.1107 18.2997L12.0007 13.4097L16.8907 18.2997C17.2807 18.6897 17.9107 18.6897 18.3007 18.2997C18.6907 17.9097 18.6907 17.2797 18.3007 16.8897L13.4107 11.9997L18.3007 7.10971C18.6807 6.72971 18.6807 6.08971 18.3007 5.70971Z"
+          fill="#2D3A4A" />
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+</v-dialog>
 
             <div class="btns">
              <button v-if="!store.state.authenticated"  class="log">
@@ -164,6 +251,9 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+import { createToast } from "mosha-vue-toastify";
+import "mosha-vue-toastify/dist/style.css";
 import Cookies from "js-cookie";
 import { useStore } from "~/store";
 const store = useStore;
@@ -171,6 +261,7 @@ let activeLang = ref(1);
 const router = useRouter();
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
+let dialog = ref(false);
 if (locale.value == 'ar') {
     activeLang.value = 1;
 
@@ -210,6 +301,72 @@ const changeLang = async () => {
         })
     );
 };
+
+const goSettings = (name) => {
+  const queryParams = {
+    name: name,
+  };
+  const url = "/settings";
+
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+};
+
+
+let email = ref('');
+let error = ref(null);
+let emailText = ref('تم الاشتراك بنجاح');
+if(locale.value == 'ar'){
+  emailText.value = 'تم الاشتراك بنجاح';
+} else{
+  emailText.value = 'You have successfully subscribed'
+}
+
+
+const subscripe = async()=>{
+  if(email.value != ''){
+    try{
+      let result = await axios.post(
+      `${getUrl()}/news-letter`,
+      { email: email.value },
+      {
+        headers: {
+          "Content-Language": `${locale.value}`,
+        },
+      }
+    );
+
+      if(result.status >= 200){
+        error.value = '';
+        email.value = '';
+        createToast({
+          title: emailText.value
+        },
+        {
+        type: 'success',
+        transition: 'bounce',
+        showIcon: 'true',
+        timeout: 3000,
+        toastBackgroundColor: '#dcba95',
+        });
+      }
+
+    }catch(errors){
+      if (errors.response) {
+                error.value = errors.response.data.errors;
+            }
+
+    }
+
+  }
+}
 
 const logOut = () => {
     if (process.client) {

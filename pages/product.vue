@@ -583,7 +583,7 @@
                           <div v-for="(item, index) in itemsArray" :key="index"
                             class="comment w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between">
                             <div class="main d-flex gap-2 w-100">
-                              <img src="~/assets/images/kk.jpg" alt="" />
+                              <img :src="item.customer_image" alt="" />
                               <div class="text d-flex flex-column gap-1">
                                 <span class="name">
                                   {{ item.customer_name }}

@@ -134,6 +134,8 @@ a {
   transition: 0.2s all;
   width: 296px;
   margin-bottom: 20px;
+  min-height: 450px;
+  position: relative;
 }
 .product-card .overlay {
   transition: 0.5s;
@@ -962,7 +964,18 @@ html[dir=ltr] .card-popup-container {
 
 @media (max-width: 770px) {
   .card-popup-container {
-    width: 100%;
+    width: 100% !important;
+    height: -moz-fit-content !important;
+    height: fit-content !important;
+    padding: 24px;
+  }
+  .card-popup-container .main {
+    padding: 0px !important;
+    width: 100% !important;
+  }
+  .card-popup-container .close {
+    top: -4px !important;
+    left: 0px !important;
   }
   .card-popup-container button {
     height: 45px !important;
@@ -1230,15 +1243,18 @@ html[dir=ltr] .card-popup-container {
     margin-top: 20px;
     line-height: 30px;
     margin-bottom: 20px;
+    display: none !important;
   }
   .auth-container-form .main .text-container .text {
     width: 100%;
     font-size: 14px;
+    display: none !important;
   }
   .auth-container-form .main .text-container .paginations {
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 25px;
+    display: none !important;
   }
   .auth-container-form .main .text-container .paginations span {
     width: 8px;
@@ -1250,6 +1266,7 @@ html[dir=ltr] .card-popup-container {
   }
   .auth-container-form .main-form {
     width: 100%;
+    margin-top: 30px;
   }
   .auth-container-form .main-form .form {
     width: 100%;
@@ -1328,6 +1345,8 @@ html[dir=ltr] .card-popup-container {
 .navbar .icons-with-profile .profile img {
   width: 56px;
   height: 56px;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 50%;
   border: 4px solid #fff;
 }
@@ -1373,6 +1392,13 @@ html[dir=ltr] .card-popup-container {
 }
 .navbar .icons-with-profile button .iconn i {
   color: #919eab;
+}
+.navbar .btn-navv {
+  font-weight: 400;
+}
+.navbar .btn-navv.active {
+  font-weight: 700;
+  color: #2d3a4a;
 }
 
 .footer-container {
@@ -2330,7 +2356,6 @@ html[dir=ltr] .card-popup-container {
   font-weight: 400;
 }
 .about-us-page .image {
-  background-color: red;
   border-radius: 16px;
   position: relative;
 }
@@ -2520,6 +2545,12 @@ html[dir=ltr] .card-popup-container {
   }
 }
 @media (max-width: 760px) {
+  .about-us-page {
+    margin-top: 48px;
+  }
+  .about-us-page h3 {
+    margin-bottom: 25px;
+  }
   .brands-container {
     padding: 50px 0px !important;
     margin-bottom: 48px;
@@ -3113,6 +3144,8 @@ html[dir=ltr] .product-page .share-box {
   width: 56px;
   height: 56px;
   border-radius: 56px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .product-details .rating-container .comments-container .comments .comment .main .text .name {
   color: #2d3a4a;
