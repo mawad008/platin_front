@@ -48,6 +48,7 @@
             :spaceBetween="60"
             :dir="getSwiperDirection"
             :slidesPerView="1"
+            :allowTouchMove="false"
             class="mySwiper2"
           >
             <swiper-slide
