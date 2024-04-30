@@ -1,11 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // devtools: { enabled: true },
-  server: {
-    host: "0.0.0.0",
-    port: 3000, // You can set a specific port if neede
-  },
-
   modules: [
     "nuxt-swiper",
     "@nuxtjs/i18n",
@@ -13,34 +8,15 @@ export default defineNuxtConfig({
     // "@nuxtjs/axios",
     // "@nuxtjs/auth-next",
   ],
-  // auth: {
-  //   strategies: {
-  //     local: {
-  //       token: {
-  //         property: 'token',
-  //         global: true,
-  //         required: true,
-  //         // type: 'Bearer'
-  //         type: ''
-  //       },
-  //       user: {
-  //         property: 'user',
-  //         // autoFetch: true
-  //       },
-  //       endpoints: {
-  //         login: {
-  //           url: "https://platine.webstdy.net/api/login",
-  //           method: "post",
-
-  //         },
-  //         logout: { url: "/api/auth/logout", method: "delete" },
-  //         user: { url: "/api/auth/user", method: "get" },
-  //       },
-
-  //     },
-  //   },
-  // },
-  plugins: [{ src: "~/plugins/lottie.js", mode: "client" }],
+ 
+  plugins: [],
+  ssr: true,
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      failOnError: false,
+    },
+  },
   i18n: {
     lazy: false,
     langDir: "locales",
