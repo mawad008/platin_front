@@ -312,6 +312,9 @@ $rating-bg: #ecb43c;
         text-align: center;
         height: 300px;
         border-radius: 16px !important;
+        .overlay{
+          border-radius: 16px !important;
+        }
         .text-container {
           // height: fit-content;
           .text {

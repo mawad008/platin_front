@@ -4741,6 +4741,9 @@ html[dir=ltr] td.headd2 {
     height: 300px;
     border-radius: 16px !important;
   }
+  .hero-container .box .overlay {
+    border-radius: 16px !important;
+  }
   .hero-container .box .text-container .text {
     width: 100%;
     line-height: 24px;
