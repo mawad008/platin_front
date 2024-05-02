@@ -234,11 +234,46 @@
           <div class="row">
             <div
               v-for="(item, indexx) in productsTags"
-              class="col-12 col-xl-3 col-lg-3 col-md-6 my-2"
+              class="col-6 col-xl-3 col-lg-3 col-md-6 my-2"
             >
               <product-card :product="item" :index="indexx" />
             </div>
           </div>
+          <swiper
+          :navigation="{
+            nextEl: '.slider-cate-next',
+            prevEl: '.slider-cate-prev',
+          }"
+          :spaceBetween="10"
+          :breakpoints="{
+            '200': {
+              slidesPerView: 1.2,
+              spaceBetween: 20,
+            },
+            '768': {
+              slidesPerView: 2,
+              spaceBetween: 40,
+            },
+            '1024': {
+              slidesPerView: 3.5,
+              spaceBetween: 50,
+            },
+          }"
+          :autoplay="{
+            delay: 2500,
+            disableOnInteraction: false,
+          }"
+          :dir="getSwiperDirection"
+          :modules="[SwiperNavigation, SwiperAutoplay]"
+           ref="mySwiper"
+          class="mobile-swiper"
+        >
+          <swiper-slide
+            v-for="(item, index) in productsTags"
+          >
+            <product-card :product="item" :index="index" />
+          </swiper-slide>
+        </swiper>
           <div
             v-if="spinnerProducts"
             class="d-flex align-items-center justify-content-center"

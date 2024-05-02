@@ -32,6 +32,51 @@
           </div>
         </div>
       </div>
+
+      <swiper
+          :navigation="{
+            nextEl: '.slider-cate-next',
+            prevEl: '.slider-cate-prev',
+          }"
+          :spaceBetween="10"
+          :breakpoints="{
+            '200': {
+              slidesPerView: 1.2,
+              spaceBetween: 20,
+            },
+            '768': {
+              slidesPerView: 2,
+              spaceBetween: 40,
+            },
+            '1024': {
+              slidesPerView: 3.5,
+              spaceBetween: 50,
+            },
+          }"
+          :autoplay="{
+            delay: 2500,
+            disableOnInteraction: false,
+          }"
+          :dir="getSwiperDirection"
+          :modules="[SwiperNavigation, SwiperAutoplay]"
+           ref="mySwiper"
+          class="mobile-swiper"
+        >
+          <swiper-slide
+            v-for="(item, index) in categoriesArr"
+          >
+          <div
+            class="box d-flex flex-column justify-content-center align-items-center gap-1 f1"
+            :class="`f${index + 1}`"
+          >
+            <img :src="item.image" alt="" />
+            <span class="type"> {{ item.name }} </span>
+            <span class="count"> {{ item.products_count }} {{ $t("product") }} </span>
+            
+              <button class="mt-1" @click="goTocategory(item.id , item.name , `f${index + 1}`)">{{ $t("showProducts") }}</button>
+          </div>
+          </swiper-slide>
+        </swiper>
     </div>
 
     <loader v-if="pending"></loader>

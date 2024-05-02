@@ -1450,7 +1450,7 @@ html[dir="ltr"] .card-popup-container{
 }
 .mobile-footer {
   display: none;
-  padding: 26px;
+  padding: 18px;
   border-radius: 14px 14px 0px 0px;
   background-color: #fff;
   position: fixed;
@@ -1466,6 +1466,14 @@ html[dir="ltr"] .card-popup-container{
     gap: 60px;
     .icon {
       position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 3px;
+      span{
+        font-size: 12px;
+        color: #919EAB;
+      }
       svg {
         // fill: #919eab !important;
         path {
@@ -1480,10 +1488,14 @@ html[dir="ltr"] .card-popup-container{
             stroke: #dcba95 !important;
           }
         }
+        span{
+          color: #dcba95;
+          font-weight: 700;
+        }
         &::before {
           content: "";
-          top: -25px;
-          right: -15px;
+          top: -15px;
+          right: -8px;
           width: 58px;
           height: 3px;
           background-color: #dcba95;
@@ -1499,10 +1511,14 @@ html[dir="ltr"] .card-popup-container{
           stroke: #dcba95 !important;
         }
       }
+      span{
+        color: #dcba95;
+        font-weight: 700;
+      }
       &::before {
         content: "";
-        top: -25px;
-        right: -15px;
+        top: -15px;
+        right: -8px;
         width: 58px;
         height: 3px;
         background-color: #dcba95;
@@ -1669,6 +1685,9 @@ html[dir="ltr"] .card-popup-container{
       font-size: 32px;
       margin-bottom: 11px;
     }
+  }
+  .mobile-swiper{
+    display: none;
   }
 }
 
@@ -1912,12 +1931,13 @@ html[dir="ltr"] .card-popup-container{
       font-size: 20px;
     }
     .image {
-      background-color: $main-bg;
-      border-radius: 50%;
-      width: 72px;
-      height: 71.187px;
+      background-color: #f4f5f6;
+      // border-radius: 50%;
+      width: 78px;
+      height: 74px;
       display: flex;
       align-items: center;
+      clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
       justify-content: center;
       img {
         width: 29.844px;
@@ -1944,13 +1964,16 @@ html[dir="ltr"] .card-popup-container{
     }
     .types {
       // .choose {
-      //   color: $text-color;
-      //   font-size: 16px;
-      //   font-weight: 400;
-      //   cursor: pointer;
-      // }
+        //   color: $text-color;
+        //   font-size: 16px;
+        //   font-weight: 400;
+        //   cursor: pointer;
+        // }
+      }
     }
-  }
+    .mobile-swiper{
+      display: none;
+    }
 
   .more {
     text-decoration: underline;
@@ -2336,6 +2359,17 @@ background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0.00) 100%);
     background: #fff;
     padding: 15px;
   }
+}
+
+.chart-div-custom{
+  height: 500px !important;
+}
+
+@media(max-width:770px){
+  .chart-div-custom{
+    height: 290px !important;
+  }
+  
 }
 
 

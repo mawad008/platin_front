@@ -13,7 +13,7 @@ $red-color: #b1628c;
 $red-bg: #f5ecf1;
 $rating-bg: #ecb43c;
 
-@media (max-width: 900px) {
+@media (max-width: 920px) {
   h3,
   h4 {
     font-size: 24px;
@@ -290,14 +290,19 @@ $rating-bg: #ecb43c;
     .hero-container {
       margin-top: 48px !important;
       margin-bottom: 48px !important;
+      .swiper-pagination{
+        display: none !important;
+      }
       .overlay{
         background-image: url("~/assets/images/overlay2.svg") !important;
         background-size: cover;
       }
       .btn1 {
         width: 135px;
-        height: 50px;
+        height: 48px;
         font-size: 14px;
+        margin-top: 10px;
+        border-radius: 8px !important;
       }
       .swiper-pagination{
         justify-content: center;
@@ -305,21 +310,25 @@ $rating-bg: #ecb43c;
       }
       .box {
         text-align: center;
-        h2{
-         margin-bottom: 30px !important;
-        }
+        height: 300px;
+        border-radius: 16px !important;
         .text-container {
+          // height: fit-content;
           .text {
             width: 100%;
-            line-height: 30px;
+            line-height: 24px;
             font-size: 14px;
-            margin-bottom: 30px !important;
+            margin-bottom: 10px !important;
           }
           h2 {
             width: 100%;
-            font-size: 20px;
+            font-size: 17px;
             line-height: 30px;
+            margin-bottom: 15px !important;
           }
+        }
+        button{
+        //  width: 100% !important;
         }
       }
     }
@@ -336,6 +345,12 @@ $rating-bg: #ecb43c;
 
   @media (max-width: 920px) {
     .sections{
+      .mobile-swiper{
+        display: block !important;
+      }
+      .row{
+        display: none !important;
+      }
        margin-bottom: 48px;
           .text{
         margin-bottom: 16px !important;
@@ -385,7 +400,7 @@ $rating-bg: #ecb43c;
   }
 
 
-  @media (max-width: 700px) {
+  @media (max-width: 920px) {
     .categories {
       margin-top: 50px;
       margin-bottom: 10px !important;
@@ -398,13 +413,16 @@ $rating-bg: #ecb43c;
       p{
         text-align: center !important;
       }
+      span{
+        font-size: 18px !important;
+      }
       .arrows {
         display: none !important;
       }
     }
   }
 
-  @media (max-width: 769px) {
+  @media (max-width: 920px) {
     .banner-container {
       .arrows {
         display: none !important;
@@ -470,6 +488,12 @@ $rating-bg: #ecb43c;
     }
     .our-products{
       margin-bottom: 48px !important;
+      .row{
+        display: none !important;
+      }
+      .mobile-swiper{
+        display: block !important;
+      }
       .more{
         // margin: 0px !important;
         // margin-top: 16px !important;
@@ -528,7 +552,7 @@ $rating-bg: #ecb43c;
     }
   }
   
-  @media (max-width: 760px) {
+  @media (max-width: 920px) {
     .about-us-page{
       margin-top: 48px;
       h3{
@@ -688,7 +712,7 @@ $rating-bg: #ecb43c;
     }
   }
   
-  @media (max-width: 700px) {
+  @media (max-width: 920px) {
     .product-details{
       width: 100% !important;
       margin: 0px !important;
@@ -955,7 +979,7 @@ $rating-bg: #ecb43c;
   }
 
 
-  @media (max-width: 970px) {
+  @media (max-width: 920px) {
     .cart-page {
       margin-top: 48px !important;
       .header{
@@ -1055,7 +1079,7 @@ $rating-bg: #ecb43c;
     }
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 920px) {
     .empty-container {
       width: 100%;
     }

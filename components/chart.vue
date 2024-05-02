@@ -4,7 +4,7 @@
         <!-- <div style="width: 100%; height: 578px">
         <iframe src="https://gold-feed.com/charts/goldfeed29v9234ltlvl234l66l324/chart.php" scrolling="no" height="100%" width="100%" frameborder="0"></iframe>
         </div> -->
-        <Chart type="line" :data="chartData" :options="chartOptions" style="height: 500px;" />
+        <Chart type="line" class="chart-div-custom" :data="chartData" :options="chartOptions"  />
 
 
     </div>
@@ -23,7 +23,7 @@ const setChartData = () => {
     const documentStyle = getComputedStyle(document.documentElement);
 
     return {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
         datasets: [
             {
                 label: 'سعر البيع',
@@ -222,4 +222,5 @@ onMounted(() => {
     width: 100% !important;
     height: 500px !important;
 }
+
 </style>

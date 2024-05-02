@@ -1,4 +1,4 @@
-@media (max-width: 900px) {
+@media (max-width: 920px) {
   h3,
   h4 {
     font-size: 24px;
@@ -232,14 +232,19 @@
     margin-top: 48px !important;
     margin-bottom: 48px !important;
   }
+  .hero-container .swiper-pagination {
+    display: none !important;
+  }
   .hero-container .overlay {
     background-image: url("~/assets/images/overlay2.svg") !important;
     background-size: cover;
   }
   .hero-container .btn1 {
     width: 135px;
-    height: 50px;
+    height: 48px;
     font-size: 14px;
+    margin-top: 10px;
+    border-radius: 8px !important;
   }
   .hero-container .swiper-pagination {
     justify-content: center;
@@ -247,20 +252,20 @@
   }
   .hero-container .box {
     text-align: center;
-  }
-  .hero-container .box h2 {
-    margin-bottom: 30px !important;
+    height: 300px;
+    border-radius: 16px !important;
   }
   .hero-container .box .text-container .text {
     width: 100%;
-    line-height: 30px;
+    line-height: 24px;
     font-size: 14px;
-    margin-bottom: 30px !important;
+    margin-bottom: 10px !important;
   }
   .hero-container .box .text-container h2 {
     width: 100%;
-    font-size: 20px;
+    font-size: 17px;
     line-height: 30px;
+    margin-bottom: 15px !important;
   }
 }
 @media (max-width: 1400px) {
@@ -271,6 +276,12 @@
 @media (max-width: 920px) {
   .sections {
     margin-bottom: 48px;
+  }
+  .sections .mobile-swiper {
+    display: block !important;
+  }
+  .sections .row {
+    display: none !important;
   }
   .sections .text {
     margin-bottom: 16px !important;
@@ -315,7 +326,7 @@
     line-height: 30px;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 920px) {
   .categories {
     margin-top: 50px;
     margin-bottom: 10px !important;
@@ -329,11 +340,14 @@
   .categories p {
     text-align: center !important;
   }
+  .categories span {
+    font-size: 18px !important;
+  }
   .categories .arrows {
     display: none !important;
   }
 }
-@media (max-width: 769px) {
+@media (max-width: 920px) {
   .banner-container .arrows {
     display: none !important;
   }
@@ -396,6 +410,12 @@
   .our-products {
     margin-bottom: 48px !important;
   }
+  .our-products .row {
+    display: none !important;
+  }
+  .our-products .mobile-swiper {
+    display: block !important;
+  }
   .our-products .more {
     margin-bottom: 48px !important;
   }
@@ -438,7 +458,7 @@
     text-align: start;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 920px) {
   .about-us-page {
     margin-top: 48px;
   }
@@ -581,7 +601,7 @@
     margin-top: 20px;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 920px) {
   .product-details {
     width: 100% !important;
     margin: 0px !important;
@@ -804,7 +824,7 @@
     font-size: 14px;
   }
 }
-@media (max-width: 970px) {
+@media (max-width: 920px) {
   .cart-page {
     margin-top: 48px !important;
   }
@@ -887,7 +907,7 @@
     margin-top: 30px;
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 920px) {
   .empty-container {
     width: 100%;
   }

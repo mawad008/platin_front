@@ -116,7 +116,8 @@
           <div class="d-flex align-items-center gap-5">
             <nuxt-link :to="localePath('/')"  @click="store.state.activeMobile = 1" class="logo">
               <!-- <img src="~/assets/images/logo.png" alt="" /> -->
-              <logo v-if="locale == 'ar'" class="a-logo" :w="87" :h="31"></logo>
+              <!-- <logo v-if="locale == 'ar'" class="a-logo" :w="87" :h="31"></logo> -->
+              <img class="" style="" src="../assets/images/platin-logo.svg" alt="">
               <e-logo
                 v-if="locale == 'en'"
                 class="e-logo"
@@ -614,6 +615,7 @@
               fill="#919EAB"
             />
           </svg>
+          <span> {{ $t('home') }} </span>
         </nuxt-link>
         <nuxt-link :to="localePath('/sections')" @click="store.state.activeMobile = 2" :class="{'activeMobile': store.state.activeMobile == 2}" class="icon">
           <svg
@@ -656,6 +658,7 @@
               stroke-linejoin="round"
             />
           </svg>
+          <span> {{ $t('sections2') }} </span>
         </nuxt-link>
         <nuxt-link :to="localePath('search')" @click="store.state.activeMobile = 3" :class="{'activeMobile': store.state.activeMobile == 3}" class="icon">
           <svg
@@ -694,6 +697,8 @@
               stroke-linejoin="round"
             />
           </svg>
+          <span> {{ $t('search2') }} </span>
+
         </nuxt-link>
         <nuxt-link class="icon" @click="store.state.activeMobile = 4" :class="{'activeMobile': store.state.activeMobile == 4}" :to="localePath('mobile-nav')">
           <svg
@@ -719,6 +724,8 @@
               stroke-width="1.5"
             />
           </svg>
+          <span> {{ $t('settings') }} </span>
+
         </nuxt-link>
       </div>
     </footer>

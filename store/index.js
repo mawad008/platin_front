@@ -24,7 +24,7 @@ export const useStore = createStore({
     final: false,
     search: '',
     animCart:false,
-    activeMobile:0,
+    activeMobile: 0,
     isInFav: [],
     step: 1,
     user: {},
