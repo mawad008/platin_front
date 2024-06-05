@@ -51,8 +51,15 @@
 
       <div class="btns">
       <!-- {{ store.state.step }} -->
-        <button @click="checkFunc()" :disabled="pending" class="fill gap-3">
-        <span>  {{ text1 ? text1 : $t("follow buy") }} </span>        
+        <button v-if="checkPay == 2" :disabled="checkPay" class="fill gap-3">
+        <a :href="urlPay">
+        <span> انتقل الي الدفع </span>        
+        </a>
+        <!-- <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular> -->
+        </button>
+        <button v-if="checkPay == 1" @click="checkFunc()" :disabled="pending" class="fill gap-3">
+        <!-- <span>  {{ text1 ? text1 : $t("follow buy") }} </span>         -->
+        <span> اتمام عملية الشراء </span>        
         <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
         </button>
         <button v-if="cartBtn"  class="stroke">
@@ -70,23 +77,12 @@ import { useStore } from "~/store";
 const store = useStore;
 // Define the props you expect
 let step = ref(store.state.step);
-const props = defineProps(["arrData" , "myFunction" , "pending" , "text" , "text1" , "cartBtn"]);
+const props = defineProps(["arrData" , "myFunction" , "pending" , "text" , "text1" , "cartBtn" , "checkPay" , "urlPay"]);
 
 const localePath = useLocalePath();
 
 const checkFunc = () => {
   props.myFunction();
-  // if (store.state.step == 4) {
-  //   store.state.finalStep = 2;
-  //   return
-  // } else {
-  //   store.state.step += 1
-  // }
- 
-  // step.value += 1;
-  // store.state.step = step.value;
-  // console.log(step.value);
-  // console.log(store.state.step);
 }
 const checkFunc2 = () => {
   if (store.state.step == 1) {
@@ -110,6 +106,9 @@ let total = computed(() => {
   return store.state.totalNum;
 });
 
+// watch([() => store.showBrand], ([val]) => {
+//   brand.value = val;
+// });
 onMounted(() => {
 })
 </script>

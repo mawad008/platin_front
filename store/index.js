@@ -27,6 +27,9 @@ export const useStore = createStore({
     activeMobile: 0,
     isInFav: [],
     step: 1,
+    userObj1:{},
+    userObj2:{},
+    userObj3:{},
     user: {},
   },
   mutations: {
@@ -47,6 +50,14 @@ export const useStore = createStore({
         //  state.isInFav[index] = true;
         localStorage.setItem("favIcon", JSON.stringify(state.isInFav));
       }
+    },
+    addUser1(state , payload){
+      state.userObj1 = payload;
+      localStorage.setItem("storeUser1",JSON.stringify(payload));
+    },
+    addStep(state , payload){
+      state.step = payload;
+      localStorage.setItem("storeStep",JSON.stringify(payload));
     },
     deleteFav(state, payload){
       const { indexx, itemId } = payload;
@@ -80,6 +91,12 @@ export const useStore = createStore({
     },
     setuser(state, user) {
       state.user = user;
+    },
+    setuser1(state, user) {
+      state.userObj1 = user;
+    },
+    setStep(state, user) {
+      state.step = user;
     },
 
     setfav(state, payload) {
@@ -278,6 +295,9 @@ export const useStore = createStore({
         const storedBasket = JSON.parse(localStorage.getItem("basket")) || [];
         const storedfav = JSON.parse(localStorage.getItem("fav")) || [];
         const storedfavicon = JSON.parse(localStorage.getItem("favIcon")) || [];
+        const storedUser1 = JSON.parse(localStorage.getItem("storeUser1")) || {};
+        const storedStep = JSON.parse(localStorage.getItem("storeStep")) || 1;
+        // const storedUser3 = JSON.parse(localStorage.getItem("storeUser3")) || {};
         const userCookie = Cookies.get("user");
         const authCookie = Cookies.get("auth");
 
@@ -292,6 +312,8 @@ export const useStore = createStore({
         commit("setfav", storedfav);
         commit("setfavIcon", storedfavicon);
         commit("setuser", storedUser);
+        commit("setuser1", storedUser1);
+        commit("setStep", storedStep);
         commit("setAuthenticated", storedAuth);
         getTotalBasketNum(state);
         getTotalPrice(state);

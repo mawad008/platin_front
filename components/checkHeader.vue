@@ -60,8 +60,8 @@
 
               </div>
 
-              <div class="line" :class="{ 'active': store.state.check3, 'compelete': store.state.lineActive3 }"></div>
-         <div class="icon d-flex align-items-center gap-3" :class="{ 'active': store.state.check4 }">
+              <!-- <div class="line" :class="{ 'active': store.state.check3, 'compelete': store.state.lineActive3 }"></div> -->
+         <!-- <div class="icon d-flex align-items-center gap-3" :class="{ 'active': store.state.check4 }">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                 <path d="M14.0614 7.02471L14.2288 7.19214V3.42871H13.0859V7.19214L13.2534 7.02471C13.3605 6.91758 13.5058 6.8574 13.6574 6.8574C13.8089 6.8574 13.9542 6.91758 14.0614 7.02471Z" fill="#919EAB"/>
                 <path d="M6.79911 25.1426C7.43029 25.1426 7.94196 24.631 7.94196 23.9998C7.94196 23.3686 7.43029 22.8569 6.79911 22.8569C6.16792 22.8569 5.65625 23.3686 5.65625 23.9998C5.65625 24.631 6.16792 25.1426 6.79911 25.1426Z" fill="#919EAB"/>
@@ -76,7 +76,7 @@
               </svg>
                 <span>{{ $t('check4') }}</span>
 
-              </div>
+              </div> -->
             </div>
   </div>
 

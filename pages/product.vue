@@ -1111,9 +1111,7 @@ const clickedItem = (id) => {
   return store.state.isInFav.find((item) => item == id);
 };
 
-watch(
-  () => MainRoute.query.id,
-  (newId) => {
+watch(() => MainRoute.query.id, (newId) => {
     id.value = newId;
     showProduct();
     showVendor();
