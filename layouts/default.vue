@@ -118,12 +118,12 @@
               <!-- <img src="~/assets/images/logo.png" alt="" /> -->
               <!-- <logo v-if="locale == 'ar'" class="a-logo" :w="87" :h="31"></logo> -->
               <img class="" style="" src="../assets/images/platin-logo.svg" alt="">
-              <e-logo
+              <!-- <e-logo
                 v-if="locale == 'en'"
                 class="e-logo"
                 :w="87"
                 :h="31"
-              ></e-logo>
+              ></e-logo> -->
             </nuxt-link>
 
             <div v-if="activeNav" class="items-container">

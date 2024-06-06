@@ -1783,8 +1783,8 @@
                     <div class="radio-inputs d-flex flex-column gap-4">
                       <div class="row">
                         <div class="col-12 col-xl-6 col-lg-6">
-                          <label  class="third-labels">
-                            <input name="card" type="radio" v-model="paymentMethodVar" :value="1" />
+                          <label  class="third-labels" @click="setPaymentVar(1)">
+                            <input name="card" type="radio"  v-model="paymentMethodVar" :value="1" />
                             <div class="radio-input">
                               <div class="d-flex align-items-center gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="24" viewBox="0 0 35 24" fill="none">
@@ -1843,8 +1843,8 @@
                           </label>
                         </div>
                         <div class="col-12 col-xl-6 col-lg-6">
-                          <label  class="third-labels">
-                            <input name="card" type="radio" @input="paymentFunc()" v-model="paymentMethodVar" :value="2" />
+                          <label  class="third-labels" @click="setPaymentVar(2) , paymentFunc()">
+                            <input name="card" type="radio" v-model="paymentMethodVar" :value="2" />
                             <div class="radio-input">
                               <div class="d-flex align-items-center gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="24" viewBox="0 0 35 24" fill="none">
@@ -2168,7 +2168,7 @@
                           </svg> -->
                             <div class="d-flex flex-column">
                               <h6 style="font-size: 14px; font-weight: 700;">
-                                {{ $t("payment1") }}
+                                {{ paymentMethodVar == 1 ? $t("payment1") : 'الدفع عن طريق tap' }}
                               </h6>
                               <span class="text-word">
                                 {{ userdata1.phone }}</span
@@ -2262,6 +2262,7 @@
                   :urlPay="urlPay"
                   :checkPay="paymentMethodVar"
                   :pending="pending"
+                  :tap_id="tap_id"
                 />
               </div>
             </div>
@@ -2317,6 +2318,10 @@ const route = useRoute();
 let tap_id = ref(route.query.tap_id || null);
 
 let paymentMethodVar = ref(1);
+
+const setPaymentVar = (val)=> {
+  store.commit("paymentVarFunc" , val);
+}
 
 if (locale.value == "ar") {
   text1.value = "الرجوع للسلة";
@@ -2615,6 +2620,7 @@ const checkoutFunc3 = async () => {
       store.state.check4 = true;
       store.state.lineActive3 = true;
       finalObj.value = result.data.data;
+      store.commit("clearCache");
       if (process.client) {
     window.scrollTo({
       top: 0,
@@ -2681,57 +2687,65 @@ if (locale.value == "ar") {
 }
 
 
-const getPayed = async () =>{
-  let result = await axios.get(`${getUrl()}/retrieve-charge`, {
-    params: {
-      tap_id: route.query.tap_id,
-    },
-    headers: {
-      "Content-Language": `${locale.value}`,
-    },
-  });
-  if(result.status >= 200){
-    if(result.data.code == 0){
-      createToast(
-      {
-        title: 'تم الدفع بنجاح',
-      },
-      {
-        showIcon: "true",
-        type: "success",
-        toastBackgroundColor: "#dcba95",
-        timeout: 2000,
-      }
-    );
+let isGettingPayed = ref(false);
+const getPayed = async () => {
+  if (isGettingPayed.value) return;
+  isGettingPayed.value = true;
 
-    } else{
-      createToast(
-      {
-        title: 'فشلت عملية الدفع',
+  try {
+    let result = await axios.get(`${getUrl()}/retrieve-charge`, {
+      params: {
+        tap_id: route.query.tap_id,
       },
-      {
-        showIcon: "true",
-        type: "success",
-        toastBackgroundColor: "tomato",
-        timeout: 2000,
+      headers: {
+        "Content-Language": `${locale.value}`,
+      },
+    });
+
+    if (result.status >= 200) {
+      if (result.data.code == 0) {
+        createToast(
+          {
+            title: 'تم الدفع بنجاح',
+          },
+          {
+            showIcon: "true",
+            type: "success",
+            toastBackgroundColor: "#dcba95",
+            timeout: 2000,
+          }
+        );
+      } else {
+        createToast(
+          {
+            title: 'فشلت عملية الدفع',
+          },
+          {
+            showIcon: "true",
+            type: "success",
+            toastBackgroundColor: "tomato",
+            timeout: 2000,
+          }
+        );
       }
-    );
     }
+  } finally {
+    isGettingPayed.value = false;
   }
-}
+};
 
-watch([() => store.state.userObj1, () => route.query.tap_id ], ([user1 , route]) => {
+watch([() => store.state.userObj1, () => route.query.tap_id  , ()=> store.state.paymentVar], ([user1 , route , pay1]) => {
+  userdata1.value.type = user1.email;
+  userdata1.value.first_name = user1.first_name;
+  userdata1.value.last_name = user1.last_name;
+  userdata1.value.phone = user1.phone;
+  userdata1.value.email = user1.email;
+  personalorGift.value = user1.personalorGift;
+  gift_owner_name.value = user1.gift_owner_name;
+  gift_owner_phone.value = user1.gift_owner_phone;
+  gift_text.value = user1.gift_text;
   if(user1){
     // start watch userform1
-    userdata1.value.type = user1.email;
-    userdata1.value.first_name = user1.first_name;
-    userdata1.value.last_name = user1.last_name;
-    userdata1.value.phone = user1.phone;
-    userdata1.value.email = user1.email;
-    personalorGift.value = user1.personalorGift;
-    gift_owner_name.value = user1.gift_owner_name;
-    gift_owner_phone.value = user1.gift_owner_phone;
-    gift_text.value = user1.gift_text;
     // end watch userform1
 
     // start watch userform2
@@ -2745,11 +2759,18 @@ watch([() => store.state.userObj1, () => route.query.tap_id ], ([user1 , route])
     }
     // end watch userform2
   }
+  if (pay1){
+    paymentMethodVar.value = pay1;
+  }
   if(route){
+    tap_id.value = route;
     getPayed();
   }
   }
 );
+onBeforeMount(() => {
+  store.dispatch("loadBasketFromLocalStorage");
+});
 onMounted(() => {
   getCities();
 });

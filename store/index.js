@@ -27,6 +27,7 @@ export const useStore = createStore({
     activeMobile: 0,
     isInFav: [],
     step: 1,
+    paymentVar:1,
     userObj1:{},
     userObj2:{},
     userObj3:{},
@@ -58,6 +59,10 @@ export const useStore = createStore({
     addStep(state , payload){
       state.step = payload;
       localStorage.setItem("storeStep",JSON.stringify(payload));
+    },
+    paymentVarFunc(state , payload){
+      state.paymentVar = payload;
+      localStorage.setItem("storePayVar",JSON.stringify(payload));
     },
     deleteFav(state, payload){
       const { indexx, itemId } = payload;
@@ -97,6 +102,9 @@ export const useStore = createStore({
     },
     setStep(state, user) {
       state.step = user;
+    },
+    setPayVar(state, user) {
+      state.paymentVar = user;
     },
 
     setfav(state, payload) {
@@ -288,6 +296,14 @@ export const useStore = createStore({
       getTotalBasketNum(state);
       getTotalPrice(state);
     },
+    clearCache(state){
+      state.paymentVar = 1;
+      state.userObj1 = {};
+      state.step = 1;
+      localStorage.removeItem("storeUser1");
+      localStorage.removeItem("storeStep");
+      localStorage.removeItem("storePayVar");
+    }
   },
   actions: {
     loadBasketFromLocalStorage({ commit, state }) {
@@ -297,6 +313,7 @@ export const useStore = createStore({
         const storedfavicon = JSON.parse(localStorage.getItem("favIcon")) || [];
         const storedUser1 = JSON.parse(localStorage.getItem("storeUser1")) || {};
         const storedStep = JSON.parse(localStorage.getItem("storeStep")) || 1;
+        const storedPayVar = JSON.parse(localStorage.getItem("storePayVar")) || 1;
         // const storedUser3 = JSON.parse(localStorage.getItem("storeUser3")) || {};
         const userCookie = Cookies.get("user");
         const authCookie = Cookies.get("auth");
@@ -314,6 +331,7 @@ export const useStore = createStore({
         commit("setuser", storedUser);
         commit("setuser1", storedUser1);
         commit("setStep", storedStep);
+        commit("setPayVar", storedPayVar);
         commit("setAuthenticated", storedAuth);
         getTotalBasketNum(state);
         getTotalPrice(state);
