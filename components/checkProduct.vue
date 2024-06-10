@@ -51,24 +51,15 @@
 
       <div class="btns">
       <!-- {{ store.state.step }} -->
-        <button v-if="checkPay == 1" @click="checkFunc()" :disabled="pending" class="fill gap-3">
-        <!-- <span>  {{ text1 ? text1 : $t("follow buy") }} </span>         -->
-        <span> اتمام عملية الشراء </span>        
-        <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
+        <v-progress-circular v-if="checkPay2" style="" indeterminate :size="20" :width="4"></v-progress-circular>
+        <button v-if="checkPay == 2 && urlPay" :disabled="!urlPay" class="fill gap-3">
+        <a :href="urlPay"  class="w-100">  انتقل الي الدفع  </a>        
         </button>
-        <button v-else-if="checkPay == 2" @click="checkFunc1()" :disabled="checkPay && !tap_id" class="fill gap-3">
-        <a v-if="!tap_id" :href="urlPay">
-        <span> انتقل الي الدفع </span>        
-        </a>
-        <div v-else>
-        <span> اتمام عملية الشراء </span>        
-        </div>
-        <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
+        <button v-else @click="checkFunc()" :disabled="pending" class="fill gap-3">
+        <span  class="">  {{ $t("follow buy")  }} </span>        
+        <v-progress-circular v-if="pending" style="" indeterminate :size="20" :width="4"></v-progress-circular>
         </button>
-        <button v-else @click="checkFunc()"  class="fill gap-3">
-        <span>  {{ text1 ? text1 : $t("follow buy") }} </span>        
-        <v-progress-circular v-if="pending" indeterminate :size="30" :width="5"></v-progress-circular>
-        </button>
+ 
         <button v-if="cartBtn"  class="stroke">
           <nuxt-link class="w-100" :to="localePath('/cart')">{{ text ? text : $t("back btn") }}</nuxt-link>
         </button>
@@ -84,7 +75,7 @@ import { useStore } from "~/store";
 const store = useStore;
 // Define the props you expect
 let step = ref(store.state.step);
-const props = defineProps(["arrData" , "myFunction" , "pending" , "text" , "text1" , "cartBtn" , "checkPay" , "urlPay" , "tap_id"]);
+const props = defineProps(["arrData" , "myFunction" , "pending" , "text" , "text1" , "cartBtn" , "checkPay" , "checkPay2" , "urlPay" , "tap_id"]);
 
 const localePath = useLocalePath();
 
@@ -92,7 +83,7 @@ const checkFunc = () => {
   props.myFunction();
 }
 const checkFunc1 = () => {
-  if(props.tap_id){
+  if(props.tap_id != ''){
     props.myFunction();
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="final-order">
-      <div class="row align-items-center">
+      <div v-if="arrData" class="row align-items-center">
         <div class="col-12 col-xl-6 col-lg-6 mobile">
           <Vue3Lottie :animation-data="cart" />
         </div>
@@ -15,7 +15,7 @@
                 class="col-6 col-xl-3 col-lg-3 col-md-4 mb-3"
               >
                 <v-badge color="#B1628C" :content="item.quantity">
-                  <div class="image">
+                  <div class="image" v-if="item.images">
                     <img :src="item.images[0].full_image_path" alt="" />
                   </div>
                 </v-badge>
@@ -51,7 +51,7 @@
                 </v-badge>
           </swiper-slide>
         </swiper>
-            <div class="details">
+            <div v-if="finalObj" class="details">
               <div class="item">
                 <div class="d-flex align-items-center gap-3">
                   <svg
@@ -247,9 +247,9 @@ const store = useStore;
 // Define the props you expect
 const props = defineProps(["arrData", "finalObj"]);
 
-let total = computed(() => {
-  return store.state.totalNum;
-});
+// let total = computed(() => {
+//   return store.state.totalNum;
+// });
 </script>
 
 <style lang="scss" scoped></style>

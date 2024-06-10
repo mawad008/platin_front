@@ -1021,7 +1021,12 @@ const updateLang = () => {
 //     setLocale("en");
 //   }
 // });
+const isLoading = ref(false);
 onMounted(() => {
+  // isLoading.value = true;
+  // window.addEventListener('load', () => {
+  //   isLoading.value = false;
+  // });
   window.addEventListener("online", function () {
     checkInt.value = false;
   });
@@ -1029,6 +1034,15 @@ onMounted(() => {
     checkInt.value = true;
     console.log("offfff");
   });
+
+//   watch(router, (to, from) => {
+//   if (to !== from) {
+//     isLoading.value = true;
+//     window.addEventListener('load', () => {
+//       isLoading.value = false;
+//     });
+//   }
+// });
 
   updateLang();
   store.dispatch("loadBasketFromLocalStorage");

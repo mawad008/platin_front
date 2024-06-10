@@ -698,6 +698,8 @@
     <div class="info-container container">
       <info-section></info-section>
     </div>
+    <loader v-if="pendingPage"></loader>
+
   </div>
 </template>
 
@@ -706,6 +708,8 @@
 import axios from "axios";
 import { useStore } from "~/store";
 const store = useStore;
+
+let pendingPage = ref(true);
 
 const router = useRouter();
 const localePath = useLocalePath();
@@ -882,6 +886,7 @@ onMounted(async () => {
   getAds();
   getProductsSections();
   //getProducts();
+  pendingPage.value = false;
 });
 </script>
 

@@ -27,6 +27,7 @@ export const useStore = createStore({
     activeMobile: 0,
     isInFav: [],
     step: 1,
+    idPay:'',
     paymentVar:1,
     userObj1:{},
     userObj2:{},
@@ -59,6 +60,10 @@ export const useStore = createStore({
     addStep(state , payload){
       state.step = payload;
       localStorage.setItem("storeStep",JSON.stringify(payload));
+    },
+    addIdPay(state , payload){
+      state.idPay = payload;
+      localStorage.setItem("storeId",JSON.stringify(payload));
     },
     paymentVarFunc(state , payload){
       state.paymentVar = payload;
@@ -102,6 +107,9 @@ export const useStore = createStore({
     },
     setStep(state, user) {
       state.step = user;
+    },
+    setId(state, user) {
+      state.idPay = user;
     },
     setPayVar(state, user) {
       state.paymentVar = user;
@@ -300,9 +308,17 @@ export const useStore = createStore({
       state.paymentVar = 1;
       state.userObj1 = {};
       state.step = 1;
+      state.idPay = '';
+      state.basket = [];
+      state.totalNum = 0;
+      state.basketNum = 0;
       localStorage.removeItem("storeUser1");
       localStorage.removeItem("storeStep");
       localStorage.removeItem("storePayVar");
+      localStorage.removeItem("basket");
+      localStorage.removeItem("total");
+      localStorage.removeItem("num");
+      localStorage.removeItem("storeId");
     }
   },
   actions: {
@@ -314,6 +330,7 @@ export const useStore = createStore({
         const storedUser1 = JSON.parse(localStorage.getItem("storeUser1")) || {};
         const storedStep = JSON.parse(localStorage.getItem("storeStep")) || 1;
         const storedPayVar = JSON.parse(localStorage.getItem("storePayVar")) || 1;
+        const storedId = JSON.parse(localStorage.getItem("storeId")) || '';
         // const storedUser3 = JSON.parse(localStorage.getItem("storeUser3")) || {};
         const userCookie = Cookies.get("user");
         const authCookie = Cookies.get("auth");
@@ -332,6 +349,7 @@ export const useStore = createStore({
         commit("setuser1", storedUser1);
         commit("setStep", storedStep);
         commit("setPayVar", storedPayVar);
+        commit("setId", storedId);
         commit("setAuthenticated", storedAuth);
         getTotalBasketNum(state);
         getTotalPrice(state);
