@@ -820,7 +820,27 @@ html[dir="ltr"] .card-popup-container{
   justify-content: center;
   position: relative;
 
-
+   &.vendor{
+    width: 520px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: fit-content;
+    padding: 32px 30px;
+    .main{
+      padding: 0px;
+      h2{
+        text-align: center;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        color: $secondary-black;
+        margin-bottom: 48px;
+      }
+      .btns{
+        margin-top: 32px;
+      }
+    }
+   }
 
   .boxes{
     overflow-y: auto;
@@ -875,19 +895,19 @@ html[dir="ltr"] .card-popup-container{
     }
   }
   .main {
+    position: relative;
     width: 100%;
     display: flex;
-    align-items: center;
-    text-align: center;
+    // align-items: center;
+    // text-align: center;
     justify-content: center;
     flex-direction: column;
     padding: 0px 56px;
-    position: relative;
     .close {
       position: absolute;
-      top: -20px;
+      top: 0px;
       cursor: pointer;
-      left: 30px;
+      left: 0px;
     }
     h3 {
       margin-top: 24px;
@@ -897,11 +917,18 @@ html[dir="ltr"] .card-popup-container{
       margin-bottom: 14px;
     }
     p {
-      font-size: 16px;
+      margin-top: 12px;
+      font-size: 14px;
       font-style: normal;
       font-weight: 400;
-      color: $body-text;
-      text-align: center;
+      color: #5A7184;
+      // text-align: center;
+      width: 80%;
+      span{
+        color: $secondary-black;
+        font-weight: 500;
+        text-decoration: underline;
+      }
     }
     .btns {
       width: 100%;
@@ -1408,21 +1435,23 @@ html[dir="ltr"] .card-popup-container{
 // ---------------------------------------------------------------------
 
 .footer-container {
-  background-color: #fff;
+  // background-color: #fff;
+  background:  linear-gradient(114deg, #363F4D -1.62%, #0E131B 64.19%);
   padding: 35px;
   z-index: 1111;
   span {
     font-size: 14px;
-    color: $body-text;
+    color: rgba(255, 255, 255, 0.72);
     cursor: pointer;
   }
   .box-container {
-    color: $body-text;
+    color: rgba(255, 255, 255, 0.80);
     p {
       // width: 323px;
     }
     h6 {
-      color: $secondary-black;
+      // color: $secondary-black;
+      color: #fff;
       font-size: 16px;
       font-weight: 700;
     }

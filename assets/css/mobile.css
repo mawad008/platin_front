@@ -90,6 +90,26 @@
     height: fit-content !important;
     padding: 24px;
   }
+  .card-popup-container.vendor {
+    height: 630px !important;
+    overflow-y: auto;
+  }
+  .card-popup-container.vendor .main h2 {
+    font-size: 20px !important;
+  }
+  .card-popup-container.vendor .main .row {
+    margin: 0px;
+  }
+  .card-popup-container.vendor .main .row > * {
+    padding: 0px;
+  }
+  .card-popup-container.vendor .main .main-input {
+    width: 100%;
+  }
+  .card-popup-container.vendor p {
+    width: 100% !important;
+    text-align: center;
+  }
   .card-popup-container .main {
     padding: 0px !important;
     width: 100% !important;
