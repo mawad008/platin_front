@@ -1469,7 +1469,7 @@ import {
   helpers,
 } from "@vuelidate/validators";
 import axios from "axios";
-import { createToast } from "mosha-vue-toastify";
+// import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 import { useStore } from "~/store";
 const store = useStore;
@@ -1884,6 +1884,8 @@ const getPayed = async () => {
         if (result.status >= 200) {
          store.commit("addIdPay", '');
          tap_idV.value = '';
+         const moshaToastify = await import("mosha-vue-toastify");
+         const { createToast } = moshaToastify;
           if (result.data.code == 0) {
             createToast(
               {

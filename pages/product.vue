@@ -797,7 +797,7 @@ import VueEasyLightbox from "vue-easy-lightbox";
 import Cookies from "js-cookie";
 import { useStore } from "~/store";
 import axios from "axios";
-import { createToast } from "mosha-vue-toastify";
+// import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 
 const store = useStore;
@@ -947,9 +947,11 @@ if (locale.value == "ar") {
   text1.value = "added to wishlist";
   text3.value = 'removed from wishlist';
 }
-const addToBasket = () => {
+const addToBasket = async () => {
   if (mainProduct.value) {
     store.commit("add", { mainItem: mainProduct.value, qw: quantity.value });
+    const moshaToastify = await import("mosha-vue-toastify");
+    const { createToast } = moshaToastify;
     createToast(
       {
         title: text2.value,
@@ -1074,9 +1076,11 @@ const addComment = async () => {
 };
 
 let anim = ref(false);
-const addTofav = (item, index) => {
+const addTofav = async(item, index) => {
   store.commit("addFav", { item: item, index: index });
   anim.value = true;
+  const moshaToastify = await import("mosha-vue-toastify");
+  const { createToast } = moshaToastify;
   createToast(
     {
       title: text1.value,
@@ -1092,8 +1096,10 @@ const addTofav = (item, index) => {
     anim.value = false;
   }, 2000);
 };
-const deleteTofav = (itemId) => {
+const deleteTofav = async (itemId) => {
   store.commit("deleteFav", { itemId: itemId });
+  const moshaToastify = await import("mosha-vue-toastify");
+  const { createToast } = moshaToastify;
   createToast(
     {
       title: text3.value,

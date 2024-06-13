@@ -1028,7 +1028,7 @@
 </template>
 
 <script setup>
-import { createToast } from "mosha-vue-toastify";
+// import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -1160,7 +1160,8 @@ const AddVendor = async () => {
         }
         v2$.value.$reset();
         errors2.value = [];
-       
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
         createToast(
           {
             title: titleVendor.value,
@@ -1385,7 +1386,8 @@ const subscripe = async () => {
       if (result.status >= 200) {
         error.value = "";
         email.value = "";
-     
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
         createToast(
           {
             title: emailText.value,

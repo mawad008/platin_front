@@ -607,7 +607,7 @@
 definePageMeta({
   middleware: "auth",
 });
-import { createToast } from 'mosha-vue-toastify';
+// import { createToast } from 'mosha-vue-toastify';
 import 'mosha-vue-toastify/dist/style.css';
 import { useStore } from "~/store";
 import Cookies from "js-cookie";
@@ -802,6 +802,8 @@ const updatePassword = async () => {
         passwordUpdate.value.old_password = '';
         passwordUpdate.value.password_confirmation = '';
         passActive.value = false;
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
           createToast({
             title: textPass.value
           },

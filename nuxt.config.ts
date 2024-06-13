@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     // "@nuxtjs/auth-next",
   ],
  
-  plugins: [],
+  plugins: [{src:'./plugins/mosha.js'}],
   ssr: true,
   nitro: {
     prerender: {

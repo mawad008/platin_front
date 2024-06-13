@@ -255,7 +255,7 @@
 
 <script setup>
 import axios from 'axios';
-import { createToast } from "mosha-vue-toastify";
+// import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 import Cookies from "js-cookie";
 import { useStore } from "~/store";
@@ -349,6 +349,8 @@ const subscripe = async()=>{
       if(result.status >= 200){
         error.value = '';
         email.value = '';
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
         createToast({
           title: emailText.value
         },
