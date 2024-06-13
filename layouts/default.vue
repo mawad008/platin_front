@@ -472,14 +472,13 @@
                   style="width: 123.999px"
                   alt=""
                 /> -->
-                <logo
+                <!-- <logo
                   v-if="locale == 'ar'"
                   class="a-logo"
                   :w="124"
                   :h="45"
-                ></logo>
+                ></logo> -->
                 <e-logo
-                  v-if="locale == 'en'"
                   class="e-logo"
                   :w="124"
                   :h="45"
@@ -552,6 +551,7 @@
                     <input
                       type="email"
                       v-model="emaill"
+                      style="color: #fff;"
                       @keypress.enter="subscripe()"
                       :placeholder="$t('enter')"
                     />
@@ -758,6 +758,7 @@
                   <input
                     v-model="objVendor.phone"
                     type="tel"
+                    name="phone"
                     :placeholder="$t('phone')"
                   />
                   <span class="error-msg" v-if="v2$.phone.$error">{{
@@ -858,7 +859,7 @@
               </button>
             </div>
 
-            <div @click="dialog = false" class="close">
+            <div @click="dialog = false , clearObj()" class="close">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -1132,6 +1133,7 @@ const v2$ = useValidate(rules, objVendor);
 let pending = ref(false);
 let errors2 = ref([]);
 
+
 const AddVendor = async () => {
   let check = await v2$.value.$validate();
   let formDat = new FormData();
@@ -1153,10 +1155,12 @@ const AddVendor = async () => {
       });
       if(result.status >= 200){
         pending.value = false;
+        for(const key of  Object.keys(objVendor.value)){
+          objVendor.value[key] = "";
+        }
+        v2$.value.$reset();
         errors2.value = [];
-        // for(const key of  Object.keys(objVendor.value)){
-        //   objVendor.value[key] = "";
-        // }
+       
         createToast(
           {
             title: titleVendor.value,
