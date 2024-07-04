@@ -378,6 +378,14 @@ html[dir=rtl] input[type=tel] {
   font-size: 13px;
   color: #b1628c;
 }
+.main-input .num, .main-input .icon {
+  position: absolute;
+  color: #5a7184;
+  top: 57%;
+}
+.main-input .icon {
+  cursor: pointer;
+}
 .main-input .error-msg2 {
   font-size: 13px;
   color: #b1628c;
@@ -565,6 +573,14 @@ html[dir=rtl] input[type=tel] {
   display: none;
   align-items: center;
   gap: 3px;
+}
+
+html[dir=rtl] .main-input .num, html[dir=rtl] .main-input .icon {
+  left: 20px;
+}
+
+html[dir=ltr] .main-input .num, html[dir=ltr] .main-input .icon {
+  right: 20px;
 }
 
 body,
@@ -1360,7 +1376,6 @@ html[dir=ltr] .card-popup-container {
   border-radius: 24px;
   padding: 20px 50px;
   opacity: 0.88;
-  background-image: url("~/assets/images/banner.jpg");
   position: relative;
 }
 .hero-section .box h2 {
@@ -3512,15 +3527,16 @@ html[dir=ltr] .product-page .share-box {
   border-radius: 8px;
   opacity: 0.56;
   width: 170px;
-  height: 185px;
+  max-height: 250px;
   overflow: auto;
   padding: 10px;
-  position: relative;
+  padding-top: 25px;
+  position: absolute;
   z-index: 11111 !important;
   background-color: #2d3a4a;
   gap: 13px !important;
   text-align: center;
-  box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08);
+  box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08) !important;
 }
 #select-product span {
   width: 100%;
@@ -3530,7 +3546,7 @@ html[dir=ltr] .product-page .share-box {
 #select-product span.active {
   border-radius: 4px;
   background: #747e88;
-  padding: 7px;
+  padding: 2px;
 }
 
 .wish-list-page {
@@ -4607,7 +4623,7 @@ html[dir=ltr] td.headd2 {
     overflow-y: auto;
   }
   .card-popup-container.vendor .main h2 {
-    font-size: 22px;
+    font-size: 20px !important;
   }
   .card-popup-container.vendor .main .row {
     margin: 0px;
@@ -4947,6 +4963,9 @@ html[dir=ltr] td.headd2 {
   }
   .our-products .row {
     display: none !important;
+  }
+  .our-products.products .row {
+    display: block !important;
   }
   .our-products .mobile-swiper {
     display: block !important;
@@ -5351,6 +5370,7 @@ html[dir=ltr] td.headd2 {
   }
   #select-product {
     width: 100%;
+    position: relative !important;
   }
   .the-vendor .tabs {
     justify-content: space-between;

@@ -516,6 +516,11 @@ $rating-bg: #ecb43c;
       .row{
         display: none !important;
       }
+      &.products{
+        .row{
+          display: block !important;
+        }
+      }
       .mobile-swiper{
         display: block !important;
       }
@@ -984,6 +989,7 @@ $rating-bg: #ecb43c;
     }
     #select-product {
       width: 100%;
+      position:  relative !important;
     }
     .the-vendor {
       .tabs {

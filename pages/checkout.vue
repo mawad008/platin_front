@@ -1951,6 +1951,12 @@ paymentMethodVar.value = pay1 ? pay1 : 1;
   }
   );
   
+
+  useHead({
+  title: locale.value == "ar" ? "الدفع" : "checkout",
+});
+
+
   if(process.client && tap_idV.value != ''){
     getPayed();
 }

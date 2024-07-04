@@ -1,44 +1,6 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="container hero-container" style="">
-      <swiper
-        :spaceBetween="30"
-        :effect="'fade'"
-        :dir="getSwiperDirection"
-        :pagination="{
-          clickable: true,
-        }"
-        :autoplay="{
-          delay: 2500,
-          disableOnInteraction: false,
-        }"
-        :modules="[SwiperEffectFade, SwiperPagination, SwiperAutoplay]"
-        class="hero-section"
-      >
-        <swiper-slide v-for="(i, index) in 3" class="box">
-          <div class="h-100">
-            <!-- <img src="~/assets/images/banner.jpg" alt=""> -->
-            <div class="text-container">
-              <!-- {{ index + 1 }} -->
-              <h2>{{ $t("landing1") }}</h2>
-              <span class="text">
-                {{ $t("landing2") }}
-              </span>
-              <div
-                class="d-flex w-100 justify-content-center justify-content-xl-start justify-content-lg-start"
-              >
-                <button class="btn1">
-                  <span> {{ $t("shopNow") }}</span>
-                  <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="overlay"></div>
-        </swiper-slide>
-      </swiper>
-    </div>
-
+     <hero></hero>
     <div class="sections container" style="">
       <div
         class="text w-100 d-flex align-items-center justify-content-center text-center flex-column"
@@ -122,14 +84,14 @@
               <span class="text">
                 {{ item.description }}
               </span>
-              <div class="btn-container">
+              <!-- <div class="btn-container">
                 <button class="btn1">
                   <span>
                     {{ $t("watch1") }}
                   </span>
                   <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
                 </button>
-              </div>
+              </div> -->
               <div class="circle">
                 <img class="" src="~/assets/images/offer-circle.png" alt="" />
               </div>
@@ -393,6 +355,7 @@
           </div>
         </div>
         <div class="banner-mobile f1">
+        <nuxt-link to="/products">
         <div class="text">
          <h4>{{ $t("add recently") }}</h4>
          <svg
@@ -413,6 +376,7 @@
               />
             </svg>
         </div>
+        </nuxt-link>
           <img class="img-fluid" src="~/assets/images/banner-img1.png" alt="" />
         </div>
         <swiper
@@ -470,10 +434,12 @@
                 fill="white"
               />
             </svg>
+            <nuxt-link to="/products">
             <button class="btn1">
               <span> {{ $t("see more") }} </span>
               <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
             </button>
+            </nuxt-link>
           </div>
           <img class="img-fluid" src="~/assets/images/banner-img1.png" alt="" />
         </div>
@@ -491,6 +457,7 @@
           </div>
         </div>
         <div class="banner-mobile f2">
+        <nuxt-link to="/products">
         <div class="text">
          <h4>{{ $t("most selling") }}</h4>
          <svg
@@ -511,6 +478,7 @@
               />
             </svg>
         </div>
+        </nuxt-link>
           <img class="img-fluid" src="~/assets/images/banner-img2.png" alt="" />
         </div>
         <swiper
@@ -567,10 +535,12 @@
                 fill="white"
               />
             </svg>
+             <nuxt-link to="/products">
             <button class="btn1">
               <span>{{ $t("see more") }}</span>
               <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
             </button>
+             </nuxt-link>
           </div>
           <img class="img-fluid" src="~/assets/images/banner-img2.png" alt="" />
         </div>
@@ -588,6 +558,7 @@
           </div>
         </div>
         <div class="banner-mobile f3">
+        <nuxt-link to="/products">
         <div class="text">
          <h4>{{ $t("discounts") }}</h4>
          <svg
@@ -608,6 +579,7 @@
               />
             </svg>
         </div>
+        </nuxt-link>
           <img class="img-fluid" src="~/assets/images/banner-img3.png" alt="" />
         </div>
         <swiper
@@ -664,10 +636,12 @@
                 fill="white"
               />
             </svg>
+            <nuxt-link to="/products">
             <button class="btn1">
               <span> {{ $t("see more") }} </span>
               <i class="fa-solid fa-arrow-left-long arrow-icon"></i>
             </button>
+            </nuxt-link>
           </div>
           <img class="img-fluid" src="~/assets/images/banner-img3.png" alt="" />
         </div>

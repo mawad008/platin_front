@@ -478,11 +478,16 @@
                   :w="124"
                   :h="45"
                 ></logo> -->
-                <e-logo
+                <!-- <e-logo
                   class="e-logo"
                   :w="124"
                   :h="45"
-                ></e-logo>
+                ></e-logo> -->
+                <img
+                  src="../assets/images/main-logo.svg"
+                  style="width: 170px; height: 41px; object-fit: contain"
+                  alt=""
+                />
                 <p class="">
                   {{ $t("landing2") }}
                 </p>
@@ -518,7 +523,9 @@
                   <nuxt-link :to="localePath('about')">
                     <span class="head-link"> {{ $t("about") }} </span>
                   </nuxt-link>
-                    <span @click="dialog = true" class="head-link"> {{ $t("addVendor") }} </span>
+                  <span @click="dialog = true" class="head-link">
+                    {{ $t("addVendor") }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -551,7 +558,7 @@
                     <input
                       type="email"
                       v-model="emaill"
-                      style="color: #fff;"
+                      style="color: #fff"
                       @keypress.enter="subscripe()"
                       :placeholder="$t('enter')"
                     />
@@ -662,13 +669,13 @@
               <a :href="generalArr.twitter_link" target="_blank">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="27"
-                  height="21"
-                  viewBox="0 0 27 21"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
                   fill="none"
                 >
                   <path
-                    d="M17.852 0.797415V0.793091H18.978L19.3894 0.875256C19.6636 0.928599 19.9126 0.998504 20.1364 1.08499C20.3601 1.17148 20.5766 1.2724 20.7859 1.38771C20.9953 1.50302 21.1851 1.62052 21.3554 1.74015C21.5243 1.85836 21.6759 1.98378 21.8101 2.11639C21.9429 2.25045 22.15 2.28504 22.4315 2.22017C22.713 2.15531 23.0161 2.06521 23.3409 1.94989C23.6657 1.83458 23.9869 1.70485 24.3044 1.56069C24.622 1.41653 24.8155 1.325 24.8848 1.28608C24.9526 1.24574 24.9887 1.22411 24.993 1.22122L24.9973 1.21473L25.019 1.20392L25.0406 1.19311L25.0623 1.1823L25.0839 1.17148L25.0883 1.165L25.0948 1.16067L25.1013 1.15635L25.1056 1.14986L25.1272 1.14337L25.1489 1.13905L25.1446 1.17148L25.1381 1.20392L25.1272 1.23635L25.1164 1.26879L25.1056 1.29041L25.0948 1.31203L25.0839 1.34446C25.0767 1.36609 25.0695 1.39491 25.0623 1.43095C25.0551 1.467 24.9865 1.61113 24.8566 1.8634C24.7267 2.11567 24.5643 2.37153 24.3694 2.631C24.1745 2.89047 23.9999 3.0865 23.8454 3.21913C23.6895 3.35319 23.5863 3.44688 23.5358 3.50022C23.4853 3.55499 23.4239 3.60544 23.3517 3.65158L23.2435 3.72293L23.2218 3.73375L23.2002 3.74456L23.1959 3.75104L23.1894 3.75537L23.1829 3.75969L23.1785 3.76618L23.1569 3.77699L23.1352 3.7878L23.1309 3.79429L23.1244 3.79861L23.1179 3.80294L23.1136 3.80942L23.1093 3.81591L23.1027 3.82024L23.0962 3.82456L23.0919 3.83105H23.2002L23.8064 3.70131C24.2106 3.61482 24.5968 3.51032 24.9648 3.38779L25.5495 3.19318L25.6144 3.17156L25.6469 3.16075L25.6686 3.14994L25.6902 3.13913L25.7119 3.12832L25.7335 3.11751L25.7768 3.11102L25.8201 3.10669V3.14994L25.8093 3.15426L25.7985 3.16075L25.7942 3.16724L25.7876 3.17156L25.7811 3.17589L25.7768 3.18237L25.7725 3.18886L25.766 3.19318L25.7595 3.19751L25.7552 3.204L25.7509 3.21048L25.7443 3.21481L25.7335 3.23643L25.7227 3.25805L25.7162 3.26238C25.7133 3.2667 25.6217 3.38921 25.4412 3.62996C25.2608 3.87213 25.1633 3.99464 25.1489 3.99754C25.1345 4.00186 25.1142 4.02349 25.0883 4.06241C25.0637 4.10276 24.9107 4.2635 24.6292 4.54459C24.3478 4.82568 24.0721 5.07577 23.8021 5.29489C23.5308 5.51544 23.3936 5.78643 23.3907 6.10789C23.3864 6.42791 23.3698 6.78974 23.3409 7.19334C23.3121 7.59697 23.2579 8.03301 23.1785 8.5015C23.0991 8.96999 22.9764 9.49974 22.8104 10.0908C22.6444 10.6818 22.4423 11.2584 22.2042 11.8205C21.966 12.3827 21.717 12.8872 21.4572 13.3341C21.1973 13.781 20.9592 14.1594 20.7426 14.4693C20.5261 14.7792 20.306 15.0711 20.0822 15.345C19.8585 15.6189 19.5756 15.9274 19.2335 16.2705C18.8899 16.6121 18.7023 16.7995 18.6705 16.8326C18.6373 16.8644 18.4959 16.9826 18.2461 17.1872C17.9978 17.3934 17.7308 17.5995 17.445 17.8056C17.1606 18.0103 16.8993 18.1812 16.6612 18.3181C16.423 18.455 16.1357 18.6114 15.7994 18.7873C15.4645 18.9646 15.1022 19.1289 14.7124 19.2803C14.3227 19.4317 13.9113 19.5722 13.4783 19.7019C13.0452 19.8317 12.6266 19.9326 12.2224 20.0047C11.8183 20.0767 11.3599 20.138 10.8475 20.1884L10.0788 20.2641V20.2749H8.67142V20.2641L8.48738 20.2533C8.3647 20.2461 8.26365 20.2389 8.18425 20.2317C8.10487 20.2245 7.80533 20.1848 7.28567 20.1128C6.76601 20.0407 6.35823 19.9686 6.06231 19.8965C5.76641 19.8245 5.32613 19.6875 4.74152 19.4857C4.1569 19.2839 3.65673 19.0799 3.24101 18.8738C2.82673 18.6691 2.5669 18.5394 2.46152 18.4846C2.35759 18.4312 2.24066 18.365 2.11075 18.2857L1.91588 18.1667L1.91157 18.1603L1.90505 18.1559L1.89856 18.1516L1.89423 18.1451L1.87257 18.1343L1.85092 18.1235L1.84661 18.117L1.8401 18.1127L1.8336 18.1084L1.82927 18.1019L1.82496 18.0954L1.81844 18.0911H1.80762V18.0478L1.82927 18.0521L1.85092 18.0586L1.94836 18.0694C2.01331 18.0766 2.19015 18.0875 2.47884 18.1019C2.76755 18.1163 3.07428 18.1163 3.39907 18.1019C3.72385 18.0875 4.05587 18.055 4.39508 18.0046C4.73431 17.9541 5.13487 17.8676 5.59679 17.7451C6.05872 17.6226 6.4831 17.477 6.86997 17.3083C7.25538 17.1382 7.52963 17.0114 7.69276 16.9278C7.85441 16.8456 8.10125 16.6928 8.43325 16.4694L8.93125 16.1342L8.93558 16.1277L8.94208 16.1234L8.9486 16.1191L8.95291 16.1126L8.95724 16.1061L8.96373 16.1018L8.97025 16.0975L8.97456 16.091L8.99621 16.0845L9.01786 16.0802L9.02219 16.0586L9.02869 16.0369L9.03521 16.0326L9.03952 16.0261L8.8663 16.0153C8.75082 16.0081 8.63895 16.0009 8.53068 15.9937C8.42242 15.9865 8.25282 15.9541 8.02185 15.8964C7.79091 15.8387 7.54191 15.7522 7.27485 15.6369C7.00781 15.5216 6.74798 15.3846 6.49536 15.2261C6.24276 15.0675 6.06015 14.9356 5.94755 14.8304C5.83641 14.7266 5.69206 14.5796 5.51451 14.3893C5.33841 14.1976 5.18539 14.0008 5.05548 13.799C4.92556 13.5972 4.80143 13.3644 4.68308 13.1006L4.50334 12.7071L4.49251 12.6746L4.48169 12.6422L4.47519 12.6206L4.47086 12.599L4.50334 12.6033L4.53582 12.6098L4.77399 12.6422C4.93279 12.6638 5.1818 12.671 5.521 12.6638C5.86023 12.6566 6.09479 12.6422 6.2247 12.6206C6.35462 12.599 6.43402 12.5845 6.46288 12.5773L6.50619 12.5665L6.56032 12.5557L6.61445 12.5449L6.61878 12.5384L6.62527 12.5341L6.63179 12.5298L6.6361 12.5233L6.5928 12.5125L6.54949 12.5017L6.50619 12.4908L6.46288 12.48L6.41958 12.4692C6.39071 12.462 6.3402 12.4476 6.26801 12.426C6.19584 12.4044 6.00097 12.3251 5.68339 12.1881C5.36584 12.0512 5.11322 11.9178 4.92556 11.7881C4.73743 11.658 4.55806 11.5157 4.38858 11.3622C4.21969 11.2065 4.03422 11.0061 3.83212 10.761C3.63003 10.516 3.4496 10.2313 3.29081 9.90696C3.13203 9.58262 3.01294 9.27271 2.93354 8.97719C2.85446 8.68342 2.80229 8.38307 2.77767 8.07986L2.73867 7.62579L2.76032 7.63012L2.78197 7.6366L2.80363 7.64741L2.82528 7.65822L2.84693 7.66903L2.86858 7.67985L3.2042 7.8312C3.42795 7.93212 3.70582 8.01861 4.03781 8.09067C4.36983 8.16274 4.5683 8.2024 4.63325 8.2096L4.73069 8.22041H4.92556L4.92125 8.21392L4.91474 8.2096L4.90824 8.20527L4.90391 8.19879L4.8996 8.1923L4.89308 8.18797L4.88659 8.18365L4.88226 8.17716L4.8606 8.16635L4.83895 8.15554L4.83464 8.14905L4.82813 8.14473L4.82163 8.1404L4.8173 8.13392L4.79565 8.12311L4.77399 8.1123L4.76969 8.10581C4.76536 8.10291 4.70328 8.05679 4.58345 7.96742C4.46508 7.87661 4.34095 7.75914 4.21103 7.61498C4.08112 7.47082 3.9512 7.31946 3.82129 7.16091C3.69114 7.00199 3.57521 6.83196 3.47485 6.65278C3.37382 6.4726 3.26699 6.24338 3.1544 5.96518C3.04325 5.68842 2.95881 5.40949 2.90106 5.1284C2.84334 4.8473 2.81086 4.56982 2.80363 4.29593C2.79642 4.02204 2.80363 3.7878 2.82528 3.5932C2.84693 3.3986 2.89024 3.17876 2.95519 2.93371C3.02015 2.68867 3.11399 2.4292 3.23667 2.15531L3.42072 1.74448L3.43155 1.71205L3.44237 1.67961L3.44889 1.67529L3.4532 1.6688L3.45753 1.66231L3.46403 1.65799L3.47054 1.66231L3.47485 1.6688L3.47918 1.67529L3.48568 1.67961L3.49219 1.68394L3.4965 1.69042L3.50083 1.69691L3.50733 1.70123L3.51816 1.72286L3.52898 1.74448L3.5355 1.7488L3.53981 1.75529L3.83212 2.07963C4.02699 2.29585 4.25795 2.53731 4.52499 2.80398C4.79205 3.07065 4.94 3.20903 4.96887 3.21913C4.99775 3.23066 5.03382 3.2638 5.07713 3.31859C5.12043 3.37194 5.26479 3.49951 5.51018 3.70131C5.75558 3.90312 6.07675 4.13737 6.47371 4.40404C6.87068 4.67071 7.31094 4.93379 7.7945 5.19326C8.27809 5.45273 8.79774 5.68697 9.35348 5.89599C9.90923 6.10502 10.299 6.24195 10.5227 6.30682C10.7465 6.37169 11.129 6.45457 11.6703 6.55548C12.2116 6.65639 12.6194 6.72126 12.8936 6.75008C13.1679 6.7789 13.3556 6.79549 13.4566 6.79981L13.6082 6.80414L13.6039 6.7717L13.5973 6.73927L13.554 6.46899C13.5252 6.28881 13.5107 6.03654 13.5107 5.7122C13.5107 5.38787 13.536 5.08876 13.5865 4.81487C13.6371 4.54098 13.7128 4.2635 13.8139 3.9824C13.9149 3.70131 14.0138 3.4757 14.1105 3.30562C14.2087 3.13697 14.3371 2.94453 14.4959 2.7283C14.6547 2.51208 14.8604 2.28865 15.113 2.05801C15.3656 1.82736 15.6543 1.62194 15.9791 1.44176C16.3039 1.26158 16.6034 1.12463 16.8777 1.03094C17.152 0.937248 17.3829 0.87597 17.5706 0.847147C17.7582 0.818324 17.852 0.80174 17.852 0.797415Z"
+                    d="M15.2721 1.58667H18.0833L11.9416 8.60625L19.1668 18.1583H13.5095L9.07852 12.365L4.00845 18.1583H1.19552L7.76469 10.6501L0.833496 1.58667H6.63442L10.6397 6.88195L15.2721 1.58667ZM14.2854 16.4757H15.8432L5.78799 3.18095H4.11638L14.2854 16.4757Z"
                     fill="white"
                   />
                 </svg>
@@ -729,11 +736,11 @@
                     :placeholder="$t('name')"
                   />
                   <span class="error-msg" v-if="v2$.name.$error">{{
-                v2$.name.$errors[0].$message
-              }}</span>
-              <span class="error-msg2" v-if="errors2.name">{{
-                errors2.name[0]
-              }}</span>
+                    v2$.name.$errors[0].$message
+                  }}</span>
+                  <span class="error-msg2" v-if="errors2.name">{{
+                    errors2.name[0]
+                  }}</span>
                 </div>
               </div>
               <div class="col-12 mb-4 col-xl-6 col-lg-6 col-md-6">
@@ -745,11 +752,11 @@
                     :placeholder="$t('email')"
                   />
                   <span class="error-msg" v-if="v2$.email.$error">{{
-                v2$.email.$errors[0].$message
-              }}</span>
-              <span class="error-msg2" v-if="errors2.email">{{
-                errors2.email[0]
-              }}</span>
+                    v2$.email.$errors[0].$message
+                  }}</span>
+                  <span class="error-msg2" v-if="errors2.email">{{
+                    errors2.email[0]
+                  }}</span>
                 </div>
               </div>
               <div class="col-12 mb-4 col-xl-6 col-lg-6 col-md-6">
@@ -758,15 +765,17 @@
                   <input
                     v-model="objVendor.phone"
                     type="tel"
+                    maxlength="10"
                     name="phone"
                     :placeholder="$t('phone')"
                   />
+                  <div class="num">966+</div>
                   <span class="error-msg" v-if="v2$.phone.$error">{{
-                v2$.phone.$errors[0].$message
-              }}</span>
-              <span class="error-msg2" v-if="errors2.phone">{{
-                errors2.phone[0]
-              }}</span>
+                    v2$.phone.$errors[0].$message
+                  }}</span>
+                  <span class="error-msg2" v-if="errors2.phone">{{
+                    errors2.phone[0]
+                  }}</span>
                 </div>
               </div>
               <div class="col-12 mb-4 col-xl-6 col-lg-6 col-md-6">
@@ -776,15 +785,22 @@
                   </label>
                   <input
                     v-model="objVendor.commercial_register_number"
-                    type="tel"
+                    type="number"
+                    min="1"
                     :placeholder="$t('commercialNum')"
                   />
-                  <span class="error-msg" v-if="v2$.commercial_register_number.$error">{{
-                v2$.commercial_register_number.$errors[0].$message
-              }}</span>
-              <span class="error-msg2" v-if="errors2.commercial_register_number">{{
-                errors2.commercial_register_number[0]
-              }}</span>
+                  <span
+                    class="error-msg"
+                    v-if="v2$.commercial_register_number.$error"
+                    >{{
+                      v2$.commercial_register_number.$errors[0].$message
+                    }}</span
+                  >
+                  <span
+                    class="error-msg2"
+                    v-if="errors2.commercial_register_number"
+                    >{{ errors2.commercial_register_number[0] }}</span
+                  >
                 </div>
               </div>
               <div class="col-12 mb-4 col-xl-6 col-lg-6 col-md-6">
@@ -792,15 +808,63 @@
                   <label for=""> {{ $t("pass") }} <span>*</span> </label>
                   <input
                     v-model="objVendor.password"
-                    type="password"
+                    :type="passType"
                     :placeholder="$t('pass')"
                   />
+                  <div @click="changePass1()" class="icon">
+                        <svg
+                          v-if="passType == 'password'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="16"
+                          viewBox="0 0 24 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M23.9204 7.6296C23.2116 6.0552 19.9696 0 12 0C4.0304 0 0.7884 6.0552 0.0796 7.6296C0.0264 7.748 0 7.8744 0 8C0 8.1256 0.0264 8.252 0.0796 8.3704C0.7884 9.9444 4.0304 16 12 16C19.9696 16 23.2116 9.9444 23.9204 8.3704C23.9736 8.252 24 8.1256 24 8C24 7.8744 23.9736 7.748 23.9204 7.6296ZM12 13.2C9.128 13.2 6.8 10.872 6.8 8C6.8 5.128 9.128 2.8 12 2.8C14.872 2.8 17.2 5.128 17.2 8C17.2 10.872 14.872 13.2 12 13.2Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M11.9999 11.6C13.9881 11.6 15.5999 9.98826 15.5999 8.00002C15.5999 6.01178 13.9881 4.40002 11.9999 4.40002C10.0117 4.40002 8.3999 6.01178 8.3999 8.00002C8.3999 9.98826 10.0117 11.6 11.9999 11.6Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                        <svg
+                          v-if="passType == 'text'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M21.2699 9.17981C20.9799 8.71981 20.6699 8.28981 20.3499 7.88981C19.9799 7.41981 19.2799 7.37981 18.8599 7.79981L15.8599 10.7998C16.0799 11.4598 16.1199 12.2198 15.9199 13.0098C15.5699 14.4198 14.4299 15.5598 13.0199 15.9098C12.2299 16.1098 11.4699 16.0698 10.8099 15.8498C10.8099 15.8498 9.37995 17.2798 8.34995 18.3098C7.84995 18.8098 8.00995 19.6898 8.67995 19.9498C9.74995 20.3598 10.8599 20.5698 11.9999 20.5698C13.7799 20.5698 15.5099 20.0498 17.0899 19.0798C18.6999 18.0798 20.1499 16.6098 21.3199 14.7398C22.2699 13.2298 22.2199 10.6898 21.2699 9.17981Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.0201 9.98014L9.98014 14.0201C9.47014 13.5001 9.14014 12.7801 9.14014 12.0001C9.14014 10.4301 10.4201 9.14014 12.0001 9.14014C12.7801 9.14014 13.5001 9.47014 14.0201 9.98014Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M18.25 5.75018L14.86 9.14018C14.13 8.40018 13.12 7.96018 12 7.96018C9.76 7.96018 7.96 9.77018 7.96 12.0002C7.96 13.1202 8.41 14.1302 9.14 14.8602L5.76 18.2502H5.75C4.64 17.3502 3.62 16.2002 2.75 14.8402C1.75 13.2702 1.75 10.7202 2.75 9.15018C3.91 7.33017 5.33 5.90018 6.91 4.92018C8.49 3.96018 10.22 3.43018 12 3.43018C14.23 3.43018 16.39 4.25018 18.25 5.75018Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.8601 12.0001C14.8601 13.5701 13.5801 14.8601 12.0001 14.8601C11.9401 14.8601 11.8901 14.8601 11.8301 14.8401L14.8401 11.8301C14.8601 11.8901 14.8601 11.9401 14.8601 12.0001Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M21.7699 2.22988C21.4699 1.92988 20.9799 1.92988 20.6799 2.22988L2.22988 20.6899C1.92988 20.9899 1.92988 21.4799 2.22988 21.7799C2.37988 21.9199 2.56988 21.9999 2.76988 21.9999C2.96988 21.9999 3.15988 21.9199 3.30988 21.7699L21.7699 3.30988C22.0799 3.00988 22.0799 2.52988 21.7699 2.22988Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                      </div>
                   <span class="error-msg2" v-if="v2$.password.$error">{{
-                v2$.password.$errors[0].$message
-              }}</span>
-              <span class="error-msg2" v-if="errors2.password">{{
-                errors2.password[0]
-              }}</span>
+                    v2$.password.$errors[0].$message
+                  }}</span>
+                  <span class="error-msg2" v-if="errors2.password">{{
+                    errors2.password[0]
+                  }}</span>
                 </div>
               </div>
               <div class="col-12 mb-4 col-xl-6 col-lg-6 col-md-6">
@@ -809,16 +873,68 @@
                     {{ $t("confirm pass") }} <span>*</span>
                   </label>
                   <input
-                    type="password"
+                    :type="passConfType"
                     v-model="objVendor.password_confirmation"
                     :placeholder="$t('confirm pass')"
                   />
-                  <span class="error-msg2" v-if="v2$.password_confirmation.$error">{{
-                v2$.password_confirmation.$errors[0].$message
-              }}</span>
-              <span class="error-msg2" v-if="errors2.password_confirmation">{{
-                errors2.password_confirmation[0]
-              }}</span>
+                  <div @click="changePass2()" class="icon">
+                        <svg
+                          v-if="passConfType == 'password'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="16"
+                          viewBox="0 0 24 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M23.9204 7.6296C23.2116 6.0552 19.9696 0 12 0C4.0304 0 0.7884 6.0552 0.0796 7.6296C0.0264 7.748 0 7.8744 0 8C0 8.1256 0.0264 8.252 0.0796 8.3704C0.7884 9.9444 4.0304 16 12 16C19.9696 16 23.2116 9.9444 23.9204 8.3704C23.9736 8.252 24 8.1256 24 8C24 7.8744 23.9736 7.748 23.9204 7.6296ZM12 13.2C9.128 13.2 6.8 10.872 6.8 8C6.8 5.128 9.128 2.8 12 2.8C14.872 2.8 17.2 5.128 17.2 8C17.2 10.872 14.872 13.2 12 13.2Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M11.9999 11.6C13.9881 11.6 15.5999 9.98826 15.5999 8.00002C15.5999 6.01178 13.9881 4.40002 11.9999 4.40002C10.0117 4.40002 8.3999 6.01178 8.3999 8.00002C8.3999 9.98826 10.0117 11.6 11.9999 11.6Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                        <svg
+                          v-if="passConfType == 'text'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M21.2699 9.17981C20.9799 8.71981 20.6699 8.28981 20.3499 7.88981C19.9799 7.41981 19.2799 7.37981 18.8599 7.79981L15.8599 10.7998C16.0799 11.4598 16.1199 12.2198 15.9199 13.0098C15.5699 14.4198 14.4299 15.5598 13.0199 15.9098C12.2299 16.1098 11.4699 16.0698 10.8099 15.8498C10.8099 15.8498 9.37995 17.2798 8.34995 18.3098C7.84995 18.8098 8.00995 19.6898 8.67995 19.9498C9.74995 20.3598 10.8599 20.5698 11.9999 20.5698C13.7799 20.5698 15.5099 20.0498 17.0899 19.0798C18.6999 18.0798 20.1499 16.6098 21.3199 14.7398C22.2699 13.2298 22.2199 10.6898 21.2699 9.17981Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.0201 9.98014L9.98014 14.0201C9.47014 13.5001 9.14014 12.7801 9.14014 12.0001C9.14014 10.4301 10.4201 9.14014 12.0001 9.14014C12.7801 9.14014 13.5001 9.47014 14.0201 9.98014Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M18.25 5.75018L14.86 9.14018C14.13 8.40018 13.12 7.96018 12 7.96018C9.76 7.96018 7.96 9.77018 7.96 12.0002C7.96 13.1202 8.41 14.1302 9.14 14.8602L5.76 18.2502H5.75C4.64 17.3502 3.62 16.2002 2.75 14.8402C1.75 13.2702 1.75 10.7202 2.75 9.15018C3.91 7.33017 5.33 5.90018 6.91 4.92018C8.49 3.96018 10.22 3.43018 12 3.43018C14.23 3.43018 16.39 4.25018 18.25 5.75018Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.8601 12.0001C14.8601 13.5701 13.5801 14.8601 12.0001 14.8601C11.9401 14.8601 11.8901 14.8601 11.8301 14.8401L14.8401 11.8301C14.8601 11.8901 14.8601 11.9401 14.8601 12.0001Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M21.7699 2.22988C21.4699 1.92988 20.9799 1.92988 20.6799 2.22988L2.22988 20.6899C1.92988 20.9899 1.92988 21.4799 2.22988 21.7799C2.37988 21.9199 2.56988 21.9999 2.76988 21.9999C2.96988 21.9999 3.15988 21.9199 3.30988 21.7699L21.7699 3.30988C22.0799 3.00988 22.0799 2.52988 21.7699 2.22988Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                      </div>
+                  <span
+                    class="error-msg2"
+                    v-if="v2$.password_confirmation.$error"
+                    >{{ v2$.password_confirmation.$errors[0].$message }}</span
+                  >
+                  <span
+                    class="error-msg2"
+                    v-if="errors2.password_confirmation"
+                    >{{ errors2.password_confirmation[0] }}</span
+                  >
                 </div>
               </div>
               <div class="col-12 mb-4">
@@ -826,15 +942,16 @@
                   <label for=""> {{ $t("nationalNum") }} <span>*</span> </label>
                   <input
                     v-model="objVendor.national_id"
-                    type="tel"
+                    type="number"
+                    min="1"
                     :placeholder="$t('nationalNum')"
                   />
                   <span class="error-msg" v-if="v2$.national_id.$error">{{
-                v2$.national_id.$errors[0].$message
-              }}</span>
-              <span class="error-msg2" v-if="errors2.national_id">{{
-                errors2.national_id[0]
-              }}</span>
+                    v2$.national_id.$errors[0].$message
+                  }}</span>
+                  <span class="error-msg2" v-if="errors2.national_id">{{
+                    errors2.national_id[0]
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -849,17 +966,21 @@
               >
             </p>
             <div class="btns">
-              <button @click="AddVendor()" class="fill d-flex align-items-center gap-3">{{ $t("apply") }}
+              <button
+                @click="AddVendor()"
+                class="fill d-flex align-items-center gap-3"
+              >
+                {{ $t("apply") }}
                 <v-progress-circular
-          v-if="pending"
-          indeterminate
-          :size="25"
-          :width="5"
-        ></v-progress-circular>
+                  v-if="pending"
+                  indeterminate
+                  :size="25"
+                  :width="5"
+                ></v-progress-circular>
               </button>
             </div>
 
-            <div @click="dialog = false , clearObj()" class="close">
+            <div @click="(dialog = false), clearObj()" class="close">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -1043,7 +1164,6 @@ import {
   minLength,
   helpers,
 } from "@vuelidate/validators";
-import { object } from "yup";
 const store = useStore;
 const router = useRouter();
 const route = useRoute();
@@ -1061,7 +1181,14 @@ let checkInt = ref(false);
 
 let cateId = ref();
 let text7 = ref("");
-
+let passType = ref("password");
+let passConfType = ref("password");
+const changePass1 = () => {
+  passType.value = passType.value === "password" ? "text" : "password";
+};
+const changePass2 = () => {
+  passConfType.value = passConfType.value === "password" ? "text" : "password";
+};
 let dataYear = new Date().getFullYear();
 
 let activeMobile = ref(store.state.activeMobile);
@@ -1089,13 +1216,13 @@ if (locale.value == "ar") {
   value4.value = "يجب أن يكون هذا الحقل 8 أحرف على الأقل";
   titleVendor.value = "تم التسجيل بنجاح ";
   passVal.value = "يجب أن تكون القيمة مساوية للقيمة الأخرى";
-  } else {
-    value1.value = "value is required";
-    value2.value = "The email field is required";
-    value3.value = "Invalid email format";
-    value4.value = "This field should be at least 8 characters long";
-    titleVendor.value = "successfully registered";
-    passVal.value = "The value must be equal to the other value"
+} else {
+  value1.value = "value is required";
+  value2.value = "The email field is required";
+  value3.value = "Invalid email format";
+  value4.value = "This field should be at least 8 characters long";
+  titleVendor.value = "successfully registered";
+  passVal.value = "The value must be equal to the other value";
 }
 
 const rules = computed(() => {
@@ -1108,7 +1235,7 @@ const rules = computed(() => {
     },
     email: {
       required: helpers.withMessage(value2.value, required),
-    email: helpers.withMessage(value3.value, email),
+      email: helpers.withMessage(value3.value, email),
     },
     national_id: {
       required: helpers.withMessage(value2.value, required),
@@ -1123,7 +1250,10 @@ const rules = computed(() => {
     password_confirmation: {
       required: helpers.withMessage(value1.value, required),
       minLength: helpers.withMessage(value4.value, minLength(8)),
-      sameAs:  helpers.withMessage(passVal.value , sameAs(objVendor.value.password)),
+      sameAs: helpers.withMessage(
+        passVal.value,
+        sameAs(objVendor.value.password)
+      ),
     },
   };
 });
@@ -1133,29 +1263,34 @@ const v2$ = useValidate(rules, objVendor);
 let pending = ref(false);
 let errors2 = ref([]);
 
-
 const AddVendor = async () => {
   let check = await v2$.value.$validate();
   let formDat = new FormData();
   formDat.append("name", objVendor.value.name);
-  formDat.append("commercial_register_number", objVendor.value.commercial_register_number);
+  formDat.append(
+    "commercial_register_number",
+    objVendor.value.commercial_register_number
+  );
   formDat.append("national_id", objVendor.value.national_id);
   formDat.append("email", objVendor.value.email);
   formDat.append("phone", objVendor.value.phone);
   formDat.append("password", objVendor.value.password);
-  formDat.append("password_confirmation", objVendor.value.password_confirmation);
+  formDat.append(
+    "password_confirmation",
+    objVendor.value.password_confirmation
+  );
 
   if (check) {
     pending.value = true;
-    try{
+    try {
       let result = await axios.post(`${getUrl()}/vendors`, formDat, {
         headers: {
           "Content-Language": `${locale.value}`,
         },
       });
-      if(result.status >= 200){
+      if (result.status >= 200) {
         pending.value = false;
-        for(const key of  Object.keys(objVendor.value)){
+        for (const key of Object.keys(objVendor.value)) {
           objVendor.value[key] = "";
         }
         v2$.value.$reset();
@@ -1175,13 +1310,12 @@ const AddVendor = async () => {
           }
         );
       }
-
-    }catch(errorss){
-     if(errorss.response){
-      pending.value = false;
-      errors2.value = errorss.response.data.errors;
+    } catch (errorss) {
+      if (errorss.response) {
+        pending.value = false;
+        errors2.value = errorss.response.data.errors;
+      }
     }
-  }
   }
 };
 
@@ -1320,8 +1454,13 @@ const toggleExpanded2 = () => {
   isExpanded2.value = !isExpanded2.value;
 };
 
-const logOut = () => {
+let logoutText = ref(
+  locale.value == "ar" ? "تم تسجيل الخروج بنجاح" : "logout successfully"
+);
+const logOut = async () => {
   if (process.client) {
+    const moshaToastify = await import("mosha-vue-toastify");
+    const { createToast } = moshaToastify;
     store.state.user = {};
     store.state.authenticated = false;
 
@@ -1330,6 +1469,18 @@ const logOut = () => {
     Cookies.remove("auth");
     const localee = localePath("/");
     router.push(localee);
+    createToast(
+      {
+        title: logoutText.value,
+      },
+      {
+        type: "success",
+        transition: "bounce",
+        showIcon: "true",
+        timeout: 3000,
+        toastBackgroundColor: "#dcba95",
+      }
+    );
   }
 };
 

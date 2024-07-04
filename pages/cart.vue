@@ -307,7 +307,7 @@
            {{ $t("empty cart1") }}
             </p>
 
-          <nuxt-link :to="localePath('/')">
+          <nuxt-link :to="localePath('/products')">
             <button>{{ $t("shopNow") }}</button>
 
           </nuxt-link>
@@ -443,6 +443,10 @@ const { locale } = useI18n();
       console.log('delete');
       arrData.value = [];
     }
+
+    useHead({
+  title: locale.value == "ar" ? "السلة" : "cart",
+});
 
     onMounted(() => {
       // getTotal();

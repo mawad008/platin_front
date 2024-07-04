@@ -9,18 +9,30 @@
       <div class="row">
         <div class="col-12 col-xl-4 col-lg-4">
           <div class="settings-links">
-            <div class="link" @click="navActive = 1" :class="{ active: navActive == 1 }">
+            <div
+              class="link"
+              @click="navActive = 1"
+              :class="{ active: navActive == 1 }"
+            >
               <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
                   <path
                     d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z"
-                    fill="#919EAB" />
+                    fill="#919EAB"
+                  />
                   <path
                     d="M17.08 14.1499C14.29 12.2899 9.73996 12.2899 6.92996 14.1499C5.65996 14.9999 4.95996 16.1499 4.95996 17.3799C4.95996 18.6099 5.65996 19.7499 6.91996 20.5899C8.31996 21.5299 10.16 21.9999 12 21.9999C13.84 21.9999 15.68 21.5299 17.08 20.5899C18.34 19.7399 19.04 18.5999 19.04 17.3599C19.03 16.1299 18.34 14.9899 17.08 14.1499Z"
-                    fill="#919EAB" />
+                    fill="#919EAB"
+                  />
                 </svg>
               </div>
-              <span> {{ $t("personal") }}  </span>
+              <span> {{ $t("personal") }} </span>
             </div>
 
             <!-- <div class="link" @click="navActive = 2" :class="{ active: navActive == 2 }">
@@ -83,18 +95,30 @@
                     </div> -->
                   </div>
                   <div class="edit d-flex justify-content-end">
-                    <div @click="personalActive = 2" class="d-flex align-items-center gap-2">
+                    <div
+                      @click="personalActive = 2"
+                      class="d-flex align-items-center gap-2"
+                    >
                       <span> {{ $t("edit") }} </span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
                         <path
                           d="M14 14.667H2C1.72667 14.667 1.5 14.4403 1.5 14.167C1.5 13.8937 1.72667 13.667 2 13.667H14C14.2733 13.667 14.5 13.8937 14.5 14.167C14.5 14.4403 14.2733 14.667 14 14.667Z"
-                          fill="#DCBA95" />
+                          fill="#DCBA95"
+                        />
                         <path
                           d="M12.6799 2.32043C11.3866 1.0271 10.1199 0.993764 8.79322 2.32043L7.98655 3.1271C7.91989 3.19376 7.89322 3.30043 7.91989 3.39376C8.42655 5.16043 9.83989 6.57376 11.6066 7.08043C11.6332 7.0871 11.6599 7.09376 11.6866 7.09376C11.7599 7.09376 11.8266 7.0671 11.8799 7.01376L12.6799 6.2071C13.3399 5.55376 13.6599 4.92043 13.6599 4.28043C13.6666 3.62043 13.3466 2.98043 12.6799 2.32043Z"
-                          fill="#DCBA95" />
+                          fill="#DCBA95"
+                        />
                         <path
                           d="M10.4066 7.68654C10.2132 7.5932 10.0266 7.49987 9.84655 7.3932C9.69989 7.30654 9.55989 7.2132 9.41989 7.1132C9.30655 7.03987 9.17322 6.9332 9.04655 6.82654C9.03322 6.81987 8.98655 6.77987 8.93322 6.72654C8.71322 6.53987 8.46655 6.29987 8.24655 6.0332C8.22655 6.01987 8.19322 5.9732 8.14655 5.9132C8.07989 5.8332 7.96655 5.69987 7.86655 5.54654C7.78655 5.44654 7.69322 5.29987 7.60655 5.1532C7.49989 4.9732 7.40655 4.7932 7.31322 4.60654C7.19085 4.34431 6.84668 4.26641 6.64206 4.47103L2.89322 8.21987C2.80655 8.30654 2.72655 8.4732 2.70655 8.58654L2.34655 11.1399C2.27989 11.5932 2.40655 12.0199 2.68655 12.3065C2.92655 12.5399 3.25989 12.6665 3.61989 12.6665C3.69989 12.6665 3.77989 12.6599 3.85989 12.6465L6.41989 12.2865C6.53989 12.2665 6.70655 12.1865 6.78655 12.0999L10.5416 8.34484C10.7421 8.14432 10.6668 7.79929 10.4066 7.68654Z"
-                          fill="#DCBA95" />
+                          fill="#DCBA95"
+                        />
                       </svg>
                     </div>
                   </div>
@@ -102,42 +126,79 @@
                     <div class="inputs w-100">
                       <div class="main-input">
                         <label for=""> {{ $t("first name") }}</label>
-                        <input type="text" readonly v-model="userData.first_name" placeholder="محمد" />
+                        <input
+                          type="text"
+                          readonly
+                          v-model="userData.first_name"
+                          placeholder="محمد"
+                        />
                       </div>
                       <div class="main-input">
                         <label for="">{{ $t("last name") }}</label>
-                        <input type="text" readonly v-model="userData.last_name" placeholder="محمد" />
+                        <input
+                          type="text"
+                          readonly
+                          v-model="userData.last_name"
+                          placeholder="محمد"
+                        />
                       </div>
                     </div>
                     <div class="inputs">
                       <div class="main-input">
                         <label for="">{{ $t("phone") }}</label>
-                        <input type="tel" readonly v-model="userData.phone" placeholder="+201066333725" />
+                        <input
+                          type="tel"
+                          readonly
+                          v-model="userData.phone"
+                          placeholder="+201066333725"
+                        />
                       </div>
                       <div class="main-input">
                         <label for=""> {{ $t("email") }} </label>
-                        <input type="email" readonly v-model="userData.email" placeholder="m.info@icloud.com" />
+                        <input
+                          type="email"
+                          readonly
+                          v-model="userData.email"
+                          placeholder="m.info@icloud.com"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="pass">
-                <div @click="passActive = !passActive" :class="{ active: passActive }"
-                  class="head d-flex align-items-center justify-content-between">
+                <div
+                  @click="passActive = !passActive"
+                  :class="{ active: passActive }"
+                  class="head d-flex align-items-center justify-content-between"
+                >
                   <div class="d-flex align-items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
                       <path
                         d="M20.9101 11.1203V6.73031C20.9101 5.91031 20.2901 4.98031 19.5201 4.67031L13.9501 2.39031C12.7001 1.88031 11.2901 1.88031 10.0401 2.39031L4.47009 4.67031C3.71009 4.98031 3.09009 5.91031 3.09009 6.73031V11.1203C3.09009 16.0103 6.64009 20.5903 11.4901 21.9303C11.8201 22.0203 12.1801 22.0203 12.5101 21.9303C17.3601 20.5903 20.9101 16.0103 20.9101 11.1203ZM12.7501 12.8703V15.5003C12.7501 15.9103 12.4101 16.2503 12.0001 16.2503C11.5901 16.2503 11.2501 15.9103 11.2501 15.5003V12.8703C10.2401 12.5503 9.50009 11.6103 9.50009 10.5003C9.50009 9.12031 10.6201 8.00031 12.0001 8.00031C13.3801 8.00031 14.5001 9.12031 14.5001 10.5003C14.5001 11.6203 13.7601 12.5503 12.7501 12.8703Z"
-                        fill="#DCBA95" />
+                        fill="#DCBA95"
+                      />
                     </svg>
                     <span> {{ $t("edit pass") }} </span>
                   </div>
-                  <svg class="icon arrow-icon" xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11"
-                    fill="none">
+                  <svg
+                    class="icon arrow-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="6"
+                    height="11"
+                    viewBox="0 0 6 11"
+                    fill="none"
+                  >
                     <path
                       d="M5.21436 9.49337L5.21436 5.34004L5.21436 1.60004C5.21436 0.960041 4.44102 0.640041 3.98769 1.09337L0.534355 4.54671C-0.0189778 5.10004 -0.0189779 6.00004 0.534355 6.55337L1.84769 7.86671L3.98769 10.0067C4.44102 10.4534 5.21436 10.1334 5.21436 9.49337Z"
-                      fill="#919EAB" />
+                      fill="#919EAB"
+                    />
                   </svg>
                 </div>
 
@@ -145,7 +206,59 @@
                   <div class="inputs">
                     <div class="main-input w-50">
                       <label for=""> {{ $t("cur pass") }}</label>
-                      <input type="password" v-model="passwordUpdate.old_password" placeholder="************" />
+                      <input
+                        :type="passType"
+                        v-model="passwordUpdate.old_password"
+                        placeholder="************"
+                      />
+                      <div @click="changePass1()" class="icon">
+                        <svg
+                          v-if="passType == 'password'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="16"
+                          viewBox="0 0 24 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M23.9204 7.6296C23.2116 6.0552 19.9696 0 12 0C4.0304 0 0.7884 6.0552 0.0796 7.6296C0.0264 7.748 0 7.8744 0 8C0 8.1256 0.0264 8.252 0.0796 8.3704C0.7884 9.9444 4.0304 16 12 16C19.9696 16 23.2116 9.9444 23.9204 8.3704C23.9736 8.252 24 8.1256 24 8C24 7.8744 23.9736 7.748 23.9204 7.6296ZM12 13.2C9.128 13.2 6.8 10.872 6.8 8C6.8 5.128 9.128 2.8 12 2.8C14.872 2.8 17.2 5.128 17.2 8C17.2 10.872 14.872 13.2 12 13.2Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M11.9999 11.6C13.9881 11.6 15.5999 9.98826 15.5999 8.00002C15.5999 6.01178 13.9881 4.40002 11.9999 4.40002C10.0117 4.40002 8.3999 6.01178 8.3999 8.00002C8.3999 9.98826 10.0117 11.6 11.9999 11.6Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                        <svg
+                          v-if="passType == 'text'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M21.2699 9.17981C20.9799 8.71981 20.6699 8.28981 20.3499 7.88981C19.9799 7.41981 19.2799 7.37981 18.8599 7.79981L15.8599 10.7998C16.0799 11.4598 16.1199 12.2198 15.9199 13.0098C15.5699 14.4198 14.4299 15.5598 13.0199 15.9098C12.2299 16.1098 11.4699 16.0698 10.8099 15.8498C10.8099 15.8498 9.37995 17.2798 8.34995 18.3098C7.84995 18.8098 8.00995 19.6898 8.67995 19.9498C9.74995 20.3598 10.8599 20.5698 11.9999 20.5698C13.7799 20.5698 15.5099 20.0498 17.0899 19.0798C18.6999 18.0798 20.1499 16.6098 21.3199 14.7398C22.2699 13.2298 22.2199 10.6898 21.2699 9.17981Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.0201 9.98014L9.98014 14.0201C9.47014 13.5001 9.14014 12.7801 9.14014 12.0001C9.14014 10.4301 10.4201 9.14014 12.0001 9.14014C12.7801 9.14014 13.5001 9.47014 14.0201 9.98014Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M18.25 5.75018L14.86 9.14018C14.13 8.40018 13.12 7.96018 12 7.96018C9.76 7.96018 7.96 9.77018 7.96 12.0002C7.96 13.1202 8.41 14.1302 9.14 14.8602L5.76 18.2502H5.75C4.64 17.3502 3.62 16.2002 2.75 14.8402C1.75 13.2702 1.75 10.7202 2.75 9.15018C3.91 7.33017 5.33 5.90018 6.91 4.92018C8.49 3.96018 10.22 3.43018 12 3.43018C14.23 3.43018 16.39 4.25018 18.25 5.75018Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.8601 12.0001C14.8601 13.5701 13.5801 14.8601 12.0001 14.8601C11.9401 14.8601 11.8901 14.8601 11.8301 14.8401L14.8401 11.8301C14.8601 11.8901 14.8601 11.9401 14.8601 12.0001Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M21.7699 2.22988C21.4699 1.92988 20.9799 1.92988 20.6799 2.22988L2.22988 20.6899C1.92988 20.9899 1.92988 21.4799 2.22988 21.7799C2.37988 21.9199 2.56988 21.9999 2.76988 21.9999C2.96988 21.9999 3.15988 21.9199 3.30988 21.7699L21.7699 3.30988C22.0799 3.00988 22.0799 2.52988 21.7699 2.22988Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                      </div>
                       <span class="error-msg" v-if="v2$.old_password.$error">{{
                         v2$.old_password.$errors[0].$message
                       }}</span>
@@ -157,29 +270,143 @@
                   <div class="inputs">
                     <div class="main-input">
                       <label for=""> {{ $t("new pass") }}</label>
-                      <input type="password" v-model="passwordUpdate.password" placeholder="************" />
+                      <input
+                        :type="passConfType"
+                        v-model="passwordUpdate.password"
+                        placeholder="************"
+                      />
                       <span class="error-msg" v-if="v2$.password.$error">{{
                         v2$.password.$errors[0].$message
                       }}</span>
+                      <div @click="changePass2()" class="icon">
+                        <svg
+                          v-if="passConfType == 'password'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="16"
+                          viewBox="0 0 24 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M23.9204 7.6296C23.2116 6.0552 19.9696 0 12 0C4.0304 0 0.7884 6.0552 0.0796 7.6296C0.0264 7.748 0 7.8744 0 8C0 8.1256 0.0264 8.252 0.0796 8.3704C0.7884 9.9444 4.0304 16 12 16C19.9696 16 23.2116 9.9444 23.9204 8.3704C23.9736 8.252 24 8.1256 24 8C24 7.8744 23.9736 7.748 23.9204 7.6296ZM12 13.2C9.128 13.2 6.8 10.872 6.8 8C6.8 5.128 9.128 2.8 12 2.8C14.872 2.8 17.2 5.128 17.2 8C17.2 10.872 14.872 13.2 12 13.2Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M11.9999 11.6C13.9881 11.6 15.5999 9.98826 15.5999 8.00002C15.5999 6.01178 13.9881 4.40002 11.9999 4.40002C10.0117 4.40002 8.3999 6.01178 8.3999 8.00002C8.3999 9.98826 10.0117 11.6 11.9999 11.6Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                        <svg
+                          v-if="passConfType == 'text'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M21.2699 9.17981C20.9799 8.71981 20.6699 8.28981 20.3499 7.88981C19.9799 7.41981 19.2799 7.37981 18.8599 7.79981L15.8599 10.7998C16.0799 11.4598 16.1199 12.2198 15.9199 13.0098C15.5699 14.4198 14.4299 15.5598 13.0199 15.9098C12.2299 16.1098 11.4699 16.0698 10.8099 15.8498C10.8099 15.8498 9.37995 17.2798 8.34995 18.3098C7.84995 18.8098 8.00995 19.6898 8.67995 19.9498C9.74995 20.3598 10.8599 20.5698 11.9999 20.5698C13.7799 20.5698 15.5099 20.0498 17.0899 19.0798C18.6999 18.0798 20.1499 16.6098 21.3199 14.7398C22.2699 13.2298 22.2199 10.6898 21.2699 9.17981Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.0201 9.98014L9.98014 14.0201C9.47014 13.5001 9.14014 12.7801 9.14014 12.0001C9.14014 10.4301 10.4201 9.14014 12.0001 9.14014C12.7801 9.14014 13.5001 9.47014 14.0201 9.98014Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M18.25 5.75018L14.86 9.14018C14.13 8.40018 13.12 7.96018 12 7.96018C9.76 7.96018 7.96 9.77018 7.96 12.0002C7.96 13.1202 8.41 14.1302 9.14 14.8602L5.76 18.2502H5.75C4.64 17.3502 3.62 16.2002 2.75 14.8402C1.75 13.2702 1.75 10.7202 2.75 9.15018C3.91 7.33017 5.33 5.90018 6.91 4.92018C8.49 3.96018 10.22 3.43018 12 3.43018C14.23 3.43018 16.39 4.25018 18.25 5.75018Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.8601 12.0001C14.8601 13.5701 13.5801 14.8601 12.0001 14.8601C11.9401 14.8601 11.8901 14.8601 11.8301 14.8401L14.8401 11.8301C14.8601 11.8901 14.8601 11.9401 14.8601 12.0001Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M21.7699 2.22988C21.4699 1.92988 20.9799 1.92988 20.6799 2.22988L2.22988 20.6899C1.92988 20.9899 1.92988 21.4799 2.22988 21.7799C2.37988 21.9199 2.56988 21.9999 2.76988 21.9999C2.96988 21.9999 3.15988 21.9199 3.30988 21.7699L21.7699 3.30988C22.0799 3.00988 22.0799 2.52988 21.7699 2.22988Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                      </div>
                       <span class="error-msg2" v-if="errors1.password">{{
                         errors1.password[0]
                       }}</span>
                     </div>
                     <div class="main-input">
                       <label for=""> {{ $t("sure pass") }} </label>
-                      <input type="password" v-model="passwordUpdate.password_confirmation" placeholder="************" />
-                      <span class="error-msg" v-if="v2$.password_confirmation.$error">{{
-                        v2$.password_confirmation.$errors[0].$message
-                      }}</span>
-                      <span class="error-msg2" v-if="errors1.password_confirmation">{{
-                        errors1.password_confirmation[0]
-                      }}</span>
+                      <input
+                        :type="passCurr"
+                        v-model="passwordUpdate.password_confirmation"
+                        placeholder="************"
+                      />
+                      <div @click="changePass3()" class="icon">
+                        <svg
+                          v-if="passCurr == 'password'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="16"
+                          viewBox="0 0 24 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M23.9204 7.6296C23.2116 6.0552 19.9696 0 12 0C4.0304 0 0.7884 6.0552 0.0796 7.6296C0.0264 7.748 0 7.8744 0 8C0 8.1256 0.0264 8.252 0.0796 8.3704C0.7884 9.9444 4.0304 16 12 16C19.9696 16 23.2116 9.9444 23.9204 8.3704C23.9736 8.252 24 8.1256 24 8C24 7.8744 23.9736 7.748 23.9204 7.6296ZM12 13.2C9.128 13.2 6.8 10.872 6.8 8C6.8 5.128 9.128 2.8 12 2.8C14.872 2.8 17.2 5.128 17.2 8C17.2 10.872 14.872 13.2 12 13.2Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M11.9999 11.6C13.9881 11.6 15.5999 9.98826 15.5999 8.00002C15.5999 6.01178 13.9881 4.40002 11.9999 4.40002C10.0117 4.40002 8.3999 6.01178 8.3999 8.00002C8.3999 9.98826 10.0117 11.6 11.9999 11.6Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                        <svg
+                          v-if="passCurr == 'text'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M21.2699 9.17981C20.9799 8.71981 20.6699 8.28981 20.3499 7.88981C19.9799 7.41981 19.2799 7.37981 18.8599 7.79981L15.8599 10.7998C16.0799 11.4598 16.1199 12.2198 15.9199 13.0098C15.5699 14.4198 14.4299 15.5598 13.0199 15.9098C12.2299 16.1098 11.4699 16.0698 10.8099 15.8498C10.8099 15.8498 9.37995 17.2798 8.34995 18.3098C7.84995 18.8098 8.00995 19.6898 8.67995 19.9498C9.74995 20.3598 10.8599 20.5698 11.9999 20.5698C13.7799 20.5698 15.5099 20.0498 17.0899 19.0798C18.6999 18.0798 20.1499 16.6098 21.3199 14.7398C22.2699 13.2298 22.2199 10.6898 21.2699 9.17981Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.0201 9.98014L9.98014 14.0201C9.47014 13.5001 9.14014 12.7801 9.14014 12.0001C9.14014 10.4301 10.4201 9.14014 12.0001 9.14014C12.7801 9.14014 13.5001 9.47014 14.0201 9.98014Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M18.25 5.75018L14.86 9.14018C14.13 8.40018 13.12 7.96018 12 7.96018C9.76 7.96018 7.96 9.77018 7.96 12.0002C7.96 13.1202 8.41 14.1302 9.14 14.8602L5.76 18.2502H5.75C4.64 17.3502 3.62 16.2002 2.75 14.8402C1.75 13.2702 1.75 10.7202 2.75 9.15018C3.91 7.33017 5.33 5.90018 6.91 4.92018C8.49 3.96018 10.22 3.43018 12 3.43018C14.23 3.43018 16.39 4.25018 18.25 5.75018Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M14.8601 12.0001C14.8601 13.5701 13.5801 14.8601 12.0001 14.8601C11.9401 14.8601 11.8901 14.8601 11.8301 14.8401L14.8401 11.8301C14.8601 11.8901 14.8601 11.9401 14.8601 12.0001Z"
+                            fill="#90A3BF"
+                          />
+                          <path
+                            d="M21.7699 2.22988C21.4699 1.92988 20.9799 1.92988 20.6799 2.22988L2.22988 20.6899C1.92988 20.9899 1.92988 21.4799 2.22988 21.7799C2.37988 21.9199 2.56988 21.9999 2.76988 21.9999C2.96988 21.9999 3.15988 21.9199 3.30988 21.7699L21.7699 3.30988C22.0799 3.00988 22.0799 2.52988 21.7699 2.22988Z"
+                            fill="#90A3BF"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="error-msg"
+                        v-if="v2$.password_confirmation.$error"
+                        >{{
+                          v2$.password_confirmation.$errors[0].$message
+                        }}</span
+                      >
+                      <span
+                        class="error-msg2"
+                        v-if="errors1.password_confirmation"
+                        >{{ errors1.password_confirmation[0] }}</span
+                      >
                     </div>
                   </div>
                   <div class="d-flex align-items-center justify-content-center">
-                    <button @click="updatePassword()" :disabled="pendingPass" class="fill gap-3">
-                        {{ $t('save edit') }}
-                              <v-progress-circular
+                    <button
+                      @click="updatePassword()"
+                      :disabled="pendingPass"
+                      class="fill gap-3"
+                    >
+                      {{ $t("save edit") }}
+                      <v-progress-circular
                         v-if="pendingPass"
                         indeterminate
                         :size="25"
@@ -195,29 +422,57 @@
                 <div class="details">
                   <div class="image active">
                     <div class="img">
-                      <img v-if="!selectedFile && userData.image" :src="userData.image" alt="" />
+                      <img
+                        v-if="!selectedFile && userData.image"
+                        :src="userData.image"
+                        alt=""
+                      />
                       <!-- <img v-else src="~/assets/images/kk.jpg" alt="" /> -->
                       <div v-if="selectedFile">
                         <img :src="selectedFileUrl" alt="Selected Image" />
                       </div>
 
                       <label for="img-input" class="overlay">
-                        <input id="img-input" type="file" @change="handleFileChange" />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="105" height="105" viewBox="0 0 105 105"
-                          fill="none">
-                          <circle opacity="0.6" cx="52.5" cy="52.5" r="52.5" fill="#D9D9D9" />
+                        <input
+                          id="img-input"
+                          type="file"
+                          @change="handleFileChange"
+                        />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="105"
+                          height="105"
+                          viewBox="0 0 105 105"
+                          fill="none"
+                        >
+                          <circle
+                            opacity="0.6"
+                            cx="52.5"
+                            cy="52.5"
+                            r="52.5"
+                            fill="#D9D9D9"
+                          />
                         </svg>
                         <div class="icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
                             <path
                               d="M14 14.667H2C1.72667 14.667 1.5 14.4403 1.5 14.167C1.5 13.8937 1.72667 13.667 2 13.667H14C14.2733 13.667 14.5 13.8937 14.5 14.167C14.5 14.4403 14.2733 14.667 14 14.667Z"
-                              fill="white" />
+                              fill="white"
+                            />
                             <path
                               d="M12.6799 2.32043C11.3866 1.0271 10.1199 0.993764 8.79322 2.32043L7.98655 3.1271C7.91989 3.19376 7.89322 3.30043 7.91989 3.39376C8.42655 5.16043 9.83989 6.57376 11.6066 7.08043C11.6332 7.0871 11.6599 7.09376 11.6866 7.09376C11.7599 7.09376 11.8266 7.0671 11.8799 7.01376L12.6799 6.2071C13.3399 5.55376 13.6599 4.92043 13.6599 4.28043C13.6666 3.62043 13.3466 2.98043 12.6799 2.32043Z"
-                              fill="white" />
+                              fill="white"
+                            />
                             <path
                               d="M10.4066 7.68654C10.2132 7.5932 10.0266 7.49987 9.84655 7.3932C9.69989 7.30654 9.55989 7.2132 9.41989 7.1132C9.30655 7.03987 9.17322 6.9332 9.04655 6.82654C9.03322 6.81987 8.98655 6.77987 8.93322 6.72654C8.71322 6.53987 8.46655 6.29987 8.24655 6.0332C8.22655 6.01987 8.19322 5.9732 8.14655 5.9132C8.07989 5.8332 7.96655 5.69987 7.86655 5.54654C7.78655 5.44654 7.69322 5.29987 7.60655 5.1532C7.49989 4.9732 7.40655 4.7932 7.31322 4.60654C7.19085 4.34431 6.84668 4.26641 6.64206 4.47103L2.89322 8.21987C2.80655 8.30654 2.72655 8.4732 2.70655 8.58654L2.34655 11.1399C2.27989 11.5932 2.40655 12.0199 2.68655 12.3065C2.92655 12.5399 3.25989 12.6665 3.61989 12.6665C3.69989 12.6665 3.77989 12.6599 3.85989 12.6465L6.41989 12.2865C6.53989 12.2665 6.70655 12.1865 6.78655 12.0999L10.5416 8.34484C10.7421 8.14432 10.6668 7.79929 10.4066 7.68654Z"
-                              fill="white" />
+                              fill="white"
+                            />
                           </svg>
                         </div>
                       </label>
@@ -227,17 +482,25 @@
                     <div class="inputs">
                       <div class="main-input">
                         <label for="">{{ $t("first name") }}</label>
-                        <input type="text" v-model="userData.first_name" placeholder="محمد" />
+                        <input
+                          type="text"
+                          v-model="userData.first_name"
+                          placeholder="محمد"
+                        />
                         <span class="error-msg" v-if="v$.first_name.$error">{{
                           v$.first_name.$errors[0].$message
                         }}</span>
-                        <span class="error-msg22" v-if="errors.first_name">{{
+                        <span class="error-msg2" v-if="errors.first_name">{{
                           errors.first_name[0]
                         }}</span>
                       </div>
                       <div class="main-input">
                         <label for="">{{ $t("last name") }}</label>
-                        <input type="text" v-model="userData.last_name" placeholder="محمد" />
+                        <input
+                          type="text"
+                          v-model="userData.last_name"
+                          placeholder="محمد"
+                        />
                         <span class="error-msg" v-if="v$.last_name.$error">{{
                           v$.last_name.$errors[0].$message
                         }}</span>
@@ -249,7 +512,13 @@
                     <div class="inputs">
                       <div class="main-input">
                         <label for="">{{ $t("phone") }}</label>
-                        <input type="tel" v-model="userData.phone" placeholder="+201066333725" />
+                        <input
+                          type="tel"
+                          maxlength="10"
+                          v-model="userData.phone"
+                          placeholder="+201066333725"
+                        />
+                        <div class="num">966+</div>
                         <span class="error-msg" v-if="v$.phone.$error">{{
                           v$.phone.$errors[0].$message
                         }}</span>
@@ -259,7 +528,11 @@
                       </div>
                       <div class="main-input">
                         <label for="">{{ $t("email") }}</label>
-                        <input type="email" v-model="userData.email" placeholder="m.info@icloud.com" />
+                        <input
+                          type="email"
+                          v-model="userData.email"
+                          placeholder="m.info@icloud.com"
+                        />
                         <span class="error-msg" v-if="v$.email.$error">{{
                           v$.email.$errors[0].$message
                         }}</span>
@@ -270,16 +543,21 @@
                     </div>
                   </div>
 
-                  <div class="btns d-flex align-items-center justify-content-center gap-3">
-                    <button @click="updateProfile()" :disabled="pendingedit" class="fill gap-3">
+                  <div
+                    class="btns d-flex align-items-center justify-content-center gap-3"
+                  >
+                    <button
+                      @click="updateProfile()"
+                      :disabled="pendingedit"
+                      class="fill gap-3"
+                    >
                       {{ $t("save edit") }}
-                       <v-progress-circular
-                      v-if="pendingedit"
-                      indeterminate
-                      :size="25"
-                      :width="3"
-                    ></v-progress-circular>
-                 
+                      <v-progress-circular
+                        v-if="pendingedit"
+                        indeterminate
+                        :size="25"
+                        :width="3"
+                      ></v-progress-circular>
                     </button>
                     <button @click="personalActive = 1" class="stroke">
                       {{ $t("back btn") }}
@@ -608,7 +886,7 @@ definePageMeta({
   middleware: "auth",
 });
 // import { createToast } from 'mosha-vue-toastify';
-import 'mosha-vue-toastify/dist/style.css';
+import "mosha-vue-toastify/dist/style.css";
 import { useStore } from "~/store";
 import Cookies from "js-cookie";
 import { Vue3Lottie } from "vue3-lottie";
@@ -632,8 +910,21 @@ const router = useRouter();
 let navActive = ref(0);
 const localePath = useLocalePath();
 const { locale } = useI18n();
-
 const tokenCookie = Cookies.get("token");
+
+let passType = ref("password");
+let passConfType = ref("password");
+let passCurr = ref("password");
+
+const changePass1 = () => {
+  passType.value = passType.value === "password" ? "text" : "password";
+};
+const changePass2 = () => {
+  passConfType.value = passConfType.value === "password" ? "text" : "password";
+};
+const changePass3 = () => {
+  passCurr.value = passCurr.value === "password" ? "text" : "password";
+};
 
 let pendingPass = ref(false);
 let pendingedit = ref(false);
@@ -684,22 +975,22 @@ if (locale.value == "ar") {
   value2.value = "حقل البريد الإلكتروني مطلوب";
   value3.value = "تنسيق البريد الإلكتروني غير صالح";
   value4.value = "يجب أن يكون هذا الحقل 8 أحرف على الأقل";
-  value5.value = "يجب أن يكون هذا الحقل 12 رقم على الأقل";
+  value5.value = "يجب أن يكون هذا الحقل 10 رقم على الأقل";
 } else {
-  value1.value = 'value is required';
+  value1.value = "value is required";
   value2.value = "The email field is required";
   value3.value = "Invalid email format";
   value4.value = "This field should be at least 8 characters long";
-  value5.value = "This field should be at least 12 numbers long";
+  value5.value = "This field should be at least 10 numbers long";
 }
 
 const rules1 = computed(() => {
   return {
-    first_name: { required: helpers.withMessage(value1.value , required) },
+    first_name: { required: helpers.withMessage(value1.value, required) },
     last_name: { required: helpers.withMessage(value1.value, required) },
     phone: {
       required: helpers.withMessage(value1.value, required),
-      minLength: helpers.withMessage(value5.value , minLength(11)) 
+      minLength: helpers.withMessage(value5.value, minLength(10)),
     },
     email: {
       required: helpers.withMessage(value2.value, required),
@@ -722,7 +1013,11 @@ const v$ = useValidate(rules1, userData);
 const v2$ = useValidate(rules2, passwordUpdate);
 let errors = ref([]);
 let errors1 = ref([]);
-
+let textEdit = ref(
+  locale.value == "ar"
+    ? "تم تعديل البيانات بنجاح"
+    : "data has been edited successfully"
+);
 const updateProfile = async () => {
   let formBody = new FormData();
   formBody.append("first_name", userData.value.first_name);
@@ -748,6 +1043,19 @@ const updateProfile = async () => {
       );
       if (result.status >= 200) {
         pendingedit.value = false;
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
+        createToast(
+          {
+            title: textEdit.value,
+          },
+          {
+            showIcon: "true",
+            type: "success",
+            toastBackgroundColor: "#dcba95",
+            timeout: 2000,
+          }
+        );
         if (process.client) {
           store.state.user = result.data.data;
           user.value = store.state.user;
@@ -766,12 +1074,12 @@ const updateProfile = async () => {
   }
 };
 
-let textPass = ref('تم تغيير كلمة المرور بنجاح');
+let textPass = ref("تم تغيير كلمة المرور بنجاح");
 
-if (locale.value == 'ar') {
-  textPass.value = 'تم تغيير كلمة المرور بنجاح';
+if (locale.value == "ar") {
+  textPass.value = "تم تغيير كلمة المرور بنجاح";
 } else {
-  textPass.value = 'The password has been changed successfully'
+  textPass.value = "The password has been changed successfully";
 }
 const updatePassword = async () => {
   let formBody = new FormData();
@@ -780,9 +1088,9 @@ const updatePassword = async () => {
   formBody.append(
     "password_confirmation",
     passwordUpdate.value.password_confirmation
-    );
-    let check = await v2$.value.$validate();
-    if (check) {
+  );
+  let check = await v2$.value.$validate();
+  if (check) {
     pendingPass.value = true;
     try {
       let result = await axios.post(
@@ -796,30 +1104,32 @@ const updatePassword = async () => {
         }
       );
       if (result.status >= 200) {
-  pendingPass.value = false;
+        pendingPass.value = false;
         errors1.value = [];
-        passwordUpdate.value.password = '';
-        passwordUpdate.value.old_password = '';
-        passwordUpdate.value.password_confirmation = '';
+        passwordUpdate.value.password = "";
+        passwordUpdate.value.old_password = "";
+        passwordUpdate.value.password_confirmation = "";
         passActive.value = false;
         const moshaToastify = await import("mosha-vue-toastify");
         const { createToast } = moshaToastify;
-          createToast({
-            title: textPass.value
+        createToast(
+          {
+            title: textPass.value,
           },
-            {
-              showIcon: 'true',
-              type: 'success',
-              toastBackgroundColor: '#dcba95',
-              timeout: 2000,
-            })
+          {
+            showIcon: "true",
+            type: "success",
+            toastBackgroundColor: "#dcba95",
+            timeout: 2000,
+          }
+        );
         if (process.client) {
         }
       }
     } catch (errorss) {
       console.log(errorss);
       if (errorss.response) {
-  pendingPass.value = false;
+        pendingPass.value = false;
         errors1.value = errorss.response.data.errors;
       }
     }
@@ -915,12 +1225,12 @@ const showAll = (index) => {
 };
 let items = ref([
   {
-    title: locale.value == 'ar' ? "الاعدادات" : "settings",
+    title: locale.value == "ar" ? "الاعدادات" : "settings",
     disabled: true,
     href: "/",
   },
   {
-    title: locale.value == 'ar' ? "الملف الشخصي" : "profile", 
+    title: locale.value == "ar" ? "الملف الشخصي" : "profile",
     disabled: false,
     class: "fw-bold",
   },

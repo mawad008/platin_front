@@ -15,6 +15,7 @@
 import Chart from 'primevue/chart';
 
 // const Utils = ChartUtils.init();
+const { locale } = useI18n();
 
 const chartData = ref();
 const chartOptions = ref();
@@ -23,17 +24,17 @@ const setChartData = () => {
     const documentStyle = getComputedStyle(document.documentElement);
 
     return {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        labels: locale.value == 'ar' ? ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'] : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
         datasets: [
             {
-                label: 'سعر البيع',
+                label: locale.value == 'ar' ? 'سعر البيع' : 'selling price',
                 data: [65, 59, 80, 81, 56, 55, 40],
                 fill: false,
                 borderColor: '#dcba95',
                 tension: 0.4
             },
             {
-                label: 'سعر الشراء',
+                label: locale.value == 'ar' ? 'سعر الشراء' : 'Purchasing price',
                 data: [28, 48, 40, 19, 86, 27, 90],
                 fill: false,
                 borderColor: '#2d3a4a',

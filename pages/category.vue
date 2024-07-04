@@ -21,7 +21,6 @@
               <i v-if="overlayVisible1" class="fa-solid fa-chevron-up"></i>
               <i v-else class="fa-solid fa-chevron-down"></i>
             </div>
-
               <div
               v-if="overlayVisible1"
                 id="select-product"
@@ -145,6 +144,13 @@ const getSubcategories = async () => {
     },
   });
   subcategoriesArr.value = result.data.data;
+  if(selectbox1.value){
+     
+   let indexItem = subcategoriesArr.value.find((ele)=>{
+      return ele.id == selectbox1.value;
+    });
+    text1.value = indexItem.name
+  }
 };
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brands`, {
@@ -194,11 +200,16 @@ const updatePage = (newPage) => {
 }
 
 
+useHead({
+  title: locale.value == "ar" ? "الفئات" : "categories",
+});
+
 watch(
   [() => route.query.id, () => route.query.subid, () => route.query.color],
   ([newId, newSup, newColor]) => {
     id.value = newId;
-    subid.value = newSup;
+    // subid.value = newSup;
+    selectbox1.value = newSup;
     color.value = newColor;
     getSubcategories();
     getProducts();

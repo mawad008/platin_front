@@ -134,7 +134,10 @@ const goToVendor = (id, name) => {
 
       router.push(fullLocalePath);
     };
-
+  
+    useHead({
+  title: locale.value == "ar" ? "التجار" : "vendors",
+});
 onMounted(() => {
   getCities();
   getVendors();

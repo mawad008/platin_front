@@ -7,7 +7,7 @@
             <div class="col-12 col-xl-5 col-lg-5 col-md-12">
               <div class="text-container">
                 <div class="head w-100 d-flex align-items-centr justify-content-between">
-                  <span class="sell"> الاكثر مبيعا </span>
+                  <span class="sell"> {{ $t('bestSel') }} </span>
 
                   <div class="star reverse d-flex align-items-center gap-2">
                     <span> {{ mainProduct.rate }} </span>
@@ -632,7 +632,7 @@
 
                           <div class="text">
                             <h5>{{ $t("store") }} {{ mainVendor.name }}</h5>
-                            <span> {{ mainVendor.created_at }}</span>
+                            <span> {{ $t('dateWith') }} {{ mainVendor.created_at }}</span>
                           </div>
                         </div>
                       </div>
@@ -1116,6 +1116,11 @@ const deleteTofav = async (itemId) => {
 const clickedItem = (id) => {
   return store.state.isInFav.find((item) => item == id);
 };
+
+
+useHead({
+  title: locale.value == "ar" ? "بلاتين" : "platin",
+});
 
 watch(() => MainRoute.query.id, (newId) => {
     id.value = newId;

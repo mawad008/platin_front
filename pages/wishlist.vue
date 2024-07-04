@@ -1,14 +1,14 @@
 <template>
     <div style=" margin-top:80px; margin-bottom:140px;">
-        <div v-if="favArr.length >= 1" class="container">
-        <v-breadcrumbs :items="items">
+        <div  class="container">
+        <v-breadcrumbs v-if="favArr.length >= 1" :items="items">
           <template v-slot:divider>
             <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
           </template>
         </v-breadcrumbs>
 
 
-         <div class="wish-list-page">
+         <div v-if="favArr.length >= 1" class="wish-list-page">
              <div class="text-content">
                 <h4> {{ $t("wish") }}<span>({{ favArr.length }})</span></h4>
                 <p class="">
@@ -24,7 +24,7 @@
 
 
         </div>
-            <div v-else class="container empty-container">
+            <div v-if="favArr.length < 1" class="container empty-container">
           <div class="empty">
           <client-only>
               <Vue3Lottie :animation-data="cart" :height="200" :width="200" />
@@ -34,7 +34,7 @@
               {{ $t("empty fav1") }}   
               </p>
 
-            <nuxt-link :to="localePath('/')">
+            <nuxt-link :to="localePath('/products')">
               <button> {{ $t("shopNow") }} </button>
 
             </nuxt-link>
@@ -74,6 +74,9 @@ let items = ref([
     },
 ]);
 
+useHead({
+  title: locale.value == "ar" ? "المفضلة" : "wishlist",
+});
 
 </script>
 

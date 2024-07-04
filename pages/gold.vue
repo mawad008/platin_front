@@ -28,11 +28,13 @@
                   class="d-flex flex-column align-items-center text-center gap-3 justify-content-center"
                 >
                   <span
+                  v-if="subcategoriesArr.length >= 1"
                     v-for="(item, index) in subcategoriesArr"
                     @click="(selectbox1 = item.id), getProducts() , text1 = item.name , overlayVisible1 = false"
                     :class="{ active: selectbox1 == item.id }"
                     >{{ item.name }}</span
                   >
+                  <span v-else> {{ $t('unavailable') }} </span>
                 </div>
               <v-overlay
               @click="overlayVisible1 = false"
@@ -204,6 +206,10 @@
       getProducts();
     }
   );
+
+  useHead({
+  title: locale.value == "ar" ? "السبائك" : "gold",
+});
   onMounted(() => {
     getSubcategories();
     getBrands();

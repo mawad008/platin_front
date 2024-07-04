@@ -509,6 +509,14 @@ html[dir="rtl"] input[type="tel"] {
     font-size: 13px;
     color: #b1628c;
   }
+  .num , .icon{
+    position: absolute;
+    color: $body-text;
+    top: 57%;
+  }
+  .icon{
+    cursor: pointer;
+  }
   .error-msg2 {
     font-size: 13px;
     color: #b1628c;
@@ -696,6 +704,17 @@ html[dir="rtl"] input[type="tel"] {
   }
 }
 
+html[dir="rtl"] .main-input{
+  .num , .icon{
+    left: 20px;
+  }
+}
+html[dir="ltr"] .main-input{
+  .num , .icon{
+    right: 20px;
+    // direction: rtl;
+  }
+}
 
 
 // end input field
@@ -1580,7 +1599,7 @@ html[dir="ltr"] .card-popup-container{
     padding: 20px 50px;
     opacity: 0.88;
     //   background: linear-gradient(180deg, rgba(69, 86, 102, 0.00) 0%, rgba(55, 69, 83, 0.39) 19.12%, #212B36 77.72%) , url('~/assets/images/banner.jpg');
-    background-image: url("~/assets/images/banner.jpg");
+    // background-image: url("~/assets/images/banner.jpg");
     position: relative;
     h2 {
       font-weight: bolder;
@@ -4149,15 +4168,16 @@ html[dir="ltr"] .product-page{
   border-radius: 8px;
   opacity: 0.56;
   width: 170px;
-  height: 185px;
+  max-height: 250px;
   overflow: auto;
   padding: 10px;
-  position: relative;
+  padding-top: 25px;
+  position: absolute;
   z-index: 11111 !important;
   background-color: #2d3a4a;
   gap: 13px !important;
   text-align: center;
-  box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08);
+  box-shadow: 0px 16px 32px 0px rgba(113, 128, 150, 0.08) !important;
   span {
     width: 100%;
     color: #fff;
@@ -4165,7 +4185,7 @@ html[dir="ltr"] .product-page{
     &.active {
       border-radius: 4px;
       background: #747e88;
-      padding: 7px;
+      padding: 2px;
     }
   }
 }

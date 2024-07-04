@@ -45,6 +45,9 @@ const getGeneral = async () => {
   generalArr.value = result.data.data;
 };
 
+useHead({
+  title: locale.value == "ar" ? "من نحن" : "about us",
+});
 onMounted(()=>{
   getGeneral();
 });

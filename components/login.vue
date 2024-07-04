@@ -2,7 +2,7 @@
   <div>
     <form @submit.prevent v-if="loginNav == 1" class="form">
       <h3>{{ $t("join") }}</h3>
-      <div class="google">
+      <!-- <div class="google">
         <div class="d-flex align-items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@
       </div>
       <div class="or">
         <span>{{ $t("or") }}</span>
-      </div>
+      </div> -->
 
       <div class="inputs mb-3">
         <div class="main-input">
@@ -68,7 +68,7 @@
           :width="5"
         ></v-progress-circular>
       </button>
-      <div class="type">
+      <div class="type" style="margin-top: 20px;">
         <span class="ex"> {{ $t("ex1") }}</span>
         <span class="log" @click="handleButtonClick(1)">
           {{ $t("create") }}
@@ -102,7 +102,40 @@
         </div>
       </div>
 
-      <button @click="loginNav = 3" class="otp">{{ $t("follow") }}</button>
+      <button @click="loginNav = 3" class="otp" style="margin:0px !important; margin-bottom:25px">{{ $t("follow") }}</button>
+    </form>
+    <form @submit.prevent v-if="loginNav == 4" class="form">
+      <div @click="loginNav = 1" class="back">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M10.0886 12.588C10.414 12.2625 10.414 11.7349 10.0886 11.4094L5.67786 6.9987L10.0886 2.58795C10.414 2.26251 10.414 1.73488 10.0886 1.40944C9.76317 1.084 9.23553 1.084 8.91009 1.40944L3.91009 6.40944C3.58466 6.73488 3.58466 7.26252 3.91009 7.58795L8.91009 12.588C9.23553 12.9134 9.76317 12.9134 10.0886 12.588Z"
+            fill="#2D3A4A"
+          />
+        </svg>
+      </div>
+      <h3 class="text-center">{{ $t("forget1") }}</h3>
+
+      <p class="text text-center"> قم باعادة تعيين كلمة المرور من خلال انشاء كلمة المرور جديدة ثم قم بتأكيدها </p>
+      <div class="inputs mb-3">
+        <div class="main-input">
+          <label for=""> {{ $t("pass") }}<span>*</span> </label>
+          <input type="password" placeholder="************" />
+        </div>
+        <div class="main-input">
+          <label for=""> {{ $t("confirm pass") }}<span>*</span> </label>
+          <input type="password" placeholder="************" />
+        </div>
+      </div>
+
+      <button @click="loginNav = 1" class="otp" style="margin-bottom:20px">{{ $t("confirm") }}</button>
     </form>
 
     <div v-if="loginNav == 3" class="form">
@@ -135,7 +168,7 @@
       ></v-otp-input>
       {{ otp }}
       <span class="resend text-center"> {{ $t("resend") }}</span>
-      <button @click="loginNav = 1" class="otp">{{ $t("follow") }}</button>
+      <button @click="loginNav = 4" class="otp" >{{ $t("follow") }}</button>
     </div>
   </div>
 </template>

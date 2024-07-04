@@ -3,8 +3,9 @@
       <div class="container policy-container">
         <h3>{{ $t('policy3') }}</h3>
         <div class="policy-page" >
-          <div class="text">
-             <p>{{ generalArr.terms }}</p>
+          <div class="text" >
+          <div v-html="generalArr.terms"></div>
+             <!-- <p>{{ generalArr.terms }}</p> -->
           </div>
         </div>
       </div>
@@ -33,6 +34,9 @@ const getGeneral = async () => {
   generalArr.value = result.data.data;
 };
 
+useHead({
+  title: locale.value == "ar" ? "الشروط و الاحكام" : "terms and conditions",
+});
 onMounted(()=>{
     getGeneral();
 })

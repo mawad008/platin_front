@@ -4,9 +4,10 @@
       <h3>{{ $t('policy2') }}</h3>
       <div class="policy-page" >
         <div class="text">
-         <p>
+        <div v-html="generalArr.privacy_policy "></div>
+         <!-- <p>
            {{ generalArr.privacy_policy }}
-         </p>
+         </p> -->
         </div>
       
       </div>
@@ -37,6 +38,9 @@ const getGeneral = async () => {
   generalArr.value = result.data.data;
 };
 
+useHead({
+  title: locale.value == "ar" ? "سياسة الخصوصية" : "policy",
+});
 onMounted(()=>{
   getGeneral();
 });

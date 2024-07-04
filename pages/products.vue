@@ -1,6 +1,6 @@
 <template>
   <div style="min-height:100vh;">
-    <div class="container our-products h-100" style="margin-top: 75px;">
+    <div class="container our-products products h-100" style="margin-top: 75px;">
       <div class="header  d-flex flex-column align-items-center justify-content-center w-100">
         <h3 class="">{{ $t("our products") }}</h3>
 
@@ -256,6 +256,10 @@ const updatePage = (newPage) => {
   getProducts();
 }
 
+
+useHead({
+  title: locale.value == "ar" ? "المنتجات" : "products",
+});
 
 
 watch(
