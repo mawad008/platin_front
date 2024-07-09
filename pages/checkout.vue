@@ -1618,7 +1618,11 @@ const checkoutFunc = async () => {
       }
     }
   } else {
-    console.log(check);
+    console.log(user.value);
+    console.log(userdata1.value);
+    console.log(gift_owner_name.value);
+    console.log(gift_owner_phone.value);
+    console.log(gift_text.value);
   }
 };
 
@@ -1919,21 +1923,17 @@ const getPayed = async () => {
 };
 
 // 
-watch([() => store.state.userObj1, ()=> store.state.paymentVar , ()=> store.state.idPay  ], ([user1 , pay1 , val ]) => {
-  userdata1.value.type = user1.email;
-  userdata1.value.first_name = user1.first_name;
-  userdata1.value.last_name = user1.last_name;
-  userdata1.value.phone = user1.phone;
-  userdata1.value.email = user1.email;
-  personalorGift.value = user1.personalorGift ? user1.personalorGift : 1;
-  gift_owner_name.value = user1.gift_owner_name;
-  gift_owner_phone.value = user1.gift_owner_phone;
-  gift_text.value = user1.gift_text;
+watch([() => store.state.userObj1, ()=> store.state.paymentVar , ()=> store.state.idPay , ()=>user.value  ], ([user1 , pay1 , val , loginUser ]) => {
   if(user1){
-    // start watch userform1
-    // end watch userform1
-
-    // start watch userform2
+    // userdata1.value.type = user1.email ? user1.email : '';
+    userdata1.value.first_name = user1.first_name ? user1.first_name : "" || loginUser.first_name ? loginUser.first_name : "";
+    userdata1.value.last_name = user1.last_name ?  user1.last_name : "" || loginUser.last_name ? loginUser.last_name : "";
+    userdata1.value.phone = user1.phone ? user1.phone : "" || loginUser.phone ? loginUser.phone : "";
+    userdata1.value.email = user1.email ? user1.email : "" || loginUser.email ? loginUser.email : "";
+    personalorGift.value = user1.personalorGift ? user1.personalorGift : 1;
+    gift_owner_name.value = user1.gift_owner_name ? user1.gift_owner_name : "";
+    gift_owner_phone.value = user1.gift_owner_phone ? user1.gift_owner_phone : "";
+    gift_text.value = user1.gift_text ? user1.gift_text : "";
     if(user1.chooseCity){
       userdata2.value.building_number = user1.building_number;
       userdata2.value.city = user1.city;
@@ -1942,7 +1942,6 @@ watch([() => store.state.userObj1, ()=> store.state.paymentVar , ()=> store.stat
       userdata2.value.street_name = user1.street_name;
       chooseCity.value = user1.chooseCity;
     }
-    // end watch userform2
   }
 paymentMethodVar.value = pay1 ? pay1 : 1;
   tap_idV.value = val ? val : '';

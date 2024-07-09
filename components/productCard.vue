@@ -46,7 +46,7 @@
             />
           </svg>
         </div>
-        <span> الاكثر مبيعا </span>
+        <span> {{ $t('bestSel') }}</span>
         <client-only>
           <Vue3Lottie
             v-if="anim"

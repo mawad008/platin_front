@@ -510,6 +510,7 @@
                       </div>
                     </div>
                     <div class="inputs">
+                    <div class="main-input-container d-flex flex-column w-100">
                       <div class="main-input">
                         <label for="">{{ $t("phone") }}</label>
                         <input
@@ -519,13 +520,16 @@
                           placeholder="+201066333725"
                         />
                         <div class="num">966+</div>
+                      </div>
+                        <div class="error-container d-flex flex-column">
                         <span class="error-msg" v-if="v$.phone.$error">{{
                           v$.phone.$errors[0].$message
                         }}</span>
-                        <span class="error-msg2" v-if="errors.phone">{{
+                        <span class="error-msg" v-if="errors.phone">{{
                           errors.phone[0]
                         }}</span>
-                      </div>
+                        </div>
+                    </div>
                       <div class="main-input">
                         <label for="">{{ $t("email") }}</label>
                         <input
@@ -1237,4 +1241,7 @@ let items = ref([
 ]);
 </script>
 
-<style lang=""></style>
+<style lang="">
+
+
+</style>

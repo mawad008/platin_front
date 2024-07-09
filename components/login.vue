@@ -98,11 +98,11 @@
       <div class="inputs mb-3">
         <div class="main-input">
           <label for=""> {{ $t("phone") }}<span>*</span> </label>
-          <input type="tel" placeholder="0215984494" />
+          <input type="tel" maxlength="10" v-model="forgetPhone" placeholder="0215984494" />
         </div>
       </div>
 
-      <button @click="loginNav = 3" class="otp" style="margin:0px !important; margin-bottom:25px">{{ $t("follow") }}</button>
+      <button @click="forgetPassFunc1()" class="otp" style="margin:0px !important; margin-bottom:25px">{{ $t("follow") }}</button>
     </form>
     <form @submit.prevent v-if="loginNav == 4" class="form">
       <div @click="loginNav = 1" class="back">
@@ -279,6 +279,31 @@ const loginFunc = async () => {
     console.log("not login");
   }
 };
+let forgetPhone = ref('');
+let pendingForget = ref(false);
+let forgetError = ref();
+const forgetPassFunc1 = async () => {
+  console.log(forgetPhone.value);
+  if (forgetPhone.value) {
+    pendingForget.value = true;
+    try {
+      let result = await axios.post(`${getUrl()}/send-otp/${forgetPhone.value}`, {
+        headers: {
+          "Content-Language": `${locale.value}`,
+        },
+      });
+      if (result.status >= 200) {
+        loginNav.value = 3;
+      }
+    } catch (errorss) {
+      if (errorss.response) {
+        pendingForget.value = false;
+        forgetError.value = errorss.response.data.errors;
+      }
+    }
+  }
+};
+
 </script>
 
 <style lang="scss" scoped></style>

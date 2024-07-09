@@ -230,6 +230,11 @@ a {
   color: #2d3a4a;
   margin-bottom: 32px;
   margin-top: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .product-card .price .price-text {
   color: #dcba95;
@@ -1576,12 +1581,18 @@ html[dir=ltr] .card-popup-container {
 }
 .offers .box.ff2 {
   background-image: url("~/assets/images/offer1.png") !important;
+  background-size: cover;
+  width: 100%;
 }
 .offers .box.f3 {
   background-image: url("~/assets/images/offer2.png");
+  background-size: cover;
+  width: 100%;
 }
 .offers .box.ff3 {
   background-image: url("~/assets/images/offer2.png") !important;
+  background-size: cover;
+  width: 100%;
 }
 .offers .box .text-container {
   padding: 24px;
@@ -1783,6 +1794,19 @@ html[dir=ltr] .card-popup-container {
 }
 .v-pagination .v-btn--variant-text .v-btn__overlay {
   background-color: #dcba95 !important;
+}
+
+.main-input-container {
+  position: relative;
+}
+
+.error-container {
+  position: absolute;
+  top: 100%;
+}
+.error-container span {
+  font-size: 13px;
+  color: #b1628c;
 }
 
 .main-banner-container {
