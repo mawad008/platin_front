@@ -721,7 +721,14 @@ html[dir="ltr"] .main-input{
   }
 }
 
-
+.error-container2{
+  display: flex;
+  flex-direction: column;
+  span{
+    font-size: 14px;
+    color: $red-color;
+  }
+}
 // end input field
 
 body,
@@ -2210,7 +2217,7 @@ html[dir="ltr"] .card-popup-container{
     margin-top: 50px;
 
     .swiper-slide {
-      width: 296px !important;
+      // width: 296px !important;
       border-radius: 18px;
       // background-color: red;
       .product-card {

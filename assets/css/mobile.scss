@@ -449,6 +449,7 @@ $rating-bg: #ecb43c;
 
   @media (max-width: 920px) {
     .banner-container {
+      padding: 10px !important;
       .arrows {
         display: none !important;
       }

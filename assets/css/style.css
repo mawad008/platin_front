@@ -588,6 +588,15 @@ html[dir=ltr] .main-input .num, html[dir=ltr] .main-input .icon {
   right: 20px;
 }
 
+.error-container2 {
+  display: flex;
+  flex-direction: column;
+}
+.error-container2 span {
+  font-size: 14px;
+  color: #b1628c;
+}
+
 body,
 html {
   overflow-x: clip;
@@ -1896,7 +1905,6 @@ html[dir=ltr] .card-popup-container {
   margin-top: 50px;
 }
 .banner-container .swiper .swiper-slide {
-  width: 296px !important;
   border-radius: 18px;
 }
 .banner-container .swiper .swiper-slide .product-card {
@@ -4923,6 +4931,9 @@ html[dir=ltr] td.headd2 {
   }
 }
 @media (max-width: 920px) {
+  .banner-container {
+    padding: 10px !important;
+  }
   .banner-container .arrows {
     display: none !important;
   }

@@ -35,10 +35,10 @@
           <span class="word"> {{ $t("price") }} </span>
           <span class="price"> {{ total }} {{ $t("curr") }} </span>
         </div>
-        <div class="total">
+        <!-- <div class="total">
           <span class="word"> {{ $t("discountss") }}</span>
           <span class="price"> 0 {{ $t("curr") }}</span>
-        </div>
+        </div> -->
         <div class="total">
           <span class="word"> {{ $t("shipping") }}</span>
           <span class="price"> 40 {{ $t("curr") }} </span>

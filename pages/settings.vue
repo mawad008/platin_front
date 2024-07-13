@@ -974,8 +974,9 @@ let value2 = ref("The email field is required");
 let value3 = ref("Invalid email format");
 let value4 = ref("This field should be at least 8 characters long");
 let value5 = ref("This field should be at least 8 numbers long");
+let value6 = ref( locale.value == 'en' ? "The value must be equal to the other value" : "يجب أن تكون القيمة مساوية للقيمة الأخرى");
 if (locale.value == "ar") {
-  value1.value = "هذا الحقل مطلوبة";
+  value1.value = "هذا الحقل مطلوب";
   value2.value = "حقل البريد الإلكتروني مطلوب";
   value3.value = "تنسيق البريد الإلكتروني غير صالح";
   value4.value = "يجب أن يكون هذا الحقل 8 أحرف على الأقل";
@@ -1004,11 +1005,11 @@ const rules1 = computed(() => {
 });
 const rules2 = computed(() => {
   return {
-    password: { required, minLength: minLength(8) },
-    old_password: { required, minLength: minLength(8) },
+    password: { required:helpers.withMessage(value1.value, required), minLength: helpers.withMessage(value4.value, minLength(8))},
+    old_password: { required:helpers.withMessage(value1.value, required) , minLength: helpers.withMessage(value4.value, minLength(8)) },
     password_confirmation: {
-      required,
-      sameAs: sameAs(passwordUpdate.value.password),
+      required:helpers.withMessage(value1.value, required),
+      sameAs: helpers.withMessage(value6.value, sameAs(passwordUpdate.value.password)) ,
     },
   };
 });

@@ -22,6 +22,7 @@
               <template v-slot:activator="{ props }">
                 <button
                   v-bind="props"
+                  id="btn-nav1"
                   class="d-flex align-items-center btn-navv gap-2"
                   :class="{ active: isExpanded }"
                   @click="toggleExpanded"
@@ -149,6 +150,7 @@
                   <template v-slot:activator="{ props }">
                     <button
                       v-bind="props"
+                      id="btn-nav2"
                       class="d-flex align-items-center gap-2 btn-navv"
                       :class="{ active: isExpanded2 }"
                       @click="toggleExpanded2"
@@ -537,8 +539,8 @@
               >
                 <h6 class="head">{{ $t("contact") }}</h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> {{ $t("home") }} </span>
-                  <span class="head-link"> {{ $t("home") }} </span>
+                  <a v-if="generalArr" :href="`tel:${generalArr.sms_number}`" class="head-link"> {{ generalArr.sms_number }} </a>
+                  <a v-if="generalArr" target="_blank" :href="`https://wa.me/${generalArr.whatsapp_number}`" class="head-link"> {{ generalArr.whatsapp_number }} </a>
                 </div>
               </div>
             </div>
@@ -1453,6 +1455,20 @@ const toggleExpanded = () => {
 const toggleExpanded2 = () => {
   isExpanded2.value = !isExpanded2.value;
 };
+function handleButton (){
+  if(process.client){
+    const dropdownElement = document.getElementById("btn-nav1");
+    const dropdownElement2 = document.getElementById("btn-nav2");
+        if (isExpanded.value && dropdownElement && !dropdownElement.contains(event.target)
+        ) {
+          isExpanded.value = false;
+        }
+        if (isExpanded2.value && dropdownElement2 && !dropdownElement2.contains(event.target)
+        ) {
+          isExpanded2.value = false;
+        }
+  }
+}
 
 let logoutText = ref(
   locale.value == "ar" ? "تم تسجيل الخروج بنجاح" : "logout successfully"
@@ -1631,12 +1647,15 @@ onMounted(() => {
       activeItemsContainer.value = false;
     }
   });
+  document.addEventListener("click", handleButton);
+  
   getCategories();
-
+  
   user.value = store.state.user;
   getGeneral();
 });
 onBeforeMount(() => {
+  document.addEventListener("click", handleButton);
   store.dispatch("loadBasketFromLocalStorage");
   updateLang();
 });

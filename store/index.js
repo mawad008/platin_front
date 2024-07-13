@@ -74,7 +74,7 @@ export const useStore = createStore({
 
      
       // state.isInFav[index] = false;
-        var index = Array.from(state.favArr).findIndex(
+        let index = Array.from(state.favArr).findIndex(
           (item) => item.id === itemId
       );
       

@@ -371,6 +371,9 @@
   }
 }
 @media (max-width: 920px) {
+  .banner-container {
+    padding: 10px !important;
+  }
   .banner-container .arrows {
     display: none !important;
   }
