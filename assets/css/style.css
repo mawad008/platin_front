@@ -787,6 +787,8 @@ html[dir=ltr] .card-popup-container {
   position: relative;
   width: 100%;
   display: flex;
+  align-items: center;
+  text-align: center;
   justify-content: center;
   flex-direction: column;
   padding: 0px 56px;
@@ -795,7 +797,7 @@ html[dir=ltr] .card-popup-container {
   position: absolute;
   top: 0px;
   cursor: pointer;
-  left: 0px;
+  left: 30px;
 }
 .card-popup-container .main h3 {
   margin-top: 24px;
@@ -3124,6 +3126,7 @@ html[dir=ltr] .product-page .share-box {
   width: 256px;
   height: 262px;
   border-radius: 16px;
+  cursor: pointer;
   position: relative;
 }
 .checkout-page .main-inputs-container .map-image .overlay {

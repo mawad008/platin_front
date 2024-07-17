@@ -57,6 +57,20 @@ export const useStore = createStore({
       state.userObj1 = payload;
       localStorage.setItem("storeUser1",JSON.stringify(payload));
     },
+    addHeaderSteps(state , payload){
+      state.check1 = payload.check1;
+      localStorage.setItem("check1",JSON.stringify(payload.check1));
+      state.check2 = payload.check2;
+      localStorage.setItem("check2",JSON.stringify(payload.check2));
+      state.check3 = payload.check3;
+      localStorage.setItem("check3",JSON.stringify(payload.check3));
+      state.lineActive1 = payload.lineActive1;
+      localStorage.setItem("lineActive1",JSON.stringify(payload.lineActive1));
+      state.lineActive2 = payload.lineActive2;
+      localStorage.setItem("lineActive2",JSON.stringify(payload.lineActive2));
+      state.lineActive3 = payload.lineActive3;
+      localStorage.setItem("lineActive3",JSON.stringify(payload.lineActive3));
+    },
     addStep(state , payload){
       state.step = payload;
       localStorage.setItem("storeStep",JSON.stringify(payload));
@@ -117,6 +131,20 @@ export const useStore = createStore({
 
     setfav(state, payload) {
       state.favArr = payload;
+    },
+    setHeaderSteps(state, payload) {
+      state.check1 = payload.check1;
+      state.check2 = payload.check2;
+      state.check3 = payload.check3;
+      state.lineActive1 = payload.lineActive1;
+      state.lineActive2 = payload.lineActive2;
+      state.lineActive3 = payload.lineActive3;
+      console.log('sasasa' , state.check1);
+      console.log('sasasa' , state.check2);
+      console.log('sasasa' , state.check3);
+      console.log('sasasa' , state.lineActive1);
+      console.log('sasasa' , state.lineActive2);
+      console.log('sasasa' , state.lineActive3);
     },
     setfavIcon(state, payload) {
       state.isInFav = payload;
@@ -312,13 +340,35 @@ export const useStore = createStore({
       state.basket = [];
       state.totalNum = 0;
       state.basketNum = 0;
+      state.check1 = true;
+      state.check2 = false;
+      state.check3 = false;
+      state.lineActive1 = false;
+      state.lineActive2 = false;
+      state.lineActive3 = false;
       localStorage.removeItem("storeUser1");
+      localStorage.removeItem("check1");
+      localStorage.removeItem("check2");
+      localStorage.removeItem("check3");
+      localStorage.removeItem("lineActive1");
+      localStorage.removeItem("lineActive2");
+      localStorage.removeItem("lineActive3");
       localStorage.removeItem("storeStep");
       localStorage.removeItem("storePayVar");
       localStorage.removeItem("basket");
       localStorage.removeItem("total");
       localStorage.removeItem("num");
       localStorage.removeItem("storeId");
+    },
+    clearCheckout(state){
+      state.paymentVar = 1;
+      state.userObj1 = {};
+      state.step = 1;
+      state.idPay = '';
+      localStorage.removeItem("storeId");
+      localStorage.removeItem("storeUser1");
+      localStorage.removeItem("storeStep");
+      localStorage.removeItem("storePayVar");
     }
   },
   actions: {
@@ -331,6 +381,12 @@ export const useStore = createStore({
         const storedStep = JSON.parse(localStorage.getItem("storeStep")) || 1;
         const storedPayVar = JSON.parse(localStorage.getItem("storePayVar")) || 1;
         const storedId = JSON.parse(localStorage.getItem("storeId")) || '';
+        const check1 = JSON.parse(localStorage.getItem("check1")) || true;
+        const check2 = JSON.parse(localStorage.getItem("check2")) || false;
+        const check3 = JSON.parse(localStorage.getItem("check3")) || false;
+        const lineActive1 = JSON.parse(localStorage.getItem("lineActive1")) || false;
+        const lineActive2 = JSON.parse(localStorage.getItem("lineActive2")) || false;
+        const lineActive3 = JSON.parse(localStorage.getItem("lineActive3")) || false;
         // const storedUser3 = JSON.parse(localStorage.getItem("storeUser3")) || {};
         const userCookie = Cookies.get("user");
         const authCookie = Cookies.get("auth");
@@ -350,6 +406,7 @@ export const useStore = createStore({
         commit("setStep", storedStep);
         commit("setPayVar", storedPayVar);
         commit("setId", storedId);
+        commit("setHeaderSteps", {check1:check1 , check2:check2 , check3:check3 , lineActive1:lineActive1 , lineActive2:lineActive2 , lineActive3:lineActive3 });
         commit("setAuthenticated", storedAuth);
         getTotalBasketNum(state);
         getTotalPrice(state);

@@ -1485,6 +1485,7 @@ const logOut = async () => {
     Cookies.remove("auth");
     const localee = localePath("/");
     router.push(localee);
+    store.commit("clearCache");
     createToast(
       {
         title: logoutText.value,

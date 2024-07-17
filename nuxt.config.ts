@@ -62,10 +62,12 @@ export default defineNuxtConfig({
           src: "/js/bootstrap.bundle.min.js",
           // body: true,
         },
-        // {
-        //   src: "/chart.utils.js",
-        //   body: true
-        // },
+
+        {
+          type: 'text/javascript',
+          src: '/js/google-maps-loader.js',
+          body: true,
+        }
       ],
     },
   },

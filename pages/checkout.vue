@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="container checkout-page" style="">
-    
       <final-order
         v-if="finalStep == 2"
         :finalObj="finalObj"
@@ -31,16 +30,40 @@
                         <div class="radio-input">
                           <div
                             class="head d-flex align-items-center justify-content-between"
-                          >         
-
-                            <svg class="main-svg" xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
-  <path d="M18 5.25H2C1.0335 5.25 0.25 6.0335 0.25 7V9C0.25 9.9665 1.0335 10.75 2 10.75H18C18.9665 10.75 19.75 9.9665 19.75 9V7C19.75 6.0335 18.9665 5.25 18 5.25Z" fill="#919EAB"/>
-  <path d="M11.4147 6.751C11.0948 6.78869 10.7706 6.73981 10.4759 6.60947C10.1813 6.47913 9.92707 6.27211 9.73974 6.01C9.44974 5.494 9.62274 4.895 10.1397 3.115C10.3557 2.389 11.1507 0.25 13.1817 0.25C13.9954 0.251851 14.7751 0.576092 15.3502 1.1517C15.9252 1.72731 16.2487 2.50736 16.2497 3.321C16.2497 5.235 14.2267 6.035 13.4637 6.335C12.811 6.59471 12.1171 6.73559 11.4147 6.751ZM11.1207 5.231C11.7284 5.27407 12.3377 5.17548 12.9007 4.943C13.7667 4.601 14.7477 4.111 14.7477 3.319C14.7467 2.9032 14.581 2.50473 14.287 2.21072C13.993 1.9167 13.5945 1.75106 13.1787 1.75C12.1857 1.75 11.7147 3.069 11.5947 3.473C11.3807 4.213 11.1877 4.885 11.1227 5.233L11.1207 5.231Z" fill="#919EAB"/>
-  <path d="M8.566 6.74712C7.86939 6.72257 7.18227 6.57777 6.535 6.31912C5.853 6.04911 3.778 5.22811 3.75 3.31911C3.75462 2.91472 3.84017 2.51534 4.00161 2.14453C4.16305 1.77373 4.39712 1.43901 4.69 1.16011C4.9652 0.86948 5.29735 0.638678 5.66572 0.48211C6.03408 0.325542 6.43076 0.246568 6.831 0.250114C8.425 0.292114 9.182 1.77711 9.79 2.97011C10.227 3.82811 10.89 5.12411 10.185 6.07112C9.98853 6.30465 9.73909 6.48784 9.45747 6.60543C9.17585 6.72302 8.8702 6.7716 8.566 6.74712ZM6.766 1.74711C6.37662 1.77106 6.01107 1.94275 5.744 2.22711C5.5937 2.36326 5.47206 2.52802 5.38621 2.71175C5.30036 2.89547 5.25201 3.09448 5.244 3.29711C5.256 4.09711 6.231 4.58511 7.08 4.92111C7.66564 5.22079 8.33678 5.30909 8.98 5.17111C9.064 5.01612 8.888 4.50312 8.453 3.65012L9.12 3.30812L8.452 3.64912C7.89 2.54911 7.441 1.76411 6.79 1.74911L6.766 1.74711Z" fill="#919EAB"/>
-  <path d="M8.75 11.75H11.25V21.75H8.75V11.75Z" fill="#919EAB"/>
-  <path d="M7.25 11.7504V21.7504H4C3.63879 21.7507 3.28107 21.6797 2.94731 21.5416C2.61355 21.4035 2.31028 21.2009 2.05487 20.9455C1.79946 20.6901 1.5969 20.3868 1.4588 20.0531C1.32069 19.7193 1.24974 19.3616 1.25 19.0004V11.6504C1.49495 11.7144 1.74684 11.748 2 11.7504H7.25Z" fill="#919EAB"/>
-  <path d="M18.75 11.6504V19.0004C18.7503 19.3616 18.6793 19.7193 18.5412 20.0531C18.4031 20.3868 18.2005 20.6901 17.9451 20.9455C17.6897 21.2009 17.3865 21.4035 17.0527 21.5416C16.7189 21.6797 16.3612 21.7507 16 21.7504H12.75V11.7504H18C18.2532 11.748 18.5051 11.7144 18.75 11.6504Z" fill="#919EAB"/>
-</svg>
+                          >
+                            <svg
+                              class="main-svg"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="22"
+                              viewBox="0 0 20 22"
+                              fill="none"
+                            >
+                              <path
+                                d="M18 5.25H2C1.0335 5.25 0.25 6.0335 0.25 7V9C0.25 9.9665 1.0335 10.75 2 10.75H18C18.9665 10.75 19.75 9.9665 19.75 9V7C19.75 6.0335 18.9665 5.25 18 5.25Z"
+                                fill="#919EAB"
+                              />
+                              <path
+                                d="M11.4147 6.751C11.0948 6.78869 10.7706 6.73981 10.4759 6.60947C10.1813 6.47913 9.92707 6.27211 9.73974 6.01C9.44974 5.494 9.62274 4.895 10.1397 3.115C10.3557 2.389 11.1507 0.25 13.1817 0.25C13.9954 0.251851 14.7751 0.576092 15.3502 1.1517C15.9252 1.72731 16.2487 2.50736 16.2497 3.321C16.2497 5.235 14.2267 6.035 13.4637 6.335C12.811 6.59471 12.1171 6.73559 11.4147 6.751ZM11.1207 5.231C11.7284 5.27407 12.3377 5.17548 12.9007 4.943C13.7667 4.601 14.7477 4.111 14.7477 3.319C14.7467 2.9032 14.581 2.50473 14.287 2.21072C13.993 1.9167 13.5945 1.75106 13.1787 1.75C12.1857 1.75 11.7147 3.069 11.5947 3.473C11.3807 4.213 11.1877 4.885 11.1227 5.233L11.1207 5.231Z"
+                                fill="#919EAB"
+                              />
+                              <path
+                                d="M8.566 6.74712C7.86939 6.72257 7.18227 6.57777 6.535 6.31912C5.853 6.04911 3.778 5.22811 3.75 3.31911C3.75462 2.91472 3.84017 2.51534 4.00161 2.14453C4.16305 1.77373 4.39712 1.43901 4.69 1.16011C4.9652 0.86948 5.29735 0.638678 5.66572 0.48211C6.03408 0.325542 6.43076 0.246568 6.831 0.250114C8.425 0.292114 9.182 1.77711 9.79 2.97011C10.227 3.82811 10.89 5.12411 10.185 6.07112C9.98853 6.30465 9.73909 6.48784 9.45747 6.60543C9.17585 6.72302 8.8702 6.7716 8.566 6.74712ZM6.766 1.74711C6.37662 1.77106 6.01107 1.94275 5.744 2.22711C5.5937 2.36326 5.47206 2.52802 5.38621 2.71175C5.30036 2.89547 5.25201 3.09448 5.244 3.29711C5.256 4.09711 6.231 4.58511 7.08 4.92111C7.66564 5.22079 8.33678 5.30909 8.98 5.17111C9.064 5.01612 8.888 4.50312 8.453 3.65012L9.12 3.30812L8.452 3.64912C7.89 2.54911 7.441 1.76411 6.79 1.74911L6.766 1.74711Z"
+                                fill="#919EAB"
+                              />
+                              <path
+                                d="M8.75 11.75H11.25V21.75H8.75V11.75Z"
+                                fill="#919EAB"
+                              />
+                              <path
+                                d="M7.25 11.7504V21.7504H4C3.63879 21.7507 3.28107 21.6797 2.94731 21.5416C2.61355 21.4035 2.31028 21.2009 2.05487 20.9455C1.79946 20.6901 1.5969 20.3868 1.4588 20.0531C1.32069 19.7193 1.24974 19.3616 1.25 19.0004V11.6504C1.49495 11.7144 1.74684 11.748 2 11.7504H7.25Z"
+                                fill="#919EAB"
+                              />
+                              <path
+                                d="M18.75 11.6504V19.0004C18.7503 19.3616 18.6793 19.7193 18.5412 20.0531C18.4031 20.3868 18.2005 20.6901 17.9451 20.9455C17.6897 21.2009 17.3865 21.4035 17.0527 21.5416C16.7189 21.6797 16.3612 21.7507 16 21.7504H12.75V11.7504H18C18.2532 11.748 18.5051 11.7144 18.75 11.6504Z"
+                                fill="#919EAB"
+                              />
+                            </svg>
                             <svg
                               class="checked-svg"
                               xmlns="http://www.w3.org/2000/svg"
@@ -856,7 +879,7 @@
 
                         <!-- <v-checkbox :label="$t('save data')" color="#DCBA95"></v-checkbox> -->
                       </div>
-                      <div class="map-image col-12 col-xl-5 col-lg-5">
+                      <div v-if="!dialog2" class="map-image col-12 col-xl-5 col-lg-5" @click="dialog2 = true">
                         <img
                           class="image"
                           src="~/assets/images/map.png"
@@ -881,11 +904,16 @@
                           </div>
                         </div>
                       </div>
+                      <div v-show="dialog2" class="map-imag col-12 col-xl-5 col-lg-5">
+                        <div style="width: 256px; height: 256pxp; border-radius: 16px; " id="map-fund"></div>
+
+                      </div>
+                      
                     </div>
                   </div>
                 </form>
               </div>
-
+      
               <div class="col-12 col-xl-4 col-lg-4">
                 <checkProduct
                   :arrData="arrData"
@@ -897,50 +925,60 @@
             </div>
           </div>
 
-
           <v-dialog v-model="dialog">
+            <div class="card-popup-container">
+              <div class="main">
+                <div>
+                  <h3>{{ $t("shipp") }}</h3>
+                  <p>{{ $t("shippText") }}</p>
+                </div>
+                <div class="boxes">
+                  <div
+                    class="box flex-column flex-xl-row flex-lg-row"
+                    v-for="item in productsPopup"
+                  >
+                    <v-badge color="#B1628C" :content="item.quantity">
+                      <div class="image">
+                        <img :src="item.image" alt="" />
+                      </div>
+                    </v-badge>
 
-<div class="card-popup-container">
-  <div class="main">
+                    <div class="text w-100 d-flex flex-column gap-2">
+                      <span class="name"> {{ item.name }} </span>
+                      <div
+                        class="w-100 d-flex align-items-center justify-content-center text-center text-xl-start text-lg-start"
+                      >
+                        <span class="price">
+                          {{ item.price }} {{ $t("curr") }}</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-    <div>
-      <h3>{{ $t("shipp") }}</h3>
-      <p>{{ $t("shippText") }}</p>
-    </div>
-    <div class="boxes">
-     <div class="box flex-column flex-xl-row flex-lg-row " v-for="item in productsPopup">
-     
-      <v-badge color="#B1628C" :content="item.quantity">
-          <div class="image">
-            <img :src="item.image" alt="" />
-          </div>
-        </v-badge>
+                <div class="btns">
+                  <button @click="dialog = false" class="stroke">
+                    {{ $t("agree") }}
+                  </button>
+                </div>
 
-        <div class="text w-100 d-flex flex-column gap-2 ">
-          <span class="name"> {{ item.name }} </span>
-          <div class="w-100 d-flex align-items-center justify-content-center text-center text-xl-start text-lg-start">
-            <span class="price"> {{ item.price }} {{ $t("curr") }}</span>
-          </div>
-        </div>
-     </div>
-    </div>
-
-    <div class="btns" >
-        <button @click="dialog = false" class="stroke">{{ $t("agree") }}</button>
-    </div>
-
-    <div @click="dialog = false" class="close">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M18.3007 5.70971C18.1139 5.52246 17.8602 5.41723 17.5957 5.41723C17.3312 5.41723 17.0775 5.52246 16.8907 5.70971L12.0007 10.5897L7.1107 5.69971C6.92387 5.51246 6.67022 5.40723 6.4057 5.40723C6.14119 5.40723 5.88753 5.51246 5.7007 5.69971C5.3107 6.08971 5.3107 6.71971 5.7007 7.10971L10.5907 11.9997L5.7007 16.8897C5.3107 17.2797 5.3107 17.9097 5.7007 18.2997C6.0907 18.6897 6.7207 18.6897 7.1107 18.2997L12.0007 13.4097L16.8907 18.2997C17.2807 18.6897 17.9107 18.6897 18.3007 18.2997C18.6907 17.9097 18.6907 17.2797 18.3007 16.8897L13.4107 11.9997L18.3007 7.10971C18.6807 6.72971 18.6807 6.08971 18.3007 5.70971Z"
-          fill="#2D3A4A" />
-      </svg>
-    </div>
-
-  </div>
-</div>
-
-</v-dialog>
+                <div @click="dialog = false" class="close">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M18.3007 5.70971C18.1139 5.52246 17.8602 5.41723 17.5957 5.41723C17.3312 5.41723 17.0775 5.52246 16.8907 5.70971L12.0007 10.5897L7.1107 5.69971C6.92387 5.51246 6.67022 5.40723 6.4057 5.40723C6.14119 5.40723 5.88753 5.51246 5.7007 5.69971C5.3107 6.08971 5.3107 6.71971 5.7007 7.10971L10.5907 11.9997L5.7007 16.8897C5.3107 17.2797 5.3107 17.9097 5.7007 18.2997C6.0907 18.6897 6.7207 18.6897 7.1107 18.2997L12.0007 13.4097L16.8907 18.2997C17.2807 18.6897 17.9107 18.6897 18.3007 18.2997C18.6907 17.9097 18.6907 17.2797 18.3007 16.8897L13.4107 11.9997L18.3007 7.10971C18.6807 6.72971 18.6807 6.08971 18.3007 5.70971Z"
+                      fill="#2D3A4A"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </v-dialog>
 
           <div v-if="store.state.step == 3">
             <div class="row">
@@ -950,15 +988,35 @@
                     <div class="radio-inputs d-flex flex-column gap-4">
                       <div class="row">
                         <div class="col-12 col-xl-6 col-lg-6">
-                          <label  class="third-labels" @click="setPaymentVar(1)">
-                            <input name="card" type="radio"  v-model="paymentMethodVar" :value="1" />
+                          <label class="third-labels" @click="setPaymentVar(1)">
+                            <input
+                              name="card"
+                              type="radio"
+                              v-model="paymentMethodVar"
+                              :value="1"
+                            />
                             <div class="radio-input">
                               <div class="d-flex align-items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="24" viewBox="0 0 35 24" fill="none">
-  <path d="M26.2232 18.4786C26.1343 18.1577 25.8484 17.9368 25.5217 17.9368L21.0898 17.9383L17.8115 18.2025C16.4684 18.4055 15.3134 17.3278 15.3134 15.986C15.3134 15.4666 15.4709 14.9725 15.7684 14.5545L18.0623 11.3289C18.7011 10.3468 18.5756 9.0273 17.7589 8.19147C16.8416 7.25258 15.2404 7.25258 14.3246 8.19147L10.6277 11.9753C9.7585 12.0245 8.93894 12.2917 8.21269 12.7216L8.57875 13.0754C8.73912 13.2306 8.82375 13.4545 8.80331 13.6814L8.74206 14.3993C8.39644 18.4593 7.23706 22.1923 7.18894 22.3505L7.07812 22.7073L14.3844 23.8536C14.7169 23.9507 15.1879 24 15.7873 24C16.9175 24 19.2363 23.785 20.1317 22.9865L25.9067 19.3176C26.1823 19.1414 26.3121 18.7997 26.2232 18.4786Z" fill="#919EAB"/>
-  <path d="M7.06419 13.6633C5.78669 12.4245 1.61144 12.0348 0.786064 11.9691C0.574629 11.9571 0.383564 12.0259 0.233379 12.1647C0.0859961 12.3049 0 12.505 0 12.7125V23.1609C0 23.5728 0.326689 23.9072 0.729189 23.9072C2.72275 23.9072 5.355 22.3817 5.46581 22.316C5.62331 22.2235 5.74287 22.0728 5.79975 21.8951C5.84644 21.7429 6.95912 18.1471 7.28868 14.2693C7.30912 14.0424 7.22463 13.8185 7.06419 13.6633Z" fill="#919EAB"/>
-  <path d="M34.2715 0H10.9382C10.5357 0 10.209 0.334372 10.209 0.746338V10.2932L13.2934 7.13628C14.7634 5.63325 17.3213 5.63325 18.7912 7.13628C20.0979 8.4737 20.3006 10.5857 19.2769 12.1575L16.9479 15.4339C16.8327 15.5951 16.7715 15.7876 16.7715 15.9877C16.7715 16.1518 16.8327 16.2966 16.9202 16.4205H34.2715C34.674 16.4205 35.0007 16.0862 35.0007 15.6742V0.747807C35.0007 0.332833 34.674 0 34.2715 0ZM16.7715 4.47789H15.9169C15.6165 5.3466 14.8057 5.97049 13.8549 5.97049C13.4524 5.97049 13.1257 5.63612 13.1257 5.22415C13.1257 4.81219 13.4524 4.47782 13.8549 4.47782C14.2559 4.47782 14.5841 4.14344 14.5841 3.73148C14.5841 3.31951 14.9107 2.98514 15.3132 2.98514H16.7716C17.1741 2.98514 17.5007 3.31951 17.5007 3.73148C17.5007 4.14351 17.174 4.47789 16.7715 4.47789ZM22.5976 13.4321C21.6599 13.4321 20.7119 13.1679 19.8646 12.6171C19.5263 12.3962 19.4242 11.9335 19.6415 11.5872C19.8587 11.238 20.3123 11.1394 20.6477 11.3589C22.3438 12.4649 24.6027 11.9514 25.6804 10.214C26.2025 9.37368 26.376 8.37505 26.1631 7.40034C25.9517 6.4271 25.3829 5.59722 24.5604 5.06288C22.8629 3.95838 20.6054 4.4718 19.5277 6.20775C19.3105 6.55702 18.8598 6.65701 18.5215 6.43612C18.1832 6.21517 18.081 5.75247 18.2984 5.40621C19.8106 2.97626 22.9723 2.25972 25.3451 3.80459C26.4957 4.5524 27.2919 5.71665 27.588 7.07793C27.8841 8.43921 27.6434 9.83931 26.9114 11.017C25.9386 12.5768 24.2849 13.4321 22.5976 13.4321ZM32.084 11.1947C32.084 11.6067 31.7573 11.9411 31.3548 11.9411C30.9537 11.9411 30.6256 12.2754 30.6256 12.6874C30.6256 13.0994 30.2989 13.4337 29.8964 13.4337H28.4382C28.0357 13.4337 27.709 13.0994 27.709 12.6874C27.709 12.2754 28.0357 11.9411 28.4382 11.9411H29.2927C29.5115 11.3052 30.0044 10.8007 30.6257 10.5753V5.84217C30.0044 5.61681 29.5115 5.11228 29.2927 4.47642H28.4382C28.0357 4.47642 27.709 4.14204 27.709 3.73008C27.709 3.31811 28.0357 2.98374 28.4382 2.98374H29.8965C30.299 2.98374 30.6257 3.31811 30.6257 3.73008C30.6257 4.14204 30.9538 4.47642 31.3549 4.47642C31.7574 4.47642 32.0841 4.81079 32.0841 5.22275V11.1947H32.084Z" fill="#919EAB"/>
-</svg>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="35"
+                                  height="24"
+                                  viewBox="0 0 35 24"
+                                  fill="none"
+                                >
+                                  <path
+                                    d="M26.2232 18.4786C26.1343 18.1577 25.8484 17.9368 25.5217 17.9368L21.0898 17.9383L17.8115 18.2025C16.4684 18.4055 15.3134 17.3278 15.3134 15.986C15.3134 15.4666 15.4709 14.9725 15.7684 14.5545L18.0623 11.3289C18.7011 10.3468 18.5756 9.0273 17.7589 8.19147C16.8416 7.25258 15.2404 7.25258 14.3246 8.19147L10.6277 11.9753C9.7585 12.0245 8.93894 12.2917 8.21269 12.7216L8.57875 13.0754C8.73912 13.2306 8.82375 13.4545 8.80331 13.6814L8.74206 14.3993C8.39644 18.4593 7.23706 22.1923 7.18894 22.3505L7.07812 22.7073L14.3844 23.8536C14.7169 23.9507 15.1879 24 15.7873 24C16.9175 24 19.2363 23.785 20.1317 22.9865L25.9067 19.3176C26.1823 19.1414 26.3121 18.7997 26.2232 18.4786Z"
+                                    fill="#919EAB"
+                                  />
+                                  <path
+                                    d="M7.06419 13.6633C5.78669 12.4245 1.61144 12.0348 0.786064 11.9691C0.574629 11.9571 0.383564 12.0259 0.233379 12.1647C0.0859961 12.3049 0 12.505 0 12.7125V23.1609C0 23.5728 0.326689 23.9072 0.729189 23.9072C2.72275 23.9072 5.355 22.3817 5.46581 22.316C5.62331 22.2235 5.74287 22.0728 5.79975 21.8951C5.84644 21.7429 6.95912 18.1471 7.28868 14.2693C7.30912 14.0424 7.22463 13.8185 7.06419 13.6633Z"
+                                    fill="#919EAB"
+                                  />
+                                  <path
+                                    d="M34.2715 0H10.9382C10.5357 0 10.209 0.334372 10.209 0.746338V10.2932L13.2934 7.13628C14.7634 5.63325 17.3213 5.63325 18.7912 7.13628C20.0979 8.4737 20.3006 10.5857 19.2769 12.1575L16.9479 15.4339C16.8327 15.5951 16.7715 15.7876 16.7715 15.9877C16.7715 16.1518 16.8327 16.2966 16.9202 16.4205H34.2715C34.674 16.4205 35.0007 16.0862 35.0007 15.6742V0.747807C35.0007 0.332833 34.674 0 34.2715 0ZM16.7715 4.47789H15.9169C15.6165 5.3466 14.8057 5.97049 13.8549 5.97049C13.4524 5.97049 13.1257 5.63612 13.1257 5.22415C13.1257 4.81219 13.4524 4.47782 13.8549 4.47782C14.2559 4.47782 14.5841 4.14344 14.5841 3.73148C14.5841 3.31951 14.9107 2.98514 15.3132 2.98514H16.7716C17.1741 2.98514 17.5007 3.31951 17.5007 3.73148C17.5007 4.14351 17.174 4.47789 16.7715 4.47789ZM22.5976 13.4321C21.6599 13.4321 20.7119 13.1679 19.8646 12.6171C19.5263 12.3962 19.4242 11.9335 19.6415 11.5872C19.8587 11.238 20.3123 11.1394 20.6477 11.3589C22.3438 12.4649 24.6027 11.9514 25.6804 10.214C26.2025 9.37368 26.376 8.37505 26.1631 7.40034C25.9517 6.4271 25.3829 5.59722 24.5604 5.06288C22.8629 3.95838 20.6054 4.4718 19.5277 6.20775C19.3105 6.55702 18.8598 6.65701 18.5215 6.43612C18.1832 6.21517 18.081 5.75247 18.2984 5.40621C19.8106 2.97626 22.9723 2.25972 25.3451 3.80459C26.4957 4.5524 27.2919 5.71665 27.588 7.07793C27.8841 8.43921 27.6434 9.83931 26.9114 11.017C25.9386 12.5768 24.2849 13.4321 22.5976 13.4321ZM32.084 11.1947C32.084 11.6067 31.7573 11.9411 31.3548 11.9411C30.9537 11.9411 30.6256 12.2754 30.6256 12.6874C30.6256 13.0994 30.2989 13.4337 29.8964 13.4337H28.4382C28.0357 13.4337 27.709 13.0994 27.709 12.6874C27.709 12.2754 28.0357 11.9411 28.4382 11.9411H29.2927C29.5115 11.3052 30.0044 10.8007 30.6257 10.5753V5.84217C30.0044 5.61681 29.5115 5.11228 29.2927 4.47642H28.4382C28.0357 4.47642 27.709 4.14204 27.709 3.73008C27.709 3.31811 28.0357 2.98374 28.4382 2.98374H29.8965C30.299 2.98374 30.6257 3.31811 30.6257 3.73008C30.6257 4.14204 30.9538 4.47642 31.3549 4.47642C31.7574 4.47642 32.0841 4.81079 32.0841 5.22275V11.1947H32.084Z"
+                                    fill="#919EAB"
+                                  />
+                                </svg>
                                 <span class="pay"> {{ $t("payment1") }} </span>
                               </div>
 
@@ -1010,16 +1068,36 @@
                           </label>
                         </div>
                         <div class="col-12 col-xl-6 col-lg-6">
-                          <label  class="third-labels" @click="setPaymentVar(2)">
-                            <input name="card" type="radio" v-model="paymentMethodVar" :value="2" />
+                          <label class="third-labels" @click="setPaymentVar(2)">
+                            <input
+                              name="card"
+                              type="radio"
+                              v-model="paymentMethodVar"
+                              :value="2"
+                            />
                             <div class="radio-input">
                               <div class="d-flex align-items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="24" viewBox="0 0 35 24" fill="none">
-  <path d="M26.2232 18.4786C26.1343 18.1577 25.8484 17.9368 25.5217 17.9368L21.0898 17.9383L17.8115 18.2025C16.4684 18.4055 15.3134 17.3278 15.3134 15.986C15.3134 15.4666 15.4709 14.9725 15.7684 14.5545L18.0623 11.3289C18.7011 10.3468 18.5756 9.0273 17.7589 8.19147C16.8416 7.25258 15.2404 7.25258 14.3246 8.19147L10.6277 11.9753C9.7585 12.0245 8.93894 12.2917 8.21269 12.7216L8.57875 13.0754C8.73912 13.2306 8.82375 13.4545 8.80331 13.6814L8.74206 14.3993C8.39644 18.4593 7.23706 22.1923 7.18894 22.3505L7.07812 22.7073L14.3844 23.8536C14.7169 23.9507 15.1879 24 15.7873 24C16.9175 24 19.2363 23.785 20.1317 22.9865L25.9067 19.3176C26.1823 19.1414 26.3121 18.7997 26.2232 18.4786Z" fill="#919EAB"/>
-  <path d="M7.06419 13.6633C5.78669 12.4245 1.61144 12.0348 0.786064 11.9691C0.574629 11.9571 0.383564 12.0259 0.233379 12.1647C0.0859961 12.3049 0 12.505 0 12.7125V23.1609C0 23.5728 0.326689 23.9072 0.729189 23.9072C2.72275 23.9072 5.355 22.3817 5.46581 22.316C5.62331 22.2235 5.74287 22.0728 5.79975 21.8951C5.84644 21.7429 6.95912 18.1471 7.28868 14.2693C7.30912 14.0424 7.22463 13.8185 7.06419 13.6633Z" fill="#919EAB"/>
-  <path d="M34.2715 0H10.9382C10.5357 0 10.209 0.334372 10.209 0.746338V10.2932L13.2934 7.13628C14.7634 5.63325 17.3213 5.63325 18.7912 7.13628C20.0979 8.4737 20.3006 10.5857 19.2769 12.1575L16.9479 15.4339C16.8327 15.5951 16.7715 15.7876 16.7715 15.9877C16.7715 16.1518 16.8327 16.2966 16.9202 16.4205H34.2715C34.674 16.4205 35.0007 16.0862 35.0007 15.6742V0.747807C35.0007 0.332833 34.674 0 34.2715 0ZM16.7715 4.47789H15.9169C15.6165 5.3466 14.8057 5.97049 13.8549 5.97049C13.4524 5.97049 13.1257 5.63612 13.1257 5.22415C13.1257 4.81219 13.4524 4.47782 13.8549 4.47782C14.2559 4.47782 14.5841 4.14344 14.5841 3.73148C14.5841 3.31951 14.9107 2.98514 15.3132 2.98514H16.7716C17.1741 2.98514 17.5007 3.31951 17.5007 3.73148C17.5007 4.14351 17.174 4.47789 16.7715 4.47789ZM22.5976 13.4321C21.6599 13.4321 20.7119 13.1679 19.8646 12.6171C19.5263 12.3962 19.4242 11.9335 19.6415 11.5872C19.8587 11.238 20.3123 11.1394 20.6477 11.3589C22.3438 12.4649 24.6027 11.9514 25.6804 10.214C26.2025 9.37368 26.376 8.37505 26.1631 7.40034C25.9517 6.4271 25.3829 5.59722 24.5604 5.06288C22.8629 3.95838 20.6054 4.4718 19.5277 6.20775C19.3105 6.55702 18.8598 6.65701 18.5215 6.43612C18.1832 6.21517 18.081 5.75247 18.2984 5.40621C19.8106 2.97626 22.9723 2.25972 25.3451 3.80459C26.4957 4.5524 27.2919 5.71665 27.588 7.07793C27.8841 8.43921 27.6434 9.83931 26.9114 11.017C25.9386 12.5768 24.2849 13.4321 22.5976 13.4321ZM32.084 11.1947C32.084 11.6067 31.7573 11.9411 31.3548 11.9411C30.9537 11.9411 30.6256 12.2754 30.6256 12.6874C30.6256 13.0994 30.2989 13.4337 29.8964 13.4337H28.4382C28.0357 13.4337 27.709 13.0994 27.709 12.6874C27.709 12.2754 28.0357 11.9411 28.4382 11.9411H29.2927C29.5115 11.3052 30.0044 10.8007 30.6257 10.5753V5.84217C30.0044 5.61681 29.5115 5.11228 29.2927 4.47642H28.4382C28.0357 4.47642 27.709 4.14204 27.709 3.73008C27.709 3.31811 28.0357 2.98374 28.4382 2.98374H29.8965C30.299 2.98374 30.6257 3.31811 30.6257 3.73008C30.6257 4.14204 30.9538 4.47642 31.3549 4.47642C31.7574 4.47642 32.0841 4.81079 32.0841 5.22275V11.1947H32.084Z" fill="#919EAB"/>
-</svg>
-                                <span class="pay">{{$t('payBy')}} tap </span>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="35"
+                                  height="24"
+                                  viewBox="0 0 35 24"
+                                  fill="none"
+                                >
+                                  <path
+                                    d="M26.2232 18.4786C26.1343 18.1577 25.8484 17.9368 25.5217 17.9368L21.0898 17.9383L17.8115 18.2025C16.4684 18.4055 15.3134 17.3278 15.3134 15.986C15.3134 15.4666 15.4709 14.9725 15.7684 14.5545L18.0623 11.3289C18.7011 10.3468 18.5756 9.0273 17.7589 8.19147C16.8416 7.25258 15.2404 7.25258 14.3246 8.19147L10.6277 11.9753C9.7585 12.0245 8.93894 12.2917 8.21269 12.7216L8.57875 13.0754C8.73912 13.2306 8.82375 13.4545 8.80331 13.6814L8.74206 14.3993C8.39644 18.4593 7.23706 22.1923 7.18894 22.3505L7.07812 22.7073L14.3844 23.8536C14.7169 23.9507 15.1879 24 15.7873 24C16.9175 24 19.2363 23.785 20.1317 22.9865L25.9067 19.3176C26.1823 19.1414 26.3121 18.7997 26.2232 18.4786Z"
+                                    fill="#919EAB"
+                                  />
+                                  <path
+                                    d="M7.06419 13.6633C5.78669 12.4245 1.61144 12.0348 0.786064 11.9691C0.574629 11.9571 0.383564 12.0259 0.233379 12.1647C0.0859961 12.3049 0 12.505 0 12.7125V23.1609C0 23.5728 0.326689 23.9072 0.729189 23.9072C2.72275 23.9072 5.355 22.3817 5.46581 22.316C5.62331 22.2235 5.74287 22.0728 5.79975 21.8951C5.84644 21.7429 6.95912 18.1471 7.28868 14.2693C7.30912 14.0424 7.22463 13.8185 7.06419 13.6633Z"
+                                    fill="#919EAB"
+                                  />
+                                  <path
+                                    d="M34.2715 0H10.9382C10.5357 0 10.209 0.334372 10.209 0.746338V10.2932L13.2934 7.13628C14.7634 5.63325 17.3213 5.63325 18.7912 7.13628C20.0979 8.4737 20.3006 10.5857 19.2769 12.1575L16.9479 15.4339C16.8327 15.5951 16.7715 15.7876 16.7715 15.9877C16.7715 16.1518 16.8327 16.2966 16.9202 16.4205H34.2715C34.674 16.4205 35.0007 16.0862 35.0007 15.6742V0.747807C35.0007 0.332833 34.674 0 34.2715 0ZM16.7715 4.47789H15.9169C15.6165 5.3466 14.8057 5.97049 13.8549 5.97049C13.4524 5.97049 13.1257 5.63612 13.1257 5.22415C13.1257 4.81219 13.4524 4.47782 13.8549 4.47782C14.2559 4.47782 14.5841 4.14344 14.5841 3.73148C14.5841 3.31951 14.9107 2.98514 15.3132 2.98514H16.7716C17.1741 2.98514 17.5007 3.31951 17.5007 3.73148C17.5007 4.14351 17.174 4.47789 16.7715 4.47789ZM22.5976 13.4321C21.6599 13.4321 20.7119 13.1679 19.8646 12.6171C19.5263 12.3962 19.4242 11.9335 19.6415 11.5872C19.8587 11.238 20.3123 11.1394 20.6477 11.3589C22.3438 12.4649 24.6027 11.9514 25.6804 10.214C26.2025 9.37368 26.376 8.37505 26.1631 7.40034C25.9517 6.4271 25.3829 5.59722 24.5604 5.06288C22.8629 3.95838 20.6054 4.4718 19.5277 6.20775C19.3105 6.55702 18.8598 6.65701 18.5215 6.43612C18.1832 6.21517 18.081 5.75247 18.2984 5.40621C19.8106 2.97626 22.9723 2.25972 25.3451 3.80459C26.4957 4.5524 27.2919 5.71665 27.588 7.07793C27.8841 8.43921 27.6434 9.83931 26.9114 11.017C25.9386 12.5768 24.2849 13.4321 22.5976 13.4321ZM32.084 11.1947C32.084 11.6067 31.7573 11.9411 31.3548 11.9411C30.9537 11.9411 30.6256 12.2754 30.6256 12.6874C30.6256 13.0994 30.2989 13.4337 29.8964 13.4337H28.4382C28.0357 13.4337 27.709 13.0994 27.709 12.6874C27.709 12.2754 28.0357 11.9411 28.4382 11.9411H29.2927C29.5115 11.3052 30.0044 10.8007 30.6257 10.5753V5.84217C30.0044 5.61681 29.5115 5.11228 29.2927 4.47642H28.4382C28.0357 4.47642 27.709 4.14204 27.709 3.73008C27.709 3.31811 28.0357 2.98374 28.4382 2.98374H29.8965C30.299 2.98374 30.6257 3.31811 30.6257 3.73008C30.6257 4.14204 30.9538 4.47642 31.3549 4.47642C31.7574 4.47642 32.0841 4.81079 32.0841 5.22275V11.1947H32.084Z"
+                                    fill="#919EAB"
+                                  />
+                                </svg>
+                                <span class="pay">{{ $t("payBy") }} tap </span>
                               </div>
 
                               <svg
@@ -1334,8 +1412,12 @@
                               fill="#2566AF" />
                           </svg> -->
                             <div class="d-flex flex-column">
-                              <h6 style="font-size: 14px; font-weight: 700;">
-                                {{ paymentMethodVar == 1 ? $t("payment1") : 'الدفع عن طريق tap' }}
+                              <h6 style="font-size: 14px; font-weight: 700">
+                                {{
+                                  paymentMethodVar == 1
+                                    ? $t("payment1")
+                                    : "الدفع عن طريق tap"
+                                }}
                               </h6>
                               <span class="text-word">
                                 {{ userdata1.phone }}</span
@@ -1476,11 +1558,14 @@ const store = useStore;
 // const localePath = useLocalePath();
 const { locale } = useI18n();
 let dialog = ref(false);
+let dialog2 = ref(false);
 let text1 = ref("الرجوع للسلة");
 let text2 = ref("الرجوع الي معلومات المستلم");
 let text3 = ref("الرجوع الي الشحن والعنوان");
 let text4 = ref("الرجوع الي طرق الدفع");
 let text5 = ref("تأكيد عملية الشراء");
+let clickedLat = ref();
+let clickedLng = ref();
 let cartBtn = ref(true);
 
 let pendingPage = ref(true);
@@ -1488,12 +1573,66 @@ let tap_idV = ref(store.state.idPay);
 
 let paymentMethodVar = ref(1);
 
-const setPaymentVar = (val)=> {
-  store.commit("paymentVarFunc" , val);
-  if(val == 2){
+const setPaymentVar = (val) => {
+  store.commit("paymentVarFunc", val);
+  if (val == 2) {
     paymentFunc();
   }
-}
+};
+
+
+let marker = null;
+async function initMap() {
+      if(process.client){
+        const { Map } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+        let mapDom = document.getElementById("map-fund");
+        console.log(mapDom);
+        if(mapDom){
+          const map = new google.maps.Map(mapDom, {
+            zoom: 4,
+            center: { lat: 24.7136, lng: 46.6753 },
+            mapId: "DEMO_MAP_ID",
+          });
+  
+          console.log(map);
+    
+          const marker = new AdvancedMarkerElement({
+            map,
+            position: { lat: 24.7136, lng: 46.6753 },
+          });
+    
+          map.addListener("click", (e) => {
+            placeMarkerAndPanTo(e.latLng, map);
+          });
+        }
+      }
+    }
+
+    function placeMarkerAndPanTo(latLng, map) {
+      // Remove the old marker if it exists
+      if (marker) {
+        marker.setMap(null);
+      }
+
+      // Create a new marker
+      marker = new google.maps.Marker({
+        position: latLng,
+        map: map,
+      });
+
+      // Pan the map to the clicked location
+      map.panTo(latLng);
+
+      // Get the latitude and longitude
+      clickedLat.value = latLng.lat();
+      clickedLng.value = latLng.lng();
+      // formData.value.lat = clickedLat.value;
+      // formData.value.long = clickedLng.value;
+      // Do whatever you want with the latitude and longitude variables
+      console.log("Latitude:", clickedLat.value);
+      console.log("Longitude:", clickedLng.value);
+    }
 
 if (locale.value == "ar") {
   text1.value = "الرجوع للسلة";
@@ -1591,24 +1730,25 @@ const checkoutFunc = async () => {
       });
       if (result.status >= 200) {
         store.commit("addUser1", {
-          ...userdata1.value ,
-           personalorGift:personalorGift.value,
-            gift_owner_name: gift_owner_name.value ,
-             gift_owner_phone:gift_owner_phone.value ,
-              gift_text:gift_text.value
-              }
-            );
-            store.commit("addStep" , 2);
+          ...userdata1.value,
+          personalorGift: personalorGift.value,
+          gift_owner_name: gift_owner_name.value,
+          gift_owner_phone: gift_owner_phone.value,
+          gift_text: gift_text.value,
+        });
+        store.commit("addStep", 2);
+        store.commit("addHeaderSteps", {check1:true , check2:true , check3:false , lineActive1:true , lineActive2:false , lineActive3:false });
         pending.value = false;
         store.state.step = 2;
         store.state.check2 = true;
         store.state.lineActive1 = true;
+        
         if (process.client) {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }
       }
     } catch (errorss) {
       if (errorss.response) {
@@ -1676,45 +1816,47 @@ const checkoutFunc1 = async () => {
   if (check) {
     pending.value = true;
     try {
-      let result = await axios.post(`${getUrl()}/orders-checkout/1`,{
-        city:userdata2.value.city.id,
-        street_name:userdata2.value.street_name,
-        building_number:userdata2.value.building_number,
-        district:userdata2.value.district,
-        marks:userdata2.value.marks,
-        fast_shipping:chooseCity.value,
-        products: newArr.value,
-      }, {
-        headers: {
-          "Content-Language": `${locale.value}`,
+      let result = await axios.post(
+        `${getUrl()}/orders-checkout/1`,
+        {
+          city: userdata2.value.city.id,
+          street_name: userdata2.value.street_name,
+          building_number: userdata2.value.building_number,
+          district: userdata2.value.district,
+          marks: userdata2.value.marks,
+          fast_shipping: chooseCity.value,
+          products: newArr.value,
         },
-      });
+        {
+          headers: {
+            "Content-Language": `${locale.value}`,
+          },
+        }
+      );
       if (result.status >= 200) {
         pending.value = false;
         store.commit("addUser1", {
-          ...userdata1.value ,
-           personalorGift:personalorGift.value,
-            gift_owner_name: gift_owner_name.value ,
-             gift_owner_phone:gift_owner_phone.value ,
-              gift_text:gift_text.value,
-              ...userdata2.value,
-              chooseCity: chooseCity.value
-
-              }
-            );
-            store.commit("addStep" , 3);
+          ...userdata1.value,
+          personalorGift: personalorGift.value,
+          gift_owner_name: gift_owner_name.value,
+          gift_owner_phone: gift_owner_phone.value,
+          gift_text: gift_text.value,
+          ...userdata2.value,
+          chooseCity: chooseCity.value,
+        });
+        store.commit("addStep", 3);
+        store.commit("addHeaderSteps", {check1:true , check2:true , check3:true , lineActive1:true , lineActive2:true , lineActive3:false });
         store.state.step = 3;
         store.state.check3 = true;
         store.state.lineActive2 = true;
         if (process.client) {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
-        
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }
       }
-      if(result.data.data.length >= 1){
+      if (result.data.data.length >= 1) {
         dialog.value = true;
         productsPopup.value = result.data.data;
       }
@@ -1799,11 +1941,11 @@ const checkoutFunc3 = async () => {
       finalObj.value = result.data.data;
       store.commit("clearCache");
       if (process.client) {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
       // store.state.finalStep = 1;
     }
   } catch (errorss) {
@@ -1813,7 +1955,7 @@ const checkoutFunc3 = async () => {
 
 let urlPay = ref();
 let checkPay2 = ref(false);
-const paymentFunc = async () =>{
+const paymentFunc = async () => {
   checkPay2.value = true;
   try {
     let formBody = new FormData();
@@ -1822,16 +1964,14 @@ const paymentFunc = async () =>{
     formBody.append("phone", userdata1.value.phone);
     formBody.append("email", userdata1.value.email);
     formBody.append("price", store.state.totalNum);
-    let result = await axios.post(`${getUrl()}/order-pay`,formBody,
-    {
-        headers: {
-          "Content-Language": `${locale.value}`,
-          },
-          }
-          );
-          if (result.status >= 200) {
-            checkPay2.value = false;
-            urlPay.value = result.data.transaction_url;
+    let result = await axios.post(`${getUrl()}/order-pay`, formBody, {
+      headers: {
+        "Content-Language": `${locale.value}`,
+      },
+    });
+    if (result.status >= 200) {
+      checkPay2.value = false;
+      urlPay.value = result.data.transaction_url;
       store.commit("addIdPay", result.data.id);
       // pending.value = false;
       // store.state.step = 5;
@@ -1844,8 +1984,7 @@ const paymentFunc = async () =>{
   } catch (errorss) {
     console.log(errorss);
   }
-}
-
+};
 
 // let step = computed(() => {
 //   return store.state.step;
@@ -1867,7 +2006,6 @@ if (locale.value == "ar") {
   ];
 }
 
-
 let isGettingPayed = ref(false);
 const getPayed = async () => {
   // if(tap_id){
@@ -1876,96 +2014,122 @@ const getPayed = async () => {
   //   }
 
   if (!process.client) return;
-      let result = await axios.get(`${getUrl()}/retrieve-charge`, {
-          params: {
-            tap_id: store.state.idPay,
-          },
-          headers: {
-            "Content-Language": `${locale.value}`,
-          },
-        });
-    
-        if (result.status >= 200) {
-         store.commit("addIdPay", '');
-         tap_idV.value = '';
-         const moshaToastify = await import("mosha-vue-toastify");
-         const { createToast } = moshaToastify;
-          if (result.data.code == 0) {
-            createToast(
-              {
-                title: 'تم الدفع بنجاح',
-              },
-              {
-                showIcon: "true",
-                type: "success",
-                toastBackgroundColor: "#dcba95",
-                timeout: 2000,
-              }
-            );
-          } else {
-            createToast(
-              {
-                title: 'فشلت عملية الدفع',
-              },
-              {
-                showIcon: "true",
-                type: "success",
-                toastBackgroundColor: "tomato",
-                timeout: 2000,
-              }
-            );
-          }
+  let result = await axios.get(`${getUrl()}/retrieve-charge`, {
+    params: {
+      tap_id: store.state.idPay,
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  if (result.status >= 200) {
+    store.commit("addIdPay", "");
+    tap_idV.value = "";
+    const moshaToastify = await import("mosha-vue-toastify");
+    const { createToast } = moshaToastify;
+    if (result.data.code == 0) {
+      createToast(
+        {
+          title: "تم الدفع بنجاح",
+        },
+        {
+          showIcon: "true",
+          type: "success",
+          toastBackgroundColor: "#dcba95",
+          timeout: 2000,
         }
+      );
+    } else {
+      createToast(
+        {
+          title: "فشلت عملية الدفع",
+        },
+        {
+          showIcon: "true",
+          type: "success",
+          toastBackgroundColor: "tomato",
+          timeout: 2000,
+        }
+      );
+    }
+  }
 
   // finally {
   //     isGettingPayed.value = false;
   //   }
 };
 
-// 
-watch([() => store.state.userObj1, ()=> store.state.paymentVar , ()=> store.state.idPay , ()=>user.value  ], ([user1 , pay1 , val , loginUser ]) => {
-  if(user1){
-    // userdata1.value.type = user1.email ? user1.email : '';
-    userdata1.value.first_name = user1.first_name ? user1.first_name : "" || loginUser.first_name ? loginUser.first_name : "";
-    userdata1.value.last_name = user1.last_name ?  user1.last_name : "" || loginUser.last_name ? loginUser.last_name : "";
-    userdata1.value.phone = user1.phone ? user1.phone : "" || loginUser.phone ? loginUser.phone : "";
-    userdata1.value.email = user1.email ? user1.email : "" || loginUser.email ? loginUser.email : "";
-    personalorGift.value = user1.personalorGift ? user1.personalorGift : 1;
-    gift_owner_name.value = user1.gift_owner_name ? user1.gift_owner_name : "";
-    gift_owner_phone.value = user1.gift_owner_phone ? user1.gift_owner_phone : "";
-    gift_text.value = user1.gift_text ? user1.gift_text : "";
-    if(user1.chooseCity){
-      userdata2.value.building_number = user1.building_number;
-      userdata2.value.city = user1.city;
-      userdata2.value.district = user1.district;
-      userdata2.value.marks = user1.marks;
-      userdata2.value.street_name = user1.street_name;
-      chooseCity.value = user1.chooseCity;
+//
+watch(
+  [
+    () => store.state.userObj1,
+    () => store.state.paymentVar,
+    () => store.state.idPay,
+    () => user.value,
+  ],
+  ([user1, pay1, val, loginUser]) => {
+    if (user1) {
+      // userdata1.value.type = user1.email ? user1.email : '';
+      userdata1.value.first_name = user1.first_name
+        ? user1.first_name
+        : "" || loginUser.first_name
+        ? loginUser.first_name
+        : "";
+      userdata1.value.last_name = user1.last_name
+        ? user1.last_name
+        : "" || loginUser.last_name
+        ? loginUser.last_name
+        : "";
+      userdata1.value.phone = user1.phone
+        ? user1.phone
+        : "" || loginUser.phone
+        ? loginUser.phone
+        : "";
+      userdata1.value.email = user1.email
+        ? user1.email
+        : "" || loginUser.email
+        ? loginUser.email
+        : "";
+      personalorGift.value = user1.personalorGift ? user1.personalorGift : 1;
+      gift_owner_name.value = user1.gift_owner_name
+        ? user1.gift_owner_name
+        : "";
+      gift_owner_phone.value = user1.gift_owner_phone
+        ? user1.gift_owner_phone
+        : "";
+      gift_text.value = user1.gift_text ? user1.gift_text : "";
+      if (user1.chooseCity) {
+        userdata2.value.building_number = user1.building_number;
+        userdata2.value.city = user1.city;
+        userdata2.value.district = user1.district;
+        userdata2.value.marks = user1.marks;
+        userdata2.value.street_name = user1.street_name;
+        chooseCity.value = user1.chooseCity;
+      }
     }
+    paymentMethodVar.value = pay1 ? pay1 : 1;
+    tap_idV.value = val ? val : "";
+    // if(tap_idV.value){
+    // }
   }
-paymentMethodVar.value = pay1 ? pay1 : 1;
-  tap_idV.value = val ? val : '';
-  // if(tap_idV.value){
-  // }
-  }
-  );
-  
+);
 
-  useHead({
+useHead({
   title: locale.value == "ar" ? "الدفع" : "checkout",
 });
 
-
-  if(process.client && tap_idV.value != ''){
-    getPayed();
+if (process.client && tap_idV.value != "") {
+  getPayed();
 }
-  onBeforeMount(() => {
-    store.dispatch("loadBasketFromLocalStorage");
-    });
+onBeforeMount(() => {
+  store.dispatch("loadBasketFromLocalStorage");
+});
 
-    onMounted(() => {
-      pendingPage.value = false;
-   });
+onMounted(() => {
+  pendingPage.value = false;
+  initMap();
+});
 </script>
 
 <style lang="scss" scoped></style>
