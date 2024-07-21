@@ -905,7 +905,7 @@
                         </div>
                       </div>
                       <div v-show="dialog2" class="map-imag col-12 col-xl-5 col-lg-5">
-                        <div style="width: 256px; height: 256pxp; border-radius: 16px; " id="map-fund"></div>
+                        <div style="width: 256px; height: 256px; border-radius: 16px; " id="map-fund"></div>
 
                       </div>
                       
@@ -1767,7 +1767,7 @@ const checkoutFunc = async () => {
 };
 
 // let dropDownActive = ref(0);
-let chooseCity = ref(1);
+let chooseCity = ref(0);
 const selectedCity1 = ref("");
 // const selectedCity2 = ref("");
 let normalCity = ref([]);
@@ -2067,8 +2067,12 @@ watch(
     () => store.state.paymentVar,
     () => store.state.idPay,
     () => user.value,
+    () => store.state.step,
   ],
-  ([user1, pay1, val, loginUser]) => {
+  ([user1, pay1, val, loginUser , step]) => {
+    if(step == 2){
+  initMap();
+    }
     if (user1) {
       // userdata1.value.type = user1.email ? user1.email : '';
       userdata1.value.first_name = user1.first_name
@@ -2126,9 +2130,9 @@ onBeforeMount(() => {
   store.dispatch("loadBasketFromLocalStorage");
 });
 
+
 onMounted(() => {
   pendingPage.value = false;
-  initMap();
 });
 </script>
 

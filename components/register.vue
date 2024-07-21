@@ -402,7 +402,8 @@ const rules = {
   },
   password_confirmation: {
     required: helpers.withMessage(value1.value, required),
-    sameAs: helpers.withMessage(value6.value, sameAs(form.value.password)) 
+    // sameAs: helpers.withMessage(value6.value, sameAs(form.value.password))
+     
   },
 };
 

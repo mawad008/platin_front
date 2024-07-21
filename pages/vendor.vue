@@ -482,6 +482,10 @@ const updatePage = (newPage) => {
   getVendorproducts();
 }
 
+useHead({
+  title: locale.value == "ar" ? "التجار" : "vendors",
+});
+
 onMounted(() => {
   itemsArray.value.forEach((item) => {
     updateTruncatedText(item);

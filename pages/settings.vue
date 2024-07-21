@@ -1218,6 +1218,10 @@ const displayedOrders = computed(() => {
   });
 });
 
+useHead({
+  title: locale.value == "ar" ? " الاعدادت " : "settings",
+});
+
 onMounted(() => {
   console.log(showAllItems.value);
   console.log(MainRoute.value.query.name);
