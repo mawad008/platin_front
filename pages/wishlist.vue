@@ -7,7 +7,6 @@
           </template>
         </v-breadcrumbs> -->
 
-         {{favArr}}
          <div v-if="favArr.length >= 1" class="wish-list-page">
              <div class="text-content">
                 <h4> {{ $t("wish") }}<span>({{ favArr.length }})</span></h4>
@@ -17,7 +16,7 @@
              </div>
              <div class="row">
                 <div v-for="item ,index in favArr" class="col-12 col-xl-4 col-lg-4 col-md-6">
-                    <!-- <product-card :product="item" :index="index" />  -->
+                    <product-card :product="item" :index="index" /> 
                 </div>
              </div>
          </div>

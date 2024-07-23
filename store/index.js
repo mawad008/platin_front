@@ -237,13 +237,13 @@ export const useStore = createStore({
       });
  
       // localStorage.setItem("basket", JSON.stringify(state.basket));
-      const clonedState = CircularJSON.parse(CircularJSON.stringify(state.basket));
-      localStorage.setItem('basket', CircularJSON.stringify(clonedState));
+      // const clonedState = CircularJSON.parse(CircularJSON.stringify(state.basket));
+      localStorage.setItem('basket', JSON.stringify(state.basket));
 
-      console.log(state.basket);
-      console.log(clonedState);
-      state.basket = clonedState;
-      console.log(state.basket);
+      // console.log(state.basket);
+      // console.log(clonedState);
+      // state.basket = clonedState;
+      // console.log(state.basket);
       getTotalPrice(state);
       getTotalBasketNum(state);
       updateBasket(state);
@@ -372,6 +372,7 @@ export const useStore = createStore({
     }
   },
   actions: {
+    
     loadBasketFromLocalStorage({ commit, state }) {
       if (process.client) {
         const storedBasket = JSON.parse(localStorage.getItem("basket")) || [];

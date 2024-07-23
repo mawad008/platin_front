@@ -105,7 +105,8 @@
                             <span v-if="item.fast_shipping_cities.length <= 0"> {{ $t("unavailable") }} </span>
                             <span v-else> {{ $t("available") }} </span>
                             <span class="main">{{ $t("fast shipping") }} </span>
-                            <span v-for="i in item.fast_shipping_cities"> {{ $t("in") }} {{ i.name }}</span>
+                            {{ $t("in") }}
+                            <span v-for="i in item.fast_shipping_cities">  {{ i.name }} {{ `${item.fast_shipping_cities.length > 1 ? "," :""}` }}</span>
                           </div>
                         </div>
                       </div>

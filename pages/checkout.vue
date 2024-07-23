@@ -227,7 +227,7 @@
                               type="text"
                               readonly
                               v-model="userdata1.first_name"
-                              placeholder="مثال : محمد"
+                              :placeholder="$t('first name')"
                             />
                           </div>
                           <div class="main-input">
@@ -238,7 +238,7 @@
                               type="text"
                               readonly
                               v-model="userdata1.last_name"
-                              placeholder="مثال : محمد"
+                              :placeholder="$t('last name')"
                             />
                           </div>
                         </div>
@@ -251,7 +251,7 @@
                               type="tel"
                               readonly
                               v-model="userdata1.phone"
-                              placeholder="+201066333725"
+                              :placeholder="$t('phone')"
                             />
                           </div>
                           <div class="main-input">
@@ -262,7 +262,7 @@
                               type="email"
                               readonly
                               v-model="userdata1.email"
-                              placeholder="مثال : m.info@icloud.com"
+                              placeholder="m.info@icloud.com"
                             />
                           </div>
                         </div>
@@ -279,7 +279,7 @@
                             <input
                               type="text"
                               v-model="userdata1.first_name"
-                              placeholder="مثال : محمد"
+                              :placeholder="$t('first name')"
                             />
                             <span
                               class="error-msg"
@@ -297,7 +297,7 @@
                             <input
                               type="text"
                               v-model="userdata1.last_name"
-                              placeholder="مثال : محمد"
+                              :placeholder="$t('last name')"
                             />
                             <span
                               class="error-msg"
@@ -317,7 +317,7 @@
                             <input
                               type="tel"
                               v-model="userdata1.phone"
-                              placeholder="+201066333725"
+                              :placeholder="$t('phone')"
                             />
                             <span class="error-msg" v-if="v$.phone.$error">{{
                               v$.phone.$errors[0].$message
@@ -333,7 +333,7 @@
                             <input
                               type="email"
                               v-model="userdata1.email"
-                              placeholder="مثال : m.info@icloud.com"
+                              placeholder="m.info@icloud.com"
                             />
                             <span class="error-msg" v-if="v$.email.$error">{{
                               v$.email.$errors[0].$message
@@ -360,7 +360,7 @@
                               type="text"
                               readonly
                               v-model="userdata1.first_name"
-                              placeholder="مثال : محمد"
+                              :placeholder="$t('first name')"
                             />
                           </div>
                           <div class="main-input">
@@ -371,7 +371,7 @@
                               type="text"
                               readonly
                               v-model="userdata1.last_name"
-                              placeholder="مثال : محمد"
+                              placeholder="$t('last name')"
                             />
                           </div>
                         </div>
@@ -384,7 +384,7 @@
                               type="tel"
                               readonly
                               v-model="userdata1.phone"
-                              placeholder="+201066333725"
+                              placeholder="$t('phone')"
                             />
                           </div>
                           <div class="main-input">
@@ -395,7 +395,7 @@
                               type="email"
                               readonly
                               v-model="userdata1.email"
-                              placeholder="مثال : m.info@icloud.com"
+                              placeholder="m.info@icloud.com"
                             />
                           </div>
                         </div>
@@ -412,7 +412,7 @@
                             <input
                               type="text"
                               v-model="userdata1.first_name"
-                              placeholder="مثال : محمد"
+                              :placeholder="$t('first name')"
                             />
                             <span
                               class="error-msg"
@@ -430,7 +430,7 @@
                             <input
                               type="text"
                               v-model="userdata1.last_name"
-                              placeholder="مثال : محمد"
+                              :placeholder="$t('last name')"
                             />
                             <span
                               class="error-msg"
@@ -450,7 +450,8 @@
                             <input
                               type="tel"
                               v-model="userdata1.phone"
-                              placeholder="+201066333725"
+                              maxlength="10"
+                              :placeholder="$t('phone')"
                             />
                             <span class="error-msg" v-if="v$.phone.$error">{{
                               v$.phone.$errors[0].$message
@@ -466,7 +467,7 @@
                             <input
                               type="email"
                               v-model="userdata1.email"
-                              placeholder="مثال : m.info@icloud.com"
+                              placeholder="m.info@icloud.com"
                             />
                             <span class="error-msg" v-if="v$.email.$error">{{
                               v$.email.$errors[0].$message
@@ -489,7 +490,7 @@
                           <input
                             type="text"
                             v-model="gift_owner_name"
-                            placeholder="مثال : محمد"
+                            :placeholder="$t('first name')"
                           />
                           <span
                             class="error-msg2"
@@ -501,8 +502,9 @@
                           <label for=""> {{ $t("phone") }} </label>
                           <input
                             type="tel"
+                            maxlength="10"
                             v-model="gift_owner_phone"
-                            placeholder="+201066333725"
+                            :placeholder="$t('phone')"
                           />
                           <span
                             class="error-msg2"
@@ -770,7 +772,7 @@
                                 :options="normalCity"
                                 filter
                                 optionLabel="name"
-                                placeholder="مثال : الرياض"
+                                :placeholder="$t('city')"
                                 class=""
                               >
                                 <template #option="slotProps">
@@ -785,7 +787,7 @@
                                 :options="fastCity"
                                 filter
                                 optionLabel="name"
-                                placeholder="مثال : الرياض"
+                                :placeholder="$t('city')"
                                 class=""
                               >
                                 <template #option="slotProps">
@@ -808,7 +810,7 @@
                               <input
                                 type="text"
                                 v-model="userdata2.street_name"
-                                placeholder=" مثال : شارع المملكة "
+                                :placeholder="$t('street name')"
                               />
                               <span
                                 class="error-msg"
@@ -832,7 +834,7 @@
                               <input
                                 type="text"
                                 v-model="userdata2.district"
-                                placeholder="مثال : الحي الخامس"
+                                :placeholder="$t('dist')"
                               />
                               <span
                                 class="error-msg"
@@ -851,7 +853,7 @@
                               <input
                                 type="text"
                                 v-model="userdata2.building_number"
-                                placeholder="45 ب"
+                                :placeholder="$t('bulding number')"
                               />
                               <span
                                 class="error-msg"
@@ -873,7 +875,7 @@
                           <input
                             type="text"
                             v-model="userdata2.marks"
-                            placeholder="مثال : المنزل , المكتب , الشركة ..الخ"
+                            :placeholder="$t('special')"
                           />
                         </div>
 
@@ -1097,7 +1099,7 @@
                                     fill="#919EAB"
                                   />
                                 </svg>
-                                <span class="pay">{{ $t("payBy") }} tap </span>
+                                <span class="pay">{{ $t("payBy") }} </span>
                               </div>
 
                               <svg
@@ -1813,6 +1815,11 @@ const checkoutFunc1 = async () => {
   formBody.append("district", userdata2.value.district);
   formBody.append("marks", userdata2.value.marks);
   formBody.append("fast_shipping", userdata2.value.marks);
+  if(clickedLat.value){
+    formBody.append("lat", clickedLat.value);
+    formBody.append("lng", clickedLng.value);
+
+  }
   if (check) {
     pending.value = true;
     try {
@@ -1826,6 +1833,8 @@ const checkoutFunc1 = async () => {
           marks: userdata2.value.marks,
           fast_shipping: chooseCity.value,
           products: newArr.value,
+          ...(clickedLat.value && { lat: clickedLat.value }),
+          ...(clickedLng.value && { lng: clickedLng.value }),
         },
         {
           headers: {
