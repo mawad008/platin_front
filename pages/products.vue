@@ -17,7 +17,7 @@
       <div class="d-flex justify-content-end flex-column flex-xl-row flex-lg-row  gap-3 mb-5 w-100">
         <div>
 
-          <div  @click="toggleOverlay" class="select-box ">
+          <div  @click="toggleOverlay" id="selectBox1" class="select-box">
             <span> {{item1 == '' ?  $t("sections") : item1 }} </span>
             <i v-if="overlayVisible" class="fa-solid fa-chevron-up"></i>
             <i v-else class="fa-solid fa-chevron-down"></i>
@@ -32,7 +32,7 @@
         </div>
         <div>
 
-          <div @click="overlayVisible2 = ! overlayVisible2" class="select-box" >
+          <div @click="overlayVisible2 = ! overlayVisible2" id="selectBox2" class="select-box" >
             <span> {{ item2 == '' ? $t("categories") : item2 }} </span>
             <i v-if="overlayVisible2" class="fa-solid fa-chevron-up"></i>
             <i v-else class="fa-solid fa-chevron-down"></i>
@@ -50,7 +50,7 @@
         <div>
 
     
-          <div @click="overlayVisible3 = ! overlayVisible3" class="select-box">
+          <div @click="overlayVisible3 = ! overlayVisible3" id="selectBox3" class="select-box">
             <span> {{ item3 == '' ? $t("brands") : item3 }} </span>
             <i v-if="overlayVisible3" class="fa-solid fa-chevron-up"></i>
             <i v-else class="fa-solid fa-chevron-down"></i>
@@ -271,7 +271,23 @@ watch(
   }
 );
 
-
+function handleButton (){
+  if(process.client){
+    let dropdownElement = document.getElementById("selectBox1");
+    let dropdownElement2 = document.getElementById("selectBox2");
+    let dropdownElement3 = document.getElementById("selectBox3");
+        if (dropdownElement && !dropdownElement.contains(event.target))
+         {
+          overlayVisible.value = false;
+        }
+        if (overlayVisible2.value && dropdownElement2 && !dropdownElement2.contains(event.target)) {
+          overlayVisible2.value = false;
+        }
+        if (overlayVisible3.value && dropdownElement3 && !dropdownElement3.contains(event.target)) {
+          overlayVisible3.value = false;
+        }
+  }
+}
 
 
 
@@ -281,6 +297,7 @@ onMounted(()=>{
   getcategories();
   getSubcategories();
   getBrands();
+  document.addEventListener("click", handleButton);
 })
 
 </script>

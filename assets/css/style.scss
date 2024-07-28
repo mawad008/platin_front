@@ -375,6 +375,9 @@ a {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    &.customHeight{
+      height: fit-content;
+    }
 
   }
   .head {

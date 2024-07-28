@@ -790,6 +790,7 @@ const getSubcategories = async () => {
   });
   subcategoriesArr.value = result.data.data;
 };
+
 const getAds = async () => {
   let result = await axios.get(`${getUrl()}/ads`, {
     headers: {
@@ -798,6 +799,7 @@ const getAds = async () => {
   });
   adsArr.value = result.data.data;
 };
+
 const getProductsSections = async () => {
   let result = await axios.get(`${getUrl()}/product-sections`, {
     headers: {
@@ -849,9 +851,11 @@ const getSwiperDirection = computed(() => {
   }
 });
 
-useHead({
+
+useSeoMeta({
   title: locale.value == "ar" ? "بلاتين" : "platin",
-});
+  description: 'This is my amazing site, let me tell you all about it.',
+})
 
 onMounted(async () => {
   getCategories();

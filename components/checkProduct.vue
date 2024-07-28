@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="arrData.length > 0" class="product-checkout">
-    <div class="boxes">
+    <div class="boxes" :class="{'customHeight':arrData.length <= 1}">
       <div v-for="(item, index) in arrData" class="head ">
         <v-badge color="#B1628C" :content="item.quantity">
           <div class="image">

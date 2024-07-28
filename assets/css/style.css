@@ -260,6 +260,10 @@ a {
   flex-direction: column;
   gap: 16px;
 }
+.product-checkout .boxes.customHeight {
+  height: -moz-fit-content;
+  height: fit-content;
+}
 .product-checkout .head {
   display: flex;
   align-items: center;

@@ -1,16 +1,58 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // devtools: { enabled: true },
+  target: "static",
   modules: [
     "nuxt-swiper",
     "@nuxtjs/i18n",
     "nuxt-primevue",
+    'nuxt-lazy-load',
+    // "nuxt-purgecss",
     // "@nuxtjs/axios",
     // "@nuxtjs/auth-next",
   ],
- 
-  plugins: [{src:'./plugins/mosha.js'}],
+
+  lazyLoad: {
+    // These are the default values
+    images: true,
+    videos: true,
+    audios: true,
+    iframes: true,
+    native: false,
+    directiveOnly: false,
+    
+    // Default image must be in the public folder
+    defaultImage: '/platin-logo.svg',
+  
+    // To remove class set value to false
+    loadingClass: 'isLoading',
+    loadedClass: 'isLoaded',
+    appendClass: 'lazyLoad',
+    
+    observerConfig: {
+      // See IntersectionObserver documentation
+    }
+  },
+  
+  image: {
+    formats: {
+      webp: {
+        quality: 80
+      }
+    }
+  },
+  vite:{
+    build: {
+      terserOptions: {
+        compress: {
+          drop_console: true,
+        }
+    }
+  }
+  },
+  plugins: [{ src: "./plugins/mosha.js" }],
   ssr: true,
+
   nitro: {
     prerender: {
       crawlLinks: true,
@@ -49,13 +91,13 @@ export default defineNuxtConfig({
       link: [
         { rel: "icon", type: "image/png", href: "/fav.svg" },
         {
-          rel: "stylesheet",
+          rel:"stylesheet",
           href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
           integrity:
             "sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==",
           crossorigin: "anonymous",
           referrerpolicy: "no-referrer",
-        },
+        }
       ],
       script: [
         {
@@ -64,17 +106,20 @@ export default defineNuxtConfig({
         },
 
         {
-          type: 'text/javascript',
-          src: '/js/google-maps-loader.js',
-          body: true,
-        }
+          type: "text/javascript",
+          src: "/js/google-maps-loader.js",
+          tagPosition: "bodyClose",
+        },
       ],
     },
   },
   css: [
     "vuetify/lib/styles/main.sass",
+    // "https://cdn.jsdelivr.net/npm/vuetify@3.6.13/dist/vuetify.min.css",
     "@mdi/font/css/materialdesignicons.min.css",
+    // "https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css",
     "~/assets/bootstrap/css/bootstrap.css",
+    // "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
     "~/assets/css/style.css",
   ],
   build: {
