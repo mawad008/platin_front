@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "nuxt-primevue",
     'nuxt-lazy-load',
+    '@nuxt/image'
     // "nuxt-purgecss",
     // "@nuxtjs/axios",
     // "@nuxtjs/auth-next",
@@ -22,7 +23,7 @@ export default defineNuxtConfig({
     directiveOnly: false,
     
     // Default image must be in the public folder
-    defaultImage: '/platin-logo.svg',
+    defaultImage: '/loader-platin.svg',
   
     // To remove class set value to false
     loadingClass: 'isLoading',

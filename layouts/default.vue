@@ -712,7 +712,7 @@
               </nuxt-link>
             </div>
             <a
-              href="https://webstdy.com/ar?utm_source=platin-foorter&utm_medium=referral"
+              href="https://webstdy.com/ar?utm_source=platin-footer&utm_medium=referral"
               target="_blank"
               class="d-flex align-items-center"
               style="gap: 10px"
@@ -1429,21 +1429,23 @@ const goSettings = (name) => {
 let generalArr = ref([]);
 let search_value = ref("");
 const goToProducts = () => {
-  const queryParams = {
-    search_value: store.state.search,
-    id: cateId.value,
-  };
-  const url = "/products";
-
-  const updatedRoute = {
-    path: url,
-    query: {
-      ...queryParams,
-    },
-  };
-
-  const fullLocalePath = localePath(updatedRoute);
-  router.push(fullLocalePath);
+  if(store.state.search.length >= 3){
+    const queryParams = {
+      search_value: store.state.search,
+      id: cateId.value,
+    };
+    const url = "/products";
+  
+    const updatedRoute = {
+      path: url,
+      query: {
+        ...queryParams,
+      },
+    };
+  
+    const fullLocalePath = localePath(updatedRoute);
+    router.push(fullLocalePath);
+  }
 };
 
 const isExpanded = ref(false);

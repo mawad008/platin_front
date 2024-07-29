@@ -702,15 +702,14 @@
               </div>
             </div>
             <div class="h-100">
-              <v-card-text class="">
-                <v-window v-model="tab">
-                  <v-window-item :value="0">
-                    <div class="table-responsive">
+            <div v-if="tab == 0">
+              <div class="table-responsive">
                       <table class="table table-stripe">
                         <thead>
                           <tr>
-                            <!-- <th scope="col">{{ $t("design") }}</th> -->
-                            <!-- <th scope="col">{{ $t("desc info2")  }}</th> -->
+                            <th scope="col">{{ $t("weight") }}</th>
+                            <th scope="col">{{ $t("desc info2") }}</th>
+                            <th scope="col">{{ $t("price") }}</th>
                           </tr>
                         </thead>
                         <tbody v-if="mainProduct.variations" class=" ">
@@ -718,13 +717,13 @@
                             v-for="(item, index) in mainProduct.variations"
                             class=""
                           >
-                            <td class="headd headd1">{{ $t("weight") }}</td>
+                            <!-- <td class="headd headd1">{{ $t("weight") }}</td> -->
                             <td class="">
-                              {{ item.weight }} {{ $t("weight1") }}
+                              {{ item.weight }} {{ $t("g") }}
                             </td>
-                            <td class="headd">{{ $t("desc info2") }}</td>
+                            <!-- <td class="headd">{{ $t("desc info2") }}</td> -->
                             <td class="headd2">{{ item.size }}</td>
-                            <td class="headd">{{ $t("price") }}</td>
+                            <!-- <td class="headd">{{ $t("price") }}</td> -->
                             <td class="headd2">
                               {{ item.price }} {{ $t("curr") }}
                             </td>
@@ -732,9 +731,9 @@
                         </tbody>
                       </table>
                     </div>
-                  </v-window-item>
-                  <v-window-item :value="1">
-                    <!-- <div class="table-details">
+            </div>
+            <div v-if="tab == 1">
+               <!-- <div class="table-details">
                       <div class="row-container active">
                         <span class="head"> {{ $t("design") }} </span>
                         <span class="det">
@@ -825,10 +824,9 @@
                         </tbody>
                       </table>
                     </div>
-                  </v-window-item>
-
-                  <v-window-item :value="2">
-                    <div class="rating-container">
+            </div>
+            <div v-if="tab == 2">
+              <div class="rating-container">
                       <div
                         class="head w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3 justify-content-between mt-4"
                       >
@@ -978,10 +976,9 @@
                         </div>
                       </div>
                     </div>
-                  </v-window-item>
-
-                  <v-window-item :value="3">
-                    <div class="vendor-details row">
+            </div>
+            <div v-if="tab == 3">
+              <div class="vendor-details row">
                       <div class="col-12 col-xl-4 col-lg-4">
                         <div
                           class="vendor-image d-flex align-items-center flex-column justify-content-around"
@@ -1138,9 +1135,25 @@
                         </div>
                       </div>
                     </div>
+            </div>
+              <!-- <v-card-text class="">
+                <v-window v-model="tab">
+                  <v-window-item :value="0">
+                   
+                  </v-window-item>
+                  <v-window-item :value="1">
+                 
+                  </v-window-item>
+
+                  <v-window-item :value="2">
+                  
+                  </v-window-item>
+
+                  <v-window-item :value="3">
+                   
                   </v-window-item>
                 </v-window>
-              </v-card-text>
+              </v-card-text> -->
             </div>
           </div>
         </div>

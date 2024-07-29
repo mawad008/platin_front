@@ -1972,7 +1972,7 @@ const paymentFunc = async () => {
     formBody.append("last_name", userdata1.value.last_name);
     formBody.append("phone", userdata1.value.phone);
     formBody.append("email", userdata1.value.email);
-    formBody.append("price", store.state.totalNum);
+    formBody.append("price", store.state.totalNum + 25 + (store.state.totalNum * 0.15));
     let result = await axios.post(`${getUrl()}/order-pay`, formBody, {
       headers: {
         "Content-Language": `${locale.value}`,
