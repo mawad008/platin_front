@@ -343,7 +343,7 @@
                 </div>
 
                 <div class="price-list">
-                  <span class="word"> {{ $t("price") }} </span>
+                  <span class="word">  {{ $t("price") }} {{ mainProduct.discount_price ? $t('startFrom') : "" }}</span>
                   <h4 class="d-flex align-items-center gap-2 mt-2">
                     {{
                       mainProduct.discount_price
@@ -704,7 +704,7 @@
             <div class="h-100">
             <div v-if="tab == 0">
               <div class="table-responsive">
-                      <table class="table table-stripe">
+                      <table v-if="mainProduct.variations" class="table table-stripe">
                         <thead>
                           <tr>
                             <th scope="col">{{ $t("weight") }}</th>
@@ -712,7 +712,7 @@
                             <th scope="col">{{ $t("price") }}</th>
                           </tr>
                         </thead>
-                        <tbody v-if="mainProduct.variations" class=" ">
+                        <tbody  class=" ">
                           <tr
                             v-for="(item, index) in mainProduct.variations"
                             class=""
@@ -725,7 +725,7 @@
                             <td class="headd2">{{ item.size }}</td>
                             <!-- <td class="headd">{{ $t("price") }}</td> -->
                             <td class="headd2">
-                              {{ item.price }} {{ $t("curr") }}
+                              {{ item.discount_price ? item.discount_price : item.price }} {{ $t("curr") }} <span v-if="item.discount_price" class="px-1" style="text-decoration: line-through; color:#cfd3d6; font-size: 12px;">{{ item.price }}</span>
                             </td>
                           </tr>
                         </tbody>
@@ -1108,10 +1108,10 @@
                               <div class="image">
                                 <img src="~/assets/images/p1.png" alt="" />
                               </div>
-                              <div class="text d-flex flex-column gap-1">
+                              <div class="text w-100 d-flex flex-column gap-1">
                                 <h5>{{ item.name }}</h5>
                                 <div
-                                  class="price w-100 d-flex align-items-center justify-content-between"
+                                  class="price w-100  d-flex align-items-center justify-content-between"
                                 >
                                   <span class="item"
                                     >{{
@@ -1264,7 +1264,7 @@ function copyToClipboard() {
 // start swiper images
 
 const thumbsSwiper = ref(null);
-const tab = ref(null);
+const tab = ref(0);
 const tabActive = ref(1);
 const setThumbsSwiper = (swiper) => {
   thumbsSwiper.value = swiper;

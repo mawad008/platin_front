@@ -442,17 +442,16 @@
           @click="clearCheck(), (store.state.activeMobile = 1)"
           :to="localePath('/')"
         >
-          <logo v-if="locale == 'ar'" class="a-logo" :w="124" :h="45"></logo>
-          <e-logo
-            v-if="locale == 'en'"
-            class="e-logo"
-            :w="124"
-            :h="45"
-          ></e-logo>
+           <img
+                class=""
+                style=""
+                src="../assets/images/platin-logo.svg"
+                alt=""
+              />
         </nuxt-link>
 
-        <nuxt-link :to="localePath('/')">
-          <button @click="clearCheck()">
+        <nuxt-link :to="localePath('/')" @click="clearCheck(), (store.state.activeMobile = 1)">
+          <button>
             {{ $t("back2") }}
           </button>
         </nuxt-link>

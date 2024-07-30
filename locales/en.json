@@ -203,6 +203,8 @@
     "sizes":"sizes",
     "g":"g",
     "desc2": "Customer Reviews",
+    "emptyCity":"there are no cities",
+    "startFrom":"Start From",
     "desc3": "About the Store",
     "desc info1": "Product Material",
     "desc info2": "Dimensions",

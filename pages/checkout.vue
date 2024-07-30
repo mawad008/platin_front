@@ -647,13 +647,14 @@
                           </div>
                         </div>
                       </label>
-                      <label for="second-input2">
+                      <label  for="second-input2">
                         <input
                           id="second-input2"
                           v-model="chooseCity"
                           name="card"
                           type="radio"
                           value="1"
+                          @input="checkCities()"
                         />
                         <div class="radio-input">
                           <div
@@ -787,6 +788,7 @@
                                 :options="fastCity"
                                 filter
                                 optionLabel="name"
+                                :emptyMessage="fastCity.length < 1 ? $t('emptyCity') : 'ss' "
                                 :placeholder="$t('city')"
                                 class=""
                               >
@@ -922,6 +924,7 @@
                   :myFunction="checkoutFunc1"
                   :text="text2"
                   :pending="pending"
+                  
                 />
               </div>
             </div>
@@ -932,7 +935,7 @@
               <div class="main">
                 <div>
                   <h3>{{ $t("shipp") }}</h3>
-                  <p>{{ $t("shippText") }}</p>
+                  <p class="w-100"  >{{ $t("shippText") }}</p>
                 </div>
                 <div class="boxes">
                   <div
@@ -990,10 +993,11 @@
                     <div class="radio-inputs d-flex flex-column gap-4">
                       <div class="row">
                         <div class="col-12 col-xl-6 col-lg-6">
-                          <label class="third-labels" @click="setPaymentVar(1)">
+                          <label class="third-labels" >
                             <input
                               name="card"
                               type="radio"
+                              @input="setPaymentVar(1)"
                               v-model="paymentMethodVar"
                               :value="1"
                             />
@@ -1070,10 +1074,11 @@
                           </label>
                         </div>
                         <div class="col-12 col-xl-6 col-lg-6">
-                          <label class="third-labels" @click="setPaymentVar(2)">
+                          <label class="third-labels">
                             <input
                               name="card"
                               type="radio"
+                              @input="setPaymentVar(2)"
                               v-model="paymentMethodVar"
                               :value="2"
                             />
@@ -1514,6 +1519,7 @@
                   :checkPay="paymentMethodVar"
                   :pending="pending"
                   :tap_id="tap_idV"
+                  :priceShipping="priceShipping"
                   :checkPay2="checkPay2"
                 />
               </div>
@@ -1569,6 +1575,7 @@ let text5 = ref("تأكيد عملية الشراء");
 let clickedLat = ref();
 let clickedLng = ref();
 let cartBtn = ref(true);
+let priceShipping = ref();
 
 let pendingPage = ref(true);
 let tap_idV = ref(store.state.idPay);
@@ -1596,8 +1603,6 @@ async function initMap() {
             center: { lat: 24.7136, lng: 46.6753 },
             mapId: "DEMO_MAP_ID",
           });
-  
-          console.log(map);
     
           const marker = new AdvancedMarkerElement({
             map,
@@ -1784,7 +1789,7 @@ const getCities = async () => {
   });
 
   normalCity.value = result.data.data.allCities;
-  fastCity.value = result.data.data.fastShippingCities;
+  // fastCity.value = result.data.data.fastShippingCities;
 };
 getCities();
 
@@ -1858,6 +1863,7 @@ const checkoutFunc1 = async () => {
         store.state.step = 3;
         store.state.check3 = true;
         store.state.lineActive2 = true;
+        priceShipping.value = result.data.data.totalShippingCost;
         if (process.client) {
           window.scrollTo({
             top: 0,
@@ -1961,6 +1967,26 @@ const checkoutFunc3 = async () => {
     console.log(errorss);
   }
 };
+const checkCities = async () => {
+  try {
+    let result = await axios.post(
+      `${getUrl()}/order-cities`,
+      {
+        products: newArr.value,
+      },
+      {
+        headers: {
+          "Content-Language": `${locale.value}`,
+        },
+      }
+    );
+    if (result.status >= 200) {
+      fastCity.value = result.data.data;
+    }
+  } catch (errorss) {
+    console.log(errorss);
+  }
+};
 
 let urlPay = ref();
 let checkPay2 = ref(false);
@@ -1972,7 +1998,10 @@ const paymentFunc = async () => {
     formBody.append("last_name", userdata1.value.last_name);
     formBody.append("phone", userdata1.value.phone);
     formBody.append("email", userdata1.value.email);
-    formBody.append("price", store.state.totalNum + 25 + (store.state.totalNum * 0.15));
+    console.log(store.state.totalNum);
+    console.log(priceShipping.value);
+    console.log(store.state.totalNum * 0.15);
+    formBody.append("price", store.state.totalNum + (priceShipping.value ? priceShipping.value : 0) + (store.state.totalNum * 0.15));
     let result = await axios.post(`${getUrl()}/order-pay`, formBody, {
       headers: {
         "Content-Language": `${locale.value}`,
@@ -2121,7 +2150,7 @@ watch(
         chooseCity.value = user1.chooseCity;
       }
     }
-    paymentMethodVar.value = pay1 ? pay1 : 1;
+    // paymentMethodVar.value = pay1 ? pay1 : 1;
     tap_idV.value = val ? val : "";
     // if(tap_idV.value){
     // }

@@ -29,7 +29,7 @@
       <div class="total-price">
         <div class="total">
           <span class="word all"> {{ $t("total") }} </span>
-          <span class="fw-bold price"> {{ total + (25 + total * 0.15 ) }} {{ $t("curr") }} </span>
+          <span class="fw-bold price"> {{ total + (priceShipping ? priceShipping : 0) + (25 + total * 0.15 ) }}  {{ $t("curr") }} </span>
         </div>
         <div class="total">
           <span class="word"> {{ $t("price") }} </span>
@@ -39,9 +39,9 @@
           <span class="word"> {{ $t("discountss") }}</span>
           <span class="price"> 0 {{ $t("curr") }}</span>
         </div> -->
-        <div class="total">
+        <div v-if="priceShipping" class="total">
           <span class="word"> {{ $t("shipping") }}</span>
-          <span class="price"> 25 {{ $t("curr") }} </span>
+          <span  class="price"> {{ priceShipping }} {{ $t("curr") }} </span>
         </div>
         <div class="total">
           <span class="word"> {{ $t("bill") }}</span>
@@ -75,7 +75,7 @@ import { useStore } from "~/store";
 const store = useStore;
 // Define the props you expect
 let step = ref(store.state.step);
-const props = defineProps(["arrData" , "myFunction" , "pending" , "text" , "text1" , "cartBtn" , "checkPay" , "checkPay2" , "urlPay" , "tap_id"]);
+const props = defineProps(["arrData" , "myFunction" , "priceShipping" , "pending" , "text" , "text1" , "cartBtn" , "checkPay" , "checkPay2" , "urlPay" , "tap_id"]);
 
 const localePath = useLocalePath();
 

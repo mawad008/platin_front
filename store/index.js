@@ -139,12 +139,6 @@ export const useStore = createStore({
       state.lineActive1 = payload.lineActive1;
       state.lineActive2 = payload.lineActive2;
       state.lineActive3 = payload.lineActive3;
-      console.log('sasasa' , state.check1);
-      console.log('sasasa' , state.check2);
-      console.log('sasasa' , state.check3);
-      console.log('sasasa' , state.lineActive1);
-      console.log('sasasa' , state.lineActive2);
-      console.log('sasasa' , state.lineActive3);
     },
     setfavIcon(state, payload) {
       state.isInFav = payload;

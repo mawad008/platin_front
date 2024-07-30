@@ -90,9 +90,11 @@
           <div
             class="price w-100 d-flex align-items-center justify-content-between"
           >
-            <span class="price-text"
-              >{{ product.price }} {{ $t("curr") }}
+          <div class="d-flex flex-column position-relative">
+          <span v-if="product.discount_price" style="font-size: 12px; position:absolute; top:-17px;">{{ $t('startFrom') }}</span>
+            <span class="price-text">{{ product.discount_price ? product.discount_price : product.price }} {{ $t("curr") }}
             </span>
+          </div>
             <span>
               {{ locale == "ar" ? "ق" : "c" }} {{ product.caliber }} /
               {{ locale == "ar" ? "ج" : "g" }} {{ product.weight }}</span
@@ -317,7 +319,6 @@ const goToProductPage = (id, name) => {
     name: name,
   };
   const url = "/product";
-
   const updatedRoute = {
     path: url,
     query: {
@@ -328,6 +329,12 @@ const goToProductPage = (id, name) => {
   const fullLocalePath = localePath(updatedRoute);
 
   router.push(fullLocalePath);
+  if (process.client) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
 };
 const goToProductPage2 = (id, name) => {
   if (process.client) {
@@ -348,6 +355,10 @@ const goToProductPage2 = (id, name) => {
       const fullLocalePath = localePath(updatedRoute);
       router.push(fullLocalePath);
     }
+    // window.scrollTo({
+    //   top: 0,
+    //   behavior: "smooth",
+    // });
   }
 };
 
