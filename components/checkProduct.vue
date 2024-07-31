@@ -15,7 +15,7 @@
           <span class="name"> {{ item.name }} </span>
           <div class="w-100 d-flex align-items-center justify-content-between">
             <span class="price"> {{ item.price }} {{ $t("curr") }}</span>
-            <div @click="deleteItem(item.id , item.vendor_id)" class="trash">
+            <div @click="deleteItem(item.id , item.vendor_id , item)" class="trash">
               <img src="~/assets/images/trash.svg" alt="" />
             </div>
           </div>
@@ -100,8 +100,8 @@ const checkFunc2 = () => {
   // console.log(store.state.step);
 }
 let mainArr = ref(store.state.basket);
-const deleteItem = (item , vendor_id) => {
-  store.commit("deleteCheckOut", {vendor_id:vendor_id , itemid:item , arr:mainArr.value});
+const deleteItem = (item , vendor_id , itemm) => {
+  store.commit("deleteCheckOut", {vendor_id:vendor_id , itemid:item , arr:mainArr.value , itemm: itemm});
   console.log(props.arrData);
 };
 

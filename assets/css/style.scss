@@ -2845,14 +2845,17 @@ background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0.00) 100%);
         color: $body-text;
         margin: 30px 0px;
       }
-      h4 {
-        font-size: 24px;
-        font-weight: 700;
-        color: $secondary-black;
-        span {
+      .price-content{
+        h4 {
+          font-size: 24px;
+          font-weight: 700;
+          color: $secondary-black;
+        }
+        .desc{
           color: #cfd3d6;
           text-decoration: line-through;
         }
+
       }
     }
 

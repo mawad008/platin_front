@@ -344,21 +344,43 @@
 
                 <div class="price-list">
                   <span class="word">  {{ $t("price") }} {{ mainProduct.discount_price ? $t('startFrom') : "" }}</span>
-                  <h4 class="d-flex align-items-center gap-2 mt-2">
+                  <div class="price-content ">
+                  <div v-if="newPriceItem" class="d-flex align-items-center gap-2 mt-2">
+                  <h4 class="">
+                    {{
+                      newPriceItem.discount_price
+                        ? newPriceItem.discount_price
+                        : newPriceItem.price
+                    }}
+                    {{ $t("curr") }}
+                  </h4>
+                    <span
+                      v-if="newPriceItem.discount_price"
+                      class="desc"
+                      style="font-size: 12px"
+                    >
+                      {{ newPriceItem.price }} {{ $t("curr") }}</span
+                    >
+                  </div>
+                  <div v-else class="d-flex align-items-center gap-2 mt-2">
+                  <h4 class="">
                     {{
                       mainProduct.discount_price
                         ? mainProduct.discount_price
                         : mainProduct.price
                     }}
                     {{ $t("curr") }}
+                  </h4>
                     <span
                       v-if="mainProduct.discount_price"
-                      class="disc"
+                      class="desc"
                       style="font-size: 12px"
                     >
                       {{ mainProduct.price }} {{ $t("curr") }}</span
                     >
-                  </h4>
+                  </div>
+                  
+                  </div>
                 </div>
 
                 <div
@@ -708,7 +730,7 @@
                         <thead>
                           <tr>
                             <th scope="col">{{ $t("weight") }}</th>
-                            <th scope="col">{{ $t("desc info2") }}</th>
+                            <th scope="col">{{ $t("size1") }}</th>
                             <th scope="col">{{ $t("price") }}</th>
                           </tr>
                         </thead>
@@ -716,6 +738,8 @@
                           <tr
                             v-for="(item, index) in mainProduct.variations"
                             class=""
+                            @click="changePrice(item.discount_price ? item.discount_price : item.price , item.size , item.weight , item)"
+                            style="cursor: pointer;"
                           >
                             <!-- <td class="headd headd1">{{ $t("weight") }}</td> -->
                             <td class="">
@@ -796,7 +820,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <td class="headd headd1">{{ $t("desc info2") }}</td>
+                            <td class="headd headd1">{{ $t("size1") }}</td>
                             <td>{{ mainProduct.size }}</td>
                             <td class="headd">{{ $t("weight") }}</td>
                             <td class="headd2">
@@ -1357,7 +1381,7 @@ let item = ref({
   id: mainProduct.value.id,
   name: mainProduct.value.name,
   price: mainProduct.value.price,
-  images: [imgsRef.value.length > 0 ? imgsRef.value[0] : ""],
+  images: mainProduct.value.images,
   fast_shipping_cities: mainProduct.value.fast_shipping_cities,
   vendor_name: mainProduct.value.vendor_name,
 });
@@ -1373,9 +1397,12 @@ if (locale.value == "ar") {
   text1.value = "added to wishlist";
   text3.value = "removed from wishlist";
 }
+
+let newPriceVar = ref();
+let newPriceItem = ref();
 const addToBasket = async () => {
   if (mainProduct.value) {
-    store.commit("add", { mainItem: mainProduct.value, qw: quantity.value });
+    store.commit("addProduct", { mainItem: mainProduct.value, qw: quantity.value , newPrice: newPriceVar.value });
     const moshaToastify = await import("mosha-vue-toastify");
     const { createToast } = moshaToastify;
     createToast(
@@ -1395,6 +1422,22 @@ const addToBasket = async () => {
     }, 2000);
   }
 };
+
+let checkDiscount = ref(false);
+const changePrice = (newPrice , size , weight , item) =>{
+  if(process.client){
+    newPriceItem.value = item;
+    newPriceVar.value = newPrice;
+    mainProduct.value.price = newPrice;
+    mainProduct.value.size = size;
+    mainProduct.value.weight = weight;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+}
 
 const showVendor = async () => {
   let result = await axios.get(`${getUrl()}/about-vendor/${id.value}`, {

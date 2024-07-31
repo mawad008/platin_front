@@ -241,7 +241,7 @@
 
               <div class="d-flex flex-column align-items-center gap-2">
                 <div
-                  @click="addToBasket(product)"
+                  @click="addToBasket({price:100 , ...product})"
                   class="octagon d-flex flex-column gap-3 main"
                 >
                   <octagon />

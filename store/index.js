@@ -3,6 +3,8 @@ import Cookies from "js-cookie";
 import axios from "axios";
 // process.client ? JSON.parse(sessionStorage.getItem("basket")) :
 import CircularJSON from 'circular-json';
+// let router = useRouter();
+// const localePath = useLocalePath();
 export const useStore = createStore({
   state: {
     basket: [],
@@ -147,7 +149,7 @@ export const useStore = createStore({
       state.authenticated = value;
     },
     add(state, payload) {
-      let { mainItem, qw } = payload;
+      let { mainItem, qw , newPrice } = payload;
       const existingItem = state.basket.find((item) => {
         let existingData = [item];
         const vendor = existingData.find(
@@ -172,7 +174,10 @@ export const useStore = createStore({
               id: mainItem.id,
               quantity: qw ? qw : 1,
               name: mainItem.name,
-              price: mainItem.price,
+              price:newPrice || mainItem.discount_price ?  mainItem.discount_price : mainItem.price,
+              size: mainItem.size,
+              weight: mainItem.weight,
+              // discount_price: mainItem.discount_price,
               images: mainItem.images,
             },
           ],
@@ -202,21 +207,82 @@ export const useStore = createStore({
 
         // Convert the object values back to an array
         state.basket = Object.values(uniqueItems);
-
         localStorage.setItem("basket", JSON.stringify(state.basket));
-        console.log(state.basket);
         getTotalBasketNum(state);
        updateBasket(state);
       }
 
       // calculate the total price
       getTotalPrice(state);
+   
+    },
+    addProduct(state, payload) {
+      let { mainItem, qw , newPrice } = payload;
+      const existingItem = state.basket.find((item) => {
+        let existingData = [item];
+        const vendor = existingData.find(
+          (vendor) => vendor.vendor_id === mainItem.vendor_id
+        );
+        if (vendor) {
+          const product = vendor.products.find(
+            (product) => product.id === mainItem.id
+          );
+          return !!product;
+        }
+      });
+      if (existingItem) {
+        console.log(existingItem);
+      } else {
+        state.basket.push({
+          vendor_id: mainItem.vendor_id,
+          id: mainItem.id,
 
-      console.log(state.totalNum);
+          products: [
+            {
+              id: mainItem.id,
+              quantity: qw ? qw : 1,
+              name: mainItem.name,
+              price:newPrice,
+              size: mainItem.size,
+              weight: mainItem.weight,
+              // discount_price: mainItem.discount_price,
+              images: mainItem.images,
+            },
+          ],
+          fast_shipping_cities: mainItem.fast_shipping_cities,
+          vendor_name: mainItem.vendor_name,
+        });
+        const uniqueItems = state.basket.reduce((acc, currentItem) => {
+          const { id, products, vendor_id, vendor_name, fast_shipping_cities } =
+            currentItem;
 
-      // Calculate the number of products for each vendor
-      // addCheck(state);
-      //console.log(state.basketNum);
+          // If the vendorId is not in the object, add it
+          if (!acc[vendor_id]) {
+            acc[vendor_id] = {
+              id,
+              products,
+              vendor_id,
+              vendor_name,
+              fast_shipping_cities,
+            };
+          } else {
+            // If the vendorId is already in the object, push the products array
+            acc[vendor_id].products.push(...products);
+          }
+
+          return acc;
+        }, {});
+
+        // Convert the object values back to an array
+        state.basket = Object.values(uniqueItems);
+        localStorage.setItem("basket", JSON.stringify(state.basket));
+        getTotalBasketNum(state);
+       updateBasket(state);
+      }
+
+      // calculate the total price
+      getTotalPrice(state);
+   
     },
     addItem(state, id) {
       state.basket.forEach((vendor) => {
@@ -303,28 +369,44 @@ export const useStore = createStore({
       localStorage.clear("total");
     },
     deleteCheckOut(state, payload) {
-      const { vendor_id, itemid, arr } = payload;
+      const { vendor_id, itemid, arr , itemm } = payload;
       const vendorIndex = state.basket.findIndex(
         (vendor) => vendor.vendor_id === vendor_id
       );
-      const productIndex = state.basket[vendorIndex].products.findIndex(
-        (product) => product.id === itemid
-      );
-
-      if (productIndex !== -1) {
-        // Delete the item from the products array
-        state.basket[vendorIndex].products.splice(productIndex, 1);
-        if (state.basket[vendorIndex].products.length == 0) {
+      // const productIndex = state.basket[vendorIndex].products.findIndex(
+      //   (product) => product.id === itemid
+      // );  
+      console.log(itemm);
+      console.log(vendor_id);
+      console.log(arr);
+      let filteredArr = state.basket[vendorIndex].products.filter((elee)=> elee.id != itemid);
+      state.basket[vendorIndex].products = filteredArr;
+         if (state.basket[vendorIndex].products.length == 0) {
           state.basket.splice(vendorIndex, 1);
         }
-       updateBasket(state);
-        localStorage.setItem("basket", JSON.stringify(state.basket));
-        console.log(
-          `Item with vendorId ${vendor_id} and id ${itemid} deleted successfully.`
-        );
-      }
+        if(state.basket.length <=0){
+          clearCacheFunc(state);
+          // router.push(localePath('/'));
+        }
+      updateBasket(state);
+      localStorage.setItem("basket", JSON.stringify(state.basket));
       getTotalBasketNum(state);
       getTotalPrice(state);
+      // console.log(filteredArr);
+      // if (productIndex !== -1) {
+      //   // Delete the item from the products array
+      //   state.basket[vendorIndex].products.splice(productIndex, 1);
+      //   if (state.basket[vendorIndex].products.length == 0) {
+      //     state.basket.splice(vendorIndex, 1);
+      //   }
+      //  updateBasket(state);
+      //   localStorage.setItem("basket", JSON.stringify(state.basket));
+      //   console.log(
+      //     `Item with vendorId ${vendor_id} and id ${itemid} deleted successfully.`
+      //   );
+      // }
+      // getTotalBasketNum(state);
+      // getTotalPrice(state);
     },
     clearCache(state){
       state.paymentVar = 1;
@@ -475,6 +557,34 @@ const updateBasket = (state) => {
 });
 };
 
+function clearCacheFunc(state){
+  state.paymentVar = 1;
+  state.userObj1 = {};
+  state.step = 1;
+  state.idPay = '';
+  state.basket = [];
+  state.totalNum = 0;
+  state.basketNum = 0;
+  state.check1 = true;
+  state.check2 = false;
+  state.check3 = false;
+  state.lineActive1 = false;
+  state.lineActive2 = false;
+  state.lineActive3 = false;
+  localStorage.removeItem("storeUser1");
+  localStorage.removeItem("check1");
+  localStorage.removeItem("check2");
+  localStorage.removeItem("check3");
+  localStorage.removeItem("lineActive1");
+  localStorage.removeItem("lineActive2");
+  localStorage.removeItem("lineActive3");
+  localStorage.removeItem("storeStep");
+  localStorage.removeItem("storePayVar");
+  localStorage.removeItem("basket");
+  localStorage.removeItem("total");
+  localStorage.removeItem("num");
+  localStorage.removeItem("storeId");
+}
 function deepCopy(obj) {
   if (obj === null || typeof obj !== 'object') {
     return obj;

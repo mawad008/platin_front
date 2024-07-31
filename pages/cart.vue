@@ -105,7 +105,9 @@
                             <span v-if="item.fast_shipping_cities.length <= 0"> {{ $t("unavailable") }} </span>
                             <span v-else> {{ $t("available") }} </span>
                             <span class="main">{{ $t("fast shipping") }} </span>
+                            <span  v-if="item.fast_shipping_cities.length > 0">  
                             {{ $t("in") }}
+                            </span>  
                             <span v-for="i in item.fast_shipping_cities">  {{ i.name }} {{ `${item.fast_shipping_cities.length > 1 ? "," :""}` }}</span>
                           </div>
                         </div>
@@ -120,7 +122,7 @@
                 <div class="total-price">
                   <div class="total">
                     <span class="word all"> {{ $t("total") }}</span>
-                    <span class="fw-bold price"> {{ total + (40 + 80) }} {{ $t("curr") }}</span>
+                    <span class="fw-bold price"> {{ total + (total * 0.15) }} {{ $t("curr") }}</span>
                   </div>
                   <div class="total">
                     <span class="word"> {{ $t("price") }} </span>
@@ -130,13 +132,13 @@
                     <span class="word"> {{ $t("discountss") }} </span>
                     <span class="price"> 0 {{ $t("curr") }} </span>
                   </div> -->
-                  <div class="total">
+                  <!-- <div class="total">
                     <span class="word"> {{ $t("shipping") }}</span>
                     <span class="price"> 40 {{ $t("curr") }}</span>
-                  </div>
+                  </div> -->
                   <div class="total">
                     <span class="word"> {{ $t("bill") }}</span>
-                    <span class="price"> 80 {{ $t("curr") }} </span>
+                    <span class="price"> {{ total * 0.15 }} {{ $t("curr") }} </span>
                   </div>
                 </div>
 

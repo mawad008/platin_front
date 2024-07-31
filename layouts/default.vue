@@ -524,9 +524,11 @@
                   <nuxt-link :to="localePath('about')">
                     <span class="head-link"> {{ $t("about") }} </span>
                   </nuxt-link>
-                  <span @click="dialog = true" class="head-link">
-                    {{ $t("addVendor") }}
-                  </span>
+                  <!-- @click="dialog = true" -->
+                  <nuxt-link :to="localePath('addVendor')">
+                    <span class="head-link">  {{ $t("addVendor") }} </span>
+                  </nuxt-link>
+                  
                 </div>
               </div>
             </div>

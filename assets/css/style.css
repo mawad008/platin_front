@@ -2424,12 +2424,12 @@ html[dir=ltr] .card-popup-container {
   color: #5a7184;
   margin: 30px 0px;
 }
-.product-page .text-container .price-list h4 {
+.product-page .text-container .price-list .price-content h4 {
   font-size: 24px;
   font-weight: 700;
   color: #2d3a4a;
 }
-.product-page .text-container .price-list h4 span {
+.product-page .text-container .price-list .price-content .desc {
   color: #cfd3d6;
   text-decoration: line-through;
 }
