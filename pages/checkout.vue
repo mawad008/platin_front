@@ -938,8 +938,8 @@
             <div class="card-popup-container">
               <div class="main">
                 <div>
-                  <h3>{{ $t("shipp") }}</h3>
-                  <p class="w-100"  >{{ $t("shippText") }}</p>
+                  <h3>{{checkCityProducts ? $t("shipp") : $t("shipp2") }}</h3>
+                  <p class="w-100"  >{{checkCityProducts ? $t("shippText") :  $t("shippText2") }}</p>
                 </div>
                 <div class="boxes">
                   <div
@@ -1771,12 +1771,6 @@ const checkoutFunc = async () => {
         errors.value = errorss.response.data.errors;
       }
     }
-  } else {
-    console.log(user.value);
-    console.log(userdata1.value);
-    console.log(gift_owner_name.value);
-    console.log(gift_owner_phone.value);
-    console.log(gift_text.value);
   }
 };
 
@@ -1786,6 +1780,8 @@ const selectedCity1 = ref("");
 // const selectedCity2 = ref("");
 let normalCity = ref([]);
 let fastCity = ref([]);
+let checkCityProducts = ref(true);
+let unique_vendorsVar = ref([]);
 let productsPopup = ref([]);
 
 const getCities = async () => {
@@ -1875,7 +1871,13 @@ const checkoutFunc1 = async () => {
       }
       if (result.data.data.length >= 1) {
         dialog.value = true;
+        checkCityProducts.value = true;
         productsPopup.value = result.data.data;
+      }
+      if(result.data.data.unavailableProducts.length >= 1){
+        dialog.value = true;
+        checkCityProducts.value = false;
+        productsPopup.value = result.data.data.unavailableProducts;
       }
       if(result.data.data.unavailableProducts.length <= 0){
         store.commit("addStep", 3);
@@ -1884,6 +1886,9 @@ const checkoutFunc1 = async () => {
         store.state.check3 = true;
         store.state.lineActive2 = true;
         priceShipping.value = result.data.data.totalShippingCost;
+      }
+      if(result.data.data.unique_vendors){
+        unique_vendorsVar.value = result.data.data.unique_vendors;
       }
     } catch (errorss) {
       if (errorss.response) {
@@ -1940,14 +1945,16 @@ const checkoutFunc3 = async () => {
         last_name: userdata1.value.last_name,
         phone: userdata1.value.phone,
         email: userdata1.value.email,
+        city: userdata2.value.city.id,
         ...(gift_owner_name.value && { gift_owner_name: gift_owner_name.value }),
         ...(gift_owner_phone.value && { gift_owner_phone: gift_owner_phone.value }),
         ...(gift_text.value && { gift_text: gift_text.value }),
-        city: userdata2.value.city.id,
+        ...(unique_vendorsVar.value && { unique_vendors: unique_vendorsVar.value }),
         street_name: userdata2.value.street_name,
         building_number: userdata2.value.building_number,
         district: userdata2.value.district,
-        paying_off: personalorGift.value,
+        paying_off: paymentMethodVar.value,
+        // total:store.state.totalNum + (priceShipping.value ? priceShipping.value : 0) + (store.state.totalNum * 0.15),
         products: newArr.value,
       },
       {
@@ -2151,16 +2158,16 @@ watch(
         ? user1.gift_owner_phone
         : "";
       gift_text.value = user1.gift_text ? user1.gift_text : "";
-      if (user1.chooseCity) {
-        userdata2.value.building_number = user1.building_number;
-        userdata2.value.city = user1.city;
-        userdata2.value.district = user1.district;
-        userdata2.value.marks = user1.marks;
-        userdata2.value.street_name = user1.street_name;
-        chooseCity.value = user1.chooseCity;
-      }
+      userdata2.value.building_number = user1.building_number;
+      userdata2.value.city = user1.city;
+      userdata2.value.district = user1.district;
+      userdata2.value.marks = user1.marks;
+      userdata2.value.street_name = user1.street_name;
+      chooseCity.value = user1.chooseCity ? user1.chooseCity : 0;
+      
     }
-    // paymentMethodVar.value = pay1 ? pay1 : 1;
+    paymentMethodVar.value = pay1 ? pay1 : 1;
+   
     tap_idV.value = val ? val : "";
     // if(tap_idV.value){
     // }
@@ -2181,6 +2188,9 @@ onBeforeMount(() => {
 
 onMounted(() => {
   pendingPage.value = false;
+  if(paymentMethodVar.value == 2){
+      paymentFunc();
+    }
 });
 </script>
 
