@@ -29,7 +29,7 @@
       <div class="total-price">
         <div class="total">
           <span class="word all"> {{ $t("total") }} </span>
-          <span class="fw-bold price"> {{ total + (priceShipping ? priceShipping : 0) + (25 + total * 0.15 ) }}  {{ $t("curr") }} </span>
+          <span class="fw-bold price"> {{ total + (priceShipping ? priceShipping : 0) + ( total * 0.15 ) }}  {{ $t("curr") }} </span>
         </div>
         <div class="total">
           <span class="word"> {{ $t("price") }} </span>
