@@ -738,7 +738,7 @@
                           <tr
                             v-for="(item, index) in mainProduct.variations"
                             class=""
-                            @click="changePrice(item.discount_price ? item.discount_price : item.price , item.size , item.weight , item)"
+                            @click="changePrice((item.discount_price ? item.discount_price : item.price) , item.size , item.weight , item)"
                             style="cursor: pointer;"
                           >
                             <!-- <td class="headd headd1">{{ $t("weight") }}</td> -->
@@ -1402,6 +1402,7 @@ let newPriceVar = ref();
 let newPriceItem = ref();
 const addToBasket = async () => {
   if (mainProduct.value) {
+    console.log(newPriceVar.value);
     store.commit("addProduct", { mainItem: mainProduct.value, qw: quantity.value , newPrice: newPriceVar.value });
     const moshaToastify = await import("mosha-vue-toastify");
     const { createToast } = moshaToastify;
@@ -1423,7 +1424,6 @@ const addToBasket = async () => {
   }
 };
 
-let checkDiscount = ref(false);
 const changePrice = (newPrice , size , weight , item) =>{
   if(process.client){
     newPriceItem.value = item;
@@ -1590,9 +1590,7 @@ useHead({
   title: locale.value == "ar" ? "بلاتين" : "platin",
 });
 
-watch(
-  () => MainRoute.query.id,
-  (newId) => {
+watch([() => MainRoute.query.id],([newId]) => {
     id.value = newId;
     showProduct();
     showVendor();
