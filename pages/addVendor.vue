@@ -292,6 +292,7 @@
               </div>
             </div>
             <div class="d-flex align-items-center gap-3">
+             <input type="checkbox" v-model="objVendor.privacy_flag" id="vebdorReg">
             <label for="vebdorReg">
             <p class="" style="width:auto;">
               {{ $t("auth1") }}
@@ -304,7 +305,6 @@
               >
             </p>
             </label>
-             <input type="checkbox" v-model="objVendor.privacy_flag" id="vebdorReg">
             </div>
             <span class="error-msg2" v-if="errors2.privacy_flag">{{
                     errors2.privacy_flag[0]
@@ -312,7 +312,7 @@
             <div class="btns">
               <button
                 @click="AddVendor()"
-                class="fill d-flex align-items-center gap-3"
+                class="fill d-flex align-items-center gap-3 reg" :class="{'act': objVendor.privacy_flag}"
               >
                 {{ $t("apply") }}
                 <v-progress-circular
@@ -436,7 +436,7 @@ if (locale.value == "ar") {
   phone: "",
   password: "",
   password_confirmation: "",
-  privacy_flag:""
+  privacy_flag: false
 });
 
 const v2$ = useValidate(rules, objVendor);
@@ -460,7 +460,7 @@ const AddVendor = async () => {
     objVendor.value.password_confirmation
   );
 
-  if (check) {
+  if (check && objVendor.value.privacy_flag) {
     pending.value = true;
     try {
       let result = await axios.post(`${getUrl()}/vendors`, formDat, {

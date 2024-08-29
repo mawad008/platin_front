@@ -242,10 +242,10 @@
 
        </div>
        <div class="d-flex align-items-center gap-3">
-       <label for="regi1">
-       <p class="mt-1 mb-1"> أوافق على توكيل منصة بلاتين ومن يمثلها ولها حق توكيل غيرها في دفع الثمن وقبض السلعة وتسليمها لي وما يتبع ذلك من إجراءات .  </p>
-       </label>
        <input type="checkbox" v-model="form.power_attorney_flag" id="regi1" >
+       <label for="regi1">
+       <p class="mt-1 mb-1"> {{ $t('policy9') }} </p>
+       </label>
        </div>
        <div class="error-container2">
        <span class="error-msg" v-if="errors.power_attorney_flag">{{
@@ -254,6 +254,7 @@
        
        </div>
        <div class="d-flex align-items-center gap-3">
+       <input type="checkbox" v-model="form.privacy_flag" id="regi2" >
        <label for="regi2">
         <p class="mt-1 mb-3">
         {{ $t("auth1") }}
@@ -265,7 +266,6 @@
           ><span>{{ $t("policy3") }}</span></nuxt-link
         >
       </p>       </label>
-       <input type="checkbox" v-model="form.privacy_flag" id="regi2" >
        </div>
        <div class="error-container2">
        <span class="error-msg" v-if="errors.privacy_flag">{{
@@ -274,16 +274,16 @@
        
        </div>
       </div>
-     
       <button
-        class="gap-3"
+        class="gap-3 reg"
+        :class="{'act': form.privacy_flag && form.power_attorney_flag }"
         @keyup.enter="registerFunc()"
-        :disabled="pending"
+        :disabled="!pending"
         @click="registerFunc()"
       >
         {{ $t("create") }}
         <v-progress-circular
-          v-if="pending"
+          v-if="!pending"
           indeterminate
           :size="30"
           :width="5"
@@ -327,13 +327,13 @@
       <span class="resend text-center"> {{ $t("resend") }}</span>
       <button
         @keyup.enter="otpFunc()"
-        :disabled="pending"
+        :disabled="pending2"
         @click="otpFunc()"
         class="otp gap-3"
       >
         {{ $t("follow") }}
         <v-progress-circular
-          v-if="pending"
+          v-if="pending2"
           indeterminate
           :size="30"
           :width="5"
@@ -360,7 +360,8 @@ let store = useStore;
 const props = defineProps([""]);
 let otp = ref("");
 let signNav = ref(1);
-let pending = ref(false);
+let pending = ref(true);
+let pending2 = ref(false);
 let phoneNum = ref(null);
 
 let passType = ref("password");
@@ -385,8 +386,8 @@ let form = ref({
   password: "",
   password_confirmation: "",
   image: "",
-  power_attorney_flag :"",
-  privacy_flag :"",
+  power_attorney_flag :false,
+  privacy_flag :false,
 });
 
 const handleImageChange = (event) => {
@@ -448,8 +449,8 @@ const registerFunc = async () => {
   formBody.append("power_attorney_flag", form.value.power_attorney_flag);
   formBody.append("privacy_flag", form.value.privacy_flag);
   formBody.append("image", form.value.image);
-  if (check) {
-    pending.value = true;
+  if (check && form.value.power_attorney_flag && form.value.privacy_flag) {
+    pending.value = false;
     console.log("login");
     try {
       let result = await axios.post(`${getUrl()}/register`, formBody, {
@@ -462,12 +463,12 @@ const registerFunc = async () => {
         phoneNum.value = result.data.data.customer.phone;
         signNav.value = 2;
         otp.value = result.data.data.customer.otp;
-        pending.value = false;
+        pending.value = true;
       }
     } catch (errorss) {
       console.log(errorss);
       if (errorss.response) {
-        pending.value = false;
+        pending.value = true;
         errors.value = errorss.response.data.errors;
       }
     }
@@ -477,7 +478,7 @@ const registerFunc = async () => {
 };
 
 const otpFunc = async () => {
-  pending.value = true;
+  pending2.value = true;
   try {
     let result = await axios.post(
       `${getUrl()}/login-otp/${phoneNum.value}?otp=${parseInt(otp.value)}`,
@@ -492,14 +493,14 @@ const otpFunc = async () => {
     );
     if (result.status >= 200) {
       if (process.client) {
-        pending.value = false;
+        pending2.value = false;
         store.commit("changeFormCheck", 2);
       }
     }
     console.log(result.data.data);
   } catch (errorss) {
     if (errorss.response) {
-      pending.value = false;
+      pending2.value = false;
       errors.value = errorss.response.data.errors;
     }
   }

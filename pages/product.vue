@@ -431,7 +431,7 @@
                         <span>{{ $t("fast shipping") }}</span>
                       </div>
                     </div>
-                    <nuxt-link to="/returnPolicy" class="d-flex align-items-center gap-2">
+                    <nuxt-link :to="localePath('/returnPolicy')" class="d-flex align-items-center gap-2">
                       <img src="~/assets/images/package.svg" alt="" />
                       <span> {{ $t("back") }}</span>
                     </nuxt-link>
