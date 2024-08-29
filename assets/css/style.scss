@@ -504,7 +504,10 @@ html[dir="rtl"] input[type="tel"] {
 // end product checkout card
 
 // start input field
-
+.error-msg2 {
+  font-size: 13px;
+  color: #b1628c;
+}
 .main-input {
   display: flex;
   width: 100%;
@@ -525,10 +528,7 @@ html[dir="rtl"] input[type="tel"] {
   .icon{
     cursor: pointer;
   }
-  .error-msg2 {
-    font-size: 13px;
-    color: #b1628c;
-  }
+  
   label {
     font-size: 14px;
     color: $body-text;
@@ -1217,7 +1217,7 @@ html[dir="ltr"] .card-popup-container{
       .inputs {
         display: flex;
         flex-direction: column;
-        gap: 23px;
+        gap: 16px;
       }
 
       p {

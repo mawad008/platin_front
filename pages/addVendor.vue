@@ -25,7 +25,7 @@
         <div class="container ">
         <div class="row justify-content-center justify-content-xl-around justify-content-lg-around align-items-center w-100  main">
          <div class="col-12 col-xl-6 col-lg-6  d-flex justify-content-end">
-            <div class="text-container">
+            <div class="text-container mb-4">
                <!-- <logo v-if="locale == 'ar'" :w="157" :h="56"></logo>
                <eLogo v-else :w="157" :h="56" />   -->
                <img src="../assets/images/main-logo.svg" style="width:150px" alt="">
@@ -291,7 +291,9 @@
                 </div>
               </div>
             </div>
-            <p>
+            <div class="d-flex align-items-center gap-3">
+            <label for="vebdorReg">
+            <p class="" style="width:auto;">
               {{ $t("auth1") }}
               <nuxt-link @click="dialog = false" :to="localePath('/policy')">
                 <span>{{ $t("policy2") }}</span>
@@ -301,6 +303,12 @@
                 ><span>{{ $t("policy3") }}</span></nuxt-link
               >
             </p>
+            </label>
+             <input type="checkbox" v-model="objVendor.privacy_flag" id="vebdorReg">
+            </div>
+            <span class="error-msg2" v-if="errors2.privacy_flag">{{
+                    errors2.privacy_flag[0]
+                  }}</span>
             <div class="btns">
               <button
                 @click="AddVendor()"
@@ -428,6 +436,7 @@ if (locale.value == "ar") {
   phone: "",
   password: "",
   password_confirmation: "",
+  privacy_flag:""
 });
 
 const v2$ = useValidate(rules, objVendor);
@@ -445,6 +454,7 @@ const AddVendor = async () => {
   formDat.append("email", objVendor.value.email);
   formDat.append("phone", objVendor.value.phone);
   formDat.append("password", objVendor.value.password);
+  formDat.append("privacy_flag", objVendor.value.privacy_flag);
   formDat.append(
     "password_confirmation",
     objVendor.value.password_confirmation

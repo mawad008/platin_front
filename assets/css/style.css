@@ -374,6 +374,11 @@ html[dir=rtl] input[type=tel] {
   border-radius: 5px;
 }
 
+.error-msg2 {
+  font-size: 13px;
+  color: #b1628c;
+}
+
 .main-input {
   display: flex;
   width: 100%;
@@ -394,10 +399,6 @@ html[dir=rtl] input[type=tel] {
 }
 .main-input .icon {
   cursor: pointer;
-}
-.main-input .error-msg2 {
-  font-size: 13px;
-  color: #b1628c;
 }
 .main-input label {
   font-size: 14px;
@@ -1053,7 +1054,7 @@ html[dir=ltr] .card-popup-container {
 .auth-container-form .main-form .form .inputs {
   display: flex;
   flex-direction: column;
-  gap: 23px;
+  gap: 16px;
 }
 .auth-container-form .main-form .form p {
   font-size: 14px;
@@ -4588,6 +4589,9 @@ html[dir=ltr] td.headd2 {
   .p-text {
     width: 300px;
   }
+  .drop-container {
+    width: 40% !important;
+  }
 }
 @media (max-width: 760px) {
   .product-card {
@@ -5417,8 +5421,9 @@ html[dir=ltr] td.headd2 {
     width: 100%;
   }
   #select-product {
-    width: 100%;
-    position: relative !important;
+    width: 89%;
+    opacity: 1 !important;
+    z-index: 1111111 !important;
   }
   .the-vendor .tabs {
     justify-content: space-between;

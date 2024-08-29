@@ -81,8 +81,9 @@
              <input
                type="tel"
                maxlength="10"
+               name="phone"
                v-model="form.phone"
-               placeholder="+0215984494"
+               :placeholder="$t('phone')"
              />
             
              <div class="num">966+</div>
@@ -240,8 +241,21 @@
         </div>
 
        </div>
-      </div>
-      <p>
+       <div class="d-flex align-items-center gap-3">
+       <label for="regi1">
+       <p class="mt-1 mb-1"> أوافق على توكيل منصة بلاتين ومن يمثلها ولها حق توكيل غيرها في دفع الثمن وقبض السلعة وتسليمها لي وما يتبع ذلك من إجراءات .  </p>
+       </label>
+       <input type="checkbox" v-model="form.power_attorney_flag" id="regi1" >
+       </div>
+       <div class="error-container2">
+       <span class="error-msg" v-if="errors.power_attorney_flag">{{
+               errors.power_attorney_flag[0]
+             }}</span>
+       
+       </div>
+       <div class="d-flex align-items-center gap-3">
+       <label for="regi2">
+        <p class="mt-1 mb-3">
         {{ $t("auth1") }}
         <nuxt-link :to="localePath('/policy')">
           <span>{{ $t("policy2") }}</span>
@@ -250,7 +264,17 @@
         <nuxt-link :to="localePath('/terms')"
           ><span>{{ $t("policy3") }}</span></nuxt-link
         >
-      </p>
+      </p>       </label>
+       <input type="checkbox" v-model="form.privacy_flag" id="regi2" >
+       </div>
+       <div class="error-container2">
+       <span class="error-msg" v-if="errors.privacy_flag">{{
+               errors.privacy_flag[0]
+             }}</span>
+       
+       </div>
+      </div>
+     
       <button
         class="gap-3"
         @keyup.enter="registerFunc()"
@@ -361,6 +385,8 @@ let form = ref({
   password: "",
   password_confirmation: "",
   image: "",
+  power_attorney_flag :"",
+  privacy_flag :"",
 });
 
 const handleImageChange = (event) => {
@@ -419,6 +445,8 @@ const registerFunc = async () => {
   formBody.append("email", form.value.email);
   formBody.append("password", form.value.password);
   formBody.append("password_confirmation", form.value.password_confirmation);
+  formBody.append("power_attorney_flag", form.value.power_attorney_flag);
+  formBody.append("privacy_flag", form.value.privacy_flag);
   formBody.append("image", form.value.image);
   if (check) {
     pending.value = true;

@@ -27,6 +27,7 @@ export const useStore = createStore({
     search: '',
     animCart:false,
     activeMobile: 0,
+    totalShipment:0,
     isInFav: [],
     step: 1,
     idPay:'',
@@ -84,6 +85,10 @@ export const useStore = createStore({
     paymentVarFunc(state , payload){
       state.paymentVar = payload;
       localStorage.setItem("storePayVar",JSON.stringify(payload));
+    },
+    setTotalShipment(state , payload){
+      state.totalShipment = payload;
+      localStorage.setItem("totalShipment",JSON.stringify(payload));
     },
     deleteFav(state, payload){
       const { indexx, itemId } = payload;
@@ -434,6 +439,7 @@ export const useStore = createStore({
       localStorage.removeItem("total");
       localStorage.removeItem("num");
       localStorage.removeItem("storeId");
+      localStorage.removeItem("totalShipment");
     },
     clearCheckout(state){
       state.paymentVar = 1;
@@ -462,6 +468,7 @@ export const useStore = createStore({
         const check3 = JSON.parse(localStorage.getItem("check3")) || false;
         const lineActive1 = JSON.parse(localStorage.getItem("lineActive1")) || false;
         const lineActive2 = JSON.parse(localStorage.getItem("lineActive2")) || false;
+        const totalShipment = JSON.parse(localStorage.getItem("totalShipment")) || 0;
         const lineActive3 = JSON.parse(localStorage.getItem("lineActive3")) || false;
         // const storedUser3 = JSON.parse(localStorage.getItem("storeUser3")) || {};
         const userCookie = Cookies.get("user");
@@ -482,6 +489,7 @@ export const useStore = createStore({
         commit("setStep", storedStep);
         commit("setPayVar", storedPayVar);
         commit("setId", storedId);
+        commit("setTotalShipment", totalShipment);
         commit("setHeaderSteps", {check1:check1 , check2:check2 , check3:check3 , lineActive1:lineActive1 , lineActive2:lineActive2 , lineActive3:lineActive3 });
         commit("setAuthenticated", storedAuth);
         getTotalBasketNum(state);

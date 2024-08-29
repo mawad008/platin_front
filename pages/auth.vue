@@ -97,7 +97,7 @@ const randomimages = () => {
     if (theimage.value == 4) {
       theimage.value = 1;
     }
-  }, 3000);
+  }, 5000);
 };
 
 useHead({

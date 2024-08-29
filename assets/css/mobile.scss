@@ -32,6 +32,9 @@ $rating-bg: #ecb43c;
   .p-text {
     width: 300px;
   }
+  .drop-container{
+    width: 40% !important;
+  }
 }
 
 @media (max-width: 760px) {
@@ -989,8 +992,10 @@ $rating-bg: #ecb43c;
       width: 100%;
     }
     #select-product {
-      width: 100%;
-      position:  relative !important;
+      width: 89%;
+      // position:  relative !important;
+      opacity: 1 !important;
+      z-index: 1111111 !important;
     }
     .the-vendor {
       .tabs {

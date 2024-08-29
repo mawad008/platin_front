@@ -855,7 +855,7 @@ const getSwiperDirection = computed(() => {
 useSeoMeta({
   title: locale.value == "ar" ? "بلاتين" : "platin",
   description: 'This is my amazing site, let me tell you all about it.',
-})
+});
 
 onMounted(async () => {
   getCategories();

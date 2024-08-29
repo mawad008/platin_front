@@ -1880,12 +1880,13 @@ const checkoutFunc1 = async () => {
         productsPopup.value = result.data.data.unavailableProducts;
       }
       if(result.data.data.unavailableProducts.length <= 0){
+        priceShipping.value = result.data.data.totalShippingCost;
         store.commit("addStep", 3);
+        store.commit("setTotalShipment", result.data.data.totalShippingCost);
         store.commit("addHeaderSteps", {check1:true , check2:true , check3:true , lineActive1:true , lineActive2:true , lineActive3:false });
         store.state.step = 3;
         store.state.check3 = true;
         store.state.lineActive2 = true;
-        priceShipping.value = result.data.data.totalShippingCost;
       }
       if(result.data.data.unique_vendors){
         unique_vendorsVar.value = result.data.data.unique_vendors;
@@ -2123,8 +2124,9 @@ watch(
     () => store.state.idPay,
     () => user.value,
     () => store.state.step,
+    () => store.state.totalShipment,
   ],
-  ([user1, pay1, val, loginUser , step]) => {
+  ([user1, pay1, val, loginUser , step , ship]) => {
     if(step == 2){
   initMap();
     }
@@ -2167,7 +2169,7 @@ watch(
       
     }
     paymentMethodVar.value = pay1 ? pay1 : 1;
-   
+    priceShipping.value = ship;
     tap_idV.value = val ? val : "";
     // if(tap_idV.value){
     // }

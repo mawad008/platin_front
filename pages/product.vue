@@ -431,10 +431,10 @@
                         <span>{{ $t("fast shipping") }}</span>
                       </div>
                     </div>
-                    <div class="d-flex align-items-center gap-2">
+                    <nuxt-link to="/returnPolicy" class="d-flex align-items-center gap-2">
                       <img src="~/assets/images/package.svg" alt="" />
                       <span> {{ $t("back") }}</span>
-                    </div>
+                    </nuxt-link>
                   </div>
                 </div>
               </div>

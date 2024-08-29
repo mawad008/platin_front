@@ -15,8 +15,9 @@
               id="select-product"
               class="d-flex flex-column "
             >
+            <input type="text" @click.stop v-model="serachText" class="text-light" :placeholder="$t('search')">
               <span
-                v-for="item in cities"
+                v-for="item in Allcities"
                 @click="selectbox1 = item.id , getVendors() , text1 = item.name ,  overlayVisible2 = false"
                 :class="{ active: selectbox1 == item.id }"
               >
@@ -90,6 +91,7 @@ let text1 = ref('');
 let overlayVisible2 = ref(false);
 let spinner = ref(false);
 let pending = ref(true);
+let serachText = ref('');
 const getCities = async () => {
   let result = await axios.get(`${getUrl()}/general`, {
     headers: {
@@ -114,6 +116,12 @@ const getVendors = async () => {
   }
   vendors.value = result.data.data;
 };
+
+const Allcities = computed(()=>{
+  return cities.value.filter((ele)=>{
+    return ele.name.toLowerCase().includes(serachText.value.toLowerCase())
+  })
+})
 
 const goToVendor = (id, name) => {
       const queryParams = {
