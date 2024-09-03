@@ -11,18 +11,6 @@
             {{ $t('thank2') }}
           </p>
 
-          <div class="order-number">
-            <!-- <h5>{{ $t('orderNum') }} : <span> {{ orderNum1 }} </span></h5> -->
-            <button @click="copyToClipboard();" class="iconn">
-              <img v-if="check" src="~/assets/images/share1.svg" style="margin-bottom:0px" alt="">
-              <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#90a3bf" height="20" width="20"
-                viewBox="0 0 448 512">
-                <path
-                  d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-              </svg>
-            </button>
-          </div>
-
           <nuxt-link :to="localePath('/')" class="nav-link">
             <button class="send home">{{ $t('backHome') }}</button>
           </nuxt-link>

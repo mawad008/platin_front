@@ -719,7 +719,7 @@
               style="gap: 10px"
             >
               <span> {{ $t("dev") }}</span>
-              <img src="~/assets/images/webstdy.png" alt="" />
+              <img src="https://webstdy.com/CDN/cr.png" alt="" />
             </a>
             <span> {{ $t("rights") }} © {{ dataYear }} . </span>
           </div>
