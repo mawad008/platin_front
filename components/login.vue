@@ -526,10 +526,13 @@ let forgetError2 = ref();
 let errors2 = ref([]);
 const forgetPassFunc1 = async () => {
   console.log(forgetPhone.value);
+  console.log(forgetPhone.value);
   if (forgetPhone.value) {
     pendingForget.value = true;
     try {
-      let result = await axios.post(`${getUrl()}/send-otp/${forgetPhone.value}`, {
+      let result = await axios.post(`${getUrl()}/send-otp/${forgetPhone.value}`,
+      {}, 
+      {
         headers: {
           "Content-Language": `${locale.value}`,
         },

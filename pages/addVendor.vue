@@ -115,8 +115,8 @@
                   </label>
                   <input
                     v-model="objVendor.commercial_register_number"
-                    type="number"
-                    min="1"
+                    type="text"
+                    @input="validatePhoneNumber"
                     :placeholder="$t('commercialNum')"
                   />
                   <span
@@ -278,8 +278,8 @@
                   <label for=""> {{ $t("nationalNum") }} <span>*</span> </label>
                   <input
                     v-model="objVendor.national_id"
-                    type="number"
-                    min="1"
+                    type="text"
+                    @input="validatePhoneNumber2"
                     :placeholder="$t('nationalNum')"
                   />
                   <span class="error-msg" v-if="v2$.national_id.$error">{{
@@ -420,7 +420,8 @@ if (locale.value == "ar") {
   titleVendor.value = "successfully registered";
   passVal.value = "The value must be equal to the other value";
 }
-
+const minValue = 1000000000; // Minimum value with 10 digits
+const maxValue = 9999999999; // Maximum value with 10 digits
   let router = ref(useRouter());
   
   const goBack = () =>{
@@ -439,6 +440,23 @@ if (locale.value == "ar") {
   privacy_flag: false
 });
 
+
+const validatePhoneNumber = (event) => {
+  let value = event.target.value;
+value = value.replace(/\D/g, '');
+if (value.length > 10) {
+  value = value.slice(0, 10);
+}
+  objVendor.value.commercial_register_number = value;
+};
+const validatePhoneNumber2 = (event) => {
+  let value = event.target.value;
+value = value.replace(/\D/g, '');
+if (value.length > 10) {
+  value = value.slice(0, 10);
+}
+  objVendor.value.national_id = value;
+};
 const v2$ = useValidate(rules, objVendor);
 let pending = ref(false);
 let errors2 = ref([]);
@@ -475,6 +493,8 @@ const AddVendor = async () => {
         }
         v2$.value.$reset();
         errors2.value = [];
+        const fullLocalePath = localePath('/thank-you');
+        router.value.push(fullLocalePath);
         const moshaToastify = await import("mosha-vue-toastify");
         const { createToast } = moshaToastify;
         createToast(
