@@ -40,6 +40,7 @@
       </div>
     </div>
 
+   
     <div class="offers containe" style="">
       <swiper
         :effect="'fade'"
@@ -49,6 +50,10 @@
         :dir="getSwiperDirection"
         :pagination="{
           clickable: true,
+        }"
+        :autoplay="{
+          delay: 4000,
+          disableOnInteraction: false,
         }"
         :breakpoints="{
           '300': {
@@ -64,10 +69,7 @@
             spaceBetween: 20,
           },
         }"
-        :autoplay="{
-          delay: 2500,
-          disableOnInteraction: false,
-        }"
+        
         :modules="[SwiperPagination, SwiperAutoplay]"
         class=""
       >
@@ -101,6 +103,7 @@
             </div>
           </div>
           <div class="overlay"></div>
+          <a class="link" target="_blank"  :href="item.link"></a>
         </swiper-slide>
       </swiper>
     </div>

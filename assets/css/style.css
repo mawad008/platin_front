@@ -1560,6 +1560,12 @@ html[dir=ltr] .card-popup-container {
   border-radius: 24px;
   position: relative;
 }
+.offers .box .link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
 .offers .box .circle {
   position: absolute;
   width: 321px;
@@ -1592,13 +1598,15 @@ html[dir=ltr] .card-popup-container {
   background-size: cover;
   width: 550px;
   background-repeat: no-repeat;
-  position: relative;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 .offers .box .main-img img {
-  position: absolute;
   width: 357px;
-  height: 354px;
-  bottom: 0;
+  height: 304px;
 }
 .offers .box.f1 {
   background: linear-gradient(248deg, #212339 -60.76%, #09132c -32.78%, #1c222f 6.24%, #313b51 49.31%, #272e3d 122.2%, #626a7e 139.04%);
