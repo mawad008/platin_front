@@ -1599,7 +1599,6 @@ html[dir=ltr] .card-popup-container {
   width: 550px;
   background-repeat: no-repeat;
   position: absolute;
-  left: 0;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -4548,7 +4547,7 @@ html[dir=rtl] .navbar .search .inp {
 html[dir=rtl] .offers .box .circle {
   left: 50px;
 }
-html[dir=rtl] .offers .box .main-img img {
+html[dir=rtl] .offers .box .main-img {
   left: 0;
 }
 html[dir=rtl] .banner-container .arrows {
@@ -4580,7 +4579,7 @@ html[dir=ltr] .arrow-icon {
 html[dir=ltr] .offers .circle {
   right: 50px;
 }
-html[dir=ltr] .offers .main-img img {
+html[dir=ltr] .offers .main-img {
   right: 0;
 }
 html[dir=ltr] .banner-container .arrows {
