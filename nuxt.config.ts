@@ -21,20 +21,20 @@ export default defineNuxtConfig({
     iframes: true,
     native: false,
     directiveOnly: false,
-    
+
     // Default image must be in the public folder
     defaultImage: '/loader-platin.svg',
-  
+
     // To remove class set value to false
     loadingClass: 'isLoading',
     loadedClass: 'isLoaded',
     appendClass: 'lazyLoad',
-    
+
     observerConfig: {
       // See IntersectionObserver documentation
     }
   },
-  
+
   image: {
     formats: {
       webp: {
@@ -42,14 +42,14 @@ export default defineNuxtConfig({
       }
     }
   },
-  vite:{
+  vite: {
     build: {
       terserOptions: {
         compress: {
           drop_console: true,
         }
+      }
     }
-  }
   },
   plugins: [{ src: "./plugins/mosha.js" }],
   ssr: true,
@@ -92,7 +92,7 @@ export default defineNuxtConfig({
       link: [
         { rel: "icon", type: "image/png", href: "/fav.svg" },
         {
-          rel:"stylesheet",
+          rel: "stylesheet",
           href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
           integrity:
             "sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==",
@@ -104,6 +104,24 @@ export default defineNuxtConfig({
         {
           src: "/js/bootstrap.bundle.min.js",
           // body: true,
+        },
+        {
+          innerHTML: `
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NFHPGL7H');
+        `,
+        },
+        {
+          innerHTML: `
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFHPGL7H"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+        `,
+          body: true,
         },
 
         {
