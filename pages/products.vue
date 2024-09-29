@@ -106,6 +106,7 @@
         :length="pageCount"
         rounded="circle"
         @input="updatePage"
+        :total-visible="7"
         @click="getProducts()"
       ></v-pagination>
     </div>
@@ -253,6 +254,7 @@ const paginatedItems = computed(() => {
 
 const updatePage = (newPage) => {
   page.value = newPage;
+  console.log('dsdsdsd');
   getProducts();
 }
 

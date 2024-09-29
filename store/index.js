@@ -1,10 +1,8 @@
 import { createStore } from "vuex";
 import Cookies from "js-cookie";
 import axios from "axios";
-// process.client ? JSON.parse(sessionStorage.getItem("basket")) :
 import CircularJSON from 'circular-json';
-// let router = useRouter();
-// const localePath = useLocalePath();
+import product from "./product";
 export const useStore = createStore({
   state: {
     basket: [],
@@ -510,6 +508,9 @@ export const useStore = createStore({
       }
       commit("setAuthenticated", true);
     },
+  },
+  modules: {
+    product, // Register the product module
   },
 });
 

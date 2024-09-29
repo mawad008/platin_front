@@ -61,12 +61,11 @@
         <Swiper
           :spaceBetween="30"
           :centeredSlides="true"
-          :effect="'fade'"
           :autoplay="{
             delay: 2500,
             disableOnInteraction: false,
           }"
-          :modules="[SwiperAutoplay, SwiperEffectFade]"
+          :modules="[SwiperAutoplay]"
           class="image"
         >
           <swiper-slide v-for="img in product.images">

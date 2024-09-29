@@ -461,7 +461,7 @@
     <Loader2 v-if="checkInt"></Loader2>
     <slot />
 
-    <footer class="footer-container">
+    <footer ref="footerRef" id="footerId" class="footer-container">
       <div>
         <div class="container">
           <div class="row justify-content-between">
@@ -1001,7 +1001,7 @@
         </div>
       </v-dialog>
     </footer>
-    <footer class="mobile-footer">
+    <footer ref="footerRef" class="mobile-footer">
       <div class="icons">
         <nuxt-link
           class="icon"
@@ -1178,6 +1178,12 @@ const { locale, setLocale } = useI18n();
 let theNum = computed(() => {
   return store.state.basketNum;
 });
+
+const footerRef = ref(null)
+
+defineExpose({
+  footerRef
+})
 
 let dialog = ref(false);
 let checkInt = ref(false);

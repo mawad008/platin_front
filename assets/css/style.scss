@@ -287,14 +287,14 @@ input[type=number]::-webkit-inner-spin-button {
     // background-position: center;
     // background-size: contain;
     // background-repeat: no-repeat;
-    width: 142px;
+    width: 100%;
     height: 142px;
 
     // .swiper{
     //   width: 200px !important;
     //   height: 100% !important;
     // }
-    margin-top: 24px;
+    margin-top: 10px;
     .swiper-slide {
       width: 100%;
       height: 100%;
@@ -2131,7 +2131,6 @@ html[dir="ltr"] .card-popup-container{
 // pagination style
 
 .v-pagination {
-  direction: ltr;
   margin-top: 56px;
   ul{
     padding-left: 0px !important;
@@ -2149,6 +2148,11 @@ html[dir="ltr"] .card-popup-container{
   }
   .v-btn--variant-text .v-btn__overlay {
     background-color: #dcba95 !important;
+  }
+}
+html[dir="rtl"]{
+  .v-pagination__prev, .v-pagination__next{
+    transform: scaleX(-1);
   }
 }
 
@@ -2950,6 +2954,10 @@ background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0.00) 100%);
         &.add-cart-btn {
           background-color: $secondary-black;
           color: #fff;
+        }
+        &.out{
+          cursor: not-allowed;
+          opacity: 0.8;
         }
         &.try {
           color: $secondary-black;

@@ -343,50 +343,57 @@
                 </div>
 
                 <div class="price-list">
-                  <span class="word">  {{ $t("price") }} {{ mainProduct.discount_price ? $t('startFrom') : "" }}</span>
-                  <div class="price-content ">
-                  <div v-if="newPriceItem" class="d-flex align-items-center gap-2 mt-2">
-                  <h4 class="">
+                  <span class="word">
+                    {{ $t("price") }}
                     {{
-                      newPriceItem.discount_price
-                        ? newPriceItem.discount_price
-                        : newPriceItem.price
-                    }}
-                    {{ $t("curr") }}
-                  </h4>
-                    <span
-                      v-if="newPriceItem.discount_price"
-                      class="desc"
-                      style="font-size: 12px"
+                      mainProduct.discount_price ? $t("startFrom") : ""
+                    }}</span
+                  >
+                  <div class="price-content">
+                    <div
+                      v-if="newPriceItem"
+                      class="d-flex align-items-center gap-2 mt-2"
                     >
-                      {{ newPriceItem.price }} {{ $t("curr") }}</span
-                    >
-                  </div>
-                  <div v-else class="d-flex align-items-center gap-2 mt-2">
-                  <h4 class="">
-                    {{
-                      mainProduct.discount_price
-                        ? mainProduct.discount_price
-                        : mainProduct.price
-                    }}
-                    {{ $t("curr") }}
-                  </h4>
-                    <span
-                      v-if="mainProduct.discount_price"
-                      class="desc"
-                      style="font-size: 12px"
-                    >
-                      {{ mainProduct.price }} {{ $t("curr") }}</span
-                    >
-                  </div>
-                  
+                      <h4 class="">
+                        {{
+                          newPriceItem.discount_price
+                            ? newPriceItem.discount_price
+                            : newPriceItem.price
+                        }}
+                        {{ $t("curr") }}
+                      </h4>
+                      <span
+                        v-if="newPriceItem.discount_price"
+                        class="desc"
+                        style="font-size: 12px"
+                      >
+                        {{ newPriceItem.price }} {{ $t("curr") }}</span
+                      >
+                    </div>
+                    <div v-else class="d-flex align-items-center gap-2 mt-2">
+                      <h4 class="">
+                        {{
+                          mainProduct.discount_price
+                            ? mainProduct.discount_price
+                            : mainProduct.price
+                        }}
+                        {{ $t("curr") }}
+                      </h4>
+                      <span
+                        v-if="mainProduct.discount_price"
+                        class="desc"
+                        style="font-size: 12px"
+                      >
+                        {{ mainProduct.price }} {{ $t("curr") }}</span
+                      >
+                    </div>
                   </div>
                 </div>
 
                 <div
                   class="count-type d-flex flex-column flex-xl-row flex-lg-row align-items-start align-items-xl-center align-items-lg-center gap-3"
                 >
-                  <div class="count d-flex flex-column gap-2">
+                  <div v-if="!newPriceItem?.stock == 0" class="count d-flex flex-column gap-2">
                     <span> {{ $t("amount") }} </span>
                     <input type="number" v-model="quantity" min="1" />
                   </div>
@@ -402,9 +409,9 @@
                 </div>
 
                 <div class="actions-btns">
-                  <button @click="addToBasket()" class="add-cart-btn">
-                    <span> {{ $t("add to cart") }}</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
+                  <button @click="addToBasket()" :disabled="newPriceItem?.stock == 0" class="add-cart-btn" :class="{'out': newPriceItem?.stock == 0}">
+                    <span>  {{newPriceItem?.stock == 0 ? 'غير متوفر الان' : $t("add to cart") }}</span>
+                    <i v-if="!newPriceItem?.stock == 0" class="fa-solid fa-cart-shopping"></i>
                   </button>
                   <!-- <button class="try">{{ $t("try") }}</button> -->
                   <div
@@ -431,7 +438,10 @@
                         <span>{{ $t("fast shipping") }}</span>
                       </div>
                     </div>
-                    <nuxt-link :to="localePath('/returnPolicy')" class="d-flex align-items-center gap-2">
+                    <nuxt-link
+                      :to="localePath('/returnPolicy')"
+                      class="d-flex align-items-center gap-2"
+                    >
                       <img src="~/assets/images/package.svg" alt="" />
                       <span> {{ $t("back") }}</span>
                     </nuxt-link>
@@ -514,20 +524,23 @@
             </div>
           </div>
         </div>
-        <div id="hiddenDiv" class="container product-card-scroll">
+        <div
+          id="hiddenDiv"
+          class="container product-card-scroll"
+        >
           <div class="image-container">
             <div class="image">
               <img src="~/assets/images/product.png" alt="" />
             </div>
             <div class="d-flex flex-column gap-2">
               <h4>{{ mainProduct.name }}</h4>
-              <span>{{ mainProduct.price }} {{ $t("curr") }}</span>
+              <span>{{ newPriceItem?.price }} {{ $t("curr") }}</span>
             </div>
           </div>
 
           <div class="actions">
-            <input type="number" min="1" name="" v-model="quantity" />
-            <div class="input-number">
+            <input v-if="!newPriceItem?.stock == 0" type="number" min="1" name="" v-model="quantity" />
+            <div  v-if="!newPriceItem?.stock == 0" class="input-number">
               <button @click="addNum()">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -558,7 +571,7 @@
                 </svg>
               </button>
             </div>
-            <button @click="addToBasket()" class="fill" type="">
+            <button v-if="!newPriceItem?.stock == 0"  @click="addToBasket()" class="fill" type="">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -724,460 +737,415 @@
               </div>
             </div>
             <div class="h-100">
-            <div v-if="tab == 0">
-              <div class="table-responsive">
-                      <table v-if="mainProduct.variations" class="table table-stripe">
-                        <thead>
-                          <tr>
-                            <th scope="col">{{ $t("weight") }}</th>
-                            <th scope="col">{{ $t("size1") }}</th>
-                            <th scope="col">{{ $t("price") }}</th>
-                          </tr>
-                        </thead>
-                        <tbody  class=" ">
-                          <tr
-                            v-for="(item, index) in mainProduct.variations"
-                            class=""
-                            @click="changePrice((item.discount_price ? item.discount_price : item.price) , item.size , item.weight , item)"
-                            style="cursor: pointer;"
-                          >
-                            <!-- <td class="headd headd1">{{ $t("weight") }}</td> -->
-                            <td class="">
-                              {{ item.weight }} {{ $t("g") }}
-                            </td>
-                            <!-- <td class="headd">{{ $t("desc info2") }}</td> -->
-                            <td class="headd2">{{ item.size }}</td>
-                            <!-- <td class="headd">{{ $t("price") }}</td> -->
-                            <td class="headd2">
-                              {{ item.discount_price ? item.discount_price : item.price }} {{ $t("curr") }} <span v-if="item.discount_price" class="px-1" style="text-decoration: line-through; color:#cfd3d6; font-size: 12px;">{{ item.price }}</span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-            </div>
-            <div v-if="tab == 1">
-               <!-- <div class="table-details">
-                      <div class="row-container active">
-                        <span class="head"> {{ $t("design") }} </span>
-                        <span class="det">
-                          {{ mainProduct.description }}
-                        </span>
-                        <span class="head"> {{ $t("desc info1") }}</span>
-                        <span class="det">
-                          {{$t('caliber')}} {{ mainProduct.caliber }} {{$t('carat')}}
-                        </span>
-                      </div>
-                      <div class="row-container">
-                        <span class="head"> {{ $t("desc info2") }}</span>
-                        <span class="det">
-                          {{ mainProduct.size }}
-                        </span>
-                        <span class="head"> {{ $t("weight") }} </span>
-                        <span class="det">{{ mainProduct.weight }} {{ $t("weight1") }}</span>
-                      </div>
-                      <div class="row-container active">
-                        <span class="head"> {{$t("desc info3")}} </span>
-                        <span class="det">
-                          {{ mainProduct.maintenance_and_care }}
-                        </span>
-                        <span class="head"> {{ $t("desc info4") }}</span>
-                        <span class="det"> {{ mainProduct.main_stone }}</span>
-                      </div>
-                      <div class="row-container">
-                        <span class="head"> {{ $t("desc info5") }}</span>
-                        <span class="det">
-                          {{ mainProduct.packaging }}
-                        </span>
-                        <span class="head"> {{ $t("desc info6") }} </span>
-                        <span class="det"> {{ mainProduct.guarantee }} </span>
-                      </div>
-                      <div class="row-container active">
-                        <span class="head"> {{$t("desc info7")}} </span>
-                        <span class="det">
-                          {{ mainProduct.sustainable_assets }}
-                        </span>
-                        <span class="head"> {{$t("color")}} </span>
-                        <span class="det"> {{ mainProduct.color }}</span>
-                      </div>
-                    </div> -->
-                    <div class="table-responsive">
-                      <table class="table table-stripe">
-                        <thead>
-                          <tr>
-                            <!-- <th scope="col">{{ $t("design") }}</th> -->
-                            <!-- <th scope="col">{{ $t("desc info2")  }}</th> -->
-                          </tr>
-                        </thead>
-                        <tbody class=" ">
-                          <tr class="">
-                            <td class="headd headd1">{{ $t("design") }}</td>
-                            <td class="">{{ mainProduct.description }}</td>
-                            <td class="headd">{{ $t("desc info1") }}</td>
-                            <td class="headd2">
-                              {{ $t("caliber") }} {{ mainProduct.caliber }}
-                              {{ $t("carat") }}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="headd headd1">{{ $t("size1") }}</td>
-                            <td>{{ mainProduct.size }}</td>
-                            <td class="headd">{{ $t("weight") }}</td>
-                            <td class="headd2">
-                              {{ mainProduct.weight }} {{ $t("weight1") }}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="headd headd1">{{ $t("desc info3") }}</td>
-                            <td>{{ mainProduct.maintenance_and_care }}</td>
-                            <td class="headd">{{ $t("desc info4") }}</td>
-                            <td class="headd2">{{ mainProduct.main_stone }}</td>
-                          </tr>
-                          <tr>
-                            <td class="headd headd1">{{ $t("desc info5") }}</td>
-                            <td>{{ mainProduct.packaging }}</td>
-                            <td class="headd">{{ $t("desc info6") }}</td>
-                            <td class="headd2">{{ mainProduct.guarantee }}</td>
-                          </tr>
-                          <tr>
-                            <td class="headd headd1">{{ $t("desc info7") }}</td>
-                            <td>{{ mainProduct.sustainable_assets }}</td>
-                            <td class="headd">{{ $t("color") }}</td>
-                            <td class="headd2">{{ mainProduct.color }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-            </div>
-            <div v-if="tab == 2">
-              <div class="rating-container">
-                      <div
-                        class="head w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3 justify-content-between mt-4"
+              <div v-if="tab == 0">
+                <div class="table-responsive">
+                  <table
+                    v-if="mainProduct.variations"
+                    class="table table-stripe"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ $t("weight") }}</th>
+                        <th scope="col">{{ $t("size1") }}</th>
+                        <th scope="col">{{ $t("price") }}</th>
+                      </tr>
+                    </thead>
+                    <tbody class=" ">
+                      <tr
+                        v-for="(item, index) in mainProduct.variations"
+                        class=""
+                        @click="
+                          changePrice(
+                            item.discount_price
+                              ? item.discount_price
+                              : item.price,
+                            item.size,
+                            item.weight,
+                            item
+                          )
+                        "
+                        style="cursor: pointer"
                       >
-                        <div
-                          class="text d-flex align-items-center align-items-xl-start align-items-lg-start flex-column gap-2"
-                        >
-                          <h6>{{ $t("write comment") }}</h6>
-                          <span> {{ $t("share comment") }} </span>
-                        </div>
-                        <div
-                          class="d-flex flex-column align-items-center gap-2"
-                        >
-                          <v-rating
-                            style="direction: ltr"
-                            half-increments
-                            hover
-                            :length="5"
-                            :size="29"
-                            @update:model-value="updateRateInput"
-                            color="#919EAB"
-                            active-color="#ECB43C"
-                          />
+                        <!-- <td class="headd headd1">{{ $t("weight") }}</td> -->
+                        <td class="">{{ item.weight }} {{ $t("g") }}</td>
+                        <!-- <td class="headd">{{ $t("desc info2") }}</td> -->
+                        <td class="headd2">{{ item.size }}</td>
+                        <!-- <td class="headd">{{ $t("price") }}</td> -->
+                        <td class="headd2">
+                          {{
+                            item.discount_price
+                              ? item.discount_price
+                              : item.price
+                          }}
+                          {{ $t("curr") }}
                           <span
-                            class="text-danger"
-                            v-if="rateInputError.rate"
-                            >{{ rateInputError.rate[0] }}</span
+                            v-if="item.discount_price"
+                            class="px-1"
+                            style="
+                              text-decoration: line-through;
+                              color: #cfd3d6;
+                              font-size: 12px;
+                            "
+                            >{{ item.price }}</span
                           >
-                        </div>
-                      </div>
-
-                      <div
-                        class="send-input w-100 d-flex align-items-center justify-content-between"
-                      >
-                        <input
-                          type="text"
-                          v-model="commentInput"
-                          :placeholder="$t('share comment')"
-                        />
-                        <button @click="addComment()">
-                          <span> {{ $t("share") }} </span>
-                          <svg
-                            class="arrow-icon"
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="1em"
-                            viewBox="0 0 512 512"
-                          >
-                            <path
-                              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7
-                       0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                      <span class="text-danger" v-if="rateInputError.comment">{{
-                        rateInputError.comment[0]
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div v-if="tab == 1">
+                <div class="table-responsive">
+                  <table class="table table-stripe">
+                    <thead>
+                      <tr>
+                        <!-- <th scope="col">{{ $t("design") }}</th> -->
+                        <!-- <th scope="col">{{ $t("desc info2")  }}</th> -->
+                      </tr>
+                    </thead>
+                    <tbody class=" ">
+                      <tr class="">
+                        <td class="headd headd1">{{ $t("design") }}</td>
+                        <td class="">{{ mainProduct.description }}</td>
+                        <td class="headd">{{ $t("desc info1") }}</td>
+                        <td class="headd2">
+                          {{ $t("caliber") }} {{ mainProduct.caliber }}
+                          {{ $t("carat") }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="headd headd1">{{ $t("size1") }}</td>
+                        <td>{{ mainProduct.size }}</td>
+                        <td class="headd">{{ $t("weight") }}</td>
+                        <td class="headd2">
+                          {{ mainProduct.weight }} {{ $t("weight1") }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="headd headd1">{{ $t("desc info3") }}</td>
+                        <td>{{ mainProduct.maintenance_and_care }}</td>
+                        <td class="headd">{{ $t("desc info4") }}</td>
+                        <td class="headd2">{{ mainProduct.main_stone }}</td>
+                      </tr>
+                      <tr>
+                        <td class="headd headd1">{{ $t("desc info5") }}</td>
+                        <td>{{ mainProduct.packaging }}</td>
+                        <td class="headd">{{ $t("desc info6") }}</td>
+                        <td class="headd2">{{ mainProduct.guarantee }}</td>
+                      </tr>
+                      <tr>
+                        <td class="headd headd1">{{ $t("desc info7") }}</td>
+                        <td>{{ mainProduct.sustainable_assets }}</td>
+                        <td class="headd">{{ $t("color") }}</td>
+                        <td class="headd2">{{ mainProduct.color }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div v-if="tab == 2">
+                <div class="rating-container">
+                  <div
+                    class="head w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row gap-3 justify-content-between mt-4"
+                  >
+                    <div
+                      class="text d-flex align-items-center align-items-xl-start align-items-lg-start flex-column gap-2"
+                    >
+                      <h6>{{ $t("write comment") }}</h6>
+                      <span> {{ $t("share comment") }} </span>
+                    </div>
+                    <div class="d-flex flex-column align-items-center gap-2">
+                      <v-rating
+                        style="direction: ltr"
+                        half-increments
+                        hover
+                        :length="5"
+                        :size="29"
+                        @update:model-value="updateRateInput"
+                        color="#919EAB"
+                        active-color="#ECB43C"
+                      />
+                      <span class="text-danger" v-if="rateInputError.rate">{{
+                        rateInputError.rate[0]
                       }}</span>
+                    </div>
+                  </div>
 
-                      <div class="comments-container">
-                        <div
-                          class="head w-100 d-flex align-items-center gap-3 flex-column flex-xl-row flex-xl-row justify-content-between mt-4"
+                  <div
+                    class="send-input w-100 d-flex align-items-center justify-content-between"
+                  >
+                    <input
+                      type="text"
+                      v-model="commentInput"
+                      :placeholder="$t('share comment')"
+                    />
+                    <button @click="addComment()">
+                      <span> {{ $t("share") }} </span>
+                      <svg
+                        class="arrow-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="1em"
+                        viewBox="0 0 512 512"
+                      >
+                        <path
+                          d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7
+                       0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <span class="text-danger" v-if="rateInputError.comment">{{
+                    rateInputError.comment[0]
+                  }}</span>
+
+                  <div class="comments-container">
+                    <div
+                      class="head w-100 d-flex align-items-center gap-3 flex-column flex-xl-row flex-xl-row justify-content-between mt-4"
+                    >
+                      <div class="text d-flex flex-column gap-2">
+                        <h6>{{ $t("comments") }}</h6>
+                        <span>
+                          {{ $t("comment") }} {{ AllItems.length }}
+                          {{ $t("all") }}</span
                         >
-                          <div class="text d-flex flex-column gap-2">
-                            <h6>{{ $t("comments") }}</h6>
-                            <span>
-                              {{ $t("comment") }} {{ AllItems.length }}
-                              {{ $t("all") }}</span
-                            >
-                          </div>
-                          <div
-                            v-if="AllItems.is_recommended"
-                            class="recommend d-flex align-items-center gap-2"
-                          >
-                            <img src="~/assets/images/medal.svg" alt="" />
-                            <div class="textt d-flex flex-column gap-1">
-                              <span> {{ $t("rec") }} </span>
-                              <span class="ratio">
-                                {{ $t("rec1") }} ({{
-                                  $t(AllItems.recommendationPercentage)
-                                }})
-                              </span>
-                            </div>
-                          </div>
+                      </div>
+                      <div
+                        v-if="AllItems.is_recommended"
+                        class="recommend d-flex align-items-center gap-2"
+                      >
+                        <img src="~/assets/images/medal.svg" alt="" />
+                        <div class="textt d-flex flex-column gap-1">
+                          <span> {{ $t("rec") }} </span>
+                          <span class="ratio">
+                            {{ $t("rec1") }} ({{
+                              $t(AllItems.recommendationPercentage)
+                            }})
+                          </span>
                         </div>
+                      </div>
+                    </div>
 
-                        <div class="comments d-flex flex-column gap-5 mt-4">
-                          <!-- <v-data-iterator :items="AllItems" :items-per-page="commentPerPage">
+                    <div class="comments d-flex flex-column gap-5 mt-4">
+                      <!-- <v-data-iterator :items="AllItems" :items-per-page="commentPerPage">
                         <template v-slot:default="{ items }">
                       
                          
                         </template>
                       </v-data-iterator> -->
 
-                          <div
-                            v-for="(item, index) in itemsArray"
-                            :key="index"
-                            class="comment w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between"
-                          >
-                            <div class="main d-flex gap-2 w-100">
-                              <img :src="item.customer_image" alt="" />
-                              <div class="text d-flex flex-column gap-1">
-                                <span class="name">
-                                  {{ item.customer_name }}
-                                </span>
-                                <div
-                                  v-if="item && item.comment"
-                                  class="comment-text"
-                                >
-                                  {{
-                                    item.showFullText
-                                      ? item.comment
-                                      : item.truncatedText
-                                  }}
-                                  <button
-                                    v-if="item.comment.length > maxCharacters"
-                                    @click="toggleReadMore(index)"
-                                  >
-                                    {{
-                                      item.showFullText
-                                        ? $t("show less")
-                                        : $t("show more")
-                                    }}
-                                  </button>
-                                </div>
-                                <span class="time"> {{ item.created_at }}</span>
-                              </div>
-                            </div>
-                            <v-rating
-                              style="direction: ltr"
-                              half-increments
-                              readonly
-                              :length="5"
-                              :size="29"
-                              :model-value="item.rate"
-                              color="#919EAB"
-                              active-color="#ECB43C"
-                            />
-                          </div>
-
-                          <div
-                            class="d-flex align-items-center justify-content-center"
-                          >
-                            <button @click="showAllComments" class="load-more">
-                              <i class="fa-solid fa-rotate-left"></i>
-                              <span> {{ $t("show comments") }} </span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-            </div>
-            <div v-if="tab == 3">
-              <div class="vendor-details row">
-                      <div class="col-12 col-xl-4 col-lg-4">
-                        <div
-                          class="vendor-image d-flex align-items-center flex-column justify-content-around"
-                        >
-                          <div class="check">
-                            <img src="~/assets/images/check.svg" alt="" />
-                            <span> {{ $t("store valid") }} </span>
-                          </div>
-                          <img class="image" :src="mainVendor.logo" alt="" />
-
-                          <div class="text">
-                            <h5>{{ $t("store") }} {{ mainVendor.name }}</h5>
-                            <span>
-                              {{ $t("dateWith") }}
-                              {{ mainVendor.created_at }}</span
-                            >
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-xl-4 col-lg-4">
-                        <div class="more-details">
-                          <div class="details d-flex flex-column gap-3">
-                            <div class="info">
-                              <div class="d-flex align-items-center">
-                                <img src="~/assets/images/v1.svg" alt="" />
-                                <span class="main">
-                                  {{ $t("products number") }}</span
-                                >
-                              </div>
-                              <span class="count">
-                                {{ mainVendor.products_count }}
-                                {{ $t("product") }}
-                              </span>
-                            </div>
-                            <div class="info">
-                              <div class="d-flex align-items-center gap-2">
-                                <img src="~/assets/images/v2.svg" alt="" />
-                                <span class="main"> {{ $t("rate1") }}</span>
-                              </div>
-                              <v-rating
-                                style="direction: ltr"
-                                half-increments
-                                readonly
-                                :length="5"
-                                :size="20"
-                                :model-value="mainVendor.rate"
-                                color="#919EAB"
-                                active-color="#ECB43C"
-                              />
-                            </div>
-                            <div class="info">
-                              <div class="d-flex align-items-center gap-2">
-                                <img src="~/assets/images/v3.svg" alt="" />
-                                <span class="main"> {{ $t("vendor1") }}</span>
-                              </div>
-                              <span class="span">
-                                {{ mainVendor.commercial_register_number }}
-                              </span>
-                            </div>
-                            <div class="info">
-                              <div class="d-flex align-items-center gap-2">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                >
-                                  <g clip-path="url(#clip0_1472_21212)">
-                                    <path
-                                      d="M6.375 11.3438C2.88567 11.3438 0.046875 14.1825 0.046875 17.6719C0.046875 21.1612 2.88567 24 6.375 24C9.86433 24 12.7031 21.1612 12.7031 17.6719C12.7031 14.1825 9.86433 11.3438 6.375 11.3438ZM9.16903 16.9034L5.88778 20.1847C5.75053 20.322 5.57058 20.3906 5.39062 20.3906C5.21067 20.3906 5.03072 20.322 4.89347 20.1847L3.48722 18.7784C3.21262 18.5039 3.21262 18.0586 3.48722 17.784C3.76177 17.5095 4.20698 17.5095 4.48158 17.784L5.39062 18.6931L8.17472 15.909C8.44927 15.6345 8.89448 15.6345 9.16908 15.909C9.44362 16.1836 9.44363 16.6289 9.16903 16.9034Z"
-                                      fill="#919EAB"
-                                    />
-                                    <path
-                                      d="M18.5625 6.09375C18.1742 6.09375 17.8594 5.77894 17.8594 5.39062V0H7.78125C6.61814 0 5.67188 0.946266 5.67188 2.10938V9.9698C5.90353 9.9488 6.13795 9.9375 6.375 9.9375C8.77163 9.9375 10.917 11.0332 12.3368 12.75H19.9688C20.3571 12.75 20.6719 13.0648 20.6719 13.4531C20.6719 13.8414 20.3571 14.1562 19.9688 14.1562H13.2632C13.7027 15.0139 13.9861 15.964 14.0771 16.9688H19.9688C20.3571 16.9688 20.6719 17.2836 20.6719 17.6719C20.6719 18.0602 20.3571 18.375 19.9688 18.375H14.0771C13.8668 20.6971 12.6261 22.7262 10.8168 24H21.8438C23.0069 24 23.9531 23.0537 23.9531 21.8906V6.09375H18.5625ZM19.9688 9.9375H9.65625C9.26794 9.9375 8.95312 9.62269 8.95312 9.23438C8.95312 8.84606 9.26794 8.53125 9.65625 8.53125H19.9688C20.3571 8.53125 20.6719 8.84606 20.6719 9.23438C20.6719 9.62269 20.3571 9.9375 19.9688 9.9375Z"
-                                      fill="#919EAB"
-                                    />
-                                    <path
-                                      d="M19.2656 0.412109V4.68791H23.5411L19.2656 0.412109Z"
-                                      fill="#919EAB"
-                                    />
-                                  </g>
-                                  <defs>
-                                    <clipPath id="clip0_1472_21212">
-                                      <rect
-                                        width="24"
-                                        height="24"
-                                        fill="white"
-                                      />
-                                    </clipPath>
-                                  </defs>
-                                </svg>
-                                <span class="main"> {{ $t("vendor2") }}</span>
-                              </div>
-                              <span class="count"> {{ $t("vendor3") }} </span>
-                            </div>
-                          </div>
-                          <v-divider :thickness="1"></v-divider>
-                          <p>
-                            {{ mainVendor.description }}
-                          </p>
-
-                          <button
-                            @click="
-                              goToVendor(
-                                mainProduct.vendor_id,
-                                mainProduct.vendor_name
-                              )
-                            "
-                            class="action"
-                          >
-                            {{ $t("visit") }}
-                          </button>
-                        </div>
-                      </div>
-
-                      <div class="col-12 col-xl-4 col-lg-4">
-                        <div class="most-selling h-100">
-                          <h4>{{ $t("most selling") }}</h4>
-                          <div
-                            class="boxes d-flex flex-column h-100 bg-dange gap-4"
-                          >
+                      <div
+                        v-for="(item, index) in itemsArray"
+                        :key="index"
+                        class="comment w-100 d-flex align-items-center flex-column flex-xl-row flex-lg-row justify-content-between"
+                      >
+                        <div class="main d-flex gap-2 w-100">
+                          <img :src="item.customer_image" alt="" />
+                          <div class="text d-flex flex-column gap-1">
+                            <span class="name">
+                              {{ item.customer_name }}
+                            </span>
                             <div
-                              v-for="item in mainVendor.bestSellerProducts"
-                              class="box d-flex align-items-center gap-2"
+                              v-if="item && item.comment"
+                              class="comment-text"
                             >
-                              <div class="image">
-                                <img src="~/assets/images/p1.png" alt="" />
-                              </div>
-                              <div class="text w-100 d-flex flex-column gap-1">
-                                <h5>{{ item.name }}</h5>
-                                <div
-                                  class="price w-100  d-flex align-items-center justify-content-between"
-                                >
-                                  <span class="item"
-                                    >{{
-                                      `${item.caliber} / ${
-                                        locale == "ar" ? "ق" : "c"
-                                      }`
-                                    }}
-                                    {{
-                                      `${item.weight} / ${
-                                        locale == "ar" ? "ج" : "g"
-                                      }`
-                                    }}</span
-                                  >
-                                  <span class="price-item">
-                                    {{ item.price }} {{ $t("curr") }}
-                                  </span>
-                                </div>
-                              </div>
+                              {{
+                                item.showFullText
+                                  ? item.comment
+                                  : item.truncatedText
+                              }}
+                              <button
+                                v-if="item.comment.length > maxCharacters"
+                                @click="toggleReadMore(index)"
+                              >
+                                {{
+                                  item.showFullText
+                                    ? $t("show less")
+                                    : $t("show more")
+                                }}
+                              </button>
+                            </div>
+                            <span class="time"> {{ item.created_at }}</span>
+                          </div>
+                        </div>
+                        <v-rating
+                          style="direction: ltr"
+                          half-increments
+                          readonly
+                          :length="5"
+                          :size="29"
+                          :model-value="item.rate"
+                          color="#919EAB"
+                          active-color="#ECB43C"
+                        />
+                      </div>
+
+                      <div
+                        class="d-flex align-items-center justify-content-center"
+                      >
+                        <button @click="showAllComments" class="load-more">
+                          <i class="fa-solid fa-rotate-left"></i>
+                          <span> {{ $t("show comments") }} </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div v-if="tab == 3">
+                <div class="vendor-details row">
+                  <div class="col-12 col-xl-4 col-lg-4">
+                    <div
+                      class="vendor-image d-flex align-items-center flex-column justify-content-around"
+                    >
+                      <div class="check">
+                        <img src="~/assets/images/check.svg" alt="" />
+                        <span> {{ $t("store valid") }} </span>
+                      </div>
+                      <img class="image" :src="mainVendor.logo" alt="" />
+
+                      <div class="text">
+                        <h5>{{ $t("store") }} {{ mainVendor.name }}</h5>
+                        <span>
+                          {{ $t("dateWith") }}
+                          {{ mainVendor.created_at }}</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-xl-4 col-lg-4">
+                    <div class="more-details">
+                      <div class="details d-flex flex-column gap-3">
+                        <div class="info">
+                          <div class="d-flex align-items-center">
+                            <img src="~/assets/images/v1.svg" alt="" />
+                            <span class="main">
+                              {{ $t("products number") }}</span
+                            >
+                          </div>
+                          <span class="count">
+                            {{ mainVendor.products_count }}
+                            {{ $t("product") }}
+                          </span>
+                        </div>
+                        <div class="info">
+                          <div class="d-flex align-items-center gap-2">
+                            <img src="~/assets/images/v2.svg" alt="" />
+                            <span class="main"> {{ $t("rate1") }}</span>
+                          </div>
+                          <v-rating
+                            style="direction: ltr"
+                            half-increments
+                            readonly
+                            :length="5"
+                            :size="20"
+                            :model-value="mainVendor.rate"
+                            color="#919EAB"
+                            active-color="#ECB43C"
+                          />
+                        </div>
+                        <div class="info">
+                          <div class="d-flex align-items-center gap-2">
+                            <img src="~/assets/images/v3.svg" alt="" />
+                            <span class="main"> {{ $t("vendor1") }}</span>
+                          </div>
+                          <span class="span">
+                            {{ mainVendor.commercial_register_number }}
+                          </span>
+                        </div>
+                        <div class="info">
+                          <div class="d-flex align-items-center gap-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                            >
+                              <g clip-path="url(#clip0_1472_21212)">
+                                <path
+                                  d="M6.375 11.3438C2.88567 11.3438 0.046875 14.1825 0.046875 17.6719C0.046875 21.1612 2.88567 24 6.375 24C9.86433 24 12.7031 21.1612 12.7031 17.6719C12.7031 14.1825 9.86433 11.3438 6.375 11.3438ZM9.16903 16.9034L5.88778 20.1847C5.75053 20.322 5.57058 20.3906 5.39062 20.3906C5.21067 20.3906 5.03072 20.322 4.89347 20.1847L3.48722 18.7784C3.21262 18.5039 3.21262 18.0586 3.48722 17.784C3.76177 17.5095 4.20698 17.5095 4.48158 17.784L5.39062 18.6931L8.17472 15.909C8.44927 15.6345 8.89448 15.6345 9.16908 15.909C9.44362 16.1836 9.44363 16.6289 9.16903 16.9034Z"
+                                  fill="#919EAB"
+                                />
+                                <path
+                                  d="M18.5625 6.09375C18.1742 6.09375 17.8594 5.77894 17.8594 5.39062V0H7.78125C6.61814 0 5.67188 0.946266 5.67188 2.10938V9.9698C5.90353 9.9488 6.13795 9.9375 6.375 9.9375C8.77163 9.9375 10.917 11.0332 12.3368 12.75H19.9688C20.3571 12.75 20.6719 13.0648 20.6719 13.4531C20.6719 13.8414 20.3571 14.1562 19.9688 14.1562H13.2632C13.7027 15.0139 13.9861 15.964 14.0771 16.9688H19.9688C20.3571 16.9688 20.6719 17.2836 20.6719 17.6719C20.6719 18.0602 20.3571 18.375 19.9688 18.375H14.0771C13.8668 20.6971 12.6261 22.7262 10.8168 24H21.8438C23.0069 24 23.9531 23.0537 23.9531 21.8906V6.09375H18.5625ZM19.9688 9.9375H9.65625C9.26794 9.9375 8.95312 9.62269 8.95312 9.23438C8.95312 8.84606 9.26794 8.53125 9.65625 8.53125H19.9688C20.3571 8.53125 20.6719 8.84606 20.6719 9.23438C20.6719 9.62269 20.3571 9.9375 19.9688 9.9375Z"
+                                  fill="#919EAB"
+                                />
+                                <path
+                                  d="M19.2656 0.412109V4.68791H23.5411L19.2656 0.412109Z"
+                                  fill="#919EAB"
+                                />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_1472_21212">
+                                  <rect width="24" height="24" fill="white" />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                            <span class="main"> {{ $t("vendor2") }}</span>
+                          </div>
+                          <span class="count"> {{ $t("vendor3") }} </span>
+                        </div>
+                      </div>
+                      <v-divider :thickness="1"></v-divider>
+                      <p>
+                        {{ mainVendor.description }}
+                      </p>
+
+                      <button
+                        @click="
+                          goToVendor(
+                            mainProduct.vendor_id,
+                            mainProduct.vendor_name
+                          )
+                        "
+                        class="action"
+                      >
+                        {{ $t("visit") }}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-xl-4 col-lg-4">
+                    <div class="most-selling h-100">
+                      <h4>{{ $t("most selling") }}</h4>
+                      <div
+                        class="boxes d-flex flex-column h-100 bg-dange gap-4"
+                      >
+                        <div
+                          v-for="item in mainVendor.bestSellerProducts"
+                          class="box d-flex align-items-center gap-2"
+                        >
+                          <div class="image">
+                            <img src="~/assets/images/p1.png" alt="" />
+                          </div>
+                          <div class="text w-100 d-flex flex-column gap-1">
+                            <h5>{{ item.name }}</h5>
+                            <div
+                              class="price w-100 d-flex align-items-center justify-content-between"
+                            >
+                              <span class="item"
+                                >{{
+                                  `${item.caliber} / ${
+                                    locale == "ar" ? "ق" : "c"
+                                  }`
+                                }}
+                                {{
+                                  `${item.weight} / ${
+                                    locale == "ar" ? "ج" : "g"
+                                  }`
+                                }}</span
+                              >
+                              <span class="price-item">
+                                {{ item.price }} {{ $t("curr") }}
+                              </span>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-            </div>
-              <!-- <v-card-text class="">
-                <v-window v-model="tab">
-                  <v-window-item :value="0">
-                   
-                  </v-window-item>
-                  <v-window-item :value="1">
-                 
-                  </v-window-item>
-
-                  <v-window-item :value="2">
-                  
-                  </v-window-item>
-
-                  <v-window-item :value="3">
-                   
-                  </v-window-item>
-                </v-window>
-              </v-card-text> -->
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1239,7 +1207,6 @@
         </div>
       </div>
     </div>
-
     <loader v-if="pending"></loader>
   </div>
 </template>
@@ -1255,13 +1222,6 @@ import "mosha-vue-toastify/dist/style.css";
 const store = useStore;
 const { locale } = useI18n();
 const localePath = useLocalePath();
-
-let pending = ref(true);
-
-let btnActive = ref(0);
-
-const tokenCookie = Cookies.get("token");
-
 const MainRoute = useRoute();
 let route = ref(MainRoute.fullPath);
 let name = MainRoute.query.name;
@@ -1269,6 +1229,16 @@ if (process.client) {
   route.value = window.location.href;
 }
 let id = ref(MainRoute.query.id);
+// let pending = ref(true);
+
+let btnActive = ref(0);
+
+store.dispatch("product/getProduct", { id: id.value, locale: locale.value });
+const mainProduct = computed(() => store.state.product.mainProduct);
+const pending = computed(() => store.state.product.pending);
+const tokenCookie = Cookies.get("token");
+
+
 const router = useRouter();
 let check = ref(true);
 
@@ -1351,20 +1321,20 @@ const goToVendor = (id, name) => {
 
 let totalComments = ref([]);
 let relatedArr = ref([]);
-let mainProduct = ref({});
 let mainVendor = ref({});
-const showProduct = async () => {
-  let result = await axios.get(`${getUrl()}/products/${id.value}`, {
-    headers: {
-      "Content-Language": `${locale.value}`,
-    },
-  });
-  if (result.status == 200) {
-    mainProduct.value = result.data.data;
-    pending.value = false;
-  }
-  console.log(result.data.data);
-};
+// const showProduct = async () => {
+//   let result = await axios.get(`${getUrl()}/products/${id.value}`, {
+//     headers: {
+//       "Content-Language": `${locale.value}`,
+//     },
+//   });
+//   if (result.status == 200) {
+//     mainProduct.value = result.data.data;
+//     newPriceItem.value = result.data.data?.variations[0];
+//     pending.value = false;
+//   }
+//   console.log(result.data.data);
+// };
 
 let quantity = ref(1);
 
@@ -1403,7 +1373,11 @@ let newPriceItem = ref();
 const addToBasket = async () => {
   if (mainProduct.value) {
     console.log(newPriceVar.value);
-    store.commit("addProduct", { mainItem: mainProduct.value, qw: quantity.value , newPrice: newPriceVar.value });
+    store.commit("addProduct", {
+      mainItem: mainProduct.value,
+      qw: quantity.value,
+      newPrice: newPriceVar.value,
+    });
     const moshaToastify = await import("mosha-vue-toastify");
     const { createToast } = moshaToastify;
     createToast(
@@ -1424,8 +1398,8 @@ const addToBasket = async () => {
   }
 };
 
-const changePrice = (newPrice , size , weight , item) =>{
-  if(process.client){
+const changePrice = (newPrice, size, weight, item) => {
+  if (process.client) {
     newPriceItem.value = item;
     newPriceVar.value = newPrice;
     mainProduct.value.price = newPrice;
@@ -1437,7 +1411,7 @@ const changePrice = (newPrice , size , weight , item) =>{
       behavior: "smooth",
     });
   }
-}
+};
 
 const showVendor = async () => {
   let result = await axios.get(`${getUrl()}/about-vendor/${id.value}`, {
@@ -1590,37 +1564,76 @@ useHead({
   title: locale.value == "ar" ? "بلاتين" : "platin",
 });
 
-watch([() => MainRoute.query.id],([newId]) => {
-    id.value = newId;
-    showProduct();
-    showVendor();
-    showComments();
-    getRelatedProducts();
-  }
-);
+watch([() => MainRoute.query.id], ([newId]) => {
+  id.value = newId;
+  // showProduct();
+  showVendor();
+  showComments();
+  getRelatedProducts();
+});
+
+const hiddenDiv = ref(null);
+const triggerDiv = ref(null);
+const footer = ref(null);
+const showHiddenDiv = () => {
+      if (hiddenDiv.value) {
+        hiddenDiv.value.style.display = 'flex';
+      }
+    };
+
+    const hideHiddenDiv = () => {
+      if (hiddenDiv.value) {
+        hiddenDiv.value.style.display = 'none';
+      }
+    };
+const observeTrigger = () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              showHiddenDiv();
+            } else {
+              hideHiddenDiv();
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      if (triggerDiv.value) {
+        observer.observe(triggerDiv.value);
+      }
+    };
+
+    const observeFooter = () => {
+      const footerObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              hideHiddenDiv(); // Hide when footer is visible
+            }
+          });
+        },
+        { threshold: 0.5 } // Adjust threshold as needed
+      );
+
+      if (footer.value) {
+        footerObserver.observe(footer.value);
+      }
+    };
 onMounted(() => {
-  showProduct();
+  // showProduct();
   showComments();
   showVendor();
   getRelatedProducts();
 
-  const triggerDiv = document.getElementById("trigger");
-  const hiddenDiv = document.getElementById("hiddenDiv");
+  triggerDiv.value = document.getElementById('trigger');
+      hiddenDiv.value = document.getElementById('hiddenDiv');
+      footer.value = document.getElementById('footerId'); // Assuming footer has an ID of 'footer'
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          hiddenDiv.style.display = "flex";
-        } else {
-          hiddenDiv.style.display = "none";
-        }
-      });
-    },
-    { threshold: 0.5 }
-  ); // Adjust the threshold as needed
+      observeTrigger();
+      observeFooter();
 
-  observer.observe(triggerDiv);
 });
 </script>
 

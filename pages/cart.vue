@@ -325,7 +325,6 @@
 <script setup>
 import { useStore } from "~/store";
 import { Vue3Lottie } from "vue3-lottie";
-
 import cart from "~/assets/animations/empty-cart.json";
 const { locale } = useI18n();
     const localePath = useLocalePath();

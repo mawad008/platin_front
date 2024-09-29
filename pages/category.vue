@@ -79,7 +79,7 @@
             <product-card :product="item" style="margin: 30px 0px" />
           </div>
         </div> -->
-          <v-data-iterator :items="paginatedItems"  :items-per-page="itemsPerPage" :page="page">
+          <v-data-iterator :items="products"  :items-per-page="itemsPerPage" :page="page">
         <template v-slot:default="{ items }">
     
             <div class="mt-4">
@@ -95,12 +95,12 @@
        <div v-if="spinnerProducts" class="d-flex align-items-center justify-content-center" style="min-height:50vh;">
                 <v-progress-circular size="70" indeterminate color="#dcba95"></v-progress-circular>
               </div>
-
           <v-pagination
           v-if="pageCount > 1"
           v-model="page"
           :length="pageCount"
           rounded="circle"
+          :total-visible="7"
           @input="updatePage"
         ></v-pagination>
       </div>
@@ -160,12 +160,18 @@ const getBrands = async () => {
   });
   brandsArr.value = result.data.data;
 };
+let itemsPerPage = ref(4);
+let total = ref();
+let page = ref(1);
+
 const getProducts = async () => {
   spinnerProducts.value = true;
+  products.value = [];
   let result = await axios.get(`${getUrl()}/categories-products/${id.value}`, {
     params: {
       subcategory_id: selectbox1.value ? selectbox1.value : null,
       brand_id: selectbox2.value ? selectbox2.value : null,
+      page: page.value
     },
     headers: {
       "Content-Language": `${locale.value}`,
@@ -179,14 +185,14 @@ const getProducts = async () => {
   category_image.value = result.data.data.category_image;
   products_count.value = result.data.data.products_count;
   products.value = result.data.data.products.data;
+  itemsPerPage.value = result.data.data?.products?.meta?.per_page;
+  total.value = result.data.data?.products?.meta?.total;
 };
 
 
-let page = ref(1);
-let itemsPerPage = ref(4);
 
 const pageCount = computed(() => {
-  return Math.ceil(products.value.length / itemsPerPage.value);
+  return Math.ceil(total.value / itemsPerPage.value);
 });
 
 const paginatedItems = computed(() => {
@@ -197,12 +203,20 @@ const paginatedItems = computed(() => {
 
 const updatePage = (newPage) => {
   page.value = newPage;
+  console.log('sdsdsd');
+  getProducts()
 }
 
 
 useHead({
   title: locale.value == "ar" ? "الفئات" : "categories",
 });
+
+watch(()=> page.value , (val)=>{
+  if(val){
+    getProducts();
+  }
+})
 
 watch(
   [() => route.query.id, () => route.query.subid, () => route.query.color],
