@@ -2791,7 +2791,10 @@ html[dir=ltr] .product-page .share-box {
 .product-details .rating-container .comments-container .comments .comment .main .text .comment-text {
   font-size: 14px;
   font-weight: 400;
+  width: 400px;
   color: #5a7184;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 .product-details .rating-container .comments-container .comments .comment .main .text .comment-text button {
   color: #dcba95;

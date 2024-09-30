@@ -6,8 +6,8 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "@nuxtjs/i18n",
     "nuxt-primevue",
-    'nuxt-lazy-load',
-    '@nuxt/image'
+    "nuxt-lazy-load",
+    "@nuxt/image",
     // "nuxt-purgecss",
     // "@nuxtjs/axios",
     // "@nuxtjs/auth-next",
@@ -23,33 +23,33 @@ export default defineNuxtConfig({
     directiveOnly: false,
 
     // Default image must be in the public folder
-    defaultImage: '/loader-platin.svg',
+    defaultImage: "/loader-platin.svg",
 
     // To remove class set value to false
-    loadingClass: 'isLoading',
-    loadedClass: 'isLoaded',
-    appendClass: 'lazyLoad',
+    loadingClass: "isLoading",
+    loadedClass: "isLoaded",
+    appendClass: "lazyLoad",
 
     observerConfig: {
       // See IntersectionObserver documentation
-    }
+    },
   },
 
   image: {
     formats: {
       webp: {
-        quality: 80
-      }
-    }
+        quality: 80,
+      },
+    },
   },
   vite: {
     build: {
       terserOptions: {
         compress: {
           drop_console: true,
-        }
-      }
-    }
+        },
+      },
+    },
   },
   plugins: [{ src: "./plugins/mosha.js" }],
   ssr: true,
@@ -98,7 +98,7 @@ export default defineNuxtConfig({
             "sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==",
           crossorigin: "anonymous",
           referrerpolicy: "no-referrer",
-        }
+        },
       ],
       script: [
         {
@@ -107,7 +107,7 @@ export default defineNuxtConfig({
         },
         {
           innerHTML: `
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -116,20 +116,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         },
         {
           innerHTML: `
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFHPGL7H"
+   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFHPGL7H"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
         `,
-          body: true,
+        tagPosition: "bodyClose",
         },
-
         {
           type: "text/javascript",
           src: "/js/google-maps-loader.js",
           tagPosition: "bodyClose",
         },
       ],
+      // noscript: [
+      //   {
+      //     children: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFHPGL7H"
+      //      height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+      //     body: true // This ensures the noscript tag is added in the body
+      //   }
+      // ]
     },
   },
   css: [

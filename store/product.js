@@ -5,6 +5,8 @@ export default {
         mainProduct: {},
         newPriceItem: {},
         user: {},
+        commentInput:"",
+        quantity:1,
         pending: false,
       },
       mutations: {
