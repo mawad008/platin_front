@@ -5,8 +5,8 @@
           class="container product-card-scroll"
         >
           <div class="image-container">
-            <div class="image">
-              <img src="~/assets/images/product.png" alt="" />
+            <div v-if="image" class="image">
+              <img :src="image" alt="" />
             </div>
             <div class="d-flex flex-column gap-2">
               <h4>{{ mainProduct.name }}</h4>
@@ -87,6 +87,7 @@ const store = useStore;
 const { locale } = useI18n();
   let props = defineProps(["mainProduct" , "newPriceItem" , "addToBasket"]);
   let quantity = computed(() => store.state.product.quantity);
+  let image = ref()
 const minusNum = () => {
   if (store.state.product.quantity > 1) {
     store.state.product.quantity--;
@@ -95,7 +96,12 @@ const minusNum = () => {
 const addNum = () => {
     store.state.product.quantity++;
 };
-
+ 
+watch(()=> props.mainProduct , (val)=>{
+  if (val?.images){
+    image.value = val?.images[0]?.full_image_path
+  }
+})
 
 </script>
 <style lang="">

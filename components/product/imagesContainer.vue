@@ -16,7 +16,7 @@
                   :modules="[SwiperFreeMode, SwiperThumbs]"
                   class="mySwiper2"
                 >
-                  <swiper-slide v-for="img in mainProduct.images">
+                  <swiper-slide v-for="img in mainProduct.images" :key="img">
                     <img :src="img.full_image_path" />
                     <button class="size">
                       <span> {{ $t("dir size") }} </span>
@@ -35,7 +35,7 @@
                   </div>
                   <swiper
                     @swiper="setThumbsSwiper"
-                    :spaceBetween="15"
+                    :spaceBetween="30"
                     :slidesPerView="3"
                     :direction="vertical"
                     :freeMode="true"
@@ -52,12 +52,13 @@
                     :modules="[SwiperNavigation]"
                     class="mySwiper"
                   >
-                    <swiper-slide v-for="img in mainProduct.images">
+                    <swiper-slide v-for="img in mainProduct.images" :key="img">
                       <img :src="img.full_image_path" />
                     </swiper-slide>
                   </swiper>
                   <a
-                    :href="mainProduct.video_link"
+                  v-if="mainProduct.video_link"
+                    :href="mainProduct?.video_link"
                     target="_blank"
                     class="play-icon"
                   >
