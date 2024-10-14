@@ -62,7 +62,7 @@
           :spaceBetween="30"
           :centeredSlides="true"
           :autoplay="{
-            delay: 2500,
+            delay: 6500,
             disableOnInteraction: false,
           }"
           :modules="[SwiperAutoplay]"
@@ -95,7 +95,7 @@
             </span>
           </div>
             <span>
-              {{ locale == "ar" ? "ق" : "c" }} {{ product.caliber }} /
+              {{ locale == "ar" ? "ع" : "c" }} {{ product.caliber }} /
               {{ locale == "ar" ? "ج" : "g" }} {{ product.weight }}</span
             >
           </div>
