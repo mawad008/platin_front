@@ -9,7 +9,7 @@
           clickable: true,
         }"
         :autoplay="{
-          delay: 2500,
+          delay: 4000,
           disableOnInteraction: false,
         }"
         :modules="[SwiperEffectFade, SwiperPagination, SwiperAutoplay]"

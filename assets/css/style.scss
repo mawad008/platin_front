@@ -197,6 +197,11 @@ input[type=number]::-webkit-inner-spin-button {
   margin-bottom: 20px;
   min-height: 450px;
   position: relative;
+  .star {
+    font-size: 16px;
+    color: $rating-bg;
+  }
+ 
   .overlay {
     transition: 0.5s;
     border-radius: 16px;
@@ -317,14 +322,11 @@ input[type=number]::-webkit-inner-spin-button {
     // }
   }
 
+  
   .rate {
     padding-top: 10px;
     margin-top: 24px;
     border-top: 1px solid $border-color;
-    .star {
-      font-size: 16px;
-      color: $rating-bg;
-    }
   }
   h3 {
     // width: 180px;

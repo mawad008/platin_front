@@ -243,7 +243,7 @@
                 <div class="row">
                   <div
                     v-for="item in vendors"
-                    class="col-12 col-xl-4 col-lg-4 col-md-6"
+                    class="col-6 col-xl-4 col-lg-4 col-md-6"
                   >
                     <product-card :product="item" />
                   </div>

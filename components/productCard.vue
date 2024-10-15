@@ -24,6 +24,10 @@
             />
           </svg>
         </div>
+        <div class="star d-flex d-xl-none d-lg-none d-md-none align-items-center gap-2">
+            <i class="fa-solid fa-star"></i>
+            {{ product.rate }}
+          </div>
         <div
           v-if="clickedItem(product.id) == product.id"
           @click="deleteTofav(index, product.id)"
@@ -75,14 +79,18 @@
         <div
           class="rate w-100 d-flex align-items-center justify-content-between"
         >
-          <span class="type"> {{ product.category }} </span>
-          <div class="star d-flex align-items-center gap-2">
+          <span class="type"> {{ product.category.substring(0 , 10) }}{{ product.category?.length >= 10 ? '...' : '' }} </span>
+          <span class="type d-block d-xl-none d-lg-none d-md-none">
+              {{ locale == "ar" ? "ع" : "c" }} {{ product.caliber }} /
+              {{ locale == "ar" ? "ج" : "g" }} {{ product.weight }}</span
+            >
+          <div class="star d-none d-xl-flex d-lg-flex d-md-none align-items-center gap-2">
             <i class="fa-solid fa-star"></i>
             <span>{{ product.rate }}</span>
           </div>
         </div>
         <div
-          class="bg-dange d-flex flex-column justify-content-between"
+          class=" text-container-product d-flex flex-column justify-content-between"
           style="height: 127px"
         >
           <h3>{{ product.name }}</h3>
@@ -91,10 +99,10 @@
           >
           <div class="d-flex flex-column position-relative">
           <span v-if="product.discount_price" style="font-size: 12px; position:absolute; top:-17px;">{{ $t('startFrom') }}</span>
-            <span class="price-text">{{ product.discount_price ? product.discount_price : product.price }} {{ $t("curr") }}
-            </span>
+            <div class="price-text">{{ product.discount_price ? (product.discount_price * product.tax + product.discount_price)  : (product.price * product.tax + product.price) }} <span style="font-size: 10px;"> {{ $t("taxes") }} </span> 
+            </div>
           </div>
-            <span>
+            <span class="d-none d-xl-block d-lg-block d-md-block">
               {{ locale == "ar" ? "ع" : "c" }} {{ product.caliber }} /
               {{ locale == "ar" ? "ج" : "g" }} {{ product.weight }}</span
             >
@@ -305,6 +313,7 @@ import fav from "~/assets/animations/fav-icon.json";
 import "mosha-vue-toastify/dist/style.css";
 // import moshaToastify from 'mosha-vue-toastify';
 // const { createToast } = moshaToastify;
+let generalArr = ref([]);
 const props = defineProps(["favIcon", "product", "index"]);
 const store = useStore;
 let anim = ref(false);
@@ -360,6 +369,16 @@ const goToProductPage2 = (id, name) => {
     // });
   }
 };
+
+// const getGeneral = async () => {
+//   let result = await axios.get(`${getUrl()}/general`, {
+//     headers: {
+//       "Content-Language": `${locale.value}`,
+//     },
+//   });
+//   generalArr.value = result.data.data;
+// };
+// getGeneral();
 
 const MainRoute = useRoute();
 let route = ref(MainRoute.fullPath);

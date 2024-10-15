@@ -149,7 +149,7 @@
           },
         }"
         :autoplay="{
-          delay: 2500,
+          delay: 4000,
           disableOnInteraction: false,
         }"
         :modules="[SwiperNavigation, SwiperAutoplay]"
@@ -212,8 +212,8 @@
           :spaceBetween="10"
           :breakpoints="{
             '200': {
-              slidesPerView: 1.2,
-              spaceBetween: 20,
+              slidesPerView: 2,
+              spaceBetween: 15,
             },
             '768': {
               slidesPerView: 2,
@@ -225,7 +225,7 @@
             },
           }"
           :autoplay="{
-            delay: 2500,
+            delay: 4000,
             disableOnInteraction: false,
           }"
           :dir="getSwiperDirection"
@@ -390,7 +390,7 @@
           :spaceBetween="20"
           :breakpoints="{
             '200': {
-              slidesPerView: 1.2,
+              slidesPerView: 2,
               spaceBetween: 10,
             },
             '768': {
@@ -403,7 +403,7 @@
             },
           }"
           :autoplay="{
-            delay: 2500,
+            delay: 4000,
             disableOnInteraction: false,
           }"
           :dir="getSwiperDirection"
@@ -492,7 +492,7 @@
           :spaceBetween="20"
           :breakpoints="{
             '200': {
-              slidesPerView: 1.2,
+              slidesPerView: 2,
               spaceBetween: 10,
             },
             '768': {
@@ -506,7 +506,7 @@
           }"
           :dir="getSwiperDirection"
           :autoplay="{
-            delay: 2500,
+            delay: 4000,
             disableOnInteraction: false,
           }"
           :modules="[SwiperNavigation, SwiperAutoplay]"
@@ -593,7 +593,7 @@
           :spaceBetween="20"
           :breakpoints="{
             '200': {
-              slidesPerView: 1.2,
+              slidesPerView: 2,
               spaceBetween: 10,
             },
             '768': {
@@ -607,7 +607,7 @@
           }"
           :dir="getSwiperDirection"
           :autoplay="{
-            delay: 2500,
+            delay: 4000,
             disableOnInteraction: false,
           }"
           :modules="[SwiperNavigation, SwiperAutoplay]"

@@ -65,33 +65,12 @@
           </v-overlay>
         </div>
       </div>
-
-      <v-window v-model="tabActive">
-        <v-window-item v-for="(item, index) in tags">
-       
-        <!-- <v-data-iterator :items="products"  :items-per-page="itemsPerPage" :page="page">
-      <template v-slot:default="{ items }">
-    
-          <div class="">
-          <div class="row">
-            <div class="col-12 col-xl-3 col-lg-3 col-md-6" v-for="item, index in items" :key="item.id">
-             <product-card :product="item.raw" />
+   
+      <div class="row">
+            <div class="col-6 col-xl-3 col-lg-3 col-md-6" v-for="item, index in products" :key="item.id">
+             <product-card class="w-100" :product="item" />
             </div>
           </div>
-        </div>
-      </template>
-    </v-data-iterator> -->
-
-    <div class="row">
-            <div class="col-12 col-xl-3 col-lg-3 col-md-6" v-for="item, index in products" :key="item.id">
-             <product-card :product="item" />
-            </div>
-          </div>
-        </v-window-item>
-         
-
-      </v-window>
-
             <div v-if="spinnerProducts" class="d-flex align-items-center justify-content-center" style="min-height:50vh;">
               <v-progress-circular size="70" indeterminate color="#dcba95"></v-progress-circular>
             </div>
