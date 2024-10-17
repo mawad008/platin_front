@@ -51,11 +51,12 @@
 
       <div class="btns">
       <!-- {{ store.state.step }} -->
+      
         <v-progress-circular v-if="checkPay2" style="" indeterminate :size="20" :width="4"></v-progress-circular>
-        <button v-if="checkPay == 2 && urlPay" :disabled="!urlPay" class="fill gap-3">
-        <a :href="urlPay"  class="w-100">  انتقل الي الدفع  </a>        
+        <button v-if="checkPay == 2 && urlPay" :disabled="checkPay2" @click="goUrl(urlPay)" class="fill gap-3">
+                {{ $t('paymentTab') }}
         </button>
-        <button v-else @click="checkFunc()" :disabled="pending" class="fill gap-3">
+        <button v-else @click="checkFunc()" :disabled="checkBtn()" class="fill gap-3">
         <span  class="">  {{ $t("follow buy")  }} </span>        
         <v-progress-circular v-if="pending" style="" indeterminate :size="20" :width="4"></v-progress-circular>
         </button>
@@ -79,8 +80,20 @@ const props = defineProps(["arrData" , "myFunction" , "priceShipping" , "pending
 
 const localePath = useLocalePath();
 
+const checkBtn = ()=>{
+  if(props.checkPay2 == false && props.pending == true){
+    return true;
+  }
+}
 const checkFunc = () => {
   props.myFunction();
+}
+const goUrl = (url)=>{
+  if(process.client){
+    if(url){
+      window.location.href = url;
+    }
+  }
 }
 const checkFunc1 = () => {
   if(props.tap_id != ''){

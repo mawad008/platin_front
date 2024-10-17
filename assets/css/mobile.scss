@@ -46,12 +46,16 @@ $rating-bg: #ecb43c;
     width: 100% !important;
     padding: 10px !important;
     min-height: fit-content !important;
+    .price-text{
+      font-size: 16px !important;
+    }
     .image{
       height: 110px !important;
     }
     .text-container-product {
       height: 90px !important;
     }
+    
      .rate{
       border: none !important;
       margin-top: 8px !important;

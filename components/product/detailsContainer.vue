@@ -348,11 +348,10 @@
                     >
                       <h4 class="">
                         {{
-                          newPriceItem.discount_price
-                            ? newPriceItem.discount_price
-                            : newPriceItem.price
+                          newPriceItem.discount_price ? ((mainProduct?.tax * newPriceItem.discount_price) + newPriceItem.discount_price) : ((mainProduct?.tax * newPriceItem.price)  + newPriceItem.price)
                         }}
                         {{ $t("curr") }}
+                         <span class="desc" style="font-size: 12px; text-decoration: none;"> ( {{ $t('taxes') }} ) </span>
                       </h4>
                       <span
                         v-if="newPriceItem.discount_price"

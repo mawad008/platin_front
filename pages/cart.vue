@@ -9,7 +9,7 @@
               <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
             </template>
           </v-breadcrumbs>
-
+               
           <button @click="deleteAll()" class="clear">
             <span>{{ $t("delete all") }}</span>
           </button>
@@ -122,7 +122,7 @@
                 <div class="total-price">
                   <div class="total">
                     <span class="word all"> {{ $t("total") }}</span>
-                    <span class="fw-bold price"> {{ total + (total * 0.15) }} {{ $t("curr") }}</span>
+                    <span class="fw-bold price"> {{ total + (total * tax) }} {{ $t("curr") }}</span>
                   </div>
                   <div class="total">
                     <span class="word"> {{ $t("price") }} </span>
@@ -138,7 +138,7 @@
                   </div> -->
                   <div class="total">
                     <span class="word"> {{ $t("bill") }}</span>
-                    <span class="price"> {{ total * 0.15 }} {{ $t("curr") }} </span>
+                    <span class="price"> {{ total * tax }} {{ $t("curr") }} </span>
                   </div>
                 </div>
 
@@ -309,7 +309,7 @@
           <p>
            {{ $t("empty cart1") }}
             </p>
-
+               
           <nuxt-link :to="localePath('/products')">
             <button>{{ $t("shopNow") }}</button>
 
@@ -326,6 +326,7 @@
 import { useStore } from "~/store";
 import { Vue3Lottie } from "vue3-lottie";
 import cart from "~/assets/animations/empty-cart.json";
+import axios from 'axios';
 const { locale } = useI18n();
     const localePath = useLocalePath();
     const store = useStore;
@@ -345,57 +346,16 @@ const { locale } = useI18n();
         href: "cart",
       },
     ]);
-
-//     let aarr = [
-//       {
-//         vendor_id:1,
-//         quantity:2,
-//         price:100,
-//         name:'asas',
-//         id:1,
-//        images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
-//       },
-//       {
-//         vendor_id:1,
-//         quantity:2,
-//         price:100,
-//         name:'asas',
-//         id:2,
-//        images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
-//       },
-//       {
-//         vendor_id:1,
-//         quantity:2,
-//         price:100,
-//         name:'asas',
-//         id:3,
-//        images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
-//       },
-//       {
-//         vendor_id:3,
-//         quantity:2,
-//         price:100,
-//         name:'asas',
-//         id:4,
-//        images:["https://images.unsplash.com/photo-1683009427037-c5afc2b8134d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
-//       },
-//     ]
-
-//     let newArr = aarr.map(item => ({
-//   vendor_id: item.vendor_id,
-//   quantity: item.quantity,
-//   price: item.price,
-//   id: item.id
-// }));
-
-
-    //     let newArray = aarr.flatMap(vendor => {
-    //   let vendorId = vendor.vendorId;
-    //   return vendor.products.map(product => ({
-    //     ...product,
-    //     vendorId: vendorId
-    //   }));
-    // });
+ let tax = ref();
+const getGeneral = async () => {
+  let result = await axios.get(`${getUrl()}/general`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  tax.value = result.data.data?.tax;
+};
+getGeneral();
 
 
     const deleteItem = (vendor_id, itemid, index) => {

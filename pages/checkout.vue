@@ -1694,7 +1694,7 @@ watch(
     if(step == 2){
   initMap();
     }
-    console.log(user1);
+    
     if (user1) {
       // userdata1.value.type = user1.email ? user1.email : '';
       userdata1.value.first_name = user1?.userdata1?.first_name ? user1?.userdata1?.first_name : "" || loginUser.first_name ? loginUser.first_name : "";
@@ -1705,11 +1705,11 @@ watch(
       gift_owner_name.value = user1.gift_owner_name ? user1.gift_owner_name : "";
       gift_owner_phone.value = user1.gift_owner_phone ? user1.gift_owner_phone : "";
       gift_text.value = user1.gift_text ? user1.gift_text : "";
-      userdata2.value.building_number = user1.building_number;
+      userdata2.value.building_number = user1?.userdata2?.building_number;
       userdata2.value.city = user1?.userdata2?.city;
       userdata2.value.district = user1?.userdata2?.district;
       userdata2.value.marks = user1?.userdata2?.marks;
-      userdata2.value.street_name = user1?.userdata1?.street_name;
+      userdata2.value.street_name = user1?.userdata2?.street_name;
       chooseCity.value = user1.chooseCity ? user1.chooseCity : 0;
       
     }

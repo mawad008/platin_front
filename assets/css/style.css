@@ -245,7 +245,7 @@ input[type=number]::-webkit-inner-spin-button {
 .product-card .price .price-text {
   color: #dcba95;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 @media (max-width: 1400px) {
@@ -4644,6 +4644,9 @@ html[dir=ltr] td.headd2 {
     padding: 10px !important;
     min-height: -moz-fit-content !important;
     min-height: fit-content !important;
+  }
+  .product-card .price-text {
+    font-size: 16px !important;
   }
   .product-card .image {
     height: 110px !important;

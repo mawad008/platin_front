@@ -152,10 +152,7 @@
                         class=""
                         @click="
                           changePrice(
-                            item.discount_price
-                              ? item.discount_price
-                              : item.price,
-                            item.size,
+                            item.discount_price ? item.discount_price : item.price, item.size,
                             item.weight,
                             item
                           )
@@ -169,11 +166,10 @@
                         <!-- <td class="headd">{{ $t("price") }}</td> -->
                         <td class="headd2">
                           {{
-                            item.discount_price
-                              ? item.discount_price
-                              : item.price
+                            item.discount_price ? ((mainProduct?.tax * item.discount_price) + item.discount_price) : ((mainProduct?.tax * item.price)  + item.price)
                           }}
                           {{ $t("curr") }}
+                          <span class="desc" style="font-size: 12px; color: #cfd3d6;"> ( {{ $t('taxes') }} ) </span>
                           <span
                             v-if="item.discount_price"
                             class="px-1"

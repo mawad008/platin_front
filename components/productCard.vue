@@ -98,7 +98,7 @@
             class="price w-100 d-flex align-items-center justify-content-between"
           >
           <div class="d-flex flex-column position-relative">
-          <span v-if="product.discount_price" style="font-size: 12px; position:absolute; top:-17px;">{{ $t('startFrom') }}</span>
+          <!-- <span v-if="product.discount_price" style="font-size: 12px; position:absolute; top:-17px;">{{ $t('startFrom') }}</span> -->
             <div class="price-text">{{ product.discount_price ? (product.discount_price * product.tax + product.discount_price)  : (product.price * product.tax + product.price) }} <span style="font-size: 10px;"> {{ $t("taxes") }} </span> 
             </div>
           </div>

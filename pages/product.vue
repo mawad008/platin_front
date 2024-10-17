@@ -66,6 +66,7 @@ const mainProduct = computed(() => store.state.product.mainProduct);
 const pending = computed(() => store.state.product.pending);
 const commentInput = computed(() => store.state.product.commentInput);
 const newPriceItem = computed(() => store.state.product.newPriceItem);
+const newPriceVar = computed(() => store.state.product.newPriceVar);
 const tokenCookie = Cookies.get("token");
 const router = useRouter();
 let checkComment = ref(false);
@@ -78,7 +79,7 @@ let itemsArray = ref([]);
 let totalComments = ref([]);
 let relatedArr = ref([]);
 let mainVendor = ref({});
-let newPriceVar = ref();
+// let newPriceVar = ref();
 let showAll = ref(false);
 const hiddenDiv = ref(null);
 const triggerDiv = ref(null);
@@ -137,11 +138,12 @@ const addToBasket = async () => {
 };
 const changePrice = (newPrice, size, weight, item) => {
   if (process.client) {
-    newPriceItem.value = item;
-    newPriceVar.value = newPrice;
-    mainProduct.value.price = newPrice;
-    mainProduct.value.size = size;
-    mainProduct.value.weight = weight;
+    store.state.product.newPriceItem = item;
+    store.state.product.newPriceVar = newPrice;
+    store.state.product.mainProduct.price = newPrice;
+    store.state.product.mainProduct.size = size;
+    store.state.product.mainProduct.weight = weight;
+    console.log(newPrice)
 
     window.scrollTo({
       top: 0,

@@ -8,6 +8,7 @@ export default {
         commentInput:"",
         quantity:1,
         pending: false,
+        newPriceVar:""
       },
       mutations: {
         setProduct(state, product) {

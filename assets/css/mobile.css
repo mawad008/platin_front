@@ -30,6 +30,9 @@
     min-height: -moz-fit-content !important;
     min-height: fit-content !important;
   }
+  .product-card .price-text {
+    font-size: 16px !important;
+  }
   .product-card .image {
     height: 110px !important;
   }
