@@ -35,7 +35,7 @@
               <span> {{ $t("personal") }} </span>
             </div>
 
-            <!-- <div class="link" @click="navActive = 2" :class="{ active: navActive == 2 }">
+            <div class="link" @click="navActive = 2" :class="{ active: navActive == 2 }">
               <div class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path
@@ -78,7 +78,7 @@
                 </svg>
               </div>
               <span> طلباتي </span>
-            </div> -->
+            </div>
           </div>
         </div>
         <div class="col-12 col-xl-8 col-lg-8 main-container">
@@ -572,7 +572,7 @@
             </div>
           </div>
 
-          <!-- <div v-if="navActive == 2" class="notifications">
+          <div v-if="navActive == 2" class="notifications">
             <div class="items">
               <div v-for="i in 6" class="item">
                 <div class="icon d-flex align-items-center gap-3">
@@ -878,7 +878,7 @@
           </div>
         </div>
           
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -1192,15 +1192,15 @@ let addAddress = () => {
 };
 
 let orders = ref([
-  // {
-  //   allOrders: [{ item: 1 }, { item: 2 }, { item: 3 }, { item: 4 }]
-  // },
-  // {
-  //   allOrders: [{ item: 1 }, { item: 2 } , {item:4} ,{item:5} , {item:3}]
-  // },
-  // {
-  //   allOrders: [{ item: 1 }, { item: 2 } , {item:4} ,{item:5} , {item:3}]
-  // }
+   {
+     allOrders: [{ item: 1 }, { item: 2 }, { item: 3 }, { item: 4 }]
+   },
+   {
+     allOrders: [{ item: 1 }, { item: 2 } , {item:4} ,{item:5} , {item:3}]
+   },
+   {
+     allOrders: [{ item: 1 }, { item: 2 } , {item:4} ,{item:5} , {item:3}]
+   }
 ]);
 
 const showAllItems = ref(Array(orders.value.length).fill(false));
@@ -1210,7 +1210,6 @@ const displayedOrders = computed(() => {
     if (showAllItems.value[index]) {
       return order;
     } else {
-      // Show only two items initially
       return {
         allOrders: order.allOrders.slice(0, 2),
       };
